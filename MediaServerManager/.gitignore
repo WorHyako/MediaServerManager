@@ -1,3 +1,4 @@
+# QtCreator generation:
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
@@ -148,3 +149,4 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
