@@ -4,6 +4,12 @@ import QtQuick.Layouts
 import FontStyle 1.0
 import TextEditStyle 1.0
 
+/**
+ *  Item root
+ *  - string text: "Text Edit"
+ *      | TextBackgroundRectangle
+ *          | TextEdit
+ */
 Item {
     id: root
 

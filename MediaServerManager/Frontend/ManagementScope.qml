@@ -4,18 +4,14 @@ import QtQuick.Layouts
 import MediaServerManager
 
 /**
- *  Item : root
- *      | ManagementButton : buttonAddNewButton
+ *  Item root
+ *      | ManagementButton buttonAddNewButton
+ *          | MouseArea
  */
 Item {
     id: root
     anchors.fill: parent
 
-    ManagementButton {
-        // anchors.centerIn: parent
-        canBeMoved: true
-        movableScope: root
-    }
     ManagementButton {
         id: buttonAddNewButton
         height: 50
@@ -23,19 +19,23 @@ Item {
         width: 50
 
         MouseArea {
+            /**
+             * Crete new ManagementButton and attach to root
+             * Button will be movable and with circle element
+             */
             function createNewButton() {
-                var someComponent = Qt.createComponent("ManagementButton.qml");
+                var component = Qt.createComponent("ManagementButton.qml");
                 var button;
-                if (someComponent.status === Component.Ready) {
-                    button = someComponent.createObject(root, {
+                if (component.status === Component.Ready) {
+                    button = component.createObject(root, {
                             "canBeMoved": true,
+                            "canBeResized": true,
                             "movableScope": root,
                             "showCircle": true
                         });
                     if (button == null) {
                         console.log("Error on button creating");
                     }
-                    console.log(button.movableScope);
                 }
             }
 

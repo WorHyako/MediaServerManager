@@ -2,9 +2,10 @@ import QtQuick
 import QtQuick.Controls
 
 /**
- *  Item : root
- *      | Rectangle : background
- *          | Rectangle : circle
+ *  Item root
+ *  - bool showCircle: false
+ *      | Rectangle background
+ *          | Rectangle circle
  */
 Item {
     id: root

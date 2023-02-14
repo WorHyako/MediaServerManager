@@ -35,6 +35,7 @@ qt_add_resources(${PROJECT_NAME} "qml-files"
         Frontend/Styles/FontStyle.qml
         Frontend/Styles/ManagementButtonStyle.qml
         Frontend/Styles/TextEditStyle.qml
+        Frontend/QuickTitleLine.qml
         Frontend/Assets/app_background.png)
 
 file(GLOB Qt_Objects Include/ManagementScope.hpp)

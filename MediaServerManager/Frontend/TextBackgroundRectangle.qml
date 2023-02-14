@@ -2,6 +2,10 @@ import QtQuick
 import QtQuick.Controls
 import TextEditStyle 1.0
 
+/**
+ *  Item root
+ *      | Rectangle
+ */
 Item {
     id: root
     width: TextEditStyle.textEditWidth
