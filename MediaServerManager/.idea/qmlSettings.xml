@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="QmlSettings">
+    <option name="myQmlPath" value="$PROJECT_DIR$/../../../../tools/Qt/6.4.1/msvc2019_64/./qml" />
+    <option name="myQtBinPath" value="$PROJECT_DIR$/../../../../tools/Qt/6.4.1/msvc2019_64/bin" />
+  </component>
+</project>
