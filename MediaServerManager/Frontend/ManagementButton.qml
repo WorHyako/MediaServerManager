@@ -55,17 +55,8 @@ Item {
             verticalAlignment: Text.AlignVCenter
         }
 
-        Menu {
-            id: menuContext
-            MenuItem {
-                text: "menu item 1"
-            }
-            MenuItem {
-                text: "menu item 2"
-            }
-            MenuItem {
-                text: "menu item 3"
-            }
+        ButtonContextMenu {
+            id: contextMenu
         }
         MouseArea {
             id: menuMouseArea
@@ -73,7 +64,7 @@ Item {
             anchors.fill: parent
 
             onClicked: {
-                menuContext.open();
+                contextMenu.open(Qt.point(mouse.x, mouse.y));
             }
         }
         MouseArea {
@@ -130,17 +121,6 @@ Item {
 
             drag {
                 axis: Drag.XandYAxis
-
-                /**
-                 * with anchor.centerIn: parent
-                 */
-                // maximumX: root.movableScope.width / 2 - managementButton.width / 2
-                // maximumY: root.movableScope.height / 2 - managementButton.height / 2
-                // minimumX: -root.movableScope.width / 2 + managementButton.width / 2
-                // minimumY: -root.movableScope.height / 2 + managementButton.height / 2
-                /**
-                 * and without
-                 */
                 maximumX: root.movableScope.width - managementButton.width
                 maximumY: root.movableScope.height - managementButton.height
                 minimumX: 0
