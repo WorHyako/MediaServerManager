@@ -55,11 +55,33 @@ Item {
             verticalAlignment: Text.AlignVCenter
         }
 
+        Menu {
+            id: menuContext
+            MenuItem {
+                text: "menu item 1"
+            }
+            MenuItem {
+                text: "menu item 2"
+            }
+            MenuItem {
+                text: "menu item 3"
+            }
+        }
+        MouseArea {
+            id: menuMouseArea
+            acceptedButtons: Qt.RightButton
+            anchors.fill: parent
+
+            onClicked: {
+                menuContext.open();
+            }
+        }
         MouseArea {
             id: transformMouseArea
 
             property point lastButtonSize: null
             property point lastMousePosition: null
+            property bool moving: false
             property bool resizing: false
 
             /**
@@ -69,7 +91,6 @@ Item {
              * @param max maximum limit
              */
             function numInRange(num, min, max) {
-                console.log("num: " + num + "; min: " + min);
                 if (num < min) {
                     return min;
                 } else if (num > max) {
@@ -78,7 +99,7 @@ Item {
                 return num;
             }
 
-            acceptedButtons: Qt.RightButton
+            acceptedButtons: Qt.LeftButton
             anchors.fill: parent
 
             onPositionChanged: {
@@ -96,14 +117,14 @@ Item {
                 }
             }
             onPressed: {
-                resizing = mouse.modifiers & Qt.AltModifier;
-                root.canBeMoved = !resizing;
+                resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
+                moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
                 lastButtonSize.x = managementButton.width;
                 lastButtonSize.y = managementButton.height;
             }
             onReleased: {
                 resizing = false;
-                root.canBeMoved = true;
+                moving = false;
                 lastMousePosition = Qt.point(0, 0);
             }
 
@@ -124,7 +145,7 @@ Item {
                 maximumY: root.movableScope.height - managementButton.height
                 minimumX: 0
                 minimumY: 0
-                target: root.canBeMoved ? parent : null
+                target: moving ? parent : null
             }
         }
     }

@@ -4,11 +4,11 @@ import QtQuick.Layouts
 
 /**
  *  Element struct:
- *  Item : root
- *      | Rectangle : tabScope
- *          | TabBar : tabBar
+ *  Item root
+ *      | Rectangle tabScope
+ *          | TabBar tabBar
  *              | Repeater
- *                  | TabButton: tabButton
+ *                  | TabButton tabButton
  *          | StackLayout
  *              | Repeater
  *                  | Rectangle
@@ -21,7 +21,7 @@ Item {
         /**
          *  Color Blue, but alpha - 0 to set Rectangle invisible
          */
-        color: "#0000ffff"
+        color: "#000000ff"
 
         TabBar {
             id: tabBar
