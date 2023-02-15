@@ -1,8 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import ManagementButtonStyle 1.0
-import FontStyle 1.0
+import "qrc:/Styles" as Styles
+import "qrc:/Backgrounds" as CustomBackgrounds
+import "qrc:/Controls" as CustomControls
 
 /**
  *  Item root
@@ -15,6 +16,7 @@ import FontStyle 1.0
  *      - int minButtonHeight: 50
  *      - int minButtonWidth: 50
  *          | MouseArea transformMouseArea
+ *          - numInRange(num, min, max)
  *          - point lastButtonSize: null
  *          - point lastMousePosition: null
  *          - bool resizing: false
@@ -28,8 +30,8 @@ Item {
     property bool showCircle: false
     property string text: "Button"
 
-    height: ManagementButtonStyle.managementButtonMediumHeight
-    width: ManagementButtonStyle.managementButtonMediumWidth
+    height: Styles.ManagementButtonStyle.managementButtonMediumHeight
+    width: Styles.ManagementButtonStyle.managementButtonMediumWidth
 
     Button {
         id: managementButton
@@ -42,30 +44,24 @@ Item {
         text: parent.text
         width: parent.width
 
-        background: ButtonBackgroundRectangle {
+        background: CustomBackgrounds.ButtonBackgroundRectangle {
             showCircle: root.showCircle
         }
         contentItem: Text {
-            color: FontStyle.fontColor
-            font.family: FontStyle.fontFamily
-            font.pointSize: FontStyle.fontSize
+            color: Styles.FontStyle.fontColor
             horizontalAlignment: Text.AlignHCenter
             opacity: enabled ? 1.0 : 0.3
             text: managementButton.text
             verticalAlignment: Text.AlignVCenter
+
+            font {
+                family: Styles.FontStyle.fontFamily
+                pointSize: Styles.FontStyle.fontSize
+            }
         }
 
-        Menu {
-            id: menuContext
-            MenuItem {
-                text: "menu item 1"
-            }
-            MenuItem {
-                text: "menu item 2"
-            }
-            MenuItem {
-                text: "menu item 3"
-            }
+        CustomControls.ButtonContextMenu {
+            id: contextMenu
         }
         MouseArea {
             id: menuMouseArea
@@ -73,14 +69,14 @@ Item {
             anchors.fill: parent
 
             onClicked: {
-                menuContext.open();
+                contextMenu.open(Qt.point(mouse.x, mouse.y));
             }
         }
         MouseArea {
             id: transformMouseArea
 
-            property point lastButtonSize: null
-            property point lastMousePosition: null
+            property point lastButtonSize: Qt.point(0, 0)
+            property point lastMousePosition: Qt.point(0, 0)
             property bool moving: false
             property bool resizing: false
 
@@ -104,7 +100,7 @@ Item {
 
             onPositionChanged: {
                 if (resizing) {
-                    if (lastMousePosition == Qt.point(0, 0) || lastMousePosition == null) {
+                    if (lastMousePosition == Qt.point(0, 0)) {
                         lastMousePosition = mapToItem(movableScope, mouse.x, mouse.y);
                         return;
                     }
@@ -130,17 +126,6 @@ Item {
 
             drag {
                 axis: Drag.XandYAxis
-
-                /**
-                 * with anchor.centerIn: parent
-                 */
-                // maximumX: root.movableScope.width / 2 - managementButton.width / 2
-                // maximumY: root.movableScope.height / 2 - managementButton.height / 2
-                // minimumX: -root.movableScope.width / 2 + managementButton.width / 2
-                // minimumY: -root.movableScope.height / 2 + managementButton.height / 2
-                /**
-                 * and without
-                 */
                 maximumX: root.movableScope.width - managementButton.width
                 maximumY: root.movableScope.height - managementButton.height
                 minimumX: 0

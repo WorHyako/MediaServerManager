@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="QmlSettings">
-    <option name="myQmlPath" value="$PROJECT_DIR$/../../../../tools/Qt/6.4.1/msvc2019_64/./qml" />
-    <option name="myQtBinPath" value="$PROJECT_DIR$/../../../../tools/Qt/6.4.1/msvc2019_64/bin" />
+    <option name="myCustomQmlPath" value="C:\Project\worHyako\MediaServerManager\MediaServerManager\Frontend" />
+    <option name="myCustomQtBinPath" value="C:\tools\Qt\6.4.1\msvc2019_64\bin" />
+    <option name="myLSPEnabled" value="true" />
+    <option name="myLSPCompletionEnabled" value="true" />
   </component>
 </project>

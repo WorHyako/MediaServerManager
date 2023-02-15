@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import MediaServerManager
+import "qrc:/Controls" as CustomControls
 
 /**
  *  Item root
@@ -12,7 +13,7 @@ Item {
     id: root
     anchors.fill: parent
 
-    ManagementButton {
+    CustomControls.ManagementButton {
         id: buttonAddNewButton
         height: 50
         text: "+"
@@ -24,7 +25,7 @@ Item {
              * Button will be movable and with circle element
              */
             function createNewButton() {
-                var component = Qt.createComponent("ManagementButton.qml");
+                var component = Qt.createComponent("qrc:/Controls/ManagementButton.qml");
                 var button;
                 if (component.status === Component.Ready) {
                     button = component.createObject(root, {

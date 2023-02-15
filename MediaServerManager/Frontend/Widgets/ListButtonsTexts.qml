@@ -1,14 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import ManagementButtonStyle 1.0
-import TextEditStyle 1.0
+import "qrc:/Styles" as Styles
+import "qrc:/Controls" as CustomControls
 
 /**
  *  Item root
  *      | ColumnLayout linesList
  *          | ManagementButton buttonAddNewLine
  *              | MouseArea
+ *              - createNewLine()
  */
 Item {
     id: root
@@ -26,11 +27,10 @@ Item {
         }
         ColumnLayout {
             id: linesList
-
             anchors.top: parent.top
             spacing: 50
 
-            ManagementButton {
+            CustomControls.ManagementButton {
                 id: buttonAddNewLine
                 Layout.column: 0
                 Layout.row: 0
@@ -43,13 +43,15 @@ Item {
                     *  Create new line and attach it to linesList
                     */
                     function createNewLine() {
-                        var component = Qt.createComponent("QuickTitleLine.qml");
+                        var component = Qt.createComponent("qrc:/Controls/QuickTitleLine.qml");
                         var line;
                         if (component.status === Component.Ready) {
                             line = component.createObject(linesList);
                             if (line == null) {
                                 console.log("Error on button creating");
                             }
+                        } else {
+                            console.log("(ListButtonTexts)Error string: " + component.errorString());
                         }
                     }
 
