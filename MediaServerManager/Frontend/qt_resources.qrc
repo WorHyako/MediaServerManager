@@ -1,0 +1,34 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file alias="main.qml">main.qml</file>
+    </qresource>
+    <qresource prefix="/Widgets">
+        <file alias="ListButtonsTexts.qml">Widgets/ListButtonsTexts.qml</file>
+        <file alias="ManagementScope.qml">Widgets/ManagementScope.qml</file>
+        <file alias="QuickButtons.qml">Widgets/QuickButtons.qml</file>
+        <file alias="ListButtonsTexts.qml">Widgets/ListButtonsTexts.qml</file>
+        <file alias="ControlTabs.qml">Widgets/ControlTabs.qml</file>
+    </qresource>
+    <qresource prefix="/Settings">
+        <file alias="SettingsWindow.qml">Settings/SettingsWindow.qml</file>
+    </qresource>
+    <qresource prefix="/Styles">
+        <file alias="FontStyle.qml">Styles/FontStyle.qml</file>
+        <file alias="ManagementButtonStyle.qml">Styles/ManagementButtonStyle.qml</file>
+        <file alias="TextEditStyle.qml">Styles/TextEditStyle.qml</file>
+    </qresource>
+    <qresource prefix="/Backgrounds">
+        <file alias="TextBackgroundRectangle.qml">Styles/Backgrounds/TextBackgroundRectangle.qml</file>
+        <file alias="ButtonBackgroundRectangle.qml">Styles/Backgrounds/ButtonBackgroundRectangle.qml</file>
+    </qresource>
+    <qresource prefix="/Assets">
+        <file alias="app-background.png">Assets/app-background.png</file>
+    </qresource>
+    <qresource prefix="/Controls">
+        <file alias="EditTextField.qml">Controls/EditTextField.qml</file>
+        <file alias="ManagementButton.qml">Controls/ManagementButton.qml</file>
+        <file alias="ButtonContextMenu.qml">Controls/ButtonContextMenu.qml</file>
+        <file alias="QuickTitleLine.qml">Controls/QuickTitleLine.qml</file>
+    </qresource>
+</RCC>

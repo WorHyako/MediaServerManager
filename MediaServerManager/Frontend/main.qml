@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "qrc:/Controls" as CustomControls
+import "qrc:/Widgets" as CustomWidgets
 
 /**
  *  ApplicationWindows root
@@ -10,6 +12,8 @@ import QtQuick.Layouts
  *          | Rectangle
  *              | ControlTabs
  *      | ManagementButton buttonSetting
+ *          | MouseArea
+ *          - createSettingsWindow()
  */
 ApplicationWindow {
     id: root
@@ -25,7 +29,7 @@ ApplicationWindow {
         Image {
             id: background
             anchors.fill: parent
-            source: "qrc:/Frontend/Assets/app_background.png"
+            source: "qrc:/Assets/app-background.png"
             z: -1
         }
         GridLayout {
@@ -33,7 +37,7 @@ ApplicationWindow {
             columns: 20
             rows: 1
 
-            ListButtonsTexts {
+            CustomWidgets.ListButtonsTexts {
                 Layout.column: 1
                 Layout.columnSpan: 3
                 Layout.fillHeight: true
@@ -57,16 +61,43 @@ ApplicationWindow {
                  */
                 color: "#0000ff00"
 
-                ControlTabs {
+                CustomWidgets.ControlTabs {
                     anchors.fill: parent
                 }
             }
         }
-        ManagementButton {
+        CustomControls.ManagementButton {
             id: buttonSetting
             text: "Settings"
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
+
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+            }
+            MouseArea {
+                /**
+                 *  Create settings window. Attach to root.
+                 */
+                function createSettingsWindow() {
+                    var component = Qt.createComponent("qrc:/Settings/SettingsWindow.qml");
+                    var window;
+                    if (component.status === Component.Ready) {
+                        window = component.createObject(root);
+                        if (window == null) {
+                            console.log("Error on settings window creating");
+                            return;
+                        }
+                        window.show();
+                    }
+                    console.log("(main)ErrorString: " + component.errorString());
+                }
+
+                anchors.fill: parent
+
+                onClicked: {
+                    createSettingsWindow();
+                }
+            }
         }
     }
 }

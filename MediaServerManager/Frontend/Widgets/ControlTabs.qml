@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "qrc:/Widgets" as CustomWidgets
 
 /**
  *  Element struct:
@@ -73,8 +74,6 @@ Item {
                 model: 5
 
                 Rectangle {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
                     color: "#0000ffff"
                     radius: 10
 
@@ -82,7 +81,7 @@ Item {
                         color: "#AAA"
                         width: 1
                     }
-                    ManagementScope {
+                    CustomWidgets.ManagementScope {
                         anchors.fill: parent
                     }
                 }

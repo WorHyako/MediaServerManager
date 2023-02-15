@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
-import FontStyle 1.0
-import TextEditStyle 1.0
+import "qrc:/Styles" as CustomStyles
+import "qrc:/Backgrounds" as CustomBackgrounds
 
 /**
  *  Item root
@@ -15,21 +14,24 @@ Item {
 
     property string text: "Text Edit"
 
-    height: TextEditStyle.textEditMediumHeight
-    width: TextEditStyle.textEditMediumWidth
+    height: CustomStyles.TextEditStyle.textEditMediumHeight
+    width: CustomStyles.TextEditStyle.textEditMediumWidth
 
-    TextBackgroundRectangle {
+    CustomBackgrounds.TextBackgroundRectangle {
         height: root.height
         width: root.width
 
         TextEdit {
             anchors.fill: parent
-            color: FontStyle.fontColor
-            font.family: FontStyle.fontFamily
-            font.pointSize: FontStyle.fontSize
+            color: CustomStyles.FontStyle.fontColor
             horizontalAlignment: Text.AlignHCenter
             text: root.text
             verticalAlignment: Text.AlignVCenter
+
+            font {
+                family: CustomStyles.FontStyle.fontFamily
+                pointSize: CustomStyles.FontStyle.fontSize
+            }
         }
     }
 }

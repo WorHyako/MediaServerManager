@@ -6,7 +6,8 @@ import QtQuick.Layouts
  *  Item root
  *  - open()
  *      | Menu menu
- *          | MenuItem
+ *          | Repeater
+ *              | MenuItem
  */
 Item {
     id: root
@@ -20,16 +21,18 @@ Item {
 
     Menu {
         id: menu
-        MenuItem {
-            text: "Rename"
-            background: Rectangle{
-                anchors.fill: parent
-                color: "#000"
-                radius: 10
+        Repeater {
+            model: ["Rename", "Change binding name"]
+
+            MenuItem {
+                text: modelData
+
+                background: Rectangle {
+                    anchors.fill: parent
+                    color: "#ccc"
+                    radius: 1
+                }
             }
-        }
-        MenuItem {
-            text: "Change binding name"
         }
     }
 }

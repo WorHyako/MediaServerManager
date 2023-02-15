@@ -2,6 +2,15 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+/**
+ *  Item root
+ *  - var keys: ["1", "2", "3", "QTY", "4", "6", "5", "Disc", "7", "8", "9", "Price", "+/-", "0", ".", "<="]
+ *      | GridView grid
+ *      - int columns: 4
+ *      - int rows: 4
+ *          | Rectangle
+ *              | Text
+ */
 Item {
     id: root
 
