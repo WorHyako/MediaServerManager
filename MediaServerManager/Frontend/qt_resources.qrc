@@ -4,10 +4,10 @@
         <file alias="main.qml">main.qml</file>
     </qresource>
     <qresource prefix="/Widgets">
-        <file alias="ListButtonsTexts.qml">Widgets/ListButtonsTexts.qml</file>
+        <file alias="QuickTitleScope.qml">Widgets/QuickTitleScope.qml</file>
         <file alias="ManagementScope.qml">Widgets/ManagementScope.qml</file>
-        <file alias="QuickButtons.qml">Widgets/QuickButtons.qml</file>
-        <file alias="ListButtonsTexts.qml">Widgets/ListButtonsTexts.qml</file>
+        <file alias="QuickButtonsScope.qml">Widgets/QuickButtonsScope.qml</file>
+        <file alias="QuickTitleScope.qml">Widgets/QuickTitleScope.qml</file>
         <file alias="ControlTabs.qml">Widgets/ControlTabs.qml</file>
     </qresource>
     <qresource prefix="/Settings">
@@ -27,8 +27,12 @@
     </qresource>
     <qresource prefix="/Controls">
         <file alias="EditTextField.qml">Controls/EditTextField.qml</file>
+        <file alias="CloseButton.qml">Controls/CloseButton.qml</file>
         <file alias="ManagementButton.qml">Controls/ManagementButton.qml</file>
         <file alias="ButtonContextMenu.qml">Controls/ButtonContextMenu.qml</file>
         <file alias="QuickTitleLine.qml">Controls/QuickTitleLine.qml</file>
+    </qresource>
+    <qresource prefix="/JS">
+        <file alias="itemCreator.js">js/itemCreator.js</file>
     </qresource>
 </RCC>

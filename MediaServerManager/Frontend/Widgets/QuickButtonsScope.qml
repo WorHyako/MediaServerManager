@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "qrc:/JS/itemCreator.js" as ItemCreator
 
 /**
  *  Item root
@@ -36,6 +37,20 @@ Item {
 
             Text {
                 text: keys[index]
+            }
+        }
+
+        Button {
+            height: 50
+            width: 50
+
+            background: Rectangle {
+                anchors.fill: parent
+                color: "#0a0"
+            }
+
+            onClicked: {
+                ItemCreator.createNewItem();
             }
         }
     }
