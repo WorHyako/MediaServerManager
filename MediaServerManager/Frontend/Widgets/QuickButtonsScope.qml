@@ -2,56 +2,60 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/JS/itemCreator.js" as ItemCreator
+import "qrc:/Controls" as CustomControls
+import "qrc:/Backgrounds" as CustomBackgrounds
 
 /**
  *  Item root
- *  - var keys: ["1", "2", "3", "QTY", "4", "6", "5", "Disc", "7", "8", "9", "Price", "+/-", "0", ".", "<="]
  *      | GridView grid
- *      - int columns: 4
- *      - int rows: 4
- *          | Rectangle
- *              | Text
+ *          | Repeater
+ *          | ListModel quickButtonModel
+ *      | Button addQuickButtonButton
  */
 Item {
     id: root
+    anchors.fill: parent
 
-    property var keys: ["1", "2", "3", "QTY", "4", "6", "5", "Disc", "7", "8", "9", "Price", "+/-", "0", ".", "<="]
-
-    height: 500
-    width: 500
-
-    GridView {
+    Grid {
         id: grid
-
-        readonly property int columns: 4
-        readonly property int rows: 4
-
         anchors.fill: parent
-        cellHeight: height / rows
-        cellWidth: width / columns
-        model: keys
+        columns: 6
+        rows: 5
+        spacing: 5
 
-        delegate: Rectangle {
-            height: grid.cellHeight
-            width: grid.cellWidth
+        Repeater {
+            model: quickButtonModel
 
-            Text {
-                text: keys[index]
+            delegate: CustomControls.ManagementButton {
+                text: _text
+            }
+        }
+        ListModel {
+            id: quickButtonModel
+        }
+    }
+    Button {
+        id: addQuickButtonButton
+        height: 50
+        text: "+"
+        width: 50
+
+        background: CustomBackgrounds.ButtonBackgroundRectangle {
+            showCircle: false
+        }
+
+        onClicked: {
+            const rangeCheck = quickButtonModel.count < (grid.columns * grid.rows);
+            if (rangeCheck) {
+                quickButtonModel.append({
+                        "_text": ""
+                    });
             }
         }
 
-        Button {
-            height: 50
-            width: 50
-
-            background: Rectangle {
-                anchors.fill: parent
-                color: "#0a0"
-            }
-
-            onClicked: {
-                ItemCreator.createNewItem();
-            }
+        anchors {
+            bottom: parent.bottom
+            right: parent.right
         }
     }
 }

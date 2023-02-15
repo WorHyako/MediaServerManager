@@ -39,7 +39,7 @@ ApplicationWindow {
             columns: 20
             rows: 3
 
-            CustomWidgets.QuickButtonsScope {
+            Rectangle {
                 Layout.column: 1
                 Layout.columnSpan: 3
                 Layout.fillHeight: true
@@ -47,6 +47,15 @@ ApplicationWindow {
                 Layout.preferredHeight: 1
                 Layout.preferredWidth: 2
                 Layout.row: 2
+                color: "#0000ffff"
+                radius: 10
+
+                border {
+                    color: "#AAA"
+                    width: 1
+                }
+                CustomWidgets.QuickButtonsScope {
+                }
             }
             CustomWidgets.QuickTitleScope {
                 Layout.column: 1
@@ -83,7 +92,7 @@ ApplicationWindow {
 
             anchors {
                 bottom: parent.bottom
-                left: parent.left
+                right: parent.right
             }
             MouseArea {
                 anchors.fill: parent
