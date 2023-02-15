@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/Styles" as Styles
 import "qrc:/Controls" as CustomControls
+import "qrc:/JS/itemCreator.js" as ItemCreator
 
 /**
  *  Item root
@@ -39,27 +40,11 @@ Item {
                 width: 50
 
                 MouseArea {
-                    /**
-                    *  Create new line and attach it to linesList
-                    */
-                    function createNewLine() {
-                        var component = Qt.createComponent("qrc:/Controls/QuickTitleLine.qml");
-                        var line;
-                        if (component.status === Component.Ready) {
-                            line = component.createObject(linesList);
-                            if (line == null) {
-                                console.log("Error on button creating");
-                            }
-                        } else {
-                            console.log("(ListButtonTexts)Error string: " + component.errorString());
-                        }
-                    }
-
                     acceptedButtons: Qt.LeftButton
                     anchors.fill: parent
 
                     onClicked: {
-                        createNewLine();
+                        ItemCreator.createNewItem("qrc:/Controls/QuickTitleLine.qml", linesList);
                     }
                 }
             }

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import MediaServerManager
 import "qrc:/Controls" as CustomControls
+import "qrc:/JS/itemCreator.js" as ItemCreator
 
 /**
  *  Item root
@@ -20,30 +21,15 @@ Item {
         width: 50
 
         MouseArea {
-            /**
-             * Crete new ManagementButton and attach to root
-             * Button will be movable and with circle element
-             */
-            function createNewButton() {
-                var component = Qt.createComponent("qrc:/Controls/ManagementButton.qml");
-                var button;
-                if (component.status === Component.Ready) {
-                    button = component.createObject(root, {
-                            "canBeMoved": true,
-                            "canBeResized": true,
-                            "movableScope": root,
-                            "showCircle": true
-                        });
-                    if (button == null) {
-                        console.log("Error on button creating");
-                    }
-                }
-            }
-
             anchors.fill: parent
 
             onClicked: {
-                createNewButton();
+                ItemCreator.createNewItem("qrc:/Controls/ManagementButton.qml", root, {
+                        "canBeMoved": true,
+                        "canBeResized": true,
+                        "movableScope": root,
+                        "showCircle": true
+                    });
             }
         }
         anchors {

@@ -8,6 +8,7 @@ using namespace MediaServerManager;
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
+    qSetMessagePattern("%{file}:%{line} %{function} -> %{if-category}%{category}: %{endif}%{message}");
     qmlRegisterType<ManagementScope>("MediaServerManager", 0, 1, "ManagementScope");
     qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
                              "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
