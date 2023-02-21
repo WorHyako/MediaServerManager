@@ -1,3 +1,6 @@
 [submodule "MediaServerManager/ThirdParty/json"]
 	path = MediaServerManager/ThirdParty/json
 	url = https://github.com/nlohmann/json
+[submodule "worLibrary"]
+	path = worLibrary
+	url = https://github.com/WorHyako/worLibrary
