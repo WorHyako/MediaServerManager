@@ -26,7 +26,8 @@ add_executable(${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME} PROPERTIES
         WIN32_EXECUTABLE TRUE)
 
-file(GLOB Qt_Objects Include/ManagementScope.hpp
+file(GLOB Qt_Objects
+        Include/ManagementScope.hpp
         Include/json/JsonQmlWrapper.hpp)
 file(GLOB Qt_Resources Frontend/qt_resources.qrc)
 

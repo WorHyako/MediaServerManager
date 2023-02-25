@@ -5,6 +5,7 @@
 
 #include "ManagementScope.hpp"
 #include "json/JsonQmlWrapper.hpp"
+//#include "json/DynamicScopeTypes.hpp"
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
