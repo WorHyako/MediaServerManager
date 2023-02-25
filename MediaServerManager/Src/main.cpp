@@ -1,15 +1,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickWindow>
 #include <QQmlContext>
 
 #include "ManagementScope.hpp"
-
-using namespace MediaServerManager;
+#include "json/JsonQmlWrapper.hpp"
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> %{if-category}%{category}: %{endif}%{message}");
-    qmlRegisterType<ManagementScope>("MediaServerManager", 0, 1, "ManagementScope");
+    qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>("MediaServerManager", 1, 0, "JsonQmlWrapper");
     qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
                              "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
     qmlRegisterSingletonType(QUrl(u"qrc:/Styles/FontStyle.qml"_qs),
@@ -24,7 +24,9 @@ int main(int argc, char* argv[]) {
                              QCoreApplication::exit(-1);
                          }
                      }, Qt::QueuedConnection);
-    engine.load(url);
+    MediaServerManager::Json::JsonQmlWrapper jsonManager;
+    engine.rootContext()->setContextProperty("jsonManager", &jsonManager);
 
+    engine.load(url);
     return app.exec();
 }

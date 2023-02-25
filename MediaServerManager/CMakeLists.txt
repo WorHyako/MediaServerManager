@@ -20,22 +20,25 @@ find_package(Qt6 COMPONENTS REQUIRED
 file(GLOB_RECURSE Sources Src/*.cpp)
 file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
+add_subdirectory(ThirdParty/worLibrary)
+
 add_executable(${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME} PROPERTIES
         WIN32_EXECUTABLE TRUE)
 
-file(GLOB Qt_Objects Include/ManagementScope.hpp)
+file(GLOB Qt_Objects Include/ManagementScope.hpp
+        Include/json/JsonQmlWrapper.hpp)
 file(GLOB Qt_Resources Frontend/qt_resources.qrc)
-
-set(Nlohmann_Inc_Dir "ThirdParty/json/single_include")
 
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
-        PRIVATE ${Qt_Resources})
+        PRIVATE ${Qt_Resources}
+        PRIVATE ${worLib_Vector}
+        PRIVATE ${worLib_Json})
 target_include_directories(${PROJECT_NAME}
         PRIVATE Include
-        PRIVATE ${Nlohmann_Inc_Dir})
+        PRIVATE ${worLib_Include_Dir})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml

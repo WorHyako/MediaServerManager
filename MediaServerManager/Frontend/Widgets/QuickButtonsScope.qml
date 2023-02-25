@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import "qrc:/JS/itemCreator.js" as ItemCreator
 import "qrc:/Controls" as CustomControls
 import "qrc:/Backgrounds" as CustomBackgrounds
+import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
@@ -16,6 +17,23 @@ Item {
     id: root
     anchors.fill: parent
 
+    readonly property MSM.JsonQmlWrapper json : jsonManager
+
+    Button {
+        id: saveCurrentState
+        height: 50
+        text: "Save"
+        width: 50
+
+        background: CustomBackgrounds.ButtonBackgroundRectangle {
+            showCircle: false
+        }
+
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+        }
+    }
     Grid {
         id: grid
         anchors.fill: parent
@@ -46,6 +64,8 @@ Item {
 
         onClicked: {
             const rangeCheck = quickButtonModel.count < (grid.columns * grid.rows);
+            const result = jsonManager.GetFileName();
+            console.log("result - ", result)
             if (rangeCheck) {
                 quickButtonModel.append({
                         "_text": ""
