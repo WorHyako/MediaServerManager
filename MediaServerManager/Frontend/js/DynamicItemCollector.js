@@ -12,13 +12,11 @@ function collectItems(parent, type) {
     }
     let items = [];
     const itemNum = parent.children.length;
-    console.log("item num:", itemNum);
     for (let i = 0; i < itemNum; ++i) {
         if (parent.children[i] instanceof type) {
             items.push(parent.children[i]);
             console.log("children[" + i + "]: ", parent.children[i], "was collected");
         }
     }
-
     return items;
 }

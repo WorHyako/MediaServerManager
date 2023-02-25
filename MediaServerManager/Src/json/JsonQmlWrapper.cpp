@@ -1,27 +1,41 @@
+#include "json/JsonQmlWrapper.hpp"
+
 #include <QVariant>
 #include <QQuickItem>
-#include "json/JsonQmlWrapper.hpp"
 
 using namespace MediaServerManager::Json;
 
-wor::Json::JsonManager::FileStatus JsonQmlWrapper::TryToFindFile(const QString& filePath_) noexcept {
-    auto resultStatus = _jsonManager.TryToFindFile(std::move(filePath_.toStdString()));
+wor::Json::JsonManager::FileStatus JsonQmlWrapper::TryToFindFile(const QString& filePath_, bool createFile_) noexcept {
+    auto resultStatus = _jsonManager.TryToFindFile(std::move(filePath_.toStdString()), createFile_);
     return resultStatus;
 }
 
-bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_) noexcept {
-    for (auto& each: items_) {
-        if (!each) {
+bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes scope_) noexcept {
+    std::vector<QObject*> items;
+    items.reserve(items_.size());
+    for (auto& eachQItem: items_) {
+        if (!eachQItem || !qobject_cast<QQuickItem*>(eachQItem)) {
             continue;
         }
-        QQuickItem* my_quick_ptr = qobject_cast<QQuickItem*>(each);
-        if (my_quick_ptr) {
-            const auto textQProperty = my_quick_ptr->property("text").toString();
-            const std::string textProperty(textQProperty.toStdString());
-        }
+        items.push_back(eachQItem);
     }
-    auto configString = MakeConfig();
-    auto result = _jsonManager.TryToSaveFile(configString);
+    nlohmann::json configString;
+    std::string scopeName;
+    switch (scope_) {
+        case DynamicScopes::QuickButtons:
+            configString = MakeQuickButtonsConfig(items);
+            scopeName = "QuickButtonsScope";
+            break;
+        case DynamicScopes::ManagementButtons:
+            configString = MakeQuickTitlesConfig(items);
+            scopeName = "ManagementButtonsScope";
+            break;
+        case DynamicScopes::QuickTitles:
+            configString = MakeManagementButtonConfig(items);
+            scopeName = "QuickTitlesScope";
+            break;
+    }
+    auto result = _jsonManager.TryToSaveFile(configString.dump(), scopeName);
     return result;
 }
 
@@ -29,15 +43,39 @@ bool JsonQmlWrapper::LoadConfigs() noexcept {
     return false;
 }
 
-std::string JsonQmlWrapper::MakeConfig() const noexcept {
-    std::string result = "";
+nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(const std::vector<QObject*>& items_) const noexcept {
+    const uint16_t itemNum = items_.size();
+
+    nlohmann::json result;
+    for (uint16_t i = 0; i < itemNum; ++i) {
+        std::string buttonNumber("QuickButton");
+        buttonNumber.append(std::to_string(i));
+        result[buttonNumber]["text"] = items_[i]->property("text").toString().toStdString();
+        result[buttonNumber]["name"] = items_[i]->property("name").toString().toStdString();
+    }
     return result;
+}
+
+nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(const std::vector<QObject*>& items_) const noexcept {
+    const uint16_t itemNum = items_.size();
+
+    nlohmann::json result;
+    for (uint16_t i = 0; i < itemNum; ++i) {
+        std::string buttonNumber("QuickTitle");
+        buttonNumber.append(std::to_string(i));
+        result[buttonNumber]["text"] = items_[i]->property("text").toString().toStdString();
+    }
+    return result;
+}
+
+nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(const std::vector<QObject*>& items_) const noexcept {
+    return std::string();
 }
 
 #pragma region Accessors
 
 wor::Json::JsonManager::FileStatus JsonQmlWrapper::GetFileStatus() const noexcept {
-    return _jsonManager.fileStatus;
+    return _jsonManager.GetFileStatus();
 }
 
 QString JsonQmlWrapper::GetFileName() const noexcept {

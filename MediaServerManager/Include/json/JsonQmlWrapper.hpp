@@ -10,7 +10,6 @@
 #include "json/JsonManager.hpp"
 
 namespace MediaServerManager::Json {
-
     enum class DynamicScopes {
         QuickButtons,
         ManagementButtons,
@@ -23,22 +22,26 @@ namespace MediaServerManager::Json {
     class JsonQmlWrapper : public QObject {
     Q_OBJECT
     public:
+
         JsonQmlWrapper() = default;
 
         /**
-         * Try to find file by path. Result will returned and saved to current file status.
-         * Also file path will wrote to internal variable if successful.
+         * Try to find file by path. Result will returned and saved to current file status\n
+         * Also file path will wrote to internal variable if successful
          * @param filePath_ full or relative file path
          * @return          file status
          */
-        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus TryToFindFile(const QString& filePath_) noexcept;
+        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
+        TryToFindFile(const QString& filePath_, bool createFile = true) noexcept;
 
-         /**
-          * Try to save UI elements config to json file
-          * @param items_
-          * @return         saving result
-          */
-        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_) noexcept;
+        /**
+         * Try to save UI elements config to json file
+         * @param items_
+         * @param scope_
+         * @return        saving result
+         */
+        [[nodiscard]] Q_INVOKABLE bool
+        SaveConfigs(const QList<QObject*>& items_, MediaServerManager::Json::DynamicScopes scope_) noexcept;
 
         /**
          *
@@ -57,7 +60,11 @@ namespace MediaServerManager::Json {
 
         wor::Json::JsonManager _jsonManager;
 
-        [[nodiscard]] std::string MakeConfig() const noexcept;
+        [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(const std::vector<QObject*>& items_) const noexcept;
+
+        [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(const std::vector<QObject*>& items_) const noexcept;
+
+        [[nodiscard]] nlohmann::json MakeManagementButtonConfig(const std::vector<QObject*>& items_) const noexcept;
 
     public:
 #pragma region Accessors

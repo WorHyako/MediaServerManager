@@ -1,15 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQml
 import "qrc:/JS/itemCreator.js" as ItemCreator
-import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
 import "qrc:/Controls" as CustomControls
 import "qrc:/Backgrounds" as CustomBackgrounds
 import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
+ *  - MSM.JsonQmlWrapper json : jsonManager
  *      | GridView grid
  *          | Repeater
  *          | ListModel quickButtonModel
@@ -22,31 +21,11 @@ Item {
 
     anchors.fill: parent
 
-    Button {
-        id: saveCurrentState
-        height: 50
-        text: "Save"
-        width: 50
-
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
-        }
-
-        onClicked: {
-            const fileExist = jsonManager.TryToFindFile("Makefile");
-            if (!fileExist) {
-                console.log("Can't find config file");
-                return;
-            }
-            var items = ItemCollector.collectItems(grid, CustomControls.ManagementButton);
-            const result = jsonManager.SaveConfigs(items);
-            console.log("count - ", result);
-        }
-
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-        }
+    CustomControls.ButtonSaveConfig {
+        id: saveButton
+        configFileName: "test.json"
+        elementType: CustomControls.ManagementButton
+        scopeObject: grid
     }
     Grid {
         id: grid
