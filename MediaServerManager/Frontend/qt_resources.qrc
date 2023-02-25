@@ -34,5 +34,6 @@
     </qresource>
     <qresource prefix="/JS">
         <file alias="itemCreator.js">js/itemCreator.js</file>
+        <file alias="DynamicItemCollector.js">js/DynamicItemCollector.js</file>
     </qresource>
 </RCC>

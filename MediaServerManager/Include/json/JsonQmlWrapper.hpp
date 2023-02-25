@@ -11,6 +11,12 @@
 
 namespace MediaServerManager::Json {
 
+    enum class DynamicScopes {
+        QuickButtons,
+        ManagementButtons,
+        QuickTitles,
+    };
+
     /**
      *
      */
@@ -27,11 +33,12 @@ namespace MediaServerManager::Json {
          */
         [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus TryToFindFile(const QString& filePath_) noexcept;
 
-        /**
-         * Try to save UI elements config to json file
-         * @return  saving result
-         */
-        [[nodiscard]] Q_INVOKABLE bool SaveConfigs() noexcept;
+         /**
+          * Try to save UI elements config to json file
+          * @param items_
+          * @return         saving result
+          */
+        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_) noexcept;
 
         /**
          *
@@ -43,11 +50,14 @@ namespace MediaServerManager::Json {
          * Array declare scopes, which contain dynamic elements\n
          * Internal vector store elements info in current scope
          */
-        using ConfigStorage = std::array<std::vector<MediaServerManager::ElementConfig>, 10>;
+        using ConfigStorage = std::array<std::vector<MediaServerManager::ElementConfig>,
+                static_cast<size_t>(std::numeric_limits<enum DynamicScopes>::max())>;
 
         ConfigStorage _elementsConfig;
 
         wor::Json::JsonManager _jsonManager;
+
+        [[nodiscard]] std::string MakeConfig() const noexcept;
 
     public:
 #pragma region Accessors
