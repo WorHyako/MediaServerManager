@@ -1,7 +1,3 @@
-function whenItWillUse() {
-    console.log("It should be used latter...")
-}
-
 /**
  * Create new QtQuick Item, attach to rootItem and give parameter list to this one
  * @param itemPath      Item path which will created via `qrc:/`

@@ -1,9 +1,12 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQml
 import "qrc:/JS/itemCreator.js" as ItemCreator
+import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
 import "qrc:/Controls" as CustomControls
 import "qrc:/Backgrounds" as CustomBackgrounds
+import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
@@ -14,8 +17,37 @@ import "qrc:/Backgrounds" as CustomBackgrounds
  */
 Item {
     id: root
+
+    readonly property MSM.JsonQmlWrapper json: jsonManager
+
     anchors.fill: parent
 
+    Button {
+        id: saveCurrentState
+        height: 50
+        text: "Save"
+        width: 50
+
+        background: CustomBackgrounds.ButtonBackgroundRectangle {
+            showCircle: false
+        }
+
+        onClicked: {
+            const fileExist = jsonManager.TryToFindFile("Makefile");
+            if (!fileExist) {
+                console.log("Can't find config file");
+                return;
+            }
+            var items = ItemCollector.collectItems(grid, CustomControls.ManagementButton);
+            const result = jsonManager.SaveConfigs(items);
+            console.log("count - ", result);
+        }
+
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+        }
+    }
     Grid {
         id: grid
         anchors.fill: parent
@@ -48,7 +80,7 @@ Item {
             const rangeCheck = quickButtonModel.count < (grid.columns * grid.rows);
             if (rangeCheck) {
                 quickButtonModel.append({
-                        "_text": ""
+                        "_text": "Quick button"
                     });
             }
         }
