@@ -20,7 +20,6 @@ int main(int argc, char* argv[]) {
             QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs), "TextEditStyle", 1, 0, "TextEditStyle");
 
     /// Enums
-//    qRegisterMetaType<MediaServerManager::DynamicScopeType::Value>("DynamicScopeType");
     qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
             "MediaServerManager", 1, 0, "DynamicScopeType", "Not creatable as it is an enum type");
 

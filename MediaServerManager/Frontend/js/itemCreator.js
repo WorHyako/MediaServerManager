@@ -19,4 +19,5 @@ function createNewItem(itemPath, rootItem, parameters) {
     } else {
         console.log("ErrorString: " + component.errorString());
     }
+    console.log("Item", item, "was created");
 }

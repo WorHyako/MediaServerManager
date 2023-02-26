@@ -41,5 +41,10 @@ Item {
             elementType: CustomControls.QuickTitleLine
             scopeObject: linesList
         }
+        CustomControls.ButtonLoadConfig {
+            configFileName: "test.json"
+            dynamicScopeType: MSM.DynamicScopeType.QuickTitles
+            scopeObject: linesList
+        }
     }
 }

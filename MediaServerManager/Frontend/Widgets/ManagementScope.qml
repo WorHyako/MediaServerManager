@@ -30,4 +30,9 @@ Item {
         qrcElementPath: "qrc:/Controls/ManagementButton.qml"
         scopeObject: root
     }
+    CustomControls.ButtonLoadConfig {
+        configFileName: "test.json"
+        dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
+        scopeObject: root
+    }
 }
