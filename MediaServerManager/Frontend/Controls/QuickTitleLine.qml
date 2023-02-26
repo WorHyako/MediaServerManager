@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Styles" as Styles
+import "qrc:/Styles" as CustomStyles
 import "qrc:/Controls" as CustomControls
 
 /**
@@ -16,9 +16,10 @@ import "qrc:/Controls" as CustomControls
 Item {
     id: root
 
-    property point managementButtonSize: Qt.point(Styles.ManagementButtonStyle.managementButtonSmallWidth, Styles.ManagementButtonStyle.managementButtonSmallHeight)
+    property point managementButtonSize: Qt.point(CustomStyles.ManagementButtonStyle.managementButtonSmallWidth, CustomStyles.ManagementButtonStyle.managementButtonSmallHeight)
     property int spacing: 10
-    property point textEditFiledSize: Qt.point(Styles.TextEditStyle.textEditLargeWidth, Styles.TextEditStyle.textEditLargeHeight)
+    property string text: "Text Example"
+    property point textEditFiledSize: Qt.point(CustomStyles.TextEditStyle.textEditLargeWidth, CustomStyles.TextEditStyle.textEditLargeHeight)
 
     RowLayout {
         height: 50
@@ -28,7 +29,7 @@ Item {
         CustomControls.EditTextField {
             Layout.alignment: Layout.Center
             height: root.textEditFiledSize.y
-            text: "Text example"
+            text: root.text
             width: root.textEditFiledSize.x
         }
         CustomControls.ManagementButton {

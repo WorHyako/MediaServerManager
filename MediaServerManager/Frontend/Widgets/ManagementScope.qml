@@ -1,40 +1,32 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import MediaServerManager
 import "qrc:/Controls" as CustomControls
-import "qrc:/JS/itemCreator.js" as ItemCreator
 
 /**
  *  Item root
- *      | ManagementButton buttonAddNewButton
- *          | MouseArea
+ *      | CustomControls.ButtonSaveConfig
+ *      | CustomControls.ButtonAddNewElement
  */
 Item {
     id: root
     anchors.fill: parent
 
-    CustomControls.ManagementButton {
-        id: buttonAddNewButton
-        height: 50
-        text: "+"
-        width: 50
-
-        MouseArea {
-            anchors.fill: parent
-
-            onClicked: {
-                ItemCreator.createNewItem("qrc:/Controls/ManagementButton.qml", root, {
-                        "canBeMoved": true,
-                        "canBeResized": true,
-                        "movableScope": root,
-                        "showCircle": true
-                    });
-            }
+    CustomControls.ButtonSaveConfig {
+        configFileName: "test.json"
+        dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.ManagementButtons
+        elementType: CustomControls.ManagementButton
+        scopeObject: root
+    }
+    CustomControls.ButtonAddNewElement {
+        maxElementNum: 30
+        newElementArgs: {
+            "canBeMoved": true,
+            "canBeResized": true,
+            "movableScope": root,
+            "showCircle": true
         }
-        anchors {
-            bottom: parent.bottom
-            right: parent.right
-        }
+        qrcElementPath: "qrc:/Controls/ManagementButton.qml"
+        scopeObject: root
     }
 }

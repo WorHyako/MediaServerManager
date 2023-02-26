@@ -1,16 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Styles" as Styles
 import "qrc:/Controls" as CustomControls
-import "qrc:/JS/itemCreator.js" as ItemCreator
 
 /**
  *  Item root
- *      | ColumnLayout linesList
- *          | ManagementButton buttonAddNewLine
- *              | MouseArea
- *              - createNewLine()
+ *      | Rectangle
+ *          | ColumnLayout linesList
+ *          | CustomControls.ButtonSaveConfig
+ *          | CustomControls.ButtonAddNewElement
  */
 Item {
     id: root
@@ -30,24 +28,17 @@ Item {
             id: linesList
             anchors.top: parent.top
             spacing: 50
-
-            CustomControls.ManagementButton {
-                id: buttonAddNewLine
-                Layout.column: 0
-                Layout.row: 0
-                height: 50
-                text: "+"
-                width: 50
-
-                MouseArea {
-                    acceptedButtons: Qt.LeftButton
-                    anchors.fill: parent
-
-                    onClicked: {
-                        ItemCreator.createNewItem("qrc:/Controls/QuickTitleLine.qml", linesList);
-                    }
-                }
-            }
+        }
+        CustomControls.ButtonAddNewElement {
+            maxElementNum: 10
+            qrcElementPath: "qrc:/Controls/QuickTitleLine.qml"
+            scopeObject: linesList
+        }
+        CustomControls.ButtonSaveConfig {
+            configFileName: "test.json"
+            dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickTitles
+            elementType: CustomControls.QuickTitleLine
+            scopeObject: linesList
         }
     }
 }

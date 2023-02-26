@@ -27,11 +27,11 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes sc
             scopeName = "QuickButtonsScope";
             break;
         case DynamicScopes::ManagementButtons:
-            configString = MakeQuickTitlesConfig(items);
+            configString = MakeManagementButtonConfig(items);
             scopeName = "ManagementButtonsScope";
             break;
         case DynamicScopes::QuickTitles:
-            configString = MakeManagementButtonConfig(items);
+            configString = MakeQuickTitlesConfig(items);
             scopeName = "QuickTitlesScope";
             break;
     }
