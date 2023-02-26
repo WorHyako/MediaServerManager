@@ -28,7 +28,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
-        Include/json/JsonQmlWrapper.hpp)
+        Include/json/JsonQmlWrapper.hpp
+        Include/DynamicScopeType.hpp)
 file(GLOB Qt_Resources Frontend/qt_resources.qrc)
 
 target_sources(${PROJECT_NAME}

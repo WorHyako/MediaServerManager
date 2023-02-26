@@ -10,12 +10,6 @@ import "qrc:/JS/ConfigParser.js" as ConfigParser
  *  - int dynamicScopeType
  *  - QtObject scopeObject
  *      | Button
- *
- *  enum DynamicScopeType : {
- *         QuickButtons,
- *         ManagementButtons,
- *         QuickTitles
- *         }
  */
 Item {
     id: root
@@ -39,7 +33,7 @@ Item {
     }
     Button {
         anchors.fill: parent
-        text: root.buttonText
+        text: "Load"
 
         background: CustomBackgrounds.ButtonBackgroundRectangle {
             showCircle: false
@@ -59,7 +53,7 @@ Item {
             }
             console.log("configString", configString);
             var configArray = ConfigParser.parseConfig(configString);
-            console.log("configArray", configArray)
+            console.log("configArray", configArray);
             var loadingUiResult = ConfigParser.loadUiFromConfig(configArray);
             console.log("Loading UI Elements from config:", loadingUiResult);
         }

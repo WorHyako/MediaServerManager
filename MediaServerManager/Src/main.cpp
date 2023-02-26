@@ -5,18 +5,25 @@
 
 #include "ManagementScope.hpp"
 #include "json/JsonQmlWrapper.hpp"
-//#include "json/DynamicScopeTypes.hpp"
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> %{if-category}%{category}: %{endif}%{message}");
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>("MediaServerManager", 1, 0, "JsonQmlWrapper");
-    qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
-                             "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
-    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/FontStyle.qml"_qs),
-                             "FontStyle", 1, 0, "FontStyle");
-    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs),
-                             "TextEditStyle", 1, 0, "TextEditStyle");
+
+    /// Styles
+    qmlRegisterSingletonType(
+            QUrl("qrc:/Styles/ManagementButtonStyle.qml"), "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
+    qmlRegisterSingletonType(
+            QUrl(u"qrc:/Styles/FontStyle.qml"_qs), "FontStyle", 1, 0, "FontStyle");
+    qmlRegisterSingletonType(
+            QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs), "TextEditStyle", 1, 0, "TextEditStyle");
+
+    /// Enums
+//    qRegisterMetaType<MediaServerManager::DynamicScopeType::Value>("DynamicScopeType");
+    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
+            "MediaServerManager", 1, 0, "DynamicScopeType", "Not creatable as it is an enum type");
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
