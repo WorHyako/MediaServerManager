@@ -53,8 +53,6 @@ Item {
                 console.log("Can't find config file");
                 return;
             }
-            console.log("scopeObject:", root.scopeObject);
-            console.log("elementType:", root.elementType);
             var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
             const savingResult = jsonManager.SaveConfigs(items, dynamicScopeType);
             console.log("Saving result: ", savingResult);

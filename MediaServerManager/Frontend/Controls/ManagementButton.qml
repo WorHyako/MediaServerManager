@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 import "qrc:/Styles" as Styles
 import "qrc:/Backgrounds" as CustomBackgrounds
 import "qrc:/Controls" as CustomControls
@@ -9,12 +8,12 @@ import "qrc:/Controls" as CustomControls
  *  Item root
  *  - bool canBeMoved: false
  *  - bool canBeResized: false
+ *  - int minButtonHeight: 50
+ *  - int minButtonWidth: 50
  *  - Item movableScope: null
  *  - bool showCircle: false
  *  - string text: "Button"
- *      | Button managementButton
- *      - int minButtonHeight: 50
- *      - int minButtonWidth: 50
+ *      | Button
  *          | MouseArea transformMouseArea
  *          - numInRange(num, min, max)
  *          - point lastButtonSize: null
@@ -26,6 +25,8 @@ Item {
 
     property bool canBeMoved: false
     property bool canBeResized: false
+    readonly property int minButtonHeight: 50
+    readonly property int minButtonWidth: 50
     property Item movableScope: null
     property bool showCircle: false
     property string text: "Button"
@@ -34,14 +35,8 @@ Item {
     width: Styles.ManagementButtonStyle.managementButtonMediumWidth
 
     Button {
-        id: managementButton
-
-        readonly property int minButtonHeight: 50
-        readonly property int minButtonWidth: 50
-
-        Layout.fillWidth: true
+        anchors.fill: parents
         height: parent.height
-        text: parent.text
         width: parent.width
 
         background: CustomBackgrounds.ButtonBackgroundRectangle {
@@ -51,7 +46,7 @@ Item {
             color: Styles.FontStyle.fontColor
             horizontalAlignment: Text.AlignHCenter
             opacity: enabled ? 1.0 : 0.3
-            text: managementButton.text
+            text: root.text
             verticalAlignment: Text.AlignVCenter
 
             font {
@@ -89,8 +84,10 @@ Item {
             function numInRange(num, min, max) {
                 if (num < min) {
                     return min;
-                } else if (num > max) {
-                    return max;
+                } else {
+                    if (num > max) {
+                        return max;
+                    }
                 }
                 return num;
             }
@@ -108,15 +105,15 @@ Item {
                     var deltaMousePosition = Qt.point(0, 0);
                     deltaMousePosition.x = currentMousePosition.x - lastMousePosition.x;
                     deltaMousePosition.y = currentMousePosition.y - lastMousePosition.y;
-                    managementButton.width = numInRange(lastButtonSize.x + deltaMousePosition.x, managementButton.minButtonWidth, root.movableScope.width);
-                    managementButton.height = numInRange(lastButtonSize.y + deltaMousePosition.y, managementButton.minButtonHeight, root.movableScope.height);
+                    root.width = numInRange(lastButtonSize.x + deltaMousePosition.x, root.minButtonWidth, root.movableScope.width);
+                    root.height = numInRange(lastButtonSize.y + deltaMousePosition.y, root.minButtonHeight, root.movableScope.height);
                 }
             }
             onPressed: {
                 resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
                 moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
-                lastButtonSize.x = managementButton.width;
-                lastButtonSize.y = managementButton.height;
+                lastButtonSize.x = root.width;
+                lastButtonSize.y = root.height;
             }
             onReleased: {
                 resizing = false;
@@ -126,11 +123,11 @@ Item {
 
             drag {
                 axis: Drag.XandYAxis
-                maximumX: root.movableScope.width - managementButton.width
-                maximumY: root.movableScope.height - managementButton.height
+                maximumX: root.movableScope.width - root.width
+                maximumY: root.movableScope.height - root.height
                 minimumX: 0
                 minimumY: 0
-                target: moving ? parent : null
+                target: moving ? root : null
             }
         }
     }

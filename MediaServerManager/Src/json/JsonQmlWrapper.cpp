@@ -21,17 +21,21 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes sc
     }
     nlohmann::json configString;
     std::string scopeName;
+    std::vector<std::string> propertiesList;
     switch (scope_) {
         case DynamicScopes::QuickButtons:
-            configString = MakeQuickButtonsConfig(items);
+            propertiesList = {"text", "name"};
+            configString = MakeQuickButtonsConfig(items, propertiesList);
             scopeName = "QuickButtonsScope";
             break;
         case DynamicScopes::ManagementButtons:
-            configString = MakeManagementButtonConfig(items);
+            propertiesList = {"text", "x", "y", "width", "height"};
+            configString = MakeManagementButtonConfig(items, propertiesList);
             scopeName = "ManagementButtonsScope";
             break;
         case DynamicScopes::QuickTitles:
-            configString = MakeQuickTitlesConfig(items);
+            propertiesList = {"text"};
+            configString = MakeQuickTitlesConfig(items, propertiesList);
             scopeName = "QuickTitlesScope";
             break;
     }
@@ -43,33 +47,52 @@ bool JsonQmlWrapper::LoadConfigs() noexcept {
     return false;
 }
 
-nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(const std::vector<QObject*>& items_) const noexcept {
+nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
+        const std::vector<QObject*>& items_,
+        const std::vector<std::string>& propertiesList_) const noexcept {
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;
     for (uint16_t i = 0; i < itemNum; ++i) {
-        std::string buttonNumber("QuickButton");
+        std::string buttonNumber("QuickButton_");
         buttonNumber.append(std::to_string(i));
-        result[buttonNumber]["text"] = items_[i]->property("text").toString().toStdString();
-        result[buttonNumber]["name"] = items_[i]->property("name").toString().toStdString();
+        for (const auto& property: propertiesList_) {
+            result[buttonNumber][property] = items_[i]->property(property.c_str()).toString().toStdString();
+        }
     }
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(const std::vector<QObject*>& items_) const noexcept {
+nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
+        const std::vector<QObject*>& items_,
+        const std::vector<std::string>& propertiesList_) const noexcept {
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;
     for (uint16_t i = 0; i < itemNum; ++i) {
-        std::string buttonNumber("QuickTitle");
+        std::string buttonNumber("QuickTitle_");
         buttonNumber.append(std::to_string(i));
-        result[buttonNumber]["text"] = items_[i]->property("text").toString().toStdString();
+        for (const auto& property: propertiesList_) {
+            result[buttonNumber][property] = items_[i]->property(property.c_str()).toString().toStdString();
+        }
     }
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(const std::vector<QObject*>& items_) const noexcept {
-    return std::string();
+nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
+        const std::vector<QObject*>& items_,
+        const std::vector<std::string>& propertiesList_) const noexcept {
+    const uint16_t itemNum = items_.size();
+
+    nlohmann::json result;
+    for (uint16_t i = 0; i < itemNum; ++i) {
+        std::string buttonNumber("ManagementButton_");
+        buttonNumber.append(std::to_string(i));
+        for (const auto& property: propertiesList_) {
+            result[buttonNumber][property] = items_[i]->property(property.c_str()).toString().toStdString();
+        }
+    }
+    return result;
 }
 
 #pragma region Accessors
