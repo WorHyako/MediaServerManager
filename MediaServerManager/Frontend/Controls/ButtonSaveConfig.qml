@@ -5,17 +5,30 @@ import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
 
 /**
  *  Item root
- *  - text configFileName
- *  - QtObject scopeObject
  *  - text buttonText : "Save"
+ *  - text configFileName
+ *  - int dynamicScopeType
  *  - var elementType
+ *  - QtObject scopeObject
  *      | Button save button
+ *
+ *  enum DynamicScopeType : {
+ *         QuickButtons,
+ *         ManagementButtons,
+ *         QuickTitles
+ *         }
  */
 Item {
     id: root
+    enum DynamicScopeType {
+        QuickButtons,
+        ManagementButtons,
+        QuickTitles
+    }
 
     property string buttonText: "Save"
     required property string configFileName
+    required property int dynamicScopeType
     required property var elementType
     required property QtObject scopeObject
 
@@ -27,7 +40,6 @@ Item {
         left: parent.left
     }
     Button {
-        id: saveCurrentState
         anchors.fill: parent
         text: root.buttonText
 
@@ -36,15 +48,13 @@ Item {
         }
 
         onClicked: {
-            const QuickButtonsScopeId = 0;
             const fileExist = jsonManager.TryToFindFile(root.configFileName);
             if (!fileExist) {
                 console.log("Can't find config file");
                 return;
             }
             var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
-            /// TODO: Need to separate ScopeId as Qt debug
-            const savingResult = jsonManager.SaveConfigs(items, QuickButtonsScopeId);
+            const savingResult = jsonManager.SaveConfigs(items, dynamicScopeType);
             console.log("Saving result: ", savingResult);
         }
     }

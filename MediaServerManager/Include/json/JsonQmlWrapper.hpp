@@ -60,11 +60,17 @@ namespace MediaServerManager::Json {
 
         wor::Json::JsonManager _jsonManager;
 
-        [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(const std::vector<QObject*>& items_) const noexcept;
+        [[nodiscard]] nlohmann::json
+        MakeQuickButtonsConfig(const std::vector<QObject*>& items_,
+                               const std::vector<std::string>& propertiesList_) const noexcept;
 
-        [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(const std::vector<QObject*>& items_) const noexcept;
+        [[nodiscard]] nlohmann::json
+        MakeQuickTitlesConfig(const std::vector<QObject*>& items_,
+                              const std::vector<std::string>& propertiesList_) const noexcept;
 
-        [[nodiscard]] nlohmann::json MakeManagementButtonConfig(const std::vector<QObject*>& items_) const noexcept;
+        [[nodiscard]] nlohmann::json
+        MakeManagementButtonConfig(const std::vector<QObject*>& items_,
+                                   const std::vector<std::string>& propertiesList_) const noexcept;
 
     public:
 #pragma region Accessors
