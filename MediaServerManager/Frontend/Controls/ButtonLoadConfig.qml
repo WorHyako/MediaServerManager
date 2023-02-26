@@ -1,15 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
+import "qrc:/JS/itemCreator.js" as ItemCreator
+import "qrc:/JS/ConfigParser.js" as ConfigParser
 
 /**
  *  Item root
  *  - text configFileName
  *  - int dynamicScopeType
- *  - var elementType
  *  - QtObject scopeObject
- *      | Button save button
+ *      | Button
  *
  *  enum DynamicScopeType : {
  *         QuickButtons,
@@ -22,24 +22,24 @@ Item {
     enum DynamicScopeType {
         QuickButtons,
         ManagementButtons,
-        QuickTitles
+        QuickTitles,
+        All
     }
 
     required property string configFileName
     required property int dynamicScopeType
-    required property var elementType
     required property QtObject scopeObject
 
     height: 50
     width: 50
 
     anchors {
-        bottom: parent.bottom
         left: parent.left
+        top: parent.toop
     }
     Button {
         anchors.fill: parent
-        text: "Save"
+        text: root.buttonText
 
         background: CustomBackgrounds.ButtonBackgroundRectangle {
             showCircle: false
@@ -51,9 +51,17 @@ Item {
                 console.log("Can't find config file");
                 return;
             }
-            var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
-            const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
-            console.log("Saving result: ", savingResult);
+            var configString = jsonManager.LoadConfigs(root.dynamicScopeType);
+            const loadingResult = configString !== "null";
+            if (!loadingResult) {
+                console.log("Can't load json from config file");
+                return;
+            }
+            console.log("configString", configString);
+            var configArray = ConfigParser.parseConfig(configString);
+            console.log("configArray", configArray)
+            var loadingUiResult = ConfigParser.loadUiFromConfig(configArray);
+            console.log("Loading UI Elements from config:", loadingUiResult);
         }
     }
 }
