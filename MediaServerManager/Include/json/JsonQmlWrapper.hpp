@@ -8,15 +8,9 @@
 
 #include "json/ElementConfig.hpp"
 #include "json/JsonManager.hpp"
+#include "DynamicScopeType.hpp"
 
 namespace MediaServerManager::Json {
-    enum class DynamicScopes {
-        QuickButtons,
-        ManagementButtons,
-        QuickTitles,
-        All
-    };
-
     /**
      *
      */
@@ -25,6 +19,8 @@ namespace MediaServerManager::Json {
     public:
 
         JsonQmlWrapper() = default;
+
+        using DynamicScopeType = MediaServerManager::DynamicScopeType::Value;
 
         /**
          * Try to find file by path. Result will returned and saved to current file status\n
@@ -41,14 +37,14 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_, DynamicScopes scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_, DynamicScopeType scope_) noexcept;
 
         /**
          * Try to load UI elements config from json file
          * @param scope_
          * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE QString LoadConfigs(DynamicScopes scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE QString LoadConfigs(DynamicScopeType scope_) noexcept;
 
     private:
         /**
@@ -56,7 +52,7 @@ namespace MediaServerManager::Json {
          * Internal vector store elements info in current scope
          */
         using ConfigStorage = std::array<std::vector<MediaServerManager::ElementConfig>,
-                static_cast<size_t>(std::numeric_limits<enum DynamicScopes>::max())>;
+                static_cast<size_t>(std::numeric_limits<DynamicScopeType>::max())>;
 
         ConfigStorage _elementsConfig;
 

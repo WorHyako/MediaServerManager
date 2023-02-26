@@ -10,20 +10,9 @@ import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
  *  - var elementType
  *  - QtObject scopeObject
  *      | Button save button
- *
- *  enum DynamicScopeType : {
- *         QuickButtons,
- *         ManagementButtons,
- *         QuickTitles
- *         }
  */
 Item {
     id: root
-    enum DynamicScopeType {
-        QuickButtons,
-        ManagementButtons,
-        QuickTitles
-    }
 
     required property string configFileName
     required property int dynamicScopeType

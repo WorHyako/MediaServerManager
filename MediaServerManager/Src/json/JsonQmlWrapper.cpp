@@ -10,7 +10,7 @@ wor::Json::JsonManager::FileStatus JsonQmlWrapper::TryToFindFile(const QString& 
     return resultStatus;
 }
 
-bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes scope_) noexcept {
+bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopeType scope_) noexcept {
     std::vector<QObject*> items;
     items.reserve(items_.size());
     for (auto& eachQItem: items_) {
@@ -23,17 +23,17 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes sc
     std::string scopeName;
     std::vector<std::string> propertiesList;
     switch (scope_) {
-        case DynamicScopes::QuickButtons:
+        case DynamicScopeType::QuickButtons:
             propertiesList = {"text", "name"};
             configString = MakeQuickButtonsConfig(items, propertiesList);
             scopeName = "QuickButtonsScope";
             break;
-        case DynamicScopes::ManagementButtons:
+        case DynamicScopeType::ManagementButtons:
             propertiesList = {"text", "x", "y", "width", "height"};
             configString = MakeManagementButtonConfig(items, propertiesList);
             scopeName = "ManagementButtonsScope";
             break;
-        case DynamicScopes::QuickTitles:
+        case DynamicScopeType::QuickTitles:
             propertiesList = {"text"};
             configString = MakeQuickTitlesConfig(items, propertiesList);
             scopeName = "QuickTitlesScope";
@@ -45,19 +45,19 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes sc
     return result;
 }
 
-QString JsonQmlWrapper::LoadConfigs(DynamicScopes scope_) noexcept {
+QString JsonQmlWrapper::LoadConfigs(DynamicScopeType scope_) noexcept {
     std::string scopeName{};
     switch (scope_) {
-        case DynamicScopes::QuickButtons:
+        case DynamicScopeType::QuickButtons:
             scopeName = "QuickButtonsScope";
             break;
-        case DynamicScopes::ManagementButtons:
+        case DynamicScopeType::ManagementButtons:
             scopeName = "ManagementButtonsScope";
             break;
-        case DynamicScopes::QuickTitles:
+        case DynamicScopeType::QuickTitles:
             scopeName = "QuickTitlesScope";
             break;
-        case DynamicScopes::All:
+        case DynamicScopeType::All:
             break;
     }
     std::string configString = "null";

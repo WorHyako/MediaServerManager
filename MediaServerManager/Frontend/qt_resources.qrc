@@ -38,6 +38,6 @@
     <qresource prefix="/JS">
         <file alias="itemCreator.js">js/itemCreator.js</file>
         <file alias="DynamicItemCollector.js">js/DynamicItemCollector.js</file>
-        <file alias="ConfigParser.js">js/ConfigParser.js</file>
+        <file alias="ConfigLoader.js">js/ConfigLoader.js</file>
     </qresource>
 </RCC>

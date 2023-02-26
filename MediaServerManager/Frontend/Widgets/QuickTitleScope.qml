@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/Controls" as CustomControls
+import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
@@ -36,8 +37,13 @@ Item {
         }
         CustomControls.ButtonSaveConfig {
             configFileName: "test.json"
-            dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickTitles
+            dynamicScopeType: MSM.DynamicScopeType.QuickTitles
             elementType: CustomControls.QuickTitleLine
+            scopeObject: linesList
+        }
+        CustomControls.ButtonLoadConfig {
+            configFileName: "test.json"
+            dynamicScopeType: MSM.DynamicScopeType.QuickTitles
             scopeObject: linesList
         }
     }

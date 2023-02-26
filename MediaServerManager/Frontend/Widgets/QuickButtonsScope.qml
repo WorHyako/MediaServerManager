@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import "qrc:/Controls" as CustomControls
+import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
@@ -16,13 +17,13 @@ Item {
 
     CustomControls.ButtonSaveConfig {
         configFileName: "test.json"
-        dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickButtons
+        dynamicScopeType: MSM.DynamicScopeType.QuickButtons
         elementType: CustomControls.ManagementButton
         scopeObject: grid
     }
     CustomControls.ButtonLoadConfig {
         configFileName: "test.json"
-        dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickButtons
+        dynamicScopeType: MSM.DynamicScopeType.QuickButtons
         scopeObject: grid
     }
     Grid {
