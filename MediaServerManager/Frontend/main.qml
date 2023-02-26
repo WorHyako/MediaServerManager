@@ -15,7 +15,6 @@ import "qrc:/JS/itemCreator.js" as ItemCreator
  *              | ControlTabs
  *      | ManagementButton buttonSetting
  *          | MouseArea
- *          - createSettingsWindow()
  */
 ApplicationWindow {
     id: root

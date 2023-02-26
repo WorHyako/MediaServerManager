@@ -38,13 +38,35 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject*>& items_, DynamicScopes sc
             configString = MakeQuickTitlesConfig(items, propertiesList);
             scopeName = "QuickTitlesScope";
             break;
+        default:
+            break;
     }
     auto result = _jsonManager.TryToSaveFile(configString.dump(), scopeName);
     return result;
 }
 
-bool JsonQmlWrapper::LoadConfigs() noexcept {
-    return false;
+QString JsonQmlWrapper::LoadConfigs(DynamicScopes scope_) noexcept {
+    std::string scopeName{};
+    switch (scope_) {
+        case DynamicScopes::QuickButtons:
+            scopeName = "QuickButtonsScope";
+            break;
+        case DynamicScopes::ManagementButtons:
+            scopeName = "ManagementButtonsScope";
+            break;
+        case DynamicScopes::QuickTitles:
+            scopeName = "QuickTitlesScope";
+            break;
+        case DynamicScopes::All:
+            break;
+    }
+    std::string configString = "null";
+    nlohmann::json jsonContent = _jsonManager.TryToLoadFile(scopeName);
+    auto loadingResult = jsonContent.is_object();
+    if (loadingResult) {
+        configString = jsonContent.dump();
+    }
+    return {configString.c_str()};
 }
 
 nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
@@ -79,9 +101,8 @@ nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
-        const std::vector<QObject*>& items_,
-        const std::vector<std::string>& propertiesList_) const noexcept {
+nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(const std::vector<QObject*>& items_,
+                                                          const std::vector<std::string>& propertiesList_) const noexcept {
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;

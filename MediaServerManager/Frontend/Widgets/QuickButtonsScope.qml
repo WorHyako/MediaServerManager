@@ -1,26 +1,28 @@
 import QtQuick
 import QtQuick.Controls
 import "qrc:/Controls" as CustomControls
-import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
  *  - MSM.JsonQmlWrapper json : jsonManager
  *      | GridView grid
  *      | CustomControls.ButtonSaveConfig
+ *      | CustomControls.ButtonLoadConfig
  *      | CustomControls.ButtonAddNewElement
  */
 Item {
     id: root
-
-    readonly property MSM.JsonQmlWrapper json: jsonManager
-
     anchors.fill: parent
 
     CustomControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickButtons
         elementType: CustomControls.ManagementButton
+        scopeObject: grid
+    }
+    CustomControls.ButtonLoadConfig {
+        configFileName: "test.json"
+        dynamicScopeType: CustomControls.ButtonSaveConfig.DynamicScopeType.QuickButtons
         scopeObject: grid
     }
     Grid {

@@ -14,6 +14,7 @@ namespace MediaServerManager::Json {
         QuickButtons,
         ManagementButtons,
         QuickTitles,
+        All
     };
 
     /**
@@ -38,15 +39,16 @@ namespace MediaServerManager::Json {
          * Try to save UI elements config to json file
          * @param items_
          * @param scope_
-         * @return        saving result
+         * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool
-        SaveConfigs(const QList<QObject*>& items_, MediaServerManager::Json::DynamicScopes scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_, DynamicScopes scope_) noexcept;
 
         /**
-         *
+         * Try to load UI elements config from json file
+         * @param scope_
+         * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE bool LoadConfigs() noexcept;
+        [[nodiscard]] Q_INVOKABLE QString LoadConfigs(DynamicScopes scope_) noexcept;
 
     private:
         /**

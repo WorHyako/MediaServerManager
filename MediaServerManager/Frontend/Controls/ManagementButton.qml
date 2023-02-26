@@ -35,7 +35,7 @@ Item {
     width: Styles.ManagementButtonStyle.managementButtonMediumWidth
 
     Button {
-        anchors.fill: parents
+        anchors.fill: parent
         height: parent.height
         width: parent.width
 
