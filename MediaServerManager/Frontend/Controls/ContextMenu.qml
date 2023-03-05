@@ -6,8 +6,7 @@ import "qrc:/Backgrounds" as CustomBackgrounds
  *  Item root
  *  - open()
  *      | Menu
- *          | Repeater
- *              | MenuItem
+ *      - Action text: {"Rename"}, {"Change Binding name"}
  */
 Item {
     id: root
