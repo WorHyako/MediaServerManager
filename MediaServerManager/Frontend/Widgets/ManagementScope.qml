@@ -13,11 +13,20 @@ Item {
     id: root
     anchors.fill: parent
 
+    Rectangle {
+        id: contentScope
+        color: "#00ffffff"
+        anchors{
+            fill: parent
+            bottomMargin: 50
+        }
+    }
+
     CustomControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
         elementType: CustomControls.ManagementButton
-        scopeObject: root
+        scopeObject: contentScope
     }
     CustomControls.ButtonAddNewElement {
         maxElementNum: 30
@@ -28,11 +37,11 @@ Item {
             "showCircle": true
         }
         qrcElementPath: "qrc:/Controls/ManagementButton.qml"
-        scopeObject: root
+        scopeObject: contentScope
     }
     CustomControls.ButtonLoadConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-        scopeObject: root
+        scopeObject: contentScope
     }
 }
