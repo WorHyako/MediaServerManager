@@ -29,7 +29,7 @@
         <file alias="EditTextField.qml">Controls/EditTextField.qml</file>
         <file alias="CloseButton.qml">Controls/CloseButton.qml</file>
         <file alias="ManagementButton.qml">Controls/ManagementButton.qml</file>
-        <file alias="ButtonContextMenu.qml">Controls/ButtonContextMenu.qml</file>
+        <file alias="ContextMenu.qml">Controls/ContextMenu.qml</file>
         <file alias="QuickTitleLine.qml">Controls/QuickTitleLine.qml</file>
         <file alias="ButtonSaveConfig.qml">Controls/ButtonSaveConfig.qml</file>
         <file alias="ButtonLoadConfig.qml">Controls/ButtonLoadConfig.qml</file>
