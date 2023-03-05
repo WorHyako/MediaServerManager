@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/itemCreator.js" as ItemCreator
+import "qrc:/JS/ItemCreator.js" as ItemCreator
 import "qrc:/JS/ConfigLoader.js" as ConfigLoader
 import MediaServerManager 1.0 as MSM
 
