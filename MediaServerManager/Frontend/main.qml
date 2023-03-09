@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/Controls" as CustomControls
 import "qrc:/Widgets" as CustomWidgets
-import "qrc:/JS/itemCreator.js" as ItemCreator
+import "qrc:/JS/ItemCreator.js" as ItemCreator
 
 /**
  *  ApplicationWindows root

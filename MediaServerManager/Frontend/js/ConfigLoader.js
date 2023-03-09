@@ -5,9 +5,9 @@ const quickTitlePath = "qrc:/Controls/QuickTitleLine.qml";
 const managementButtonSettings = {
     "canBeMoved": true,
     "canBeResized": true,
-    "movableScope": root,
     "showCircle": true
 }
+
 /**
  * Try to parse string from configuration file via json string
  * @param configString  Configuration json string
@@ -62,7 +62,6 @@ function loadUiFromConfig(configString, configType, scopeObject) {
             const configObject = arrayToObject(configArray[configCount]);
             Object.assign(configObject, defaultPreset);
             ItemCreator.createNewItem(String(elementPath), scopeObject, configObject);
-            /// TODO: add default element config
         }
     }
     return true;

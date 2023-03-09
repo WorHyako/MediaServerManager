@@ -5,7 +5,6 @@ import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
- *  - MSM.JsonQmlWrapper json : jsonManager
  *      | GridView grid
  *      | CustomControls.ButtonSaveConfig
  *      | CustomControls.ButtonLoadConfig

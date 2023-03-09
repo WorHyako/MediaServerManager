@@ -18,7 +18,7 @@ Item {
 
         border {
             color: "#939393"
-            width: root.activeFocus ? 5 : 1
+            width: root.activeFocus ? 3 : 1
         }
     }
 }

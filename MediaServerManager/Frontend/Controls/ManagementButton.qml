@@ -55,8 +55,9 @@ Item {
             }
         }
 
-        CustomControls.ButtonContextMenu {
+        CustomControls.ContextMenu {
             id: contextMenu
+            selectedButton: root
         }
         MouseArea {
             id: menuMouseArea
