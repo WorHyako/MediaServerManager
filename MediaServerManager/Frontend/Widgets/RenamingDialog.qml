@@ -3,11 +3,13 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/Backgrounds" as CustomBackgrounds
 import "qrc:/Controls" as CustomControls
+import "qrc:/JS/Renamer.js" as Renamer
 
 /**
  * Dialog root
  * - string newText: "-"
- * - string previousText: "-"
+ * - string propertyToRename
+ * - QtObject objectToRename
  * - onTextEditFinished(text)
  *      | ColumnLayout
  *          | Text
@@ -22,7 +24,8 @@ Dialog {
     id: root
 
     property string newText: "-"
-    required property string previousText
+    required property QtObject objectToRename
+    required property string propertyToRename
 
     /// TODO: Make binding between TextEdit and property newText
     /**
@@ -64,7 +67,7 @@ Dialog {
         }
         Repeater {
             id: repeater
-            model: [["Previous", root.previousText], ["New", root.newText]]
+            model: [["Previous", root.objectToRename[propertyToRename]], ["New", root.newText]]
 
             CustomBackgrounds.TextBackgroundRectangle {
                 Layout.alignment: Qt.AlignCenter
@@ -115,8 +118,7 @@ Dialog {
 
                 onClicked: {
                     focus = true;
-                    /// TODO: Connect and return newText via onAccepted or onApplied event
-                    root.parent.renameApplied(root.newText);
+                    const res = Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
                     root.accept();
                 }
             }

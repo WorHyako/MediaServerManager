@@ -3,7 +3,6 @@ import QtQuick.Controls
 import "qrc:/Backgrounds" as CustomBackgrounds
 import "qrc:/Widgets" as CustomWidgets
 import "qrc:/JS/ItemCreator.js" as ItemCreator
-import "qrc:/JS/Renamer.js" as Renamer
 
 /**
  *  Item root
@@ -22,7 +21,7 @@ Item {
     property int menuBorderRadius: 10
     property int menuItemHeight: 50
     property int menuItemWidth: 200
-    property QtObject selectedButton
+    required property QtObject selectedButton
 
     /**
      * Open menu in current cursor position
@@ -32,15 +31,6 @@ Item {
         menu.x = mousePosition.x;
         menu.y = mousePosition.y;
         menu.open();
-    }
-
-    /**
-     * Function exist just by one reason
-     * I can't find how to return data via onAccepted or onApplied Dialog's event
-     * @param text  New text
-     */
-    function renameApplied(text) {
-        console.log("---new text", text);
     }
 
     anchors.fill: parent
@@ -75,10 +65,9 @@ Item {
             onClicked: {
                 if (menuItem.text === "Rename") {
                     const dialog = ItemCreator.createNewItem("qrc:/Widgets/RenamingDialog.qml", root, {
-                            "previousText": "previous name",
-                            "id": "renamingDialog"
+                            "objectToRename": selectedButton,
+                            "propertyToRename": "text"
                         });
-                    // dialog.accepted.connect(renameApplied);
                     dialog.open();
                 } else {
                     if (menuItem.text === "Change Binding name") {
