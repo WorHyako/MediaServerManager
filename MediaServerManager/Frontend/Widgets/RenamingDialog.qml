@@ -118,7 +118,7 @@ Dialog {
 
                 onClicked: {
                     focus = true;
-                    const res = Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
+                    Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
                     root.accept();
                 }
             }

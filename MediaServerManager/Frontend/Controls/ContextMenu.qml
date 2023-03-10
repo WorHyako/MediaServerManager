@@ -13,11 +13,21 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *  - open()
  *  - renameApplied(text)
  *      | Menu
- *      - Action text: {"Rename"}, {"Change Binding name"}
+ *      - Action text: {"Rename"}, {"Change Binding name", "Delete"}
  */
 Item {
     id: root
 
+    /**
+     *
+     */
+    enum ActionType {
+        Rename = 1,
+        ChangeBindingType,
+        Delete = 4
+    }
+
+    property int actionTypes: 0
     property int menuBorderRadius: 10
     property int menuItemHeight: 50
     property int menuItemWidth: 200
@@ -31,10 +41,23 @@ Item {
         menu.x = mousePosition.x;
         menu.y = mousePosition.y;
         menu.open();
+        if (actionTypes & ContextMenu.ActionType.Rename) {
+        }
+        if (actionTypes & ContextMenu.ActionType.Rename) {
+        }
+        if (actionTypes & ContextMenu.ActionType.Rename) {
+        }
     }
 
     anchors.fill: parent
 
+    Component.onCompleted: {
+        if (actionTypes === 0) {
+            ItemCreator.createNewItem("qrc:/Controls/ContextMenuAction.qml", menu, {
+                    "text": "Rename"
+                });
+        }
+    }
     Menu {
         id: menu
         padding: 3
@@ -69,9 +92,14 @@ Item {
                             "propertyToRename": "text"
                         });
                     dialog.open();
-                } else {
-                    if (menuItem.text === "Change Binding name") {
-                    }
+                    return;
+                }
+                if (menuItem.text === "Change Binding name") {
+                    return;
+                }
+                if (menuItem.text === "Delete") {
+                    selectedButton.destroy();
+                    return;
                 }
             }
         }
@@ -83,6 +111,10 @@ Item {
         Action {
             id: changeBinding
             text: "Change Binding name"
+        }
+        Action {
+            id: deleteObject
+            text: "Delete"
         }
     }
 }

@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Styles" as Styles
+import "qrc:/Styles" as CustomStyles
 import "qrc:/Backgrounds" as CustomBackgrounds
 import "qrc:/Controls" as CustomControls
 
@@ -31,8 +31,8 @@ Item {
     property bool showCircle: false
     property string text: "Button"
 
-    height: Styles.ManagementButtonStyle.managementButtonMediumHeight
-    width: Styles.ManagementButtonStyle.managementButtonMediumWidth
+    height: CustomStyles.ManagementButtonStyle.managementButtonMediumHeight
+    width: CustomStyles.ManagementButtonStyle.managementButtonMediumWidth
 
     Button {
         anchors.fill: parent
@@ -43,15 +43,15 @@ Item {
             showCircle: root.showCircle
         }
         contentItem: Text {
-            color: Styles.FontStyle.fontColor
+            color: CustomStyles.FontStyle.fontColor
             horizontalAlignment: Text.AlignHCenter
             opacity: enabled ? 1.0 : 0.3
             text: root.text
             verticalAlignment: Text.AlignVCenter
 
             font {
-                family: Styles.FontStyle.fontFamily
-                pointSize: Styles.FontStyle.fontSize
+                family: CustomStyles.FontStyle.fontFamily
+                pointSize: CustomStyles.FontStyle.fontSize
             }
         }
 
