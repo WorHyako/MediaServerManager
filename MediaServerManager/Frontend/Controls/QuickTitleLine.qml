@@ -56,6 +56,7 @@ Item {
             CustomControls.ContextMenu {
                 id: contextMenu
                 selectedButton: root
+                actionTypes: CustomControls.ContextMenu.ActionType.Delete
             }
 
             MouseArea {

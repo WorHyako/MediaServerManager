@@ -2,12 +2,15 @@ import QtQuick
 import QtQuick.Controls
 
 /**
- *
+ * MenuItem
+ * string itemText
  */
 MenuItem {
     id: menuItem
 
-    property string text: "None"
+    required property string itemText
+
+    text: itemText
 
     background: Rectangle {
         anchors.fill: parent
@@ -20,5 +23,23 @@ MenuItem {
         horizontalAlignment: Text.AlignLeft
         text: menuItem.text
         verticalAlignment: Text.AlignVCenter
+    }
+
+    onClicked: {
+        if (menuItem.text === "Rename") {
+            const dialog = ItemCreator.createNewItem("qrc:/Widgets/RenamingDialog.qml", root, {
+                    "objectToRename": selectedButton,
+                    "propertyToRename": "text"
+                });
+            dialog.open();
+            return;
+        }
+        if (menuItem.text === "Change Binding name") {
+            return;
+        }
+        if (menuItem.text === "Delete") {
+            selectedButton.destroy();
+            return;
+        }
     }
 }
