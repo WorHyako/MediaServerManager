@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/Widgets" as CustomWidgets
 import "qrc:/JS/ItemCreator.js" as ItemCreator
 
 /**
@@ -10,14 +9,24 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *  - int menuItemHeight: 50
  *  - int menuItemWidth: 200
  *  - QtObject selectedButton
+ *  - int actionTypes: 0
  *  - open()
- *  - renameApplied(text)
+ *  - enum ActionType { Rename = 0b1, ChangeBindingType = 0b10, Delete = 0b100}
  *      | Menu
- *      - Action text: {"Rename"}, {"Change Binding name"}
  */
 Item {
     id: root
 
+    /**
+     * Describe all action types
+     */
+    enum ActionType {
+        Rename = 1,
+        ChangeBindingType,
+        Delete = 4
+    }
+
+    property int actionTypes: 0
     property int menuBorderRadius: 10
     property int menuItemHeight: 50
     property int menuItemWidth: 200
@@ -47,42 +56,25 @@ Item {
             implicitWidth: menuItemWidth
             radius: menuBorderRadius
         }
-        delegate: MenuItem {
-            id: menuItem
-            background: Rectangle {
-                anchors.fill: parent
-                color: menuItem.highlighted ? "#555" : "transparent"
-                radius: 8
-            }
-            contentItem: Text {
-                id: menuItemText
-                color: menuItem.highlighted ? "#fff" : "#000"
-                horizontalAlignment: Text.AlignLeft
-                text: menuItem.text
-                verticalAlignment: Text.AlignVCenter
-            }
 
-            onClicked: {
-                if (menuItem.text === "Rename") {
-                    const dialog = ItemCreator.createNewItem("qrc:/Widgets/RenamingDialog.qml", root, {
-                            "objectToRename": selectedButton,
-                            "propertyToRename": "text"
-                        });
-                    dialog.open();
-                } else {
-                    if (menuItem.text === "Change Binding name") {
-                    }
-                }
+        Component.onCompleted: {
+            const isCreateAllItems = root.actionTypes === 0;
+            var actionList = [];
+            if ((actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
+                actionList.push("Rename");
             }
-        }
-
-        Action {
-            id: renaming
-            text: "Rename"
-        }
-        Action {
-            id: changeBinding
-            text: "Change Binding name"
+            if ((actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
+                actionList.push("ChangeBindingType");
+            }
+            if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
+                actionList.push("Delete");
+            }
+            for (var eachActionName of actionList) {
+                var item = ItemCreator.createNewItem("qrc:/Controls/ContextMenuItem.qml", menu, {
+                        "itemText": eachActionName
+                    });
+                menu.addItem(item);
+            }
         }
     }
 }

@@ -35,6 +35,8 @@
         <file alias="ButtonSaveConfig.qml">Controls/ButtonSaveConfig.qml</file>
         <file alias="ButtonLoadConfig.qml">Controls/ButtonLoadConfig.qml</file>
         <file alias="ButtonAddNewElement.qml">Controls/ButtonAddNewElement.qml</file>
+        <file alias="ContextMenuAction.qml">Controls/ContextMenuAction.qml</file>
+        <file alias="ContextMenuItem.qml">Controls/ContextMenuItem.qml</file>
     </qresource>
     <qresource prefix="/JS">
         <file alias="ItemCreator.js">js/ItemCreator.js</file>
