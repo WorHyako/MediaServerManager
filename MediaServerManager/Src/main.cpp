@@ -5,6 +5,7 @@
 
 #include "ManagementScope.hpp"
 #include "json/JsonQmlWrapper.hpp"
+#include "network/TcpSocket.hpp"
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
@@ -35,5 +36,11 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("jsonManager", &jsonManager);
 
     engine.load(url);
+
+    boost::asio::io_context context;
+    wor::network::TcpSocket socket(context);
+
+    socket.SetDestinationEndPoint(wor::network::EndPoint("127.0.0.1", 6000));
+    volatile bool result = socket.TryToConnect();
     return app.exec();
 }
