@@ -16,6 +16,10 @@ void TcpSocket::CleanErrors() noexcept {
     _errors.clear();
 }
 
+void TcpSocket::Send(const std::string& message_) noexcept {
+
+}
+
 bool TcpSocket::TryToConnect() noexcept {
     try {
         _socket.connect(AsioTcpEndPoint(boost::asio::ip::address::from_string(_destinationEndPoint.address.c_str()),

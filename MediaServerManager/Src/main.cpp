@@ -7,7 +7,20 @@
 #include "json/JsonQmlWrapper.hpp"
 #include "network/TcpSocket.hpp"
 
+#include "pugixml.hpp"
+
 int main(int argc, char* argv[]) {
+
+    pugi::xml_document doc;
+    auto node = doc.append_child(pugi::node_declaration);
+    node.append_attribute("attr");
+    pugi::xml_attribute attribute = node.attribute("attr");
+    attribute.set_name("name");
+    attribute.set_value(10);
+    volatile auto val = node.attribute("attr").value();
+    doc.print(std::cout);
+
+
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> %{if-category}%{category}: %{endif}%{message}");
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>("MediaServerManager", 1, 0, "JsonQmlWrapper");
@@ -42,5 +55,6 @@ int main(int argc, char* argv[]) {
 
     socket.SetDestinationEndPoint(wor::network::EndPoint("127.0.0.1", 6000));
     volatile bool result = socket.TryToConnect();
+
     return app.exec();
 }

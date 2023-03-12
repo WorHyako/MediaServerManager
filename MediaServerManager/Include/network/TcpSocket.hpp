@@ -8,6 +8,7 @@
 #include <memory>
 
 #include "network/EndPoint.hpp"
+#include "network/ISocket.hpp"
 
 namespace wor::network {
 
@@ -15,7 +16,7 @@ namespace wor::network {
     /**
      *
      */
-    class TcpSocket {
+    class TcpSocket : public ISocket {
     public:
         using AsioTcp = boost::asio::ip::tcp;
         using AsioTcpEndPoint = AsioTcp::endpoint;
@@ -24,18 +25,28 @@ namespace wor::network {
 
         ~TcpSocket() noexcept;
 
+        void Send(const std::string& message_) noexcept override;
+
+        /**
+         *
+         */
         void CleanErrors() noexcept;
 
         /**
          *
          */
-        bool TryToConnect() noexcept;
+        [[nodiscard]] bool TryToConnect() noexcept;
 
         /**
          *
          */
         void CloseConnection() noexcept;
 
+        /**
+         *
+         * @param address
+         * @return          ping success
+         */
         [[nodiscard]] static bool CheckEndPoint(const std::string& address) noexcept;
 
     private:

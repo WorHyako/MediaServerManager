@@ -22,15 +22,14 @@ file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
 add_definitions(-DWIN32_LEAN_AND_MEAN)
 add_compile_definitions(_WIN32_WINNT=0x0A00)
-# Set $Boost_ROOT environment variable to find boost directory
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_NO_BOOST_CMAKE ON)
-set(BOOST_ROOT C:/bibles/boost/src)
 find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
-message(STATUS "---------boost libs ${Boost_VERSION} ${Boost_LIBRARIES}")
 add_subdirectory(ThirdParty/worLibrary)
+
+find_package(pugixml REQUIRED)
 
 add_executable(${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -48,14 +47,13 @@ target_sources(${PROJECT_NAME}
         PRIVATE ${Qt_Resources}
         PRIVATE ${worLib_Vector}
         PRIVATE ${worLib_Json}
-        PRIVATE ${worLib_Network}
-        PRIVATE Include/network/EndPointChecker.hpp
-        )
+        PRIVATE ${worLib_Network})
 target_include_directories(${PROJECT_NAME}
         PRIVATE Include
         PRIVATE ${worLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
+        PRIVATE pugixml
         PRIVATE ${Boost_LIBRARIES}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
