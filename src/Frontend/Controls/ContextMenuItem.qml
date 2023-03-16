@@ -10,8 +10,6 @@ MenuItem {
 
     required property string itemText
 
-    text: itemText
-
     background: Rectangle {
         anchors.fill: parent
         color: menuItem.highlighted ? "#555" : "transparent"
@@ -21,7 +19,7 @@ MenuItem {
         id: menuItemText
         color: menuItem.highlighted ? "#fff" : "#000"
         horizontalAlignment: Text.AlignLeft
-        text: menuItem.text
+        text: itemText
         verticalAlignment: Text.AlignVCenter
     }
 

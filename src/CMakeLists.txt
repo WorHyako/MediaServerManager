@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.24)
 
 project(MediaServerManager
         VERSION 0.1
@@ -20,11 +20,16 @@ find_package(Qt6 COMPONENTS REQUIRED
 file(GLOB_RECURSE Sources Src/*.cpp)
 file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_NO_BOOST_CMAKE ON)
+set(Boost_NO_WARN_NEW_VERSIONS ON)
+find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
+
 add_subdirectory(ThirdParty/worLibrary)
 
+find_package(pugixml REQUIRED)
+
 add_executable(${PROJECT_NAME})
-set_target_properties(${PROJECT_NAME} PROPERTIES
-        WIN32_EXECUTABLE TRUE)
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
@@ -37,11 +42,15 @@ target_sources(${PROJECT_NAME}
         PRIVATE ${Qt_Objects}
         PRIVATE ${Qt_Resources}
         PRIVATE ${worLib_Vector}
-        PRIVATE ${worLib_Json})
+        PRIVATE ${worLib_Json}
+        PRIVATE ${worLib_Network})
 target_include_directories(${PROJECT_NAME}
         PRIVATE Include
-        PRIVATE ${worLib_Include_Dir})
+        PRIVATE ${worLib_Include_Dir}
+        PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
+        PRIVATE pugixml
+        PRIVATE ${Boost_LIBRARIES}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
         PRIVATE Qt6::Core

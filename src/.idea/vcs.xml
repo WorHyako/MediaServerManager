@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ThirdParty/worLibrary" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/ThirdParty/worLibrary/ThirdParty/nlohmann/json" vcs="Git" />
   </component>
 </project>
