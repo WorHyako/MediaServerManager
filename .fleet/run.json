@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Configure project and make cache",
+            "program": "cmake",
+            "workingDir": "MediaServerManager",
+            "args": [".", "-B build"]
+        },
+        {
+            "type": "command",
+            "name": "Build Release",
+            "program": "cmake",
+            "workingDir": "MediaServerManager/",
+            "environment": {
+                "-DCMAKE_BUILD_TYPE": "Release"
+            },
+            "args": ["--build", "build/Release"],
+        },
+        {
+            "type": "command",
+            "name": "Build Debug",
+            "program": "cmake",
+            "workingDir": "MediaServerManager/",
+            "environment": {
+                "-DCMAKE_BUILD_TYPE": "Debug"
+            },
+            "args": ["--build", "build/Debug"],
+        },
+        {
+            "type": "command",
+            "name": "Run",
+            "program": "./MediaServerManager",
+            "workingDir": "MediaServerManager/build",
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.24)
 
 project(MediaServerManager
         VERSION 0.1
@@ -20,20 +20,15 @@ find_package(Qt6 COMPONENTS REQUIRED
 file(GLOB_RECURSE Sources Src/*.cpp)
 file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
-add_definitions(-DWIN32_LEAN_AND_MEAN)
-add_compile_definitions(_WIN32_WINNT=0x0A00)
 set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-set(Boost_USE_STATIC_LIBS ON)
 set(Boost_NO_BOOST_CMAKE ON)
 find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
+
 add_subdirectory(ThirdParty/worLibrary)
 
 find_package(pugixml REQUIRED)
 
 add_executable(${PROJECT_NAME})
-set_target_properties(${PROJECT_NAME} PROPERTIES
-        WIN32_EXECUTABLE TRUE)
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
@@ -58,5 +53,4 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
         PRIVATE Qt6::Core
-        PRIVATE Qt6::QuickControls2
-        ws2_32 iphlpapi.lib)
+        PRIVATE Qt6::QuickControls2)
