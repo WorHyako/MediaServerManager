@@ -53,8 +53,5 @@ int main(int argc, char* argv[]) {
     boost::asio::io_context context;
     wor::network::TcpSocket socket(context);
 
-    socket.SetDestinationEndPoint(wor::network::EndPoint("127.0.0.1", 6000));
-    volatile bool result = socket.TryToConnect();
-
     return app.exec();
 }
