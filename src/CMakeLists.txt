@@ -22,6 +22,7 @@ file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)
+set(Boost_NO_WARN_NEW_VERSIONS ON)
 find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
 
 add_subdirectory(ThirdParty/worLibrary)

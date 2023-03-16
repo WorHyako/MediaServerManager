@@ -1,37 +1,104 @@
 {
     "configurations": [
         {
+            "name": "Update compile database",
             "type": "command",
-            "name": "Configure project and make cache",
             "program": "cmake",
-            "workingDir": "MediaServerManager",
-            "args": [".", "-B build"]
+            "workingDir": "build",
+            "args": [
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-S $PROJECT_DIR$/src"
+            ]
         },
         {
+            "name": "Update cmake project",
             "type": "command",
-            "name": "Build Release",
-            "program": "cmake",
-            "workingDir": "MediaServerManager/",
-            "environment": {
-                "-DCMAKE_BUILD_TYPE": "Release"
-            },
-            "args": ["--build", "build/Release"],
+            "program": "",
+            "dependsOn": [
+                "Update cmake project in Debug mode",
+                "Update cmake project in Release mode"
+            ]
         },
         {
+            "name": "Update cmake project in Release mode",
             "type": "command",
+            "program": "cmake",
+            "workingDir": ".",
+            "args": [
+                "-S src",
+                "-B build/Release",
+                "-D CMAKE_BUILD_TYPE=Release"
+            ]
+        },
+        {
+            "name": "Update cmake project in Debug mode",
+            "type": "command",
+            "program": "cmake",
+            "workingDir": ".",
+            "args": [
+                "-S src",
+                "-B build/Debug",
+                "-D CMAKE_BUILD_TYPE=Debug"
+            ]
+        },
+        {
             "name": "Build Debug",
+            "type": "command",
             "program": "cmake",
-            "workingDir": "MediaServerManager/",
-            "environment": {
-                "-DCMAKE_BUILD_TYPE": "Debug"
-            },
-            "args": ["--build", "build/Debug"],
+            "workingDir": "build/Debug",
+            "dependsOn": [
+                "Update cmake project in Debug mode"
+            ],
+            "args": [
+                "--build",
+                "."
+            ]
         },
         {
+            "name": "Build Release",
             "type": "command",
-            "name": "Run",
-            "program": "./MediaServerManager",
-            "workingDir": "MediaServerManager/build",
+            "program": "cmake",
+            "workingDir": "build/Release/",
+            "dependsOn": [
+                "Update cmake project in Release mode"
+            ],
+            "args": [
+                "--build",
+                "."
+            ]
+        },
+        {
+            "name": "Build all types",
+            "type": "command",
+            "dependsOn": [
+                "Build Debug",
+                "Build Release"
+            ],
+            "program": ""
+        },
+        {
+            "name": "Run application in Debug mode",
+            "type": "command",
+            "program": "open",
+            "args": [
+                "-a",
+                "$PROJECT_DIR$/build/Debug/MediaServerManager"
+            ],
+            "dependsOn": [
+                "Build Debug"
+            ]
+        },
+        {
+            "name": "Run application in Release mode",
+            "type": "command",
+            "program": "open",
+            "args": [
+                "-a",
+                "$PROJECT_DIR$/build/Release/MediaServerManager"
+            ],
+            "dependsOn": [
+                "Build Release"
+            ]
         }
     ]
 }
