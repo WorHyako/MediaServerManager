@@ -3,3 +3,6 @@ build/
 
 # Fleet index files
 .fleet/index/
+
+# Compiler caches
+.*cache*
