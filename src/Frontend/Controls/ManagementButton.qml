@@ -30,6 +30,7 @@ Item {
     property Item movableScope: null
     property bool showCircle: false
     property string text: "Button"
+    property string bindingEvent: "" 
 
     height: CustomStyles.ManagementButtonStyle.managementButtonMediumHeight
     width: CustomStyles.ManagementButtonStyle.managementButtonMediumWidth

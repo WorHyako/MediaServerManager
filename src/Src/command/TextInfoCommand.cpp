@@ -10,3 +10,7 @@ TextInfoCommand::TextInfoCommand(pugi::xml_document command_, std::vector<std::s
         : _text(std::move(text_)) {
     _command = std::move(_command);
 }
+
+void TextInfoCommand::BuildCommand() noexcept {
+
+}

@@ -9,3 +9,7 @@ void PlayCommand::Execute() noexcept {
 PlayCommand::PlayCommand(pugi::xml_document commandText_) noexcept {
     _command = std::move(commandText_);
 }
+
+void PlayCommand::BuildCommand() noexcept {
+
+}

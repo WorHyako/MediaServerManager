@@ -6,10 +6,17 @@
 #include "ManagementScope.hpp"
 #include "json/JsonQmlWrapper.hpp"
 #include "network/TcpSocket.hpp"
+#include "command/HideCommand.hpp"
+#include "command/CommandBuilder.hpp"
 
 #include "pugixml.hpp"
 
+
+using namespace MediaServerManager::Command;
+
 int main(int argc, char* argv[]) {
+
+    volatile auto ptr = CommandBuilder<HideCommand>::BuildCommand("h", "ghj");
 
     pugi::xml_document doc;
     auto node = doc.append_child(pugi::node_declaration);

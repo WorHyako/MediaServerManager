@@ -1,5 +1,7 @@
 # Build and cache directory
 build/
+cmake-cache/
+compile_database.json
 
 # Fleet index files
 .fleet/index/
