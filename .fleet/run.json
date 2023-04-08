@@ -1,83 +1,55 @@
 {
     "configurations": [
         {
-            "name": "Update compile database",
+            "name": "Update cmake cache (Debug)",
             "type": "command",
-            "program": "cmake",
-            "workingDir": "build",
-            "args": [
-                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
-                "-S $PROJECT_DIR$/src"
-            ]
-        },
-        {
-            "name": "Update cmake project",
-            "type": "command",
-            "program": "",
-            "dependsOn": [
-                "Update cmake project in Debug mode",
-                "Update cmake project in Release mode"
-            ]
-        },
-        {
-            "name": "Update cmake project in Release mode",
-            "type": "command",
-            "program": "cmake",
+            "program": "sh",
             "workingDir": ".",
             "args": [
-                "-S src",
-                "-B build/Release",
-                "-D CMAKE_BUILD_TYPE=Release"
+                "updateCmakeCache.sh",
+                "-g Ninja",
+                "-t Debug"
             ]
         },
         {
-            "name": "Update cmake project in Debug mode",
+            "name": "Update cmake cache (Release)",
             "type": "command",
-            "program": "cmake",
+            "program": "sh",
             "workingDir": ".",
             "args": [
-                "-S src",
-                "-B build/Debug",
-                "-D CMAKE_BUILD_TYPE=Debug"
+                "updateCmakeCache.sh",
+                "-g Ninja",
+                "-t Release"
             ]
         },
         {
-            "name": "Build Debug",
+            "name": "Build (Debug)",
             "type": "command",
-            "program": "cmake",
-            "workingDir": "build/Debug",
-            "dependsOn": [
-                "Update cmake project in Debug mode"
-            ],
+            "program": "sh",
+            "workingDir": ".",
             "args": [
-                "--build",
-                "."
-            ]
+                "build.sh",
+                "-t Debug"
+            ],
+            "dependsOn": [
+                "Update cmake cache (Debug)"
+            ],
         },
         {
-            "name": "Build Release",
+            "name": "Build (Release)",
             "type": "command",
-            "program": "cmake",
-            "workingDir": "build/Release/",
-            "dependsOn": [
-                "Update cmake project in Release mode"
-            ],
+            "program": "sh",
+            "workingDir": ".",
             "args": [
-                "--build",
-                "."
-            ]
-        },
-        {
-            "name": "Build all types",
-            "type": "command",
-            "dependsOn": [
-                "Build Debug",
-                "Build Release"
+                "build.sh",
+                "-t Release"
             ],
-            "program": ""
+            "dependsOn": [
+                "Update cmake cache (Release)"
+            ],
         },
         {
-            "name": "Run application in Debug mode",
+            "name": "Run application (Debug)",
             "type": "command",
             "program": "open",
             "args": [
@@ -85,11 +57,11 @@
                 "$PROJECT_DIR$/build/Debug/MediaServerManager"
             ],
             "dependsOn": [
-                "Build Debug"
+                "Build (Debug)"
             ]
         },
         {
-            "name": "Run application in Release mode",
+            "name": "Run application (Release)",
             "type": "command",
             "program": "open",
             "args": [
@@ -97,7 +69,7 @@
                 "$PROJECT_DIR$/build/Release/MediaServerManager"
             ],
             "dependsOn": [
-                "Build Release"
+                "Build (Release)"
             ]
         }
     ]
