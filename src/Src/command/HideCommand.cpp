@@ -7,5 +7,7 @@ HideCommand::HideCommand() noexcept {
 }
 
 void HideCommand::Execute() noexcept {
+}
 
+void HideCommand::BuildCommand() noexcept {
 }

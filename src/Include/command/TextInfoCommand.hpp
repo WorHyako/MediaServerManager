@@ -18,6 +18,8 @@ namespace MediaServerManager::Command {
         void Execute() noexcept override;
 
     private:
+        void BuildCommand() noexcept override;
+
         std::vector<std::string> _text;
     };
 }
