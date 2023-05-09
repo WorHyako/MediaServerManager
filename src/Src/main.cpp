@@ -6,17 +6,23 @@
 #include "ManagementScope.hpp"
 #include "json/JsonQmlWrapper.hpp"
 #include "network/TcpSocket.hpp"
-#include "command/HideCommand.hpp"
+#include "command/ActionCommand.hpp"
 #include "command/CommandBuilder.hpp"
 
 #include "pugixml.hpp"
 
-
 using namespace MediaServerManager::Command;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
+    std::vector<Command *> commandList;
 
-    volatile auto ptr = CommandBuilder<HideCommand>::BuildCommand("h", "ghj");
+    CommandItemList hideItems;
+    hideItems.emplace_back("filter", "hide");
+    auto hideCommand = CommandBuilder<ActionCommand>::BuildCommand(hideItems);
+    CommandItemList playItems;
+    playItems.emplace_back("filter", "play");
+    playItems.emplace_back("file", "example.mp4");
+    auto playCommand = CommandBuilder<ActionCommand>::BuildCommand(playItems);
 
     pugi::xml_document doc;
     auto node = doc.append_child(pugi::node_declaration);
@@ -25,29 +31,40 @@ int main(int argc, char* argv[]) {
     attribute.set_name("name");
     attribute.set_value(10);
     volatile auto val = node.attribute("attr").value();
-    doc.print(std::cout);
+    std::stringstream ss;
+    doc.print(ss);
+    auto s = ss.str();
 
+    boost::asio::io_context context;
+    auto socket = std::make_unique<wor::network::TcpSocket>(context);
+    auto dump = socket->DestinationEndPoint(wor::network::EndPoint("192.168.0.100", 7000));
+    auto res = socket->TryToConnect();
 
+    hideCommand.Execute(socket.get());
+    playCommand.Execute(socket.get());
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> %{if-category}%{category}: %{endif}%{message}");
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>("MediaServerManager", 1, 0, "JsonQmlWrapper");
 
-    /// Styles
+/// Styles
     qmlRegisterSingletonType(
-            QUrl("qrc:/Styles/ManagementButtonStyle.qml"), "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
+            QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
+            "ManagementButtonStyle", 1, 0, "ManagementButtonStyle");
     qmlRegisterSingletonType(
-            QUrl(u"qrc:/Styles/FontStyle.qml"_qs), "FontStyle", 1, 0, "FontStyle");
+            QUrl(u"qrc:/Styles/FontStyle.qml"_qs),
+            "FontStyle", 1, 0, "FontStyle");
     qmlRegisterSingletonType(
-            QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs), "TextEditStyle", 1, 0, "TextEditStyle");
+            QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs),
+            "TextEditStyle", 1, 0, "TextEditStyle");
 
-    /// Enums
+/// Enums
     qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
             "MediaServerManager", 1, 0, "DynamicScopeType", "Not creatable as it is an enum type");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
-                     [url](QObject* obj, const QUrl& objUrl) {
+                     [url](QObject *obj, const QUrl &objUrl) {
                          if (!obj && url == objUrl) {
                              QCoreApplication::exit(-1);
                          }
@@ -56,9 +73,5 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("jsonManager", &jsonManager);
 
     engine.load(url);
-
-    boost::asio::io_context context;
-    wor::network::TcpSocket socket(context);
-
     return app.exec();
 }

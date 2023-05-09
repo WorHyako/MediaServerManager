@@ -4,10 +4,8 @@
             "name": "Update cmake cache (Debug)",
             "type": "command",
             "program": "sh",
-            "workingDir": ".",
             "args": [
                 "updateCmakeCache.sh",
-                "-g Ninja",
                 "-t Debug"
             ]
         },
@@ -15,10 +13,8 @@
             "name": "Update cmake cache (Release)",
             "type": "command",
             "program": "sh",
-            "workingDir": ".",
             "args": [
                 "updateCmakeCache.sh",
-                "-g Ninja",
                 "-t Release"
             ]
         },
@@ -26,7 +22,6 @@
             "name": "Build (Debug)",
             "type": "command",
             "program": "sh",
-            "workingDir": ".",
             "args": [
                 "build.sh",
                 "-t Debug"
@@ -39,7 +34,6 @@
             "name": "Build (Release)",
             "type": "command",
             "program": "sh",
-            "workingDir": ".",
             "args": [
                 "build.sh",
                 "-t Release"

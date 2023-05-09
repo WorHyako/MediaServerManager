@@ -1,9 +1,7 @@
 #ifndef MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
 #define MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
 
-#include "command/ICommand.hpp"
-
-#include <iostream>
+#include "command/Command.hpp"
 
 namespace MediaServerManager::Command {
 
@@ -21,16 +19,17 @@ namespace MediaServerManager::Command {
          *
          * @return
          */
-        static CommandType BuildCommand(const std::string& args...) noexcept;
+        static CommandType BuildCommand(CommandItemList commandItems) noexcept;
     };
 
     template<typename CommandType>
-    CommandType CommandBuilder<CommandType>::BuildCommand(const std::string& args...) noexcept {
-        if(!std::is_base_of_v<ICommand, CommandType>) {
+    CommandType CommandBuilder<CommandType>::BuildCommand(CommandItemList commandItems) noexcept {
+        if (!std::is_base_of_v<Command, CommandType>) {
             throw std::bad_cast();
         }
-        auto command = CommandType();
-        command.BuildCommand();
+        CommandType command{};
+        std::for_each(commandItems.begin(), commandItems.end(),
+                      [&command](auto &each) { command.AddItem(each); });
         return command;
     }
 }

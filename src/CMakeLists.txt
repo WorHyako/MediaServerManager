@@ -18,7 +18,6 @@ find_package(Qt6 COMPONENTS REQUIRED
         QuickControls2)
 
 file(GLOB_RECURSE Sources Src/*.cpp)
-file(GLOB_RECURSE Qml_Resources Frontend/*.qml)
 
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)

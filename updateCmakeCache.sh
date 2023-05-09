@@ -27,10 +27,10 @@ fi
 echo "Build Type: $buildType";
 echo "Generator: $generator";
 echo "---\n*** Gerenarate compile database ***"
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S src -B cmake-cache
-mv cmake-cache/compile_commands.json compile_database.json
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S src -B cmake-cache -G "$generator"
+mv cmake-cache/compile_commands.json compile_commands.json
 echo "*** Gerenarate compile database done ***"
 
 echo "---\n*** Generate cmake cache ***"
 cmake -S src -B build/$buildType -G "$generator" -D CMAKE_BUILD_TYPE=$buildType
-echo "---\n*** Generate cmake cache done ***"
+echo "*** Generate cmake cache done ***"
