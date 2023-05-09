@@ -23,8 +23,8 @@ Item {
     width: 50
 
     anchors {
-        horizontalCenter: parent.horizontalCenter
         bottom: parent.bottom
+        horizontalCenter: parent.horizontalCenter
     }
     Button {
         anchors.fill: parent

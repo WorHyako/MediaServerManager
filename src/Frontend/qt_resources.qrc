@@ -13,6 +13,8 @@
     </qresource>
     <qresource prefix="/Settings">
         <file alias="SettingsWindow.qml">Settings/SettingsWindow.qml</file>
+        <file alias="NetworkSettings.qml">Settings/NetworkSettings.qml</file>
+        <file alias="MidiSettings.qml">Settings/MidiSettings.qml</file>
     </qresource>
     <qresource prefix="/Styles">
         <file alias="FontStyle.qml">Styles/FontStyle.qml</file>
@@ -22,12 +24,14 @@
     <qresource prefix="/Backgrounds">
         <file alias="TextBackgroundRectangle.qml">Styles/Backgrounds/TextBackgroundRectangle.qml</file>
         <file alias="ButtonBackgroundRectangle.qml">Styles/Backgrounds/ButtonBackgroundRectangle.qml</file>
+        <file alias="TabButtonBackground.qml">Styles/Backgrounds/TabButtonBackground.qml</file>
     </qresource>
     <qresource prefix="/Assets">
         <file alias="app-background.png">Assets/app-background.png</file>
     </qresource>
     <qresource prefix="/Controls">
         <file alias="EditTextField.qml">Controls/EditTextField.qml</file>
+        <file alias="TextField.qml">Controls/TextField.qml</file>
         <file alias="CloseButton.qml">Controls/CloseButton.qml</file>
         <file alias="ManagementButton.qml">Controls/ManagementButton.qml</file>
         <file alias="ContextMenu.qml">Controls/ContextMenu.qml</file>

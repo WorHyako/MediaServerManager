@@ -9,10 +9,13 @@ import "qrc:/Backgrounds" as CustomBackgrounds
  *  Item root
  *  - point managementButtonSize:
  *  - int spacing: 10
+ *  - string text: "Text Example"
  *  - point textEditFiledSize:
  *      | RowLayout
  *          | EditTextField
- *          | ManagementButton
+ *          | Button
+ *          | CustomControls.ContextMenu contextMenu
+ *          | MouseArea menuMouseArea
  */
 Item {
     id: root
@@ -39,12 +42,9 @@ Item {
 
             background: CustomBackgrounds.ButtonBackgroundRectangle {
             }
-            contentItem: Text {
-                color: CustomStyles.FontStyle.fontColor
-                horizontalAlignment: Text.AlignHCenter
+            contentItem: CustomControls.TextField {
                 opacity: enabled ? 1.0 : 0.3
                 text: "Send"
-                verticalAlignment: Text.AlignVCenter
 
                 font {
                     family: CustomStyles.FontStyle.fontFamily
@@ -55,10 +55,9 @@ Item {
             /// TODO: here and in ManagementButton create context menu dynamically
             CustomControls.ContextMenu {
                 id: contextMenu
-                selectedButton: root
                 actionTypes: CustomControls.ContextMenu.ActionType.Delete
+                selectedButton: root
             }
-
             MouseArea {
                 id: menuMouseArea
                 acceptedButtons: Qt.RightButton

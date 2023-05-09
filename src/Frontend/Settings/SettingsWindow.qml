@@ -1,54 +1,51 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import "qrc:/Controls" as CustomControls
+import "qrc:/Settings" as CustomSettings
+import "qrc:/Backgrounds" as CustomBackgrounds
 
 /**
  *  ApplicationWindow root
- *      | Rectangle
- *          | TabBar settingsTabBar
- *              | Repeater
- *                  | TabButton
+ *      | CustomControls.CloseButton
+ *      | TabBar
+ *          | Repeater
+ *              | TabButton
  */
 ApplicationWindow {
     id: root
-    flags: Qt.FramelessWindowHint | Qt.Window
     height: 600
     width: 1000
 
-    CustomControls.CloseButton{
-        window: root
-    }
-
     TabBar {
-        id: settingsTabBar
+        id: tabBar
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
         }
         Repeater {
-            id: tabButtonRepeater
-
-
             model: ["Network", "Midi"]
 
             TabButton {
+                anchors.bottom: parent.bottom
                 height: 50
                 text: modelData
                 width: 50
                 x: 0
                 y: 50 * index
 
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "#AAA"
-                    radius: 5
-
-                    border {
-                        color: "#101010"
-                        width: 1
-                    }
+                background: CustomBackgrounds.TabButtonBackground {
                 }
             }
+        }
+    }
+    StackLayout {
+        anchors.fill: parent
+        currentIndex: tabBar.currentIndex
+
+        CustomSettings.NetworkSettings {
+        }
+        CustomSettings.MidiSettings {
         }
     }
 }

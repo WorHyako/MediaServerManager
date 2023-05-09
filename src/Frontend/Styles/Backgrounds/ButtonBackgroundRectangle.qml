@@ -5,7 +5,7 @@ import QtQuick.Controls
  *  Item root
  *  - bool showCircle: false
  *      | Rectangle background
- *          | Rectangle circle
+ *          | Rectangle
  */
 Item {
     id: root
@@ -22,9 +22,7 @@ Item {
             color: "#939393"
             width: root.activeFocus ? 2 : 1
         }
-
         Rectangle {
-            id: circle
             color: parent.color
             height: background.radius * 2
             radius: background.radius

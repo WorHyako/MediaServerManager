@@ -2,27 +2,24 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "qrc:/Widgets" as CustomWidgets
+import "qrc:/Backgrounds" as CustomBackgrounds
 
 /**
  *  Element struct:
  *  Item root
- *      | Rectangle tabScope
+ *      | Item tabScope
  *          | TabBar tabBar
  *              | Repeater
- *                  | TabButton tabButton
+ *                  | TabButton
  *          | StackLayout
  *              | Repeater
  *                  | Rectangle
  */
 Item {
     id: root
-    Rectangle {
+    Item {
         id: tabScope
         anchors.fill: parent
-        /**
-         *  Color Blue, but alpha - 0 to set Rectangle invisible
-         */
-        color: "#000000ff"
 
         TabBar {
             id: tabBar
@@ -36,29 +33,16 @@ Item {
                 model: ["First", "Second", "Third", "Fourth", "Fifth"]
 
                 TabButton {
-                    id: tabButton
                     height: tabBar.height
                     text: modelData
                     width: tabBar.height
 
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: "#AAA"
-                        radius: 5
-
-                        border {
-                            color: "#101010"
-                            width: 1
-                        }
+                    background: CustomBackgrounds.TabButtonBackground {
                     }
 
-                    anchors {
-                        bottom: parent.bottom
-                    }
+                    anchors.bottom: parent.bottom
                 }
-                anchors {
-                    bottom: parent.bottom
-                }
+                anchors.bottom: parent.bottom
             }
         }
         StackLayout {
@@ -74,7 +58,7 @@ Item {
                 model: 5
 
                 Rectangle {
-                    color: "#0000ffff"
+                    color: "transparent"
                     radius: 10
 
                     border {

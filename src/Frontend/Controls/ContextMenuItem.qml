@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import "qrc:/Controls" as CustomControls
 
 /**
  * MenuItem
@@ -15,12 +16,11 @@ MenuItem {
         color: menuItem.highlighted ? "#555" : "transparent"
         radius: 8
     }
-    contentItem: Text {
+    contentItem: CustomControls.TextField {
         id: menuItemText
         color: menuItem.highlighted ? "#fff" : "#000"
         horizontalAlignment: Text.AlignLeft
         text: itemText
-        verticalAlignment: Text.AlignVCenter
     }
 
     onClicked: {

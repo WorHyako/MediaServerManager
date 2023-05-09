@@ -6,22 +6,22 @@ import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
+ *      | Item contentScope
  *      | CustomControls.ButtonSaveConfig
  *      | CustomControls.ButtonAddNewElement
+ *      | CustomControls.ButtonLoadConfig
  */
 Item {
     id: root
     anchors.fill: parent
 
-    Rectangle {
+    Item {
         id: contentScope
-        color: "#00ffffff"
-        anchors{
-            fill: parent
+        anchors {
             bottomMargin: 50
+            fill: parent
         }
     }
-
     CustomControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
@@ -34,7 +34,10 @@ Item {
             "canBeMoved": true,
             "canBeResized": true,
             "movableScope": root,
-            "showCircle": true
+            "showCircle": true,
+            "onClicked": () => {
+                console.log("clicked");
+            }
         }
         qrcElementPath: "qrc:/Controls/ManagementButton.qml"
         scopeObject: contentScope

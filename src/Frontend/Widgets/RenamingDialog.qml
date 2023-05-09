@@ -12,10 +12,10 @@ import "qrc:/JS/Renamer.js" as Renamer
  * - QtObject objectToRename
  * - onTextEditFinished(text)
  *      | ColumnLayout
- *          | Text
+ *          | CustomControls.TextField
  *          | Repeater
  *          - model: [["Previous", root.previousText], ["New", root.newText]]
- *              | Text
+ *              | CustomControls.TextField
  *              | Rectangle
  *              | TextEdit
  *          | Button
@@ -59,11 +59,9 @@ Dialog {
             rightMargin: 10
             topMargin: 10
         }
-        Text {
+        CustomControls.TextField {
             font.pixelSize: 20
-            horizontalAlignment: Text.AlignHCenter
             text: "Renaming window"
-            verticalAlignment: Text.AlignVCenter
         }
         Repeater {
             id: repeater
@@ -77,13 +75,11 @@ Dialog {
                 RowLayout {
                     anchors.fill: parent
 
-                    Text {
+                    CustomControls.TextField {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         font.pixelSize: 20
-                        horizontalAlignment: Text.AlignHCenter
                         text: modelData[0]
-                        verticalAlignment: Text.AlignVCenter
                     }
                     Rectangle {
                         Layout.fillHeight: true
@@ -112,15 +108,10 @@ Dialog {
             Layout.alignment: Qt.AlignCenter
             text: "Apply"
 
-            MouseArea {
-                acceptedButtons: Qt.LeftButton
-                anchors.fill: parent
-
-                onClicked: {
-                    focus = true;
-                    Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
-                    root.accept();
-                }
+            onClicked: () => {
+                focus = true;
+                Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
+                root.accept();
             }
         }
     }

@@ -13,8 +13,7 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *          | QuickTitleScope
  *          | Rectangle
  *              | ControlTabs
- *      | ManagementButton buttonSetting
- *          | MouseArea
+ *      | ManagementButton
  */
 ApplicationWindow {
     id: root
@@ -23,9 +22,8 @@ ApplicationWindow {
     visible: true
     width: 1920
 
-    Rectangle {
+    Item {
         anchors.fill: parent
-        color: "#00ff00ff"
 
         Image {
             id: background
@@ -46,7 +44,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 1
                 Layout.preferredWidth: 2
                 Layout.row: 2
-                color: "#0000ffff"
+                color: "transparent"
                 radius: 10
 
                 border {
@@ -75,10 +73,7 @@ ApplicationWindow {
                 Layout.preferredWidth: 4
                 Layout.row: 0
                 Layout.rowSpan: 3
-                /**
-                 * Color Green, but alpha - 0 to set Rectangle invisible
-                 */
-                color: "#0000ff00"
+                color: "transparent"
 
                 CustomWidgets.ControlTabs {
                     anchors.fill: parent
@@ -86,19 +81,15 @@ ApplicationWindow {
             }
         }
         CustomControls.ManagementButton {
-            id: buttonSetting
             text: "Settings"
+
+            onClicked: () => {
+                ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
+            }
 
             anchors {
                 bottom: parent.bottom
                 right: parent.right
-            }
-            MouseArea {
-                anchors.fill: parent
-
-                onClicked: {
-                    ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
-                }
             }
         }
     }

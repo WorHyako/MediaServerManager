@@ -18,8 +18,7 @@ Item {
     width: CustomStyles.TextEditStyle.textEditMediumWidth
 
     CustomBackgrounds.TextBackgroundRectangle {
-        height: root.height
-        width: root.width
+        anchors.fill: parent
 
         TextEdit {
             anchors.fill: parent

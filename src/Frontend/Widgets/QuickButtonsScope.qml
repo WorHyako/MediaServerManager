@@ -5,9 +5,9 @@ import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
- *      | GridView grid
  *      | CustomControls.ButtonSaveConfig
  *      | CustomControls.ButtonLoadConfig
+ *      | GridView grid
  *      | CustomControls.ButtonAddNewElement
  */
 Item {

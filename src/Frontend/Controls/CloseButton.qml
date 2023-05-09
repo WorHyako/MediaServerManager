@@ -3,8 +3,8 @@ import QtQuick.Controls
 
 /**
  *  Item root
- *  - Item window
- *      | Button closeButton
+ *  - var window
+ *      | Button
  */
 Item {
     id: root
@@ -21,7 +21,6 @@ Item {
         topMargin: 5
     }
     Button {
-        id: closeButton
         anchors.fill: parent
 
         background: Rectangle {

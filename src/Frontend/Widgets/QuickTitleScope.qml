@@ -8,17 +8,15 @@ import MediaServerManager 1.0 as MSM
  *  Item root
  *      | Rectangle
  *          | ColumnLayout linesList
- *          | CustomControls.ButtonSaveConfig
  *          | CustomControls.ButtonAddNewElement
+ *          | CustomControls.ButtonLoadConfig
+ *          | CustomControls.ButtonSaveConfig
  */
 Item {
     id: root
     Rectangle {
         anchors.fill: parent
-        /**
-         *  Color Blue, but alpha - 0 to set Rectangle invisible
-         */
-        color: "#000000ff"
+        color: "transparent"
         radius: 10
 
         border {

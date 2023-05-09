@@ -14,6 +14,8 @@ import "qrc:/Controls" as CustomControls
  *  - bool showCircle: false
  *  - string text: "Button"
  *      | Button
+ *          | MouseArea menuMouseArea
+ *          | CustomControls.ContextMenu contextMenu
  *          | MouseArea transformMouseArea
  *          - numInRange(num, min, max)
  *          - point lastButtonSize: null
@@ -23,37 +25,28 @@ import "qrc:/Controls" as CustomControls
 Item {
     id: root
 
+    property string bindingEvent: ""
     property bool canBeMoved: false
     property bool canBeResized: false
     readonly property int minButtonHeight: 50
     readonly property int minButtonWidth: 50
     property Item movableScope: null
+    property var onClicked: undefined
     property bool showCircle: false
     property string text: "Button"
-    property string bindingEvent: "" 
 
     height: CustomStyles.ManagementButtonStyle.managementButtonMediumHeight
     width: CustomStyles.ManagementButtonStyle.managementButtonMediumWidth
 
     Button {
         anchors.fill: parent
-        height: parent.height
-        width: parent.width
 
         background: CustomBackgrounds.ButtonBackgroundRectangle {
             showCircle: root.showCircle
         }
-        contentItem: Text {
-            color: CustomStyles.FontStyle.fontColor
-            horizontalAlignment: Text.AlignHCenter
+        contentItem: CustomControls.TextField {
             opacity: enabled ? 1.0 : 0.3
             text: root.text
-            verticalAlignment: Text.AlignVCenter
-
-            font {
-                family: CustomStyles.FontStyle.fontFamily
-                pointSize: CustomStyles.FontStyle.fontSize
-            }
         }
 
         CustomControls.ContextMenu {
@@ -65,7 +58,7 @@ Item {
             acceptedButtons: Qt.RightButton
             anchors.fill: parent
 
-            onClicked: {
+            onClicked: (mouse) => {
                 contextMenu.open(Qt.point(mouse.x, mouse.y));
             }
         }
@@ -97,9 +90,14 @@ Item {
             acceptedButtons: Qt.LeftButton
             anchors.fill: parent
 
-            onPositionChanged: {
+            onClicked: {
+                if (root.onClicked !== undefined) {
+                    root.onClicked();
+                }
+            }
+            onPositionChanged: (mouse) => {
                 if (resizing) {
-                    if (lastMousePosition == Qt.point(0, 0)) {
+                    if (lastMousePosition === Qt.point(0, 0)) {
                         lastMousePosition = mapToItem(movableScope, mouse.x, mouse.y);
                         return;
                     }
@@ -111,7 +109,7 @@ Item {
                     root.height = numInRange(lastButtonSize.y + deltaMousePosition.y, root.minButtonHeight, root.movableScope.height);
                 }
             }
-            onPressed: {
+            onPressed: (mouse) => {
                 resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
                 moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
                 lastButtonSize.x = root.width;
@@ -129,7 +127,7 @@ Item {
                 maximumY: root.movableScope.height - root.height
                 minimumX: 0
                 minimumY: 0
-                target: moving ? root : null
+                target: transformMouseArea.moving ? root : null
             }
         }
     }
