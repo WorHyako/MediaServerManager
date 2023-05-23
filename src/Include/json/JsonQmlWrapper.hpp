@@ -16,8 +16,8 @@ namespace MediaServerManager::Json {
      */
     class JsonQmlWrapper : public QObject {
     Q_OBJECT
-    public:
 
+    public:
         JsonQmlWrapper() = default;
 
         using DynamicScopeType = MediaServerManager::DynamicScopeType::Value;
@@ -29,7 +29,7 @@ namespace MediaServerManager::Json {
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
-        TryToFindFile(const QString& filePath_, bool createFile = true) noexcept;
+        TryToFindFile(const QString &filePath_, bool createFile = true) noexcept;
 
         /**
          * Try to save UI elements config to json file
@@ -37,7 +37,7 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_, DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject *> &items_, DynamicScopeType scope_) noexcept;
 
         /**
          * Try to load UI elements config from json file
@@ -59,16 +59,16 @@ namespace MediaServerManager::Json {
         wor::Json::JsonManager _jsonManager;
 
         [[nodiscard]] nlohmann::json
-        MakeQuickButtonsConfig(const std::vector<QObject*>& items_,
-                               const std::vector<std::string>& propertiesList_) const noexcept;
+        MakeQuickButtonsConfig(const std::vector<QObject *> &items_,
+                               const std::vector<std::string> &propertiesList_) const noexcept;
 
         [[nodiscard]] nlohmann::json
-        MakeQuickTitlesConfig(const std::vector<QObject*>& items_,
-                              const std::vector<std::string>& propertiesList_) const noexcept;
+        MakeQuickTitlesConfig(const std::vector<QObject *> &items_,
+                              const std::vector<std::string> &propertiesList_) const noexcept;
 
         [[nodiscard]] nlohmann::json
-        MakeManagementButtonConfig(const std::vector<QObject*>& items_,
-                                   const std::vector<std::string>& propertiesList_) const noexcept;
+        MakeManagementButtonConfig(const std::vector<QObject *> &items_,
+                                   const std::vector<std::string> &propertiesList_) const noexcept;
 
     public:
 #pragma region Accessors
@@ -88,5 +88,4 @@ namespace MediaServerManager::Json {
 #pragma endregion Accessors
     };
 }
-
 #endif
