@@ -11,9 +11,12 @@ import "qrc:/Styles" as CustomStyles
  */
 Item {
     id: root
-    ColumnLayout {
-        anchors.fill: parent
 
+    ColumnLayout {
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
         RowLayout {
             CustomBackgrounds.TextBackgroundRectangle {
                 height: 30
@@ -25,6 +28,7 @@ Item {
             }
             CustomControls.EditTextField {
                 id: destinationIpTextEdit
+
             }
         }
         RowLayout {
@@ -38,6 +42,7 @@ Item {
             }
             CustomControls.EditTextField {
                 id: destinationPortTextEdit
+
             }
         }
     }
