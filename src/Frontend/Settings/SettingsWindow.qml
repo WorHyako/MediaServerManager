@@ -13,39 +13,40 @@ import "qrc:/Backgrounds" as CustomBackgrounds
  *              | TabButton
  */
 ApplicationWindow {
-    id: root
-    height: 600
-    width: 1000
+	id: root
+	height: 600
+	width: 1000
 
-    TabBar {
-        id: tabBar
-        anchors {
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
-        }
-        Repeater {
-            model: ["Network", "Midi"]
+	TabBar {
+		id: tabBar
+		anchors {
+			bottom: parent.bottom
+			horizontalCenter: parent.horizontalCenter
+		}
+		Repeater {
+			model: ["Network", "Midi"]
 
-            TabButton {
-                anchors.bottom: parent.bottom
-                height: 50
-                text: modelData
-                width: 50
-                x: 0
-                y: 50 * index
+			TabButton {
+				anchors.bottom: parent.bottom
+				height: 50
+				text: modelData
+				width: 50
+				x: 0
+				y: 50 * index
 
-                background: CustomBackgrounds.TabButtonBackground {
-                }
-            }
-        }
-    }
-    StackLayout {
-        anchors.fill: parent
-        currentIndex: tabBar.currentIndex
+				background: CustomBackgrounds.TabButtonBackground
+				{
+				}
+			}
+		}
+	}
+	StackLayout {
+		anchors.fill: parent
+		currentIndex: tabBar.currentIndex
 
-        CustomSettings.NetworkSettings {
-        }
-        CustomSettings.MidiSettings {
-        }
-    }
+		CustomSettings.NetworkSettings {
+		}
+		CustomSettings.MidiSettings {
+		}
+	}
 }

@@ -5,5 +5,5 @@ import QtQuick.Controls
  *
  */
 Action {
-    text: "None"
+	text: "None"
 }

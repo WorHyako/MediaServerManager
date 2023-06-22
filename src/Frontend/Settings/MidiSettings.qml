@@ -6,5 +6,5 @@ import QtQuick.Layouts
  *  Item root
  */
 Item {
-    id: root
+	id: root
 }

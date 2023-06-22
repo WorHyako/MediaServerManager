@@ -2,10 +2,6 @@
 
 using namespace MediaServerManager::Command;
 
-InfoCommand::InfoCommand() noexcept {
+InfoCommand::InfoCommand() noexcept {}
 
-}
-
-void InfoCommand::AddItem(CommandItem commandItem) noexcept {
-
-}
+void InfoCommand::AddItem(CommandItem commandItem) noexcept {}

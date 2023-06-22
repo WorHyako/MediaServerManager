@@ -6,8 +6,8 @@ import QtQuick.Layouts
  *
  */
 Item {
-    id: root
+	id: root
 
-    required property int columnNumber
-    required property int rowNumber
+	required property int columnNumber
+	required property int rowNumber
 }

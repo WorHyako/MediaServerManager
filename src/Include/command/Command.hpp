@@ -26,7 +26,7 @@ namespace MediaServerManager::Command {
 
         std::string commandTag;
 
-        using SocketRef = wor::network::ISocket*;
+        using SocketRef = wor::network::ISocket *;
 
         virtual void Execute(SocketRef sender) const noexcept;
 

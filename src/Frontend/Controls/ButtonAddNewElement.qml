@@ -14,34 +14,35 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *      | Button
  */
 Item {
-    id: root
+	id: root
 
-    required property int maxElementNum
-    property var newElementArgs: {
-    }
-    required property string qrcElementPath
-    required property QtObject scopeObject
+	required property int maxElementNum
+	property var newElementArgs: {
+	}
+	required property string qrcElementPath
+	required property QtObject scopeObject
 
-    height: 50
-    width: 50
+	height: 50
+	width: 50
 
-    anchors {
-        bottom: parent.bottom
-        right: parent.right
-    }
-    Button {
-        anchors.fill: parent
-        text: "Add"
+	anchors {
+		bottom: parent.bottom
+		right: parent.right
+	}
+	Button {
+		anchors.fill: parent
+		text: "Add"
 
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
-        }
+		background: CustomBackgrounds.ButtonBackgroundRectangle
+		{
+			showCircle: false
+		}
 
-        onClicked: {
-            const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-            if (rangeCheck) {
-                ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-            }
-        }
-    }
+		onClicked: {
+			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
+			if (rangeCheck) {
+				ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+			}
+		}
+	}
 }

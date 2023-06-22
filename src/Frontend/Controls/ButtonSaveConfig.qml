@@ -12,37 +12,38 @@ import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
  *      | Button save button
  */
 Item {
-    id: root
+	id: root
 
-    required property string configFileName
-    required property int dynamicScopeType
-    required property var elementType
-    required property QtObject scopeObject
+	required property string configFileName
+	required property int dynamicScopeType
+	required property var elementType
+	required property QtObject scopeObject
 
-    height: 50
-    width: 50
+	height: 50
+	width: 50
 
-    anchors {
-        bottom: parent.bottom
-        left: parent.left
-    }
-    Button {
-        anchors.fill: parent
-        text: "Save"
+	anchors {
+		bottom: parent.bottom
+		left: parent.left
+	}
+	Button {
+		anchors.fill: parent
+		text: "Save"
 
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
-        }
+		background: CustomBackgrounds.ButtonBackgroundRectangle
+		{
+			showCircle: false
+		}
 
-        onClicked: {
-            const fileExist = jsonManager.TryToFindFile(root.configFileName);
-            if (!fileExist) {
-                console.log("Can't find config file");
-                return;
-            }
-            var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
-            const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
-            console.log("Saving result: ", savingResult);
-        }
-    }
+		onClicked: {
+			const fileExist = jsonManager.TryToFindFile(root.configFileName);
+			if (!fileExist) {
+				console.log("Can't find config file");
+				return;
+			}
+			var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
+			const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
+			console.log("Saving result: ", savingResult);
+		}
+	}
 }

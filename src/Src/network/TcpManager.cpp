@@ -9,9 +9,7 @@ bool TcpManager::TryToConnect() noexcept {
     return tcpSocket->TryToConnect();
 }
 
-void TcpManager::InitializeSocket() noexcept {
-
-}
+void TcpManager::InitializeSocket() noexcept {}
 
 #pragma region Accessors/Mutators
 

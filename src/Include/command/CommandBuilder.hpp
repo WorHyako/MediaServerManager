@@ -23,13 +23,16 @@ namespace MediaServerManager::Command {
     };
 
     template<typename CommandType>
-    CommandType CommandBuilder<CommandType>::BuildCommand(CommandItemList commandItems) noexcept {
+    CommandType CommandBuilder<CommandType>::BuildCommand(
+            CommandItemList commandItems) noexcept {
         if (!std::is_base_of_v<Command, CommandType>) {
             throw std::bad_cast();
         }
-        CommandType command{};
+        CommandType command {};
         std::for_each(commandItems.begin(), commandItems.end(),
-                      [&command](auto &each) { command.AddItem(each); });
+                      [&command](auto &each) {
+                          command.AddItem(each);
+                      });
         return command;
     }
 }

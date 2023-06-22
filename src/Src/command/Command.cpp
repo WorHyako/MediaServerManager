@@ -24,6 +24,7 @@ void Command::Clean() noexcept {
 }
 
 #include <iostream>
+
 void Command::Execute(Command::SocketRef sender) const noexcept {
     if (sender) {
         std::stringstream ss;

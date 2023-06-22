@@ -30,7 +30,7 @@ namespace MediaServerManager::Network {
 
         [[nodiscard]] Q_INVOKABLE bool IsActive() const noexcept;
 
-#pragma endregion Accessors/Mutators
+#pragma endregion Accessors / Mutators
     };
 }
 #endif

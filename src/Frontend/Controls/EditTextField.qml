@@ -10,27 +10,27 @@ import "qrc:/Backgrounds" as CustomBackgrounds
  *          | TextEdit
  */
 Item {
-    id: root
+	id: root
 
-    property string text: "Text Edit"
+	property string text: "Text Edit"
 
-    height: CustomStyles.TextEditStyle.textEditMediumHeight
-    width: CustomStyles.TextEditStyle.textEditMediumWidth
+	height: CustomStyles.TextEditStyle.textEditMediumHeight
+	width: CustomStyles.TextEditStyle.textEditMediumWidth
 
-    CustomBackgrounds.TextBackgroundRectangle {
-        anchors.fill: parent
+	CustomBackgrounds.TextBackgroundRectangle {
+		anchors.fill: parent
 
-        TextEdit {
-            anchors.fill: parent
-            color: CustomStyles.FontStyle.fontColor
-            horizontalAlignment: Text.AlignHCenter
-            text: root.text
-            verticalAlignment: Text.AlignVCenter
+		TextEdit {
+			anchors.fill: parent
+			color: CustomStyles.FontStyle.fontColor
+			horizontalAlignment: Text.AlignHCenter
+			text: root.text
+			verticalAlignment: Text.AlignVCenter
 
-            font {
-                family: CustomStyles.FontStyle.fontFamily
-                pointSize: CustomStyles.FontStyle.fontSize
-            }
-        }
-    }
+			font {
+				family: CustomStyles.FontStyle.fontFamily
+				pointSize: CustomStyles.FontStyle.fontSize
+			}
+		}
+	}
 }

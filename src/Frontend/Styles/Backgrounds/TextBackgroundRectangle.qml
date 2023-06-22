@@ -7,18 +7,18 @@ import "qrc:/Styles" as Styles
  *      | Rectangle
  */
 Item {
-    id: root
-    height: Styles.TextEditStyle.textEditHeight
-    width: Styles.TextEditStyle.textEditWidth
+	id: root
+	height: Styles.TextEditStyle.textEditHeight
+	width: Styles.TextEditStyle.textEditWidth
 
-    Rectangle {
-        anchors.fill: root
-        color: "#C4C4C4"
-        radius: 7
+	Rectangle {
+		anchors.fill: root
+		color: "#C4C4C4"
+		radius: 7
 
-        border {
-            color: "#939393"
-            width: root.activeFocus ? 3 : 1
-        }
-    }
+		border {
+			color: "#939393"
+			width: root.activeFocus ? 3 : 1
+		}
+	}
 }

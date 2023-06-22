@@ -6,7 +6,7 @@
 namespace MediaServerManager::Command {
 
     /**
-     * 
+     *
      */
     class ActionCommand : public Command {
     public:

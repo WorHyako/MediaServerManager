@@ -8,35 +8,35 @@ import QtQuick.Controls
  *          | Rectangle
  */
 Item {
-    id: root
+	id: root
 
-    property bool showCircle: false
+	property bool showCircle: false
 
-    Rectangle {
-        id: background
-        anchors.fill: root
-        color: "#C4C4C4"
-        radius: 7
+	Rectangle {
+		id: background
+		anchors.fill: root
+		color: "#C4C4C4"
+		radius: 7
 
-        border {
-            color: "#939393"
-            width: root.activeFocus ? 2 : 1
-        }
-        Rectangle {
-            color: parent.color
-            height: background.radius * 2
-            radius: background.radius
-            visible: showCircle
-            width: background.radius * 2
+		border {
+			color: "#939393"
+			width: root.activeFocus ? 2 : 1
+		}
+		Rectangle {
+			color: parent.color
+			height: background.radius * 2
+			radius: background.radius
+			visible: showCircle
+			width: background.radius * 2
 
-            border {
-                color: parent.border.color
-                width: 2
-            }
-            anchors {
-                bottom: parent.bottom
-                right: parent.right
-            }
-        }
-    }
+			border {
+				color: parent.border.color
+				width: 2
+			}
+			anchors {
+				bottom: parent.bottom
+				right: parent.right
+			}
+		}
+	}
 }

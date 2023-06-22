@@ -10,54 +10,55 @@ import "qrc:/Styles" as CustomStyles
  *      | RowLayout
  */
 Item {
-    id: root
+	id: root
 
-    ColumnLayout {
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
-        RowLayout {
-            CustomBackgrounds.TextBackgroundRectangle {
-                height: 30
-                width: 100
+	ColumnLayout {
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			verticalCenter: parent.verticalCenter
+		}
+		RowLayout {
+			CustomBackgrounds.TextBackgroundRectangle {
+				height: 30
+				width: 100
 
-                CustomControls.TextField {
-                    text: "Destination ip"
-                }
-            }
-            CustomControls.EditTextField {
-                id: destinationIpTextEdit
+				CustomControls.TextField {
+					text: "Destination ip"
+				}
+			}
+			CustomControls.EditTextField {
+				id: destinationIpTextEdit
 
-            }
-        }
-        RowLayout {
-            CustomBackgrounds.TextBackgroundRectangle {
-                height: 30
-                width: 100
+			}
+		}
+		RowLayout {
+			CustomBackgrounds.TextBackgroundRectangle {
+				height: 30
+				width: 100
 
-                CustomControls.TextField {
-                    text: "Destination port"
-                }
-            }
-            CustomControls.EditTextField {
-                id: destinationPortTextEdit
+				CustomControls.TextField {
+					text: "Destination port"
+				}
+			}
+			CustomControls.EditTextField {
+				id: destinationPortTextEdit
 
-            }
-        }
-    }
-    Button {
-        text: "Apply"
+			}
+		}
+	}
+	Button {
+		text: "Apply"
 
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
-        }
+		background: CustomBackgrounds.ButtonBackgroundRectangle
+		{
+			showCircle: false
+		}
 
-        anchors {
-            bottom: parent.bottom
-            bottomMargin: 50
-            right: parent.right
-            rightMargin: 50
-        }
-    }
+		anchors {
+			bottom: parent.bottom
+			bottomMargin: 50
+			right: parent.right
+			rightMargin: 50
+		}
+	}
 }

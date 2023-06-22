@@ -8,7 +8,7 @@ namespace MediaServerManager::Command {
     /**
      *
      */
-     template<typename CommandType>
+    template<typename CommandType>
     class CommandParser {
     public:
         CommandParser() = delete;

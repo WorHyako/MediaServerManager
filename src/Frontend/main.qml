@@ -16,81 +16,81 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *      | ManagementButton
  */
 ApplicationWindow {
-    id: root
-    height: 1000
-    title: "Media Server Manager"
-    visible: true
-    width: 1920
+	id: root
+	height: 1000
+	title: "Media Server Manager"
+	visible: true
+	width: 1920
 
-    Item {
-        anchors.fill: parent
+	Item {
+		anchors.fill: parent
 
-        Image {
-            id: background
-            anchors.fill: parent
-            source: "qrc:/Assets/app-background.png"
-            z: -1
-        }
-        GridLayout {
-            anchors.fill: parent
-            columns: 20
-            rows: 3
+		Image {
+			id: background
+			anchors.fill: parent
+			source: "qrc:/Assets/app-background.png"
+			z: -1
+		}
+		GridLayout {
+			anchors.fill: parent
+			columns: 20
+			rows: 3
 
-            Rectangle {
-                Layout.column: 1
-                Layout.columnSpan: 3
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: 1
-                Layout.preferredWidth: 2
-                Layout.row: 2
-                color: "transparent"
-                radius: 10
+			Rectangle {
+				Layout.column: 1
+				Layout.columnSpan: 3
+				Layout.fillHeight: true
+				Layout.fillWidth: true
+				Layout.preferredHeight: 1
+				Layout.preferredWidth: 2
+				Layout.row: 2
+				color: "transparent"
+				radius: 10
 
-                border {
-                    color: "#AAA"
-                    width: 1
-                }
-                CustomWidgets.QuickButtonsScope {
-                }
-            }
-            CustomWidgets.QuickTitleScope {
-                Layout.column: 1
-                Layout.columnSpan: 3
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: 2
-                Layout.preferredWidth: 2
-                Layout.row: 0
-                Layout.rowSpan: 2
-            }
-            Rectangle {
-                Layout.column: 5
-                Layout.columnSpan: 6
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.preferredHeight: 3
-                Layout.preferredWidth: 4
-                Layout.row: 0
-                Layout.rowSpan: 3
-                color: "transparent"
+				border {
+					color: "#AAA"
+					width: 1
+				}
+				CustomWidgets.QuickButtonsScope {
+				}
+			}
+			CustomWidgets.QuickTitleScope {
+				Layout.column: 1
+				Layout.columnSpan: 3
+				Layout.fillHeight: true
+				Layout.fillWidth: true
+				Layout.preferredHeight: 2
+				Layout.preferredWidth: 2
+				Layout.row: 0
+				Layout.rowSpan: 2
+			}
+			Rectangle {
+				Layout.column: 5
+				Layout.columnSpan: 6
+				Layout.fillHeight: true
+				Layout.fillWidth: true
+				Layout.preferredHeight: 3
+				Layout.preferredWidth: 4
+				Layout.row: 0
+				Layout.rowSpan: 3
+				color: "transparent"
 
-                CustomWidgets.ControlTabs {
-                    anchors.fill: parent
-                }
-            }
-        }
-        CustomControls.ManagementButton {
-            text: "Settings"
+				CustomWidgets.ControlTabs {
+					anchors.fill: parent
+				}
+			}
+		}
+		CustomControls.ManagementButton {
+			text: "Settings"
 
-            onClicked: () => {
-                ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
-            }
+			onClicked: () => {
+				ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
+			}
 
-            anchors {
-                bottom: parent.bottom
-                right: parent.right
-            }
-        }
-    }
+			anchors {
+				bottom: parent.bottom
+				right: parent.right
+			}
+		}
+	}
 }

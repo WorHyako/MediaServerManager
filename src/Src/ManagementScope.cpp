@@ -2,6 +2,4 @@
 
 using namespace MediaServerManager;
 
-ManagementScope::ManagementScope(QObject* parent) {
-
-}
+ManagementScope::ManagementScope(QObject *parent) {}
