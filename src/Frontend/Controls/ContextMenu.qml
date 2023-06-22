@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
+import Frontend.Js.ItemCreator as ItemCreator
 
 /**
  *  Item root

@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
-import "qrc:/Widgets" as CustomWidgets
-import "qrc:/JS/ItemCreator.js" as ItemCreator
+import Controls as WorControls
+import Widgets as WorWidgets
+import Frontend.Js.ItemCreator as ItemCreator
 
 /**
  *  ApplicationWindows root
@@ -51,10 +51,10 @@ ApplicationWindow {
 					color: "#AAA"
 					width: 1
 				}
-				CustomWidgets.QuickButtonsScope {
+				WorWidgets.QuickButtonsScope {
 				}
 			}
-			CustomWidgets.QuickTitleScope {
+			WorWidgets.QuickTitleScope {
 				Layout.column: 1
 				Layout.columnSpan: 3
 				Layout.fillHeight: true
@@ -75,12 +75,12 @@ ApplicationWindow {
 				Layout.rowSpan: 3
 				color: "transparent"
 
-				CustomWidgets.ControlTabs {
+				WorWidgets.ControlTabs {
 					anchors.fill: parent
 				}
 			}
 		}
-		CustomControls.ManagementButton {
+		WorControls.ManagementButton {
 			text: "Settings"
 
 			onClicked: () => {

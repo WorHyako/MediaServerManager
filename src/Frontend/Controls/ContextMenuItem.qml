@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Controls" as CustomControls
+import Frontend.Controls as WorControls
 
 /**
  * MenuItem
@@ -16,7 +16,7 @@ MenuItem {
 		color: menuItem.highlighted ? "#555" : "transparent"
 		radius: 8
 	}
-	contentItem: CustomControls.TextField
+	contentItem: WorControls.TextField
 	{
 		id: menuItemText
 		color: menuItem.highlighted ? "#fff" : "#000"

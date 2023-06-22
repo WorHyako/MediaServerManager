@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
-import "qrc:/JS/ConfigLoader.js" as ConfigLoader
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Js.ItemCreator as ItemCreator
+import Frontend.Js.ConfigLoader as ConfigLoader
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -30,7 +30,7 @@ Item {
 		anchors.fill: parent
 		text: "Load"
 
-		background: CustomBackgrounds.ButtonBackgroundRectangle
+		background: WorBackgrounds.ButtonBackgroundRectangle
 		{
 			showCircle: false
 		}

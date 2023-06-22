@@ -6,10 +6,9 @@ project(MediaServerManager
 set(CMAKE_CXX_COMPILER_VERSION 17)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 COMPONENTS REQUIRED
         Core
@@ -28,18 +27,28 @@ add_subdirectory(ThirdParty/worLibrary)
 
 find_package(pugixml REQUIRED)
 
-add_executable(${PROJECT_NAME})
+qt_add_executable(${PROJECT_NAME} main.cpp)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+        AUTOMOC ON)
+
+qt_add_qml_module(MediaServerManager
+        VERSION 1.0
+        URI Frontend
+        RESOURCE_PREFIX /worHyako/MediaServerManager
+        QML_FILES
+            main.qml)
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
         Include/json/JsonQmlWrapper.hpp
         Include/DynamicScopeType.hpp)
-file(GLOB Qt_Resources Frontend/qt_resources.qrc)
+
+add_subdirectory(Frontend)
 
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
-        PRIVATE ${Qt_Resources}
         PRIVATE ${worLib_Vector}
         PRIVATE ${worLib_Json}
         PRIVATE ${worLib_Network})
@@ -53,4 +62,8 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
         PRIVATE Qt6::Core
-        PRIVATE Qt6::QuickControls2)
+        PRIVATE Qt6::QuickControls2
+        PRIVATE CustomControlsplugin
+        PRIVATE CustomStyles
+        PRIVATE JsLibrary
+        PRIVATE CustomBackgrounds)

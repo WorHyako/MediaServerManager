@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Styles" as Styles
+import Frontend.WorStyles as WorStyles
 
 /**
  *  Item root
@@ -8,8 +8,8 @@ import "qrc:/Styles" as Styles
  */
 Item {
 	id: root
-	height: Styles.TextEditStyle.textEditHeight
-	width: Styles.TextEditStyle.textEditWidth
+	height: WorStyles.TextEditStyle.textEditHeight
+	width: WorStyles.TextEditStyle.textEditWidth
 
 	Rectangle {
 		anchors.fill: root

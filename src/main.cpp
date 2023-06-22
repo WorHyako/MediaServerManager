@@ -50,21 +50,22 @@ int main(int argc, char *argv[]) {
             "MediaServerManager", 1, 0, "JsonQmlWrapper");
 
     /// Styles
-    qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
-                             "ManagementButtonStyle", 1, 0,
-                             "ManagementButtonStyle");
-    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/FontStyle.qml"_qs), "FontStyle",
-                             1, 0, "FontStyle");
-    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs),
-                             "TextEditStyle", 1, 0, "TextEditStyle");
+//    qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
+//                             "ManagementButtonStyle", 1, 0,
+//                             "ManagementButtonStyle");
+//    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/FontStyle.qml"_qs), "FontStyle",
+//                             1, 0, "FontStyle");
+//    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs),
+//                             "TextEditStyle", 1, 0, "TextEditStyle");
 
     /// Enums
-    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
-            "MediaServerManager", 1, 0, "DynamicScopeType",
-            "Not creatable as it is an enum type");
+//    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
+//            "MediaServerManager", 1, 0, "DynamicScopeType",
+//            "Not creatable as it is an enum type");
 
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    engine.addImportPath(":/worHyako/MediaServerManager");
+    const auto url(QUrl(u"qrc:/worHyako/MediaServerManager/Frontend/main.qml"_qs));
     QObject::connect(
             &engine, &QQmlApplicationEngine::objectCreated, &app,
             [url](QObject *obj, const QUrl &objUrl) {

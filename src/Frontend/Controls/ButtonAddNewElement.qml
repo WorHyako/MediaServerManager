@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Controls" as CustomControls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Js.ItemCreator as ItemCreator
 
 /**
  *  Item root
@@ -33,7 +32,7 @@ Item {
 		anchors.fill: parent
 		text: "Add"
 
-		background: CustomBackgrounds.ButtonBackgroundRectangle
+		background: WorBackgrounds.ButtonBackgroundRectangle
 		{
 			showCircle: false
 		}

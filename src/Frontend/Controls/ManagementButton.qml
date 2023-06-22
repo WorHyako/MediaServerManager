@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Styles" as CustomStyles
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/Controls" as CustomControls
+import Frontend.Styles as WorStyles
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
 
 /**
  *  Item root
@@ -15,7 +15,7 @@ import "qrc:/Controls" as CustomControls
  *  - string text: "Button"
  *      | Button
  *          | MouseArea menuMouseArea
- *          | CustomControls.ContextMenu contextMenu
+ *          | WorControls.ContextMenu contextMenu
  *          | MouseArea transformMouseArea
  *          - numInRange(num, min, max)
  *          - point lastButtonSize: null
@@ -35,23 +35,23 @@ Item {
 	property bool showCircle: false
 	property string text: "Button"
 
-	height: CustomStyles.ManagementButtonStyle.managementButtonMediumHeight
-	width: CustomStyles.ManagementButtonStyle.managementButtonMediumWidth
+	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
+	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
 	Button {
 		anchors.fill: parent
 
-		background: CustomBackgrounds.ButtonBackgroundRectangle
+		background: WorBackgrounds.ButtonBackgroundRectangle
 		{
 			showCircle: root.showCircle
 		}
-		contentItem: CustomControls.TextField
+		contentItem: WorControls.TextField
 		{
 			opacity: enabled ? 1.0 : 0.3
 			text: root.text
 		}
 
-		CustomControls.ContextMenu {
+		WorControls.ContextMenu {
 			id: contextMenu
 			selectedButton: root
 		}

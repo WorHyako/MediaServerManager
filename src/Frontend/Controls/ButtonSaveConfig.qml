@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/DynamicItemCollector.js" as ItemCollector
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Js.DynamicItemCollector as ItemCollector
 
 /**
  *  Item root
@@ -30,7 +30,7 @@ Item {
 		anchors.fill: parent
 		text: "Save"
 
-		background: CustomBackgrounds.ButtonBackgroundRectangle
+		background: WorBackgrounds.ButtonBackgroundRectangle
 		{
 			showCircle: false
 		}

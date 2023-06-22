@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Styles" as CustomStyles
-import "qrc:/Backgrounds" as CustomBackgrounds
+import Frontend.Styles as WorStyles
+import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  Item root
@@ -14,22 +14,22 @@ Item {
 
 	property string text: "Text Edit"
 
-	height: CustomStyles.TextEditStyle.textEditMediumHeight
-	width: CustomStyles.TextEditStyle.textEditMediumWidth
+	height: WorStyles.TextEditStyle.textEditMediumHeight
+	width: WorStyles.TextEditStyle.textEditMediumWidth
 
-	CustomBackgrounds.TextBackgroundRectangle {
+	WorBackgrounds.TextBackgroundRectangle {
 		anchors.fill: parent
 
 		TextEdit {
 			anchors.fill: parent
-			color: CustomStyles.FontStyle.fontColor
+			color: WorStyles.FontStyle.fontColor
 			horizontalAlignment: Text.AlignHCenter
 			text: root.text
 			verticalAlignment: Text.AlignVCenter
 
 			font {
-				family: CustomStyles.FontStyle.fontFamily
-				pointSize: CustomStyles.FontStyle.fontSize
+				family: WorStyles.FontStyle.fontFamily
+				pointSize: WorStyles.FontStyle.fontSize
 			}
 		}
 	}
