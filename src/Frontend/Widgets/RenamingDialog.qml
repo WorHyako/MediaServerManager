@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/Controls" as CustomControls
-import "qrc:/JS/Renamer.js" as Renamer
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
+import Frontend.Js as WorWorJs
 
 /**
  * Dialog root
@@ -12,10 +12,10 @@ import "qrc:/JS/Renamer.js" as Renamer
  * - QtObject objectToRename
  * - onTextEditFinished(text)
  *      | ColumnLayout
- *          | CustomControls.TextField
+ *          | WorControls.TextField
  *          | Repeater
  *          - model: [["Previous", root.previousText], ["New", root.newText]]
- *              | CustomControls.TextField
+ *              | WorControls.TextField
  *              | Rectangle
  *              | TextEdit
  *          | Button
@@ -59,7 +59,7 @@ Dialog {
 			rightMargin: 10
 			topMargin: 10
 		}
-		CustomControls.TextField {
+		WorControls.TextField {
 			font.pixelSize: 20
 			text: "Renaming window"
 		}
@@ -67,7 +67,7 @@ Dialog {
 			id: repeater
 			model: [["Previous", root.objectToRename[propertyToRename]], ["New", root.newText]]
 
-			CustomBackgrounds.TextBackgroundRectangle {
+			WorBackgrounds.TextBackgroundRectangle {
 				Layout.alignment: Qt.AlignCenter
 				Layout.preferredHeight: 50
 				Layout.preferredWidth: root.width * 0.9
@@ -75,7 +75,7 @@ Dialog {
 				RowLayout {
 					anchors.fill: parent
 
-					CustomControls.TextField {
+					WorControls.TextField {
 						Layout.fillHeight: true
 						Layout.fillWidth: true
 						font.pixelSize: 20
@@ -104,13 +104,13 @@ Dialog {
 				}
 			}
 		}
-		CustomControls.ManagementButton {
+		WorControls.ManagementButton {
 			Layout.alignment: Qt.AlignCenter
 			text: "Apply"
 
 			onClicked: () => {
 				focus = true;
-				Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
+				WorJs.Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
 				root.accept();
 			}
 		}

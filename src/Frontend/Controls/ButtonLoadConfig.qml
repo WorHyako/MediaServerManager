@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
-import Frontend.Js.ItemCreator as ItemCreator
-import Frontend.Js.ConfigLoader as ConfigLoader
+import Frontend.Js as Js
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -46,7 +45,7 @@ Item {
 				console.log("Can't load json from config file");
 				return;
 			}
-			const loadingUiResult = ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
+			const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
 			console.log("Loading UI Elements from config:", loadingUiResult);
 		}
 	}

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
-import Frontend.Js.DynamicItemCollector as ItemCollector
+import Frontend.Js as Js
 
 /**
  *  Item root
@@ -41,7 +41,7 @@ Item {
 				console.log("Can't find config file");
 				return;
 			}
-			var items = ItemCollector.collectItems(root.scopeObject, root.elementType);
+			var items = Js.ItemCollector.collectItems(root.scopeObject, root.elementType);
 			const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
 			console.log("Saving result: ", savingResult);
 		}

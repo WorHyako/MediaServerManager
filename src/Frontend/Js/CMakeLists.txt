@@ -3,7 +3,7 @@ qt_add_library(JsLibrary STATIC)
 qt_add_qml_module(JsLibrary
         VERSION 1.0
         URI Frontend.Js
-        RESOURCE_PREFIX /Frontend/Js
+        RESOURCE_PREFIX /WorHyako/MediaServerManager
         QML_FILES
             ConfigLoader.js
             DynamicItemCollector.js

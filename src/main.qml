@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Controls as WorControls
-import Widgets as WorWidgets
-import Frontend.Js.ItemCreator as ItemCreator
+import Frontend.Controls as WorControls
+import Frontend.Widgets as WorWidgets
+import Frontend.Js as Js
 
 /**
  *  ApplicationWindows root
@@ -84,7 +84,7 @@ ApplicationWindow {
 			text: "Settings"
 
 			onClicked: () => {
-				ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
+				Js.ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
 			}
 
 			anchors {

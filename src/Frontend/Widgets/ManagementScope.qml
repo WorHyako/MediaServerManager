@@ -1,15 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
+import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
  *      | Item contentScope
- *      | CustomControls.ButtonSaveConfig
- *      | CustomControls.ButtonAddNewElement
- *      | CustomControls.ButtonLoadConfig
+ *      | WorControls.ButtonSaveConfig
+ *      | WorControls.ButtonAddNewElement
+ *      | WorControls.ButtonLoadConfig
  */
 Item {
 	id: root
@@ -22,13 +22,13 @@ Item {
 			fill: parent
 		}
 	}
-	CustomControls.ButtonSaveConfig {
+	WorControls.ButtonSaveConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-		elementType: CustomControls.ManagementButton
+		elementType: WorControls.ManagementButton
 		scopeObject: contentScope
 	}
-	CustomControls.ButtonAddNewElement {
+	WorControls.ButtonAddNewElement {
 		maxElementNum: 30
 		newElementArgs: {
 			"canBeMoved": true,
@@ -42,7 +42,7 @@ Item {
 		qrcElementPath: "qrc:/Controls/ManagementButton.qml"
 		scopeObject: contentScope
 	}
-	CustomControls.ButtonLoadConfig {
+	WorControls.ButtonLoadConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope

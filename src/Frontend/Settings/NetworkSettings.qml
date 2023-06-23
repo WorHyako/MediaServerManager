@@ -1,9 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/Styles" as CustomStyles
+import Frontend.Controls as WorControls
+import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  Item root
@@ -18,29 +17,29 @@ Item {
 			verticalCenter: parent.verticalCenter
 		}
 		RowLayout {
-			CustomBackgrounds.TextBackgroundRectangle {
+			WorBackgrounds.TextBackgroundRectangle {
 				height: 30
 				width: 100
 
-				CustomControls.TextField {
+				WorControls.TextField {
 					text: "Destination ip"
 				}
 			}
-			CustomControls.EditTextField {
+			WorControls.EditTextField {
 				id: destinationIpTextEdit
 
 			}
 		}
 		RowLayout {
-			CustomBackgrounds.TextBackgroundRectangle {
+			WorBackgrounds.TextBackgroundRectangle {
 				height: 30
 				width: 100
 
-				CustomControls.TextField {
+				WorControls.TextField {
 					text: "Destination port"
 				}
 			}
-			CustomControls.EditTextField {
+			WorControls.EditTextField {
 				id: destinationPortTextEdit
 
 			}
@@ -49,7 +48,7 @@ Item {
 	Button {
 		text: "Apply"
 
-		background: CustomBackgrounds.ButtonBackgroundRectangle
+		background: WorBackgrounds.ButtonBackgroundRectangle
 		{
 			showCircle: false
 		}

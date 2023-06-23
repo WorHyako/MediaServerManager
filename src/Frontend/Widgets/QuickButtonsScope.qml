@@ -1,26 +1,26 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Controls" as CustomControls
+import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
- *      | CustomControls.ButtonSaveConfig
- *      | CustomControls.ButtonLoadConfig
+ *      | WorControls.ButtonSaveConfig
+ *      | WorControls.ButtonLoadConfig
  *      | GridView grid
- *      | CustomControls.ButtonAddNewElement
+ *      | WorControls.ButtonAddNewElement
  */
 Item {
 	id: root
 	anchors.fill: parent
 
-	CustomControls.ButtonSaveConfig {
+	WorControls.ButtonSaveConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-		elementType: CustomControls.ManagementButton
+		elementType: WorControls.ManagementButton
 		scopeObject: grid
 	}
-	CustomControls.ButtonLoadConfig {
+	WorControls.ButtonLoadConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.QuickButtons
 		scopeObject: grid
@@ -32,7 +32,7 @@ Item {
 		rows: 5
 		spacing: 5
 	}
-	CustomControls.ButtonAddNewElement {
+	WorControls.ButtonAddNewElement {
 		maxElementNum: grid.columns * grid.rows
 		qrcElementPath: "qrc:/Controls/ManagementButton.qml"
 		scopeObject: grid

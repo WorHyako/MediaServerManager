@@ -1,13 +1,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
-import "qrc:/Settings" as CustomSettings
-import "qrc:/Backgrounds" as CustomBackgrounds
+import Frontend.Settings as WorSettings
+import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  ApplicationWindow root
- *      | CustomControls.CloseButton
  *      | TabBar
  *          | Repeater
  *              | TabButton
@@ -34,7 +32,7 @@ ApplicationWindow {
 				x: 0
 				y: 50 * index
 
-				background: CustomBackgrounds.TabButtonBackground
+				background: WorBackgrounds.TabButtonBackground
 				{
 				}
 			}
@@ -44,9 +42,9 @@ ApplicationWindow {
 		anchors.fill: parent
 		currentIndex: tabBar.currentIndex
 
-		CustomSettings.NetworkSettings {
+		WorSettings.NetworkSettings {
 		}
-		CustomSettings.MidiSettings {
+		WorSettings.MidiSettings {
 		}
 	}
 }

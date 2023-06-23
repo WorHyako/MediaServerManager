@@ -64,6 +64,8 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Core
         PRIVATE Qt6::QuickControls2
         PRIVATE CustomControlsplugin
-        PRIVATE CustomStyles
-        PRIVATE JsLibrary
-        PRIVATE CustomBackgrounds)
+        PRIVATE CustomStylesplugin
+        PRIVATE JsLibraryplugin
+        PRIVATE CustomWidgetsplugin
+        PRIVATE CustomBackgroundsplugin
+        PRIVATE CustomSettingsplugin)

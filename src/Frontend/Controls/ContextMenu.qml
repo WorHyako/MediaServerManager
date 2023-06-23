@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import Frontend.Js.ItemCreator as ItemCreator
+import Frontend.Js as Js
 
 /**
  *  Item root
@@ -69,7 +69,7 @@ Item {
 				actionList.push("Delete");
 			}
 			for (var eachActionName of actionList) {
-				var item = ItemCreator.createNewItem("qrc:/Controls/ContextMenuItem.qml", menu, {
+				var item = Js.ItemCreator.createNewItem("qrc:/Controls/ContextMenuItem.qml", menu, {
 					"itemText": eachActionName
 				});
 				menu.addItem(item);

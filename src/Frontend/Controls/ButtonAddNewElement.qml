@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
-import Frontend.Js.ItemCreator as ItemCreator
+import Frontend.Js as Js
 
 /**
  *  Item root
@@ -40,7 +40,7 @@ Item {
 		onClicked: {
 			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
 			if (rangeCheck) {
-				ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+				Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Widgets" as CustomWidgets
-import "qrc:/Backgrounds" as CustomBackgrounds
+import Frontend.Widgets as WorWidgets
+import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  Element struct:
@@ -37,7 +37,7 @@ Item {
 					text: modelData
 					width: tabBar.height
 
-					background: CustomBackgrounds.TabButtonBackground
+					background: WorBackgrounds.TabButtonBackground
 					{
 					}
 
@@ -66,7 +66,7 @@ Item {
 						color: "#AAA"
 						width: 1
 					}
-					CustomWidgets.ManagementScope {
+					WorWidgets.ManagementScope {
 						anchors.fill: parent
 					}
 				}

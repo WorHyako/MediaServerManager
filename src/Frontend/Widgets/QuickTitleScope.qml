@@ -1,16 +1,16 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
+import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
  *      | Rectangle
  *          | ColumnLayout linesList
- *          | CustomControls.ButtonAddNewElement
- *          | CustomControls.ButtonLoadConfig
- *          | CustomControls.ButtonSaveConfig
+ *          | WorControls.ButtonAddNewElement
+ *          | WorControls.ButtonLoadConfig
+ *          | WorControls.ButtonSaveConfig
  */
 Item {
 	id: root
@@ -28,18 +28,18 @@ Item {
 			anchors.top: parent.top
 			spacing: 50
 		}
-		CustomControls.ButtonAddNewElement {
+		WorControls.ButtonAddNewElement {
 			maxElementNum: 10
 			qrcElementPath: "qrc:/Controls/QuickTitleLine.qml"
 			scopeObject: linesList
 		}
-		CustomControls.ButtonSaveConfig {
+		WorControls.ButtonSaveConfig {
 			configFileName: "test.json"
 			dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-			elementType: CustomControls.QuickTitleLine
+			elementType: WorControls.QuickTitleLine
 			scopeObject: linesList
 		}
-		CustomControls.ButtonLoadConfig {
+		WorControls.ButtonLoadConfig {
 			configFileName: "test.json"
 			dynamicScopeType: MSM.DynamicScopeType.QuickTitles
 			scopeObject: linesList

@@ -2,7 +2,7 @@ qt_add_library(CustomControls STATIC)
 
 qt_add_qml_module(CustomControls
         VERSION 1.0
-        URI Controls
+        URI Frontend.Controls
         RESOURCE_PREFIX /WorHyako/MediaServerManager
         QML_FILES
             ButtonAddNewElement.qml
@@ -19,4 +19,8 @@ qt_add_qml_module(CustomControls
         DEPENDENCIES
             QtQuick
             QtQuick.Layouts
-            QtQuick.Controls)
+            QtQuick.Controls
+            Frontend.Backgrounds
+            Frontend.Controls
+            Frontend.Styles
+            Frontend.Js)
