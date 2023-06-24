@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import Frontend.WorStyles as WorStyles
+import Frontend.Styles as WorStyles
 
 /**
  *  Item root

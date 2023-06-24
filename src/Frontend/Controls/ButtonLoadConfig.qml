@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
 import Frontend.Js as Js
 import MediaServerManager 1.0 as MSM
 
@@ -25,16 +26,12 @@ Item {
 		bottom: parent.bottom
 		horizontalCenter: parent.horizontalCenter
 	}
-	Button {
+
+	WorControls.Button {
 		anchors.fill: parent
 		text: "Load"
 
-		background: WorBackgrounds.ButtonBackgroundRectangle
-		{
-			showCircle: false
-		}
-
-		onClicked: {
+		onClicked: ()=>{
 			const fileExist = jsonManager.TryToFindFile(root.configFileName);
 			if (!fileExist) {
 				console.log("Can't find config file");

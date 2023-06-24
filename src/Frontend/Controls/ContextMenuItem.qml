@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
+import Frontend.Widgets as WorWidgets
 
 /**
  * MenuItem
@@ -26,7 +27,7 @@ MenuItem {
 
 	onClicked: {
 		if (menuItem.text === "Rename") {
-			const dialog = ItemCreator.createNewItem("qrc:/Widgets/RenamingDialog.qml", root, {
+			const dialog = ItemCreator.createNewItem(WorWidgets.RenamingDialog, root, {
 				"objectToRename": selectedButton,
 				"propertyToRename": "text"
 			});

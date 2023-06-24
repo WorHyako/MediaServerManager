@@ -9,6 +9,9 @@
             <PerProfileState>
               <option name="myQmlPath" value="/opt/homebrew/share/qt/qml" />
               <option name="myQtBinPath" value="/opt/homebrew/bin" />
+              <option name="myLSPEnabled" value="true" />
+              <option name="myLSPCompletionEnabled" value="true" />
+              <option name="myQmlFormatEnabled" value="true" />
             </PerProfileState>
           </value>
         </entry>

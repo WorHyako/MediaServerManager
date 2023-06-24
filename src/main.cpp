@@ -49,23 +49,14 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>(
             "MediaServerManager", 1, 0, "JsonQmlWrapper");
 
-    /// Styles
-//    qmlRegisterSingletonType(QUrl("qrc:/Styles/ManagementButtonStyle.qml"),
-//                             "ManagementButtonStyle", 1, 0,
-//                             "ManagementButtonStyle");
-//    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/FontStyle.qml"_qs), "FontStyle",
-//                             1, 0, "FontStyle");
-//    qmlRegisterSingletonType(QUrl(u"qrc:/Styles/TextEditStyle.qml"_qs),
-//                             "TextEditStyle", 1, 0, "TextEditStyle");
-
     /// Enums
-//    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
-//            "MediaServerManager", 1, 0, "DynamicScopeType",
-//            "Not creatable as it is an enum type");
+    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
+            "MediaServerManager", 1, 0, "DynamicScopeType",
+            "Not creatable as it is an enum type");
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(":/worHyako/MediaServerManager");
-    const auto url(QUrl(u"qrc:/worHyako/MediaServerManager/Frontend/main.qml"_qs));
+    engine.addImportPath(":/WorHyako/MediaServerManager");
+    const auto url(QUrl(u"qrc:/WorHyako/MediaServerManager/Frontend/main.qml"_qs));
     QObject::connect(
             &engine, &QQmlApplicationEngine::objectCreated, &app,
             [url](QObject *obj, const QUrl &objUrl) {

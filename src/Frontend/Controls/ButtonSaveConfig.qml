@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
 /**
@@ -26,22 +27,17 @@ Item {
 		bottom: parent.bottom
 		left: parent.left
 	}
-	Button {
+	WorControls.Button {
 		anchors.fill: parent
 		text: "Save"
 
-		background: WorBackgrounds.ButtonBackgroundRectangle
-		{
-			showCircle: false
-		}
-
-		onClicked: {
+		onClicked: ()=>{
 			const fileExist = jsonManager.TryToFindFile(root.configFileName);
 			if (!fileExist) {
 				console.log("Can't find config file");
 				return;
 			}
-			var items = Js.ItemCollector.collectItems(root.scopeObject, root.elementType);
+			const items = Js.DynamicItemCollector.collectItems(root.scopeObject, root.elementType);
 			const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
 			console.log("Saving result: ", savingResult);
 		}

@@ -30,34 +30,33 @@ Item {
 		spacing: root.spacing
 		width: 100
 
-		worControls.EditTextField {
+		WorControls.EditTextField {
 			Layout.alignment: Layout.Center
 			height: root.textEditFiledSize.y
 			text: root.text
 			width: root.textEditFiledSize.x
 		}
-		Button {
+		WorControls.Button {
 			Layout.preferredHeight: 30
 			Layout.preferredWidth: 70
-
-			background: WorBackgrounds.ButtonBackgroundRectangle
-			{
+			onClicked: () => {
 			}
-			contentItem: worControls.TextField
-			{
-				opacity: enabled ? 1.0 : 0.3
-				text: "Send"
-
-				font {
-					family: WorStyles.FontStyle.fontFamily
-					pointSize: WorStyles.FontStyle.fontSize
-				}
-			}
+			text: "Send"
+			// contentItem: worControls.TextField
+			// {
+			// 	opacity: enabled ? 1.0 : 0.3
+			// 	text: "Send"
+			//
+			// 	font {
+			// 		family: WorStyles.FontStyle.fontFamily
+			// 		pointSize: WorStyles.FontStyle.fontSize
+			// 	}
+			// }
 
 			/// TODO: here and in ManagementButton create context menu dynamically
-			worControls.ContextMenu {
+			WorControls.ContextMenu {
 				id: contextMenu
-				actionTypes: worControls.ContextMenu.ActionType.Delete
+				actionTypes: WorControls.ContextMenu.ActionType.Delete
 				selectedButton: root
 			}
 			MouseArea {

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
+import Frontend.Settings as WorSettings
 import Frontend.Js as Js
 
 /**
@@ -28,7 +29,7 @@ ApplicationWindow {
 		Image {
 			id: background
 			anchors.fill: parent
-			source: "qrc:/Assets/app-background.png"
+			// source: "qrc:/WorHyako/MediaServerManager/Frontend/Assets/app-background.png"
 			z: -1
 		}
 		GridLayout {
@@ -84,7 +85,7 @@ ApplicationWindow {
 			text: "Settings"
 
 			onClicked: () => {
-				Js.ItemCreator.createNewItem("qrc:/Settings/SettingsWindow.qml", root);
+				Js.ItemCreator.createNewItem(WorSettings.SettingsWindow, root);
 			}
 
 			anchors {

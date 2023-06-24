@@ -27,6 +27,9 @@ add_subdirectory(ThirdParty/worLibrary)
 
 find_package(pugixml REQUIRED)
 
+set(QML_IMPORT_TRACE ON)
+set(QT_DECLARATIVE_DEBUG ON)
+set(QT_QML_DEBUG ON)
 qt_add_executable(${PROJECT_NAME} main.cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -35,7 +38,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 qt_add_qml_module(MediaServerManager
         VERSION 1.0
         URI Frontend
-        RESOURCE_PREFIX /worHyako/MediaServerManager
+        RESOURCE_PREFIX /WorHyako/MediaServerManager
         QML_FILES
             main.qml)
 
@@ -47,6 +50,7 @@ file(GLOB Qt_Objects
 add_subdirectory(Frontend)
 
 target_sources(${PROJECT_NAME}
+        PRIVATE resources.qrc
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
         PRIVATE ${worLib_Vector}

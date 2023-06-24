@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/WorHyako/MediaServerManager/Frontend/Assets">
+        <file alias="app-background.png">Frontend/Assets/app-background.png</file>
+    </qresource>
+</RCC>

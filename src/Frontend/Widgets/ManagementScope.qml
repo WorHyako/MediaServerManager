@@ -39,7 +39,7 @@ Item {
 			console.log("clicked");
 		}
 		}
-		qrcElementPath: "qrc:/Controls/ManagementButton.qml"
+		qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls.ManagementButton.qml"
 		scopeObject: contentScope
 	}
 	WorControls.ButtonLoadConfig {

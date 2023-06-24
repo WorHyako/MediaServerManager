@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
 /**
@@ -18,7 +19,7 @@ Item {
 	required property int maxElementNum
 	property var newElementArgs: {
 	}
-	required property string qrcElementPath
+	required property var qrcElementPath
 	required property QtObject scopeObject
 
 	height: 50
@@ -28,16 +29,11 @@ Item {
 		bottom: parent.bottom
 		right: parent.right
 	}
-	Button {
+	WorControls.Button {
 		anchors.fill: parent
 		text: "Add"
 
-		background: WorBackgrounds.ButtonBackgroundRectangle
-		{
-			showCircle: false
-		}
-
-		onClicked: {
+		onClicked: () => {
 			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
 			if (rangeCheck) {
 				Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);

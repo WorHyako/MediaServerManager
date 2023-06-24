@@ -34,7 +34,7 @@ Item {
 	}
 	WorControls.ButtonAddNewElement {
 		maxElementNum: grid.columns * grid.rows
-		qrcElementPath: "qrc:/Controls/ManagementButton.qml"
+		qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
 		scopeObject: grid
 	}
 }

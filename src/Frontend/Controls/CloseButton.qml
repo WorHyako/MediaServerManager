@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import Frontend.Controls as WorControls
 
 /**
  *  Item root
@@ -20,16 +21,10 @@ Item {
 		top: parent.top
 		topMargin: 5
 	}
-	Button {
+	WorControls.Button {
 		anchors.fill: parent
 
-		background: Rectangle {
-			anchors.fill: parent
-			color: "#fa3f1d"
-			radius: parent.height / 2
-		}
-
-		onClicked: {
+		onClicked:()=> {
 			window.close();
 		}
 	}

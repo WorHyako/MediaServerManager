@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Frontend.Styles as WorStyles
 import Frontend.Backgrounds as WorBackgrounds
 
@@ -14,8 +13,8 @@ Item {
 
 	property string text: "Text Edit"
 
-	height: WorStyles.TextEditStyle.textEditMediumHeight
-	width: WorStyles.TextEditStyle.textEditMediumWidth
+    height: WorStyles.TextEditStyle.textEditMediumHeight
+    width: WorStyles.TextEditStyle.textEditMediumWidth
 
 	WorBackgrounds.TextBackgroundRectangle {
 		anchors.fill: parent

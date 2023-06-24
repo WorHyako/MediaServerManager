@@ -30,15 +30,15 @@ Item {
 		}
 		WorControls.ButtonAddNewElement {
 			maxElementNum: 10
-			qrcElementPath: "qrc:/Controls/QuickTitleLine.qml"
+			qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml"
 			scopeObject: linesList
 		}
-		WorControls.ButtonSaveConfig {
-			configFileName: "test.json"
-			dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-			elementType: WorControls.QuickTitleLine
-			scopeObject: linesList
-		}
+		// WorControls.ButtonSaveConfig {
+		// 	configFileName: "test.json"
+		// 	dynamicScopeType: MSM.DynamicScopeType.QuickTitles
+		//	elementType: WorControls.QuickTitleLine
+		//	scopeObject: linesList
+		// }
 		WorControls.ButtonLoadConfig {
 			configFileName: "test.json"
 			dynamicScopeType: MSM.DynamicScopeType.QuickTitles

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
 /**
@@ -58,7 +59,7 @@ Item {
 
 		Component.onCompleted: {
 			const isCreateAllItems = root.actionTypes === 0;
-			var actionList = [];
+			let actionList = [];
 			if ((actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
 				actionList.push("Rename");
 			}
@@ -68,8 +69,8 @@ Item {
 			if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
 				actionList.push("Delete");
 			}
-			for (var eachActionName of actionList) {
-				var item = Js.ItemCreator.createNewItem("qrc:/Controls/ContextMenuItem.qml", menu, {
+			for (const eachActionName of actionList) {
+				let item = Js.ItemCreator.createNewItem("qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml", menu, {
 					"itemText": eachActionName
 				});
 				menu.addItem(item);
