@@ -7,7 +7,7 @@ import Frontend.Backgrounds as WorBackgrounds
 /**
  *  Element struct:
  *  Item root
- *      | Item tabScope
+ *      | Item rootControlTabs
  *          | TabBar tabBar
  *              | Repeater
  *                  | TabButton
@@ -16,61 +16,58 @@ import Frontend.Backgrounds as WorBackgrounds
  *                  | Rectangle
  */
 Item {
-	id: root
-	Item {
-		id: tabScope
-		anchors.fill: parent
+    id: rootControlTabs
 
-		TabBar {
-			id: tabBar
-			height: 50
+    anchors.fill: parent
 
-			anchors {
-				bottom: parent.bottom
-				horizontalCenter: parent.horizontalCenter
-			}
-			Repeater {
-				model: ["First", "Second", "Third", "Fourth", "Fifth"]
+    TabBar {
+        id: tabBar
 
-				TabButton {
-					height: tabBar.height
-					text: modelData
-					width: tabBar.height
+        height: 50
 
-					background: WorBackgrounds.TabButtonBackground
-					{
-					}
+        anchors {
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
+        Repeater {
+            anchors.bottom: parent.bottom
+            model: ["First", "Second", "Third", "Fourth", "Fifth"]
 
-					anchors.bottom: parent.bottom
-				}
-				anchors.bottom: parent.bottom
-			}
-		}
-		StackLayout {
-			currentIndex: tabBar.currentIndex
+            TabButton {
+                anchors.bottom: parent.bottom
+                height: tabBar.height
+                text: modelData
+                width: tabBar.height
 
-			anchors {
-				bottom: tabBar.top
-				left: tabScope.left
-				right: tabScope.right
-				top: tabScope.top
-			}
-			Repeater {
-				model: 5
+                background: WorBackgrounds.TabButtonBackground {
+                }
+            }
+        }
+    }
+    StackLayout {
+        currentIndex: tabBar.currentIndex
 
-				Rectangle {
-					color: "transparent"
-					radius: 10
+        anchors {
+            bottom: tabBar.top
+            left: rootControlTabs.left
+            right: rootControlTabs.right
+            top: rootControlTabs.top
+        }
+        Repeater {
+            model: 5
 
-					border {
-						color: "#AAA"
-						width: 1
-					}
-					WorWidgets.ManagementScope {
-						anchors.fill: parent
-					}
-				}
-			}
-		}
-	}
+            Rectangle {
+                color: "transparent"
+                radius: 10
+
+                border {
+                    color: "#AAA"
+                    width: 1
+                }
+                WorWidgets.ManagementScope {
+                    anchors.fill: parent
+                }
+            }
+        }
+    }
 }

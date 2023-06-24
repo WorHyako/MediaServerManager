@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
 /**
@@ -15,66 +14,67 @@ import Frontend.Js as Js
  *      | Menu
  */
 Item {
-	id: root
+    id: root
 
-	/**
+    /**
 	 * Describe all action types
 	 */
-	enum ActionType {
-		Rename = 1,
-		ChangeBindingType,
-		Delete = 4
-	}
+    enum ActionType {
+        Rename = 1,
+        ChangeBindingType,
+        Delete = 4
+    }
 
-	property int actionTypes: 0
-	property int menuBorderRadius: 10
-	property int menuItemHeight: 50
-	property int menuItemWidth: 200
-	required property QtObject selectedButton
+    property int actionTypes: 0
+    property int menuBorderRadius: 10
+    property int menuItemHeight: 50
+    property int menuItemWidth: 200
+    required property QtObject selectedButton
 
-	/**
+    /**
 	 * Open menu in current cursor position
 	 * @param mousePosition current cursor position
 	 */
-	function open(mousePosition) {
-		menu.x = mousePosition.x;
-		menu.y = mousePosition.y;
-		menu.open();
-	}
+    function open(mousePosition) {
+        menu.x = mousePosition.x;
+        menu.y = mousePosition.y;
+        menu.open();
+    }
 
-	anchors.fill: parent
+    anchors.fill: parent
 
-	Menu {
-		id: menu
-		padding: 3
+    Menu {
+        id: menu
 
-		background: Rectangle {
-			border.color: "#222"
-			border.width: 2
-			color: "#B4B4B4"
-			implicitHeight: menuItemHeight
-			implicitWidth: menuItemWidth
-			radius: menuBorderRadius
-		}
+        padding: 3
 
-		Component.onCompleted: {
-			const isCreateAllItems = root.actionTypes === 0;
-			let actionList = [];
-			if ((actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
-				actionList.push("Rename");
-			}
-			if ((actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
-				actionList.push("ChangeBindingType");
-			}
-			if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
-				actionList.push("Delete");
-			}
-			for (const eachActionName of actionList) {
-				let item = Js.ItemCreator.createNewItem("qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml", menu, {
-					"itemText": eachActionName
-				});
-				menu.addItem(item);
-			}
-		}
-	}
+        background: Rectangle {
+            border.color: "#222"
+            border.width: 2
+            color: "#B4B4B4"
+            implicitHeight: root.menuItemHeight
+            implicitWidth: root.menuItemWidth
+            radius: root.menuBorderRadius
+        }
+
+        Component.onCompleted: {
+            const isCreateAllItems = root.actionTypes === 0;
+            let actionList = [];
+            if ((root.actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
+                actionList.push("Rename");
+            }
+            if ((actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
+                actionList.push("ChangeBindingType");
+            }
+            if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
+                actionList.push("Delete");
+            }
+            for (const eachActionName of actionList) {
+                let item = Js.ItemCreator.createNewItem("qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml", menu, {
+                        "itemText": eachActionName
+                    });
+                menu.addItem(item);
+            }
+        }
+    }
 }

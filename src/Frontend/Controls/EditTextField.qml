@@ -8,28 +8,24 @@ import Frontend.Backgrounds as WorBackgrounds
  *      | TextBackgroundRectangle
  *          | TextEdit
  */
-Item {
-	id: root
+WorBackgrounds.TextBackgroundRectangle {
+    id: editTextField
 
-	property string text: "Text Edit"
+    property string text: "Text Edit"
 
     height: WorStyles.TextEditStyle.textEditMediumHeight
     width: WorStyles.TextEditStyle.textEditMediumWidth
 
-	WorBackgrounds.TextBackgroundRectangle {
-		anchors.fill: parent
+    TextEdit {
+        anchors.fill: parent
+        color: WorStyles.FontStyle.fontColor
+        horizontalAlignment: Text.AlignHCenter
+        text: editTextField.text
+        verticalAlignment: Text.AlignVCenter
 
-		TextEdit {
-			anchors.fill: parent
-			color: WorStyles.FontStyle.fontColor
-			horizontalAlignment: Text.AlignHCenter
-			text: root.text
-			verticalAlignment: Text.AlignVCenter
-
-			font {
-				family: WorStyles.FontStyle.fontFamily
-				pointSize: WorStyles.FontStyle.fontSize
-			}
-		}
-	}
+        font {
+            family: WorStyles.FontStyle.fontFamily
+            pointSize: WorStyles.FontStyle.fontSize
+        }
+    }
 }

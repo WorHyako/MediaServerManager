@@ -1,9 +1,7 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
-import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  Item root

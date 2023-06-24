@@ -6,7 +6,7 @@ import QtQuick.Layouts
  *
  */
 Item {
-	id: root
+	id: rootTable
 
 	required property int columnNumber
 	required property int rowNumber

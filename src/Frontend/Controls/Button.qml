@@ -1,24 +1,31 @@
 import QtQuick
-import QtQuick.Controls
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
 
 WorBackgrounds.ButtonBackgroundRectangle {
-	id: root
+    id: rootButton
 
-	property string text: ""
-	required property var onClicked
-	showCircle: false
+	property var onClicked
+    property string text: ""
+	property var contentIten: undefined
 
-	WorControls.TextField {
-		anchors.centerIn: parent
-		text: root.text
-	}
+    showCircle: false
 
-	MouseArea {
-		anchors.fill: parent
-		onClicked: {
-			root.onClicked();
+    Component.onCompleted: {
+        if (contentItem !== undefined) {
+
 		}
-	}
+    }
+
+    WorControls.Text {
+        anchors.centerIn: parent
+        text: rootButton.text
+    }
+    MouseArea {
+        anchors.fill: parent
+
+        onClicked: {
+            rootButton.onClicked();
+        }
+    }
 }

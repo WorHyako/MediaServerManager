@@ -17,81 +17,83 @@ import Frontend.Js as Js
  *      | ManagementButton
  */
 ApplicationWindow {
-	id: root
-	height: 1000
-	title: "Media Server Manager"
-	visible: true
-	width: 1920
+    id: root
 
-	Item {
-		anchors.fill: parent
+    height: 1000
+    title: "Media Server Manager"
+    visible: true
+    width: 1920
 
-		Image {
-			id: background
-			anchors.fill: parent
-			// source: "qrc:/WorHyako/MediaServerManager/Frontend/Assets/app-background.png"
-			z: -1
-		}
-		GridLayout {
-			anchors.fill: parent
-			columns: 20
-			rows: 3
+    Item {
+        anchors.fill: parent
 
-			Rectangle {
-				Layout.column: 1
-				Layout.columnSpan: 3
-				Layout.fillHeight: true
-				Layout.fillWidth: true
-				Layout.preferredHeight: 1
-				Layout.preferredWidth: 2
-				Layout.row: 2
-				color: "transparent"
-				radius: 10
+        Image {
+            id: background
 
-				border {
-					color: "#AAA"
-					width: 1
-				}
-				WorWidgets.QuickButtonsScope {
-				}
-			}
-			WorWidgets.QuickTitleScope {
-				Layout.column: 1
-				Layout.columnSpan: 3
-				Layout.fillHeight: true
-				Layout.fillWidth: true
-				Layout.preferredHeight: 2
-				Layout.preferredWidth: 2
-				Layout.row: 0
-				Layout.rowSpan: 2
-			}
-			Rectangle {
-				Layout.column: 5
-				Layout.columnSpan: 6
-				Layout.fillHeight: true
-				Layout.fillWidth: true
-				Layout.preferredHeight: 3
-				Layout.preferredWidth: 4
-				Layout.row: 0
-				Layout.rowSpan: 3
-				color: "transparent"
+            anchors.fill: parent
+            source: "qrc:/Frontend/Assets/app-background.png"
+            z: -1
+        }
+        GridLayout {
+            anchors.fill: parent
+            columns: 20
+            rows: 3
 
-				WorWidgets.ControlTabs {
-					anchors.fill: parent
-				}
-			}
-		}
-		WorControls.ManagementButton {
-			text: "Settings"
+            Rectangle {
+                Layout.column: 1
+                Layout.columnSpan: 3
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.preferredHeight: 1
+                Layout.preferredWidth: 2
+                Layout.row: 2
+                color: "transparent"
+                radius: 10
 
-			onClicked: () => {
-				Js.ItemCreator.createNewItem(WorSettings.SettingsWindow, root);
-			}
+                border {
+                    color: "#AAA"
+                    width: 1
+                }
+                WorWidgets.QuickButtonsScope {
+                }
+            }
+            WorWidgets.QuickTitleScope {
+                Layout.column: 1
+                Layout.columnSpan: 3
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.preferredHeight: 2
+                Layout.preferredWidth: 2
+                Layout.row: 0
+                Layout.rowSpan: 2
+            }
+            Rectangle {
+                Layout.column: 5
+                Layout.columnSpan: 6
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.preferredHeight: 3
+                Layout.preferredWidth: 4
+                Layout.row: 0
+                Layout.rowSpan: 3
+                color: "transparent"
 
-			anchors {
-				bottom: parent.bottom
-				right: parent.right
-			}
-		}
-	}
+                WorWidgets.ControlTabs {
+                    anchors.fill: parent
+                }
+            }
+        }
+        WorControls.ManagementButton {
+            text: "Settings"
+
+            onClicked: () => {
+                Js.ItemCreator.createNewItem(WorSettings.SettingsWindow, root);
+            }
+
+            anchors {
+                bottom: parent.bottom
+                right: parent.right
+            }
+        }
+    }
 }

@@ -20,8 +20,8 @@ import Frontend.Controls as WorControls
  *          - point lastMousePosition: null
  *          - bool resizing: false
  */
-Item {
-    id: root
+WorControls.Button {
+    id: rootManagementButton
 
     property string bindingEvent: ""
     property bool canBeMoved: false
@@ -29,106 +29,99 @@ Item {
     readonly property int minButtonHeight: 50
     readonly property int minButtonWidth: 50
     property Item movableScope: null
-    property var onClicked: undefined
-    property bool showCircle: false
-    property string text: "Button"
+	text: "Button"
 
     height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
     width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
-    WorControls.Button {
+    onClicked: () => {}
+
+    // contentItem: WorControls.TextField
+    // {
+    // 	opacity: enabled ? 1.0 : 0.3
+    // 	text: root.text
+    // }
+
+    WorControls.ContextMenu {
+        id: contextMenu
+
+        selectedButton: rootManagementButton
+    }
+    MouseArea {
+        id: menuMouseArea
+
+        acceptedButtons: Qt.RightButton
         anchors.fill: parent
-        text: root.text
 
-        onClicked: () => {}
-
-        // contentItem: WorControls.TextField
-        // {
-        // 	opacity: enabled ? 1.0 : 0.3
-        // 	text: root.text
-        // }
-
-        WorControls.ContextMenu {
-            id: contextMenu
-
-            selectedButton: root
+        onClicked: mouse => {
+            contextMenu.open(Qt.point(mouse.x, mouse.y));
         }
-        MouseArea {
-            id: menuMouseArea
+    }
+    MouseArea {
+        id: transformMouseArea
 
-            acceptedButtons: Qt.RightButton
-            anchors.fill: parent
+        property point lastButtonSize: Qt.point(0, 0)
+        property point lastMousePosition: Qt.point(0, 0)
+        property bool moving: false
+        property bool resizing: false
 
-            onClicked: mouse => {
-                contextMenu.open(Qt.point(mouse.x, mouse.y));
-            }
-        }
-        MouseArea {
-            id: transformMouseArea
-
-            property point lastButtonSize: Qt.point(0, 0)
-            property point lastMousePosition: Qt.point(0, 0)
-            property bool moving: false
-            property bool resizing: false
-
-            /**
+        /**
 			 * Return num with min\max limit conditions
 			 * @param num number
 			 * @param min minimum limit
 			 * @param max maximum limit
 			 */
-            function numInRange(num, min, max) {
-                if (num < min) {
-                    return min;
-                } else {
-                    if (num > max) {
-                        return max;
-                    }
+        function numInRange(num, min, max) {
+            if (num < min) {
+                return min;
+            } else {
+                if (num > max) {
+                    return max;
                 }
             }
+        }
 
-            acceptedButtons: Qt.LeftButton
-            anchors.fill: parent
+        acceptedButtons: Qt.LeftButton
+        anchors.fill: parent
 
-            onClicked: {
-                if (root.onClicked !== undefined) {
-                    root.onClicked();
+        onClicked: {
+            if (rootManagementButton.onClicked !== undefined) {
+                rootManagementButton.onClicked();
+            }
+        }
+        onPositionChanged: mouse => {
+            if (resizing) {
+                if (lastMousePosition === Qt.point(0, 0)) {
+                    lastMousePosition = mapToItem(rootManagementButton.movableScope, mouse.x, mouse.y);
+                    return;
                 }
+                var currentMousePosition = mapToItem(rootManagementButton.movableScope, mouse.x, mouse.y);
+                var deltaMousePosition = Qt.point(0, 0);
+                deltaMousePosition.x = currentMousePosition.x - lastMousePosition.x;
+                deltaMousePosition.y = currentMousePosition.y - lastMousePosition.y;
+                rootManagementButton.width = numInRange(lastButtonSize.x + deltaMousePosition.x, rootManagementButton.minButtonWidth, rootManagementButton.movableScope.width);
+                rootManagementButton.height = numInRange(lastButtonSize.y + deltaMousePosition.y, rootManagementButton.minButtonHeight, rootManagementButton.movableScope.height);
             }
-            onPositionChanged: mouse => {
-                if (resizing) {
-                    if (lastMousePosition === Qt.point(0, 0)) {
-                        lastMousePosition = mapToItem(root.movableScope, mouse.x, mouse.y);
-                        return;
-                    }
-                    var currentMousePosition = mapToItem(root.movableScope, mouse.x, mouse.y);
-                    var deltaMousePosition = Qt.point(0, 0);
-                    deltaMousePosition.x = currentMousePosition.x - lastMousePosition.x;
-                    deltaMousePosition.y = currentMousePosition.y - lastMousePosition.y;
-                    root.width = numInRange(lastButtonSize.x + deltaMousePosition.x, root.minButtonWidth, root.movableScope.width);
-                    root.height = numInRange(lastButtonSize.y + deltaMousePosition.y, root.minButtonHeight, root.movableScope.height);
-                }
-            }
-            onPressed: mouse => {
-                resizing = root.canBeResized && (mouse.modifiers && Qt.AltModifier);
-                moving = root.canBeMoved && (mouse.modifiers && Qt.ControlModifier);
-                lastButtonSize.x = root.width;
-                lastButtonSize.y = root.height;
-            }
-            onReleased: {
-                resizing = false;
-                moving = false;
-                lastMousePosition = Qt.point(0, 0);
-            }
+        }
+        onPressed: mouse => {
+            resizing = rootManagementButton.canBeResized && (mouse.modifiers && Qt.AltModifier);
+            moving = rootManagementButton.canBeMoved && (mouse.modifiers && Qt.ControlModifier);
+            lastButtonSize.x = rootManagementButton.width;
+            lastButtonSize.y = rootManagementButton.height;
+        }
+        onReleased: {
+            resizing = false;
+            moving = false;
+            lastMousePosition = Qt.point(0, 0);
+        }
 
-            drag {
-                axis: Drag.XandYAxis
-                maximumX: root.movableScope.width - root.width
-                maximumY: root.movableScope.height - root.height
-                minimumX: 0
-                minimumY: 0
-                target: transformMouseArea.moving ? root : null
-            }
+        drag {
+            axis: Drag.XandYAxis
+            maximumX: rootManagementButton.movableScope.width - root.width
+            maximumY: rootManagementButton.movableScope.height - root.height
+            minimumX: 0
+            minimumY: 0
+            target: transformMouseArea.moving ? rootManagementButton : null
         }
     }
 }

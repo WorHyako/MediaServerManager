@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
@@ -12,34 +10,26 @@ import Frontend.Js as Js
  *  - QtObject scopeObject
  *      | Button save button
  */
-Item {
-	id: root
+WorControls.Button {
+    id: rootButtonSaveConfig
 
-	required property string configFileName
-	required property int dynamicScopeType
-	required property var elementType
-	required property QtObject scopeObject
+    required property string configFileName
+    required property int dynamicScopeType
+    required property var elementType
+    required property QtObject scopeObject
 
-	height: 50
-	width: 50
+    height: 50
+    text: "Save"
+    width: 50
 
-	anchors {
-		bottom: parent.bottom
-		left: parent.left
-	}
-	WorControls.Button {
-		anchors.fill: parent
-		text: "Save"
-
-		onClicked: ()=>{
-			const fileExist = jsonManager.TryToFindFile(root.configFileName);
-			if (!fileExist) {
-				console.log("Can't find config file");
-				return;
-			}
-			const items = Js.DynamicItemCollector.collectItems(root.scopeObject, root.elementType);
-			const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
-			console.log("Saving result: ", savingResult);
-		}
-	}
+    onClicked: () => {
+        const fileExist = jsonManager.TryToFindFile(rootButtonSaveConfig.configFileName);
+        if (!fileExist) {
+            console.log("Can't find config file");
+            return;
+        }
+        const items = Js.DynamicItemCollector.collectItems(rootButtonSaveConfig.scopeObject, rootButtonSaveConfig.elementType);
+        const savingResult = jsonManager.SaveConfigs(items, rootButtonSaveConfig.dynamicScopeType);
+        console.log("Saving result: ", savingResult);
+    }
 }

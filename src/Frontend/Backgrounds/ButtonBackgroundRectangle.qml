@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 
 /**
  *  Item root
@@ -7,36 +6,32 @@ import QtQuick.Controls
  *      | Rectangle background
  *          | Rectangle
  */
-Item {
-	id: root
+Rectangle {
+    id: root
 
-	property bool showCircle: false
+    property bool showCircle: false
 
-	Rectangle {
-		id: background
-		anchors.fill: root
-		color: "#C4C4C4"
-		radius: 7
+    color: "#C4C4C4"
+    radius: 7
 
-		border {
-			color: "#939393"
-			width: root.activeFocus ? 2 : 1
-		}
-		Rectangle {
-			color: parent.color
-			height: background.radius * 2
-			radius: background.radius
-			visible: showCircle
-			width: background.radius * 2
+    border {
+        color: "#939393"
+        width: root.activeFocus ? 2 : 1
+    }
+    Rectangle {
+        color: parent.color
+        height: root.radius * 2
+        radius: root.radius
+        visible: root.showCircle
+        width: root.radius * 2
 
-			border {
-				color: parent.border.color
-				width: 2
-			}
-			anchors {
-				bottom: parent.bottom
-				right: parent.right
-			}
-		}
-	}
+        border {
+            color: root.border.color
+            width: 2
+        }
+        anchors {
+            bottom: parent.bottom
+            right: parent.right
+        }
+    }
 }

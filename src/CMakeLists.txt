@@ -41,6 +41,10 @@ qt_add_qml_module(MediaServerManager
         RESOURCE_PREFIX /WorHyako/MediaServerManager
         QML_FILES
             main.qml)
+qt_add_resources(MediaServerManager
+        PREFIX "/"
+        FILES
+            Frontend/Assets/app-background.png)
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
@@ -50,7 +54,6 @@ file(GLOB Qt_Objects
 add_subdirectory(Frontend)
 
 target_sources(${PROJECT_NAME}
-        PRIVATE resources.qrc
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
         PRIVATE ${worLib_Vector}

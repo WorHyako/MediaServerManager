@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
 import Frontend.Js as Js
 
@@ -13,31 +11,28 @@ import Frontend.Js as Js
  *  - bool showCircle: false
  *      | Button
  */
-Item {
-	id: root
+WorControls.Button {
+    id: rootButtonAddNewElement
 
-	required property int maxElementNum
-	property var newElementArgs: {
-	}
-	required property var qrcElementPath
-	required property QtObject scopeObject
+    required property int maxElementNum
+    property var newElementArgs: {
+    }
+    required property var qrcElementPath
+    required property QtObject scopeObject
 
-	height: 50
-	width: 50
+    height: 50
+    text: "Add"
+    width: 50
 
-	anchors {
-		bottom: parent.bottom
-		right: parent.right
-	}
-	WorControls.Button {
-		anchors.fill: parent
-		text: "Add"
+    onClicked: () => {
+        const rangeCheck = rootButtonAddNewElement.scopeObject.children.length < rootButtonAddNewElement.maxElementNum;
+        if (rangeCheck) {
+            Js.ItemCreator.createNewItem(rootButtonAddNewElement.qrcElementPath, rootButtonAddNewElement.scopeObject, rootButtonAddNewElement.newElementArgs);
+        }
+    }
 
-		onClicked: () => {
-			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-			if (rangeCheck) {
-				Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-			}
-		}
-	}
+    anchors {
+        bottom: parent.bottom
+        right: parent.right
+    }
 }

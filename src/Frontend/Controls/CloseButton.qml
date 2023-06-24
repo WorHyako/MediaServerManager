@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Frontend.Controls as WorControls
 
 /**
@@ -7,25 +6,22 @@ import Frontend.Controls as WorControls
  *  - var window
  *      | Button
  */
-Item {
-	id: root
+WorControls.Button {
+    id: rootCloseButton
 
-	required property var window
+    required property var window
 
-	height: 20
-	width: 20
+    height: 20
+    width: 20
 
-	anchors {
-		right: parent.right
-		rightMargin: 5
-		top: parent.top
-		topMargin: 5
-	}
-	WorControls.Button {
-		anchors.fill: parent
+    onClicked: () => {
+        window.close();
+    }
 
-		onClicked:()=> {
-			window.close();
-		}
-	}
+    anchors {
+        right: parent.right
+        rightMargin: 5
+        top: parent.top
+        topMargin: 5
+    }
 }

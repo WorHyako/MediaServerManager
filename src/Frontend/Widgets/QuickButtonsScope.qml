@@ -11,7 +11,7 @@ import MediaServerManager 1.0 as MSM
  *      | WorControls.ButtonAddNewElement
  */
 Item {
-	id: root
+	id: rootQuickButtonScope
 	anchors.fill: parent
 
 	WorControls.ButtonSaveConfig {

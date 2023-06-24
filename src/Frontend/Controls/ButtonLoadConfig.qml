@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
 import Frontend.Js as Js
 import MediaServerManager 1.0 as MSM
@@ -12,38 +10,29 @@ import MediaServerManager 1.0 as MSM
  *  - QtObject scopeObject
  *      | Button
  */
-Item {
-	id: root
+WorControls.Button {
+    id: rootButtonLoadConfig
 
-	required property string configFileName
-	required property int dynamicScopeType
-	required property QtObject scopeObject
+    required property string configFileName
+    required property int dynamicScopeType
+    required property QtObject scopeObject
 
-	height: 50
-	width: 50
+    height: 50
+    text: "Load"
+    width: 50
 
-	anchors {
-		bottom: parent.bottom
-		horizontalCenter: parent.horizontalCenter
-	}
-
-	WorControls.Button {
-		anchors.fill: parent
-		text: "Load"
-
-		onClicked: ()=>{
-			const fileExist = jsonManager.TryToFindFile(root.configFileName);
-			if (!fileExist) {
-				console.log("Can't find config file");
-				return;
-			}
-			const configString = jsonManager.LoadConfigs(root.dynamicScopeType);
-			if (configString === "null") {
-				console.log("Can't load json from config file");
-				return;
-			}
-			const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
-			console.log("Loading UI Elements from config:", loadingUiResult);
-		}
-	}
+    onClicked: () => {
+        const fileExist = jsonManager.TryToFindFile(rootButtonLoadConfig.configFileName);
+        if (!fileExist) {
+            console.log("Can't find config file");
+            return;
+        }
+        const configString = jsonManager.LoadConfigs(rootButtonLoadConfig.dynamicScopeType);
+        if (configString === "null") {
+            console.log("Can't load json from config file");
+            return;
+        }
+        const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, rootButtonLoadConfig.dynamicScopeType, rootButtonLoadConfig.scopeObject);
+        console.log("Loading UI Elements from config:", loadingUiResult);
+    }
 }

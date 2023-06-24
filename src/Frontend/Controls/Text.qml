@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Frontend.Styles as WorStyles
 
 /**

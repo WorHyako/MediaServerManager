@@ -11,7 +11,7 @@ import Frontend.Backgrounds as WorBackgrounds
  *              | TabButton
  */
 ApplicationWindow {
-	id: root
+	id: rootSettingsWindow
 	height: 600
 	width: 1000
 
