@@ -16,6 +16,10 @@ import Frontend.Js as Js
 Item {
     id: root
 
+	QtObject {
+		id: internal
+		readonly property string qrcContextMenu: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml"
+	}
     /**
 	 * Describe all action types
 	 */
@@ -73,7 +77,7 @@ Item {
                 actionList.push("Delete");
             }
             for (const eachActionName of actionList) {
-                let item = Js.ItemCreator.createNewItem("qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml", menu, {
+                let item = Js.ItemCreator.createNewItem(internal.qrcContextMenu, menu, {
                         "itemText": eachActionName
                     });
                 menu.addItem(item);

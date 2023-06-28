@@ -18,6 +18,11 @@ Rectangle {
     color: "transparent"
     radius: 10
 
+    QtObject {
+        id: internal
+
+        readonly property string qrcQuickTitleLine: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml"
+    }
     border {
         color: "#AAA"
         width: 1
@@ -30,15 +35,15 @@ Rectangle {
     }
     WorControls.ButtonAddNewElement {
         maxElementNum: 10
-        qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml"
+        qrcElementPath: internal.qrcQuickTitleLine
         scopeObject: linesList
     }
-    // WorControls.ButtonSaveConfig {
-    // 	configFileName: "test.json"
-    // 	dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-    //	elementType: WorControls.QuickTitleLine
-    //	scopeObject: linesList
-    // }
+    WorControls.ButtonSaveConfig {
+        configFileName: "test.json"
+        dynamicScopeType: MSM.DynamicScopeType.QuickTitles
+        elementType: WorControls.QuickTitleLine
+        scopeObject: linesList
+    }
     WorControls.ButtonLoadConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles

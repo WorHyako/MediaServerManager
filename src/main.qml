@@ -24,6 +24,11 @@ ApplicationWindow {
     visible: true
     width: 1920
 
+    QtObject {
+        id: internal
+
+        readonly property string qrcBackgroundImage: "qrc:/Frontend/Assets/app-background.png"
+    }
     Item {
         anchors.fill: parent
 
@@ -31,7 +36,7 @@ ApplicationWindow {
             id: background
 
             anchors.fill: parent
-            source: "qrc:/Frontend/Assets/app-background.png"
+            source: internal.qrcBackgroundImage
             z: -1
         }
         GridLayout {

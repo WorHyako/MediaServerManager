@@ -11,30 +11,37 @@ import MediaServerManager 1.0 as MSM
  *      | WorControls.ButtonAddNewElement
  */
 Item {
-	id: root
-	anchors.fill: parent
+    id: root
 
-	WorControls.ButtonSaveConfig {
-		configFileName: "test.json"
-		dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-		elementType: WorControls.ManagementButton
-		scopeObject: grid
-	}
-	WorControls.ButtonLoadConfig {
-		configFileName: "test.json"
-		dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-		scopeObject: grid
-	}
-	Grid {
-		id: grid
-		anchors.fill: parent
-		columns: 6
-		rows: 5
-		spacing: 5
-	}
-	WorControls.ButtonAddNewElement {
-		maxElementNum: grid.columns * grid.rows
-		qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
-		scopeObject: grid
-	}
+    anchors.fill: parent
+
+    QtObject {
+        id: internal
+
+        readonly property string qrcManagementButton: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
+    }
+    WorControls.ButtonSaveConfig {
+        configFileName: "test.json"
+        dynamicScopeType: MSM.DynamicScopeType.QuickButtons
+        elementType: WorControls.ManagementButton
+        scopeObject: grid
+    }
+    WorControls.ButtonLoadConfig {
+        configFileName: "test.json"
+        dynamicScopeType: MSM.DynamicScopeType.QuickButtons
+        scopeObject: grid
+    }
+    Grid {
+        id: grid
+
+        anchors.fill: parent
+        columns: 6
+        rows: 5
+        spacing: 5
+    }
+    WorControls.ButtonAddNewElement {
+        maxElementNum: grid.columns * grid.rows
+        qrcElementPath: internal.qrcManagementButton
+        scopeObject: grid
+    }
 }
