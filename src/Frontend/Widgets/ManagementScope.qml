@@ -12,7 +12,7 @@ import MediaServerManager 1.0 as MSM
  *      | WorControls.ButtonLoadConfig
  */
 Item {
-    id: rootManagementScope
+    id: root
 
     anchors.fill: parent
 
@@ -35,11 +35,8 @@ Item {
         newElementArgs: {
             "canBeMoved": true,
             "canBeResized": true,
-            "movableScope": rootManagementScope,
-            "showCircle": true,
-            "onClicked": () => {
-                console.log("clicked");
-            }
+            "movableScope": root,
+            "showCircle": true
         }
         qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
         scopeObject: contentScope

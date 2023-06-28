@@ -37,7 +37,10 @@ Item {
 		WorControls.Button {
 			Layout.preferredHeight: 30
 			Layout.preferredWidth: 70
-			onClicked: () => {
+			onLeftClicked: () => {
+			}
+			onRightClicked: () => {
+
 			}
 			text: "Send"
 			// contentItem: worControls.TextField

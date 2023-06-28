@@ -49,12 +49,15 @@ Item {
         padding: 3
 
         background: Rectangle {
-            border.color: "#222"
-            border.width: 2
             color: "#B4B4B4"
             implicitHeight: root.menuItemHeight
             implicitWidth: root.menuItemWidth
             radius: root.menuBorderRadius
+
+            border {
+                color: "#222"
+                width: 2
+            }
         }
 
         Component.onCompleted: {
@@ -63,10 +66,10 @@ Item {
             if ((root.actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
                 actionList.push("Rename");
             }
-            if ((actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
+            if ((root.actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
                 actionList.push("ChangeBindingType");
             }
-            if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
+            if ((root.actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
                 actionList.push("Delete");
             }
             for (const eachActionName of actionList) {

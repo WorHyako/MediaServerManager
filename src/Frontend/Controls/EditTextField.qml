@@ -9,7 +9,7 @@ import Frontend.Backgrounds as WorBackgrounds
  *          | TextEdit
  */
 WorBackgrounds.TextBackgroundRectangle {
-    id: editTextField
+    id: root
 
     property string text: "Text Edit"
 
@@ -20,7 +20,7 @@ WorBackgrounds.TextBackgroundRectangle {
         anchors.fill: parent
         color: WorStyles.FontStyle.fontColor
         horizontalAlignment: Text.AlignHCenter
-        text: editTextField.text
+        text: root.text
         verticalAlignment: Text.AlignVCenter
 
         font {

@@ -21,7 +21,7 @@ import Frontend.Js as WorJs
  *          | Button
  */
 Dialog {
-    id: rootRenamingDialog
+    id: root
 
     property string newText: "-"
     required property QtObject objectToRename
@@ -33,7 +33,7 @@ Dialog {
 	 * @param text  New text
 	 */
     function onTextEditFinished(text) {
-        rootRenamingDialog.newText = text;
+        root.newText = text;
     }
 
     height: 250
@@ -51,9 +51,9 @@ Dialog {
     }
 
     ColumnLayout {
-        height: rootRenamingDialog.height * 0.8
+        height: root.height * 0.8
         spacing: 5
-        width: rootRenamingDialog.width * 0.8
+        width: root.width * 0.8
 
         anchors {
             bottomMargin: 10
@@ -69,12 +69,12 @@ Dialog {
         Repeater {
             id: repeater
 
-            model: [["Previous", rootRenamingDialog.objectToRename[rootRenamingDialog.propertyToRename]], ["New", rootRenamingDialog.newText]]
+            model: [["Previous", root.objectToRename[root.propertyToRename]], ["New", root.newText]]
 
             WorBackgrounds.TextBackgroundRectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: 50
-                Layout.preferredWidth: rootRenamingDialog.width * 0.9
+                Layout.preferredWidth: root.width * 0.9
 
                 RowLayout {
                     anchors.fill: parent
@@ -102,7 +102,7 @@ Dialog {
                         verticalAlignment: Text.AlignVCenter
 
                         onEditingFinished: {
-                            rootRenamingDialog.onTextEditFinished(text);
+                            root.onTextEditFinished(text);
                         }
                     }
                 }
@@ -113,8 +113,8 @@ Dialog {
             text: "Apply"
 
             onClicked: () => {
-                WorJs.Renamer.rename(rootRenamingDialog.objectToRename, rootRenamingDialog.propertyToRename, rootRenamingDialog.newText);
-                rootRenamingDialog.accept();
+                WorJs.Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
+                root.accept();
             }
         }
     }

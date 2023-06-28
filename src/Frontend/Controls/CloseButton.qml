@@ -7,14 +7,14 @@ import Frontend.Controls as WorControls
  *      | Button
  */
 WorControls.Button {
-    id: rootCloseButton
+    id: root
 
     required property var window
 
     height: 20
     width: 20
 
-    onClicked: () => {
+    onLeftClicked: () => {
         window.close();
     }
 

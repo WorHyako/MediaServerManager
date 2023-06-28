@@ -12,7 +12,7 @@ import Frontend.Js as Js
  *      | Button
  */
 WorControls.Button {
-    id: rootButtonAddNewElement
+    id: root
 
     required property int maxElementNum
     property var newElementArgs: {
@@ -24,10 +24,10 @@ WorControls.Button {
     text: "Add"
     width: 50
 
-    onClicked: () => {
-        const rangeCheck = rootButtonAddNewElement.scopeObject.children.length < rootButtonAddNewElement.maxElementNum;
+    onLeftClicked: () => {
+        const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
         if (rangeCheck) {
-            Js.ItemCreator.createNewItem(rootButtonAddNewElement.qrcElementPath, rootButtonAddNewElement.scopeObject, rootButtonAddNewElement.newElementArgs);
+            Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
         }
     }
 

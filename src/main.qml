@@ -86,7 +86,7 @@ ApplicationWindow {
         WorControls.ManagementButton {
             text: "Settings"
 
-            onClicked: () => {
+            onLeftClicked: () => {
                 Js.ItemCreator.createNewItem(WorSettings.SettingsWindow, root);
             }
 

@@ -11,7 +11,7 @@ import Frontend.Js as Js
  *      | Button save button
  */
 WorControls.Button {
-    id: rootButtonSaveConfig
+    id: root
 
     required property string configFileName
     required property int dynamicScopeType
@@ -22,14 +22,14 @@ WorControls.Button {
     text: "Save"
     width: 50
 
-    onClicked: () => {
-        const fileExist = jsonManager.TryToFindFile(rootButtonSaveConfig.configFileName);
+    onLeftClicked: () => {
+        const fileExist = jsonManager.TryToFindFile(root.configFileName);
         if (!fileExist) {
             console.log("Can't find config file");
             return;
         }
-        const items = Js.DynamicItemCollector.collectItems(rootButtonSaveConfig.scopeObject, rootButtonSaveConfig.elementType);
-        const savingResult = jsonManager.SaveConfigs(items, rootButtonSaveConfig.dynamicScopeType);
+        const items = Js.DynamicItemCollector.collectItems(root.scopeObject, root.elementType);
+        const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
         console.log("Saving result: ", savingResult);
     }
 }

@@ -13,7 +13,7 @@ import MediaServerManager 1.0 as MSM
  *          | WorControls.ButtonSaveConfig
  */
 Rectangle {
-    id: rootQuickTitleScope
+    id: root
 
     color: "transparent"
     radius: 10

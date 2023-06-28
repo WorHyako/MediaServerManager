@@ -4,29 +4,29 @@ import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
 
 /**
- * MenuItem
+ * root
  * string itemText
  */
 MenuItem {
-    id: menuItem
+    id: root
 
     required property string itemText
 
     background: Rectangle {
         anchors.fill: parent
-        color: menuItem.highlighted ? "#555" : "transparent"
+        color: root.highlighted ? "#555" : "transparent"
         radius: 8
     }
     contentItem: WorControls.Text {
-        id: menuItemText
+        id: rootText
 
-        color: menuItem.highlighted ? "#fff" : "#000"
+        color: root.highlighted ? "#fff" : "#000"
         horizontalAlignment: Text.AlignLeft
         text: itemText
     }
 
     onClicked: {
-        if (menuItem.text === "Rename") {
+        if (root.text === "Rename") {
             const dialog = ItemCreator.createNewItem(WorWidgets.RenamingDialog, root, {
                     "objectToRename": selectedButton,
                     "propertyToRename": "text"
@@ -34,10 +34,10 @@ MenuItem {
             dialog.open();
             return;
         }
-        if (menuItem.text === "Change Binding name") {
+        if (root.text === "Change Binding name") {
             return;
         }
-        if (menuItem.text === "Delete") {
+        if (root.text === "Delete") {
             selectedButton.destroy();
             return;
         }

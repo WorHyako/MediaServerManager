@@ -9,7 +9,7 @@ import Frontend.Backgrounds as WorBackgrounds
  *      | RowLayout
  */
 Item {
-    id: rootNetworkSettings
+    id: root
 
     ColumnLayout {
         anchors {

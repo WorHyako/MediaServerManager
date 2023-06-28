@@ -7,7 +7,7 @@ import Frontend.Backgrounds as WorBackgrounds
 /**
  *  Element struct:
  *  Item root
- *      | Item rootControlTabs
+ *      | Item root
  *          | TabBar tabBar
  *              | Repeater
  *                  | TabButton
@@ -16,7 +16,7 @@ import Frontend.Backgrounds as WorBackgrounds
  *                  | Rectangle
  */
 Item {
-    id: rootControlTabs
+    id: root
 
     anchors.fill: parent
 
@@ -49,9 +49,9 @@ Item {
 
         anchors {
             bottom: tabBar.top
-            left: rootControlTabs.left
-            right: rootControlTabs.right
-            top: rootControlTabs.top
+            left: root.left
+            right: root.right
+            top: root.top
         }
         Repeater {
             model: 5
