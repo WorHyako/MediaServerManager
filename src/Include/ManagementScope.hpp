@@ -8,9 +8,10 @@ namespace MediaServerManager {
 
     class ManagementScope : public QObject {
     Q_OBJECT
+
         QML_ELEMENT
     public:
-        ManagementScope(QObject* parent = nullptr);
+        ManagementScope(QObject *parent = nullptr);
     };
 }
 #endif

@@ -1,14 +1,14 @@
 #ifndef MEDIASERVERMANAGER_COMMAND_COMMANDPARSER_HPP
 #define MEDIASERVERMANAGER_COMMAND_COMMANDPARSER_HPP
 
-#include "command/ICommand.hpp"
+#include "command/Command.hpp"
 
 namespace MediaServerManager::Command {
 
     /**
      *
      */
-     template<typename CommandType>
+    template<typename CommandType>
     class CommandParser {
     public:
         CommandParser() = delete;

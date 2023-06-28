@@ -1,0 +1,50 @@
+{
+    "ManagementButtonsScope": {
+        "ManagementButton_0": {
+            "height": "50",
+            "text": "Button",
+            "width": "100",
+            "x": "0",
+            "y": "0"
+        },
+        "ManagementButton_1": {
+            "height": "50",
+            "text": "Button",
+            "width": "100",
+            "x": "0",
+            "y": "0"
+        },
+        "ManagementButton_2": {
+            "height": "50",
+            "text": "Button",
+            "width": "100",
+            "x": "0",
+            "y": "0"
+        }
+    },
+    "QuickButtonsScope": {
+        "QuickButton_0": {
+            "name": "",
+            "text": "Button"
+        },
+        "QuickButton_1": {
+            "name": "",
+            "text": "Button"
+        },
+        "QuickButton_2": {
+            "name": "",
+            "text": "Button"
+        }
+    },
+    "QuickTitlesScope": {
+        "QuickTitle_0": {
+            "text": "Text Example"
+        },
+        "QuickTitle_1": {
+            "text": "Text Example"
+        },
+        "QuickTitle_2": {
+            "text": "Text Example"
+        }
+    }
+}

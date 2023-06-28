@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/Controls" as CustomControls
-import "qrc:/JS/Renamer.js" as Renamer
+import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Controls as WorControls
+import Frontend.Js as WorJs
 
 /**
  * Dialog root
@@ -12,10 +12,10 @@ import "qrc:/JS/Renamer.js" as Renamer
  * - QtObject objectToRename
  * - onTextEditFinished(text)
  *      | ColumnLayout
- *          | Text
+ *          | WorControls.TextField
  *          | Repeater
  *          - model: [["Previous", root.previousText], ["New", root.newText]]
- *              | Text
+ *              | WorControls.TextField
  *              | Rectangle
  *              | TextEdit
  *          | Button
@@ -29,9 +29,9 @@ Dialog {
 
     /// TODO: Make binding between TextEdit and property newText
     /**
-     * Function exist just by one reason. Damned TextEdit in Repeater can't find "root" id
-     * @param text  New text
-     */
+	 * Function exist just by one reason. Damned TextEdit in Repeater can't find "root" id
+	 * @param text  New text
+	 */
     function onTextEditFinished(text) {
         root.newText = text;
     }
@@ -41,10 +41,13 @@ Dialog {
 
     background: Rectangle {
         anchors.fill: parent
-        border.color: "#444"
-        border.width: 4
         color: "#a4a4a4"
         radius: 10
+
+        border {
+            color: "#444"
+            width: 4
+        }
     }
 
     ColumnLayout {
@@ -59,17 +62,16 @@ Dialog {
             rightMargin: 10
             topMargin: 10
         }
-        Text {
+        WorControls.Text {
             font.pixelSize: 20
-            horizontalAlignment: Text.AlignHCenter
             text: "Renaming window"
-            verticalAlignment: Text.AlignVCenter
         }
         Repeater {
             id: repeater
-            model: [["Previous", root.objectToRename[propertyToRename]], ["New", root.newText]]
 
-            CustomBackgrounds.TextBackgroundRectangle {
+            model: [["Previous", root.objectToRename[root.propertyToRename]], ["New", root.newText]]
+
+            WorBackgrounds.TextBackgroundRectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: root.width * 0.9
@@ -77,13 +79,11 @@ Dialog {
                 RowLayout {
                     anchors.fill: parent
 
-                    Text {
+                    WorControls.Text {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         font.pixelSize: 20
-                        horizontalAlignment: Text.AlignHCenter
                         text: modelData[0]
-                        verticalAlignment: Text.AlignVCenter
                     }
                     Rectangle {
                         Layout.fillHeight: true
@@ -102,25 +102,19 @@ Dialog {
                         verticalAlignment: Text.AlignVCenter
 
                         onEditingFinished: {
-                            onTextEditFinished(text);
+                            root.onTextEditFinished(text);
                         }
                     }
                 }
             }
         }
-        CustomControls.ManagementButton {
+        WorControls.ManagementButton {
             Layout.alignment: Qt.AlignCenter
             text: "Apply"
 
-            MouseArea {
-                acceptedButtons: Qt.LeftButton
-                anchors.fill: parent
-
-                onClicked: {
-                    focus = true;
-                    Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
-                    root.accept();
-                }
+            onClicked: () => {
+                WorJs.Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
+                root.accept();
             }
         }
     }

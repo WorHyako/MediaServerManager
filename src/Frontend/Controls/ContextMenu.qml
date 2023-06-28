@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
+import Frontend.Js as Js
 
 /**
  *  Item root
@@ -18,8 +17,8 @@ Item {
     id: root
 
     /**
-     * Describe all action types
-     */
+	 * Describe all action types
+	 */
     enum ActionType {
         Rename = 1,
         ChangeBindingType,
@@ -33,9 +32,9 @@ Item {
     required property QtObject selectedButton
 
     /**
-     * Open menu in current cursor position
-     * @param mousePosition current cursor position
-     */
+	 * Open menu in current cursor position
+	 * @param mousePosition current cursor position
+	 */
     function open(mousePosition) {
         menu.x = mousePosition.x;
         menu.y = mousePosition.y;
@@ -46,31 +45,35 @@ Item {
 
     Menu {
         id: menu
+
         padding: 3
 
         background: Rectangle {
-            border.color: "#222"
-            border.width: 2
             color: "#B4B4B4"
-            implicitHeight: menuItemHeight
-            implicitWidth: menuItemWidth
-            radius: menuBorderRadius
+            implicitHeight: root.menuItemHeight
+            implicitWidth: root.menuItemWidth
+            radius: root.menuBorderRadius
+
+            border {
+                color: "#222"
+                width: 2
+            }
         }
 
         Component.onCompleted: {
             const isCreateAllItems = root.actionTypes === 0;
-            var actionList = [];
-            if ((actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
+            let actionList = [];
+            if ((root.actionTypes & ContextMenu.ActionType.Rename) || isCreateAllItems) {
                 actionList.push("Rename");
             }
-            if ((actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
+            if ((root.actionTypes & ContextMenu.ActionType.ChangeBindingType) || isCreateAllItems) {
                 actionList.push("ChangeBindingType");
             }
-            if ((actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
+            if ((root.actionTypes & ContextMenu.ActionType.Delete) || isCreateAllItems) {
                 actionList.push("Delete");
             }
-            for (var eachActionName of actionList) {
-                var item = ItemCreator.createNewItem("qrc:/Controls/ContextMenuItem.qml", menu, {
+            for (const eachActionName of actionList) {
+                let item = Js.ItemCreator.createNewItem("qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml", menu, {
                         "itemText": eachActionName
                     });
                 menu.addItem(item);

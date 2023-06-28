@@ -1,8 +1,6 @@
 import QtQuick
-import QtQuick.Controls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
-import "qrc:/JS/ConfigLoader.js" as ConfigLoader
+import Frontend.Controls as WorControls
+import Frontend.Js as Js
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -12,7 +10,7 @@ import MediaServerManager 1.0 as MSM
  *  - QtObject scopeObject
  *      | Button
  */
-Item {
+WorControls.Button {
     id: root
 
     required property string configFileName
@@ -20,33 +18,21 @@ Item {
     required property QtObject scopeObject
 
     height: 50
+    text: "Load"
     width: 50
 
-    anchors {
-        horizontalCenter: parent.horizontalCenter
-        bottom: parent.bottom
-    }
-    Button {
-        anchors.fill: parent
-        text: "Load"
-
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
+    onLeftClicked: () => {
+        const fileExist = jsonManager.TryToFindFile(root.configFileName);
+        if (!fileExist) {
+            console.log("Can't find config file");
+            return;
         }
-
-        onClicked: {
-            const fileExist = jsonManager.TryToFindFile(root.configFileName);
-            if (!fileExist) {
-                console.log("Can't find config file");
-                return;
-            }
-            const configString = jsonManager.LoadConfigs(root.dynamicScopeType);
-            if (configString === "null") {
-                console.log("Can't load json from config file");
-                return;
-            }
-            const loadingUiResult = ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
-            console.log("Loading UI Elements from config:", loadingUiResult);
+        const configString = jsonManager.LoadConfigs(root.dynamicScopeType);
+        if (configString === "null") {
+            console.log("Can't load json from config file");
+            return;
         }
+        const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
+        console.log("Loading UI Elements from config:", loadingUiResult);
     }
 }

@@ -1,89 +1,71 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Widgets" as CustomWidgets
+import Frontend.Widgets as WorWidgets
+import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *  Element struct:
  *  Item root
- *      | Rectangle tabScope
+ *      | Item root
  *          | TabBar tabBar
  *              | Repeater
- *                  | TabButton tabButton
+ *                  | TabButton
  *          | StackLayout
  *              | Repeater
  *                  | Rectangle
  */
 Item {
     id: root
-    Rectangle {
-        id: tabScope
-        anchors.fill: parent
-        /**
-         *  Color Blue, but alpha - 0 to set Rectangle invisible
-         */
-        color: "#000000ff"
 
-        TabBar {
-            id: tabBar
-            height: 50
+    anchors.fill: parent
 
-            anchors {
-                bottom: parent.bottom
-                horizontalCenter: parent.horizontalCenter
-            }
-            Repeater {
-                model: ["First", "Second", "Third", "Fourth", "Fifth"]
+    TabBar {
+        id: tabBar
 
-                TabButton {
-                    id: tabButton
-                    height: tabBar.height
-                    text: modelData
-                    width: tabBar.height
+        height: 50
 
-                    background: Rectangle {
-                        anchors.fill: parent
-                        color: "#AAA"
-                        radius: 5
+        anchors {
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
+        Repeater {
+            anchors.bottom: parent.bottom
+            model: ["First", "Second", "Third", "Fourth", "Fifth"]
 
-                        border {
-                            color: "#101010"
-                            width: 1
-                        }
-                    }
+            TabButton {
+                anchors.bottom: parent.bottom
+                height: tabBar.height
+                text: modelData
+                width: tabBar.height
 
-                    anchors {
-                        bottom: parent.bottom
-                    }
-                }
-                anchors {
-                    bottom: parent.bottom
+                background: WorBackgrounds.TabButtonBackground {
                 }
             }
         }
-        StackLayout {
-            currentIndex: tabBar.currentIndex
+    }
+    StackLayout {
+        currentIndex: tabBar.currentIndex
 
-            anchors {
-                bottom: tabBar.top
-                left: tabScope.left
-                right: tabScope.right
-                top: tabScope.top
-            }
-            Repeater {
-                model: 5
+        anchors {
+            bottom: tabBar.top
+            left: root.left
+            right: root.right
+            top: root.top
+        }
+        Repeater {
+            model: 5
 
-                Rectangle {
-                    color: "#0000ffff"
-                    radius: 10
+            Rectangle {
+                color: "transparent"
+                radius: 10
 
-                    border {
-                        color: "#AAA"
-                        width: 1
-                    }
-                    CustomWidgets.ManagementScope {
-                        anchors.fill: parent
-                    }
+                border {
+                    color: "#AAA"
+                    width: 1
+                }
+                WorWidgets.ManagementScope {
+                    anchors.fill: parent
                 }
             }
         }

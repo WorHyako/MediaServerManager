@@ -1,34 +1,36 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "qrc:/Controls" as CustomControls
+import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
 /**
  *  Item root
- *      | CustomControls.ButtonSaveConfig
- *      | CustomControls.ButtonAddNewElement
+ *      | Item contentScope
+ *      | WorControls.ButtonSaveConfig
+ *      | WorControls.ButtonAddNewElement
+ *      | WorControls.ButtonLoadConfig
  */
 Item {
     id: root
+
     anchors.fill: parent
 
-    Rectangle {
+    Item {
         id: contentScope
-        color: "#00ffffff"
-        anchors{
-            fill: parent
+
+        anchors {
             bottomMargin: 50
+            fill: parent
         }
     }
-
-    CustomControls.ButtonSaveConfig {
+    WorControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-        elementType: CustomControls.ManagementButton
+        elementType: WorControls.ManagementButton
         scopeObject: contentScope
     }
-    CustomControls.ButtonAddNewElement {
+    WorControls.ButtonAddNewElement {
         maxElementNum: 30
         newElementArgs: {
             "canBeMoved": true,
@@ -36,10 +38,10 @@ Item {
             "movableScope": root,
             "showCircle": true
         }
-        qrcElementPath: "qrc:/Controls/ManagementButton.qml"
+        qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
         scopeObject: contentScope
     }
-    CustomControls.ButtonLoadConfig {
+    WorControls.ButtonLoadConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
         scopeObject: contentScope

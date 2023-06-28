@@ -16,20 +16,22 @@ namespace MediaServerManager::Json {
      */
     class JsonQmlWrapper : public QObject {
     Q_OBJECT
-    public:
 
+    public:
         JsonQmlWrapper() = default;
 
         using DynamicScopeType = MediaServerManager::DynamicScopeType::Value;
 
         /**
-         * Try to find file by path. Result will returned and saved to current file status\n
-         * Also file path will wrote to internal variable if successful
+         * Try to find file by path. Result will returned and saved to current
+         * file status\n Also file path will wrote to internal variable if
+         * successful
          * @param filePath_ full or relative file path
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
-        TryToFindFile(const QString& filePath_, bool createFile = true) noexcept;
+        TryToFindFile(const QString &filePath_,
+                      bool createFile = true) noexcept;
 
         /**
          * Try to save UI elements config to json file
@@ -37,38 +39,43 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool SaveConfigs(const QList<QObject*>& items_, DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool
+        SaveConfigs(const QList<QObject *> &items_,
+                    DynamicScopeType scope_) noexcept;
 
         /**
          * Try to load UI elements config from json file
          * @param scope_
          * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE QString LoadConfigs(DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE QString
+        LoadConfigs(DynamicScopeType scope_) noexcept;
 
     private:
         /**
          * Array declare scopes, which contain dynamic elements\n
          * Internal vector store elements info in current scope
          */
-        using ConfigStorage = std::array<std::vector<MediaServerManager::ElementConfig>,
-                static_cast<size_t>(std::numeric_limits<DynamicScopeType>::max())>;
+        using ConfigStorage =
+                std::array<std::vector<MediaServerManager::ElementConfig>,
+                        static_cast<size_t>(
+                                std::numeric_limits<DynamicScopeType>::max())>;
 
         ConfigStorage _elementsConfig;
 
         wor::Json::JsonManager _jsonManager;
 
-        [[nodiscard]] nlohmann::json
-        MakeQuickButtonsConfig(const std::vector<QObject*>& items_,
-                               const std::vector<std::string>& propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(
+                const std::vector<QObject *> &items_,
+                const std::vector<std::string> &propertiesList_) const noexcept;
 
-        [[nodiscard]] nlohmann::json
-        MakeQuickTitlesConfig(const std::vector<QObject*>& items_,
-                              const std::vector<std::string>& propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(
+                const std::vector<QObject *> &items_,
+                const std::vector<std::string> &propertiesList_) const noexcept;
 
-        [[nodiscard]] nlohmann::json
-        MakeManagementButtonConfig(const std::vector<QObject*>& items_,
-                                   const std::vector<std::string>& propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json MakeManagementButtonConfig(
+                const std::vector<QObject *> &items_,
+                const std::vector<std::string> &propertiesList_) const noexcept;
 
     public:
 #pragma region Accessors
@@ -77,7 +84,8 @@ namespace MediaServerManager::Json {
          * Return current file status via wor::Json::JsonManager::FileStatus
          * @return current file status
          */
-        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus GetFileStatus() const noexcept;
+        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
+        GetFileStatus() const noexcept;
 
         /**
          *
@@ -88,5 +96,4 @@ namespace MediaServerManager::Json {
 #pragma endregion Accessors
     };
 }
-
 #endif

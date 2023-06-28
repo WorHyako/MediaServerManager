@@ -1,8 +1,6 @@
 import QtQuick
-import QtQuick.Controls
-import "qrc:/Controls" as CustomControls
-import "qrc:/Backgrounds" as CustomBackgrounds
-import "qrc:/JS/ItemCreator.js" as ItemCreator
+import Frontend.Controls as WorControls
+import Frontend.Js as Js
 
 /**
  *  Item root
@@ -13,35 +11,28 @@ import "qrc:/JS/ItemCreator.js" as ItemCreator
  *  - bool showCircle: false
  *      | Button
  */
-Item {
+WorControls.Button {
     id: root
 
     required property int maxElementNum
     property var newElementArgs: {
     }
-    required property string qrcElementPath
+    required property var qrcElementPath
     required property QtObject scopeObject
 
     height: 50
+    text: "Add"
     width: 50
+
+    onLeftClicked: () => {
+        const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
+        if (rangeCheck) {
+            Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+        }
+    }
 
     anchors {
         bottom: parent.bottom
         right: parent.right
-    }
-    Button {
-        anchors.fill: parent
-        text: "Add"
-
-        background: CustomBackgrounds.ButtonBackgroundRectangle {
-            showCircle: false
-        }
-
-        onClicked: {
-            const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-            if (rangeCheck) {
-                ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-            }
-        }
     }
 }
