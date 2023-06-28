@@ -35,4 +35,9 @@ WorControls.Button {
         const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
         console.log("Loading UI Elements from config:", loadingUiResult);
     }
+
+    anchors {
+        bottom: parent.bottom
+        left: parent.left
+    }
 }

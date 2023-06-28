@@ -16,6 +16,11 @@ Item {
 
     anchors.fill: parent
 
+    QtObject {
+        id: internal
+
+        readonly property string qrcManagementButton: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
+    }
     Item {
         id: contentScope
 
@@ -38,7 +43,7 @@ Item {
             "movableScope": root,
             "showCircle": true
         }
-        qrcElementPath: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
+        qrcElementPath: internal.qrcManagementButton
         scopeObject: contentScope
     }
     WorControls.ButtonLoadConfig {
