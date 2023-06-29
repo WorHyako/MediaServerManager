@@ -14,16 +14,16 @@
 using namespace MediaServerManager::Command;
 
 int main(int argc, char *argv[]) {
-//    std::vector<Command *> commandList;
-//
-//    CommandItemList hideItems;
-//    hideItems.emplace_back("filter", "hide");
-//    auto hideCommand = CommandBuilder<ActionCommand>::BuildCommand(hideItems);
-//    CommandItemList playItems;
-//    playItems.emplace_back("filter", "play");
-//    playItems.emplace_back("file", "example.mp4");
-//    auto playCommand = CommandBuilder<ActionCommand>::BuildCommand(playItems);
-//
+    std::vector<Command *> commandList;
+
+    CommandItemList hideItems;
+    hideItems.emplace_back("filter", "hide");
+    auto hideCommand = CommandBuilder<ActionCommand>::BuildCommand(hideItems);
+    CommandItemList playItems;
+    playItems.emplace_back("filter", "play");
+    playItems.emplace_back("file", "example.mp4");
+    auto playCommand = CommandBuilder<ActionCommand>::BuildCommand(playItems);
+
 //    pugi::xml_document doc;
 //    auto node = doc.append_child(pugi::node_declaration);
 //    node.append_attribute("attr");

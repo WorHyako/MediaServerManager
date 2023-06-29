@@ -1,6 +1,7 @@
 #include "Command/Command.hpp"
 
 #include <sstream>
+#include <iostream>
 
 using namespace MediaServerManager::Command;
 
@@ -22,8 +23,6 @@ void Command::RemoveItem(const CommandItem& commandItem) noexcept {
 void Command::Clean() noexcept {
     command.reset();
 }
-
-#include <iostream>
 
 void Command::Execute(Command::SocketRef sender) const noexcept {
     if (sender) {

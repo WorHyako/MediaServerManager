@@ -13,18 +13,25 @@ namespace MediaServerManager::Command {
     public:
         CommandBuilder() = delete;
 
+        CommandBuilder(CommandBuilder&&) = delete;
+
+        CommandBuilder(CommandBuilder&) = delete;
+
         ~CommandBuilder() = delete;
+
+        CommandBuilder operator=(CommandBuilder&) = delete;
+
+        CommandBuilder operator=(CommandBuilder&&) = delete;
 
         /**
          *
          * @return
          */
-        static CommandType BuildCommand(CommandItemList commandItems) noexcept;
+        static CommandType BuildCommand(const CommandItemList& commandItems);
     };
 
     template<typename CommandType>
-    CommandType CommandBuilder<CommandType>::BuildCommand(
-            CommandItemList commandItems) noexcept {
+    CommandType CommandBuilder<CommandType>::BuildCommand(const CommandItemList& commandItems) {
         if (!std::is_base_of_v<Command, CommandType>) {
             throw std::bad_cast();
         }

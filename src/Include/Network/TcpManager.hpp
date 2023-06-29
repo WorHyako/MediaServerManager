@@ -23,7 +23,7 @@ namespace MediaServerManager::Network {
         [[nodiscard]] Q_INVOKABLE bool TryToConnect() noexcept;
 
     private:
-        std::unique_ptr<wor::network::TcpSocket> tcpSocket;
+        std::unique_ptr<wor::Network::TcpSocket> tcpSocket;
 
     public:
 #pragma region Accessors/Mutators
