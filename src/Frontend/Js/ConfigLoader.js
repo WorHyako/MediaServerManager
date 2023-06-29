@@ -1,12 +1,12 @@
-const managementButtonPath = "qrc:/Controls/ManagementButton.qml";
-const quickButtonPath = "qrc:/Controls/ManagementButton.qml";
-const quickTitlePath = "qrc:/Controls/QuickTitleLine.qml";
+.import "ObjectsQrcPath.js" as ObjectsQrc
+.import "ItemCreator.js" as ItemCreator
+.import MediaServerManager 1.0 as MSM;
 
 const managementButtonSettings = {
     "canBeMoved": true,
     "canBeResized": true,
     "showCircle": true
-}
+};
 
 /**
  * Try to parse string from configuration file via json string
@@ -36,7 +36,7 @@ function parseConfig(configString, configType) {
             const value = jsonObject[elementNodeName][key];
             elementConfig.push([String(key), String(value)]);
         }
-        resultArray.push(elementConfig)
+        resultArray.push(elementConfig);
     }
     return resultArray;
 }
@@ -55,7 +55,7 @@ function loadUiFromConfig(configString, configType, scopeObject) {
 
     for (let elementCount = 0; elementCount < elementPath.length; ++elementCount) {
         console.log("element:", elementPath[elementCount]);
-        clearAllObjectChild(scopeObject)
+        clearAllObjectChild(scopeObject);
         const defaultPreset = getDefaultControlPresets(configType, scopeObject);
 
         for (let configCount = 0; configCount < configArray.length; ++configCount) {
@@ -103,7 +103,7 @@ function getDefaultControlPresets(controlType, movableScope) {
 
 /**
  * Return scope name pattern of selected Dynamic scope type
- * @param scopeType Scope type via MediaServerManager.DynamicScopeType
+ * @param scopeType Scope type via MSM.DynamicScopeType
  * @returns {*[]}   Result pattern via string
  */
 function getScopeNamePattern(scopeType) {
@@ -138,16 +138,16 @@ function getElementPath(scopeType) {
     let elementPath = [];
     switch (scopeType) {
         case MSM.DynamicScopeType.QuickButtons:
-            elementPath.push(quickButtonPath);
+            elementPath.push(ObjectsQrc.qrcManagementButton);
             break;
         case MSM.DynamicScopeType.ManagementButtons:
-            elementPath.push(managementButtonPath);
+            elementPath.push(ObjectsQrc.qrcManagementButton);
             break;
         case MSM.DynamicScopeType.QuickTitles:
-            elementPath.push(quickTitlePath);
+            elementPath.push(ObjectsQrc.qrcQuickTitleLine);
             break;
         case MSM.DynamicScopeType.All:
-            elementPath.push(managementButtonPath, quickTitlePath, quickTitlePath);
+            elementPath.push(ObjectsQrc.qrcManagementButton, ObjectsQrc.qrcQuickTitleLine, ObjectsQrc.qrcQuickTitleLine);
             break;
         default:
     }

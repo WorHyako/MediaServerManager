@@ -1,6 +1,6 @@
 import QtQuick
 import Frontend.Controls as WorControls
-import Frontend.Js as Js
+import Frontend.Js as WorJs
 
 /**
  *  Item root
@@ -27,7 +27,7 @@ WorControls.Button {
     onLeftClicked: () => {
         const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
         if (rangeCheck) {
-            Js.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+            WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
         }
     }
 

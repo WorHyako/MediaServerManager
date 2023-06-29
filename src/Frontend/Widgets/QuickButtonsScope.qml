@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
+import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -15,15 +16,10 @@ Item {
 
     anchors.fill: parent
 
-    QtObject {
-        id: internal
-
-        readonly property string qrcManagementButton: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
-    }
     WorControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-        elementType: WorControls.ManagementButton
+        typeName: "Management button"
         scopeObject: grid
     }
     WorControls.ButtonLoadConfig {
@@ -41,7 +37,7 @@ Item {
     }
     WorControls.ButtonAddNewElement {
         maxElementNum: grid.columns * grid.rows
-        qrcElementPath: internal.qrcManagementButton
+        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
         scopeObject: grid
     }
 }

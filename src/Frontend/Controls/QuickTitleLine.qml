@@ -18,6 +18,7 @@ import Frontend.Controls as WorControls
 Item {
 	id: root
 
+	property string objectName: "Quick title line"
 	property point managementButtonSize: Qt.point(WorStyles.ManagementButtonStyle.managementButtonSmallWidth, WorStyles.ManagementButtonStyle.managementButtonSmallHeight)
 	property int spacing: 10
 	property string text: "Text Example"

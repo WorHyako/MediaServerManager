@@ -60,6 +60,7 @@ list(APPEND Backgrounds_FileExt
 # Js
 list(APPEND Js_Dependencies
         QtQuick
+        MediaServerManager
         QtQml)
 
 list(APPEND Js_FileExt

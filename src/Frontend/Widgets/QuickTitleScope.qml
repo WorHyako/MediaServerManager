@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
+import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -18,11 +19,6 @@ Rectangle {
     color: "transparent"
     radius: 10
 
-    QtObject {
-        id: internal
-
-        readonly property string qrcQuickTitleLine: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml"
-    }
     border {
         color: "#AAA"
         width: 1
@@ -35,13 +31,13 @@ Rectangle {
     }
     WorControls.ButtonAddNewElement {
         maxElementNum: 10
-        qrcElementPath: internal.qrcQuickTitleLine
+        qrcElementPath: WorJs.ObjectsQrcPath.qrcQuickTitleLine
         scopeObject: linesList
     }
     WorControls.ButtonSaveConfig {
         configFileName: "test.json"
-        dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-        elementType: WorControls.QuickTitleLine
+        dynamicScopeType: MSM.DynamicScopeType.QuickTitle
+        typeName: "Quick title line"
         scopeObject: linesList
     }
     WorControls.ButtonLoadConfig {

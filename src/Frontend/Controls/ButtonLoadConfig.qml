@@ -1,6 +1,6 @@
 import QtQuick
 import Frontend.Controls as WorControls
-import Frontend.Js as Js
+import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -32,7 +32,7 @@ WorControls.Button {
             console.log("Can't load json from config file");
             return;
         }
-        const loadingUiResult = Js.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
+        const loadingUiResult = WorJs.ConfigLoader.loadUiFromConfig(configString, root.dynamicScopeType, root.scopeObject);
         console.log("Loading UI Elements from config:", loadingUiResult);
     }
 

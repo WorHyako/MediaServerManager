@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
+import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
@@ -16,11 +17,6 @@ Item {
 
     anchors.fill: parent
 
-    QtObject {
-        id: internal
-
-        readonly property string qrcManagementButton: "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml"
-    }
     Item {
         id: contentScope
 
@@ -32,7 +28,7 @@ Item {
     WorControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-        elementType: WorControls.ManagementButton
+        typeName: "Management button"
         scopeObject: contentScope
     }
     WorControls.ButtonAddNewElement {
@@ -43,7 +39,7 @@ Item {
             "movableScope": root,
             "showCircle": true
         }
-        qrcElementPath: internal.qrcManagementButton
+        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
         scopeObject: contentScope
     }
     WorControls.ButtonLoadConfig {
