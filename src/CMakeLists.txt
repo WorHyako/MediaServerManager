@@ -38,7 +38,14 @@ qt_add_qml_module(MediaServerManager
         VERSION 1.0
         URI Frontend
         RESOURCE_PREFIX /WorHyako/MediaServerManager
-        QML_FILES main.qml)
+        QML_FILES main.qml
+        DEPENDENCIES
+        QtQuick
+        QtQuick.Controls
+        QtQuick.Layouts
+        Frontend.Controls
+        Frontend.Widgets
+        Frontend.Js)
 qt_add_resources(MediaServerManager
         PREFIX "/"
         FILES Frontend/Assets/app-background.png)

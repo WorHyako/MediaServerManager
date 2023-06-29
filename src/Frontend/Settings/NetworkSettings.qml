@@ -9,52 +9,55 @@ import Frontend.Backgrounds as WorBackgrounds
  *      | RowLayout
  */
 Item {
-    id: root
+	id: root
 
-    ColumnLayout {
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
-        RowLayout {
-            WorBackgrounds.TextBackgroundRectangle {
-                height: 30
-                width: 100
+	ColumnLayout {
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			verticalCenter: parent.verticalCenter
+		}
+		RowLayout {
+			WorBackgrounds.TextBackgroundRectangle {
+				height: 30
+				width: 100
 
-                WorControls.Text {
-                    text: "Destination ip"
-                }
-            }
-            WorControls.EditTextField {
-                id: destinationIpTextEdit
+				WorControls.Text {
+					text: "Destination ip"
+				}
+			}
+			WorControls.EditTextField {
+				id: destinationIpTextEdit
 
-            }
-        }
-        RowLayout {
-            WorBackgrounds.TextBackgroundRectangle {
-                height: 30
-                width: 100
+			}
+		}
+		RowLayout {
+			WorBackgrounds.TextBackgroundRectangle {
+				height: 30
+				width: 100
 
-                WorControls.Text {
-                    text: "Destination port"
-                }
-            }
-            WorControls.EditTextField {
-                id: destinationPortTextEdit
+				WorControls.Text {
+					text: "Destination port"
+				}
+			}
+			WorControls.EditTextField {
+				id: destinationPortTextEdit
 
-            }
-        }
-    }
-    WorControls.Button {
-        text: "Apply"
+			}
+		}
+	}
+	WorControls.Button {
+		text: "Apply"
 
-        onClicked: () => {}
+		onLeftClicked: () => {
+		}
 
-        anchors {
-            bottom: parent.bottom
-            bottomMargin: 50
-            right: parent.right
-            rightMargin: 50
-        }
-    }
+		height: 100
+		width: 100
+		anchors {
+			bottom: parent.bottom
+			bottomMargin: 50
+			right: parent.right
+			rightMargin: 50
+		}
+	}
 }

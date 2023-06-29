@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
-import Frontend.Settings as WorSettings
 import Frontend.Js as WorJs
 
 /**
@@ -92,7 +91,7 @@ ApplicationWindow {
             text: "Settings"
 
             onLeftClicked: () => {
-                WorJs.ItemCreator.createNewItem(WorSettings.SettingsWindow, root);
+                WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);
             }
 
             anchors {

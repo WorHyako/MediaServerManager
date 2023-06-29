@@ -28,7 +28,7 @@ namespace MediaServerManager::Command {
 
         using SocketRef = wor::Network::ISocket *;
 
-        virtual void Execute(SocketRef sender) const noexcept;
+        virtual bool Execute(SocketRef sender) const noexcept;
 
         virtual void AddItem(CommandItem commandItem) noexcept = 0;
 

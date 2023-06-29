@@ -24,25 +24,28 @@ int main(int argc, char *argv[]) {
     playItems.emplace_back("file", "example.mp4");
     auto playCommand = CommandBuilder<ActionCommand>::BuildCommand(playItems);
 
-//    pugi::xml_document doc;
-//    auto node = doc.append_child(pugi::node_declaration);
-//    node.append_attribute("attr");
-//    pugi::xml_attribute attribute = node.attribute("attr");
-//    attribute.set_name("name");
-//    attribute.set_value(10);
-//    volatile auto val = node.attribute("attr").value();
-//    std::stringstream ss;
-//    doc.print(ss);
-//    auto s = ss.str();
-//
-//    boost::asio::io_context context;
-//    auto socket = std::make_unique<wor::network::TcpSocket>(context);
-//    auto dump = socket->DestinationEndPoint(
-//            wor::network::EndPoint("192.168.0.100", 7000));
-//    auto res = socket->TryToConnect();
+    pugi::xml_document doc;
+    auto node = doc.append_child(pugi::node_declaration);
+    node.append_attribute("attr");
+    pugi::xml_attribute attribute = node.attribute("attr");
+    attribute.set_name("name");
+    attribute.set_value(10);
+    volatile auto val = node.attribute("attr").value();
+    std::stringstream ss;
+    doc.print(ss);
+    auto s = ss.str();
 
-//    hideCommand.Execute(socket.get());
-//    playCommand.Execute(socket.get());
+    boost::asio::io_context context;
+    auto socket = std::make_unique<wor::Network::TcpSocket>(context);
+    socket->DestinationEndPoint(wor::Network::EndPoint("192.168.0.100", 7000));
+    auto res = socket->TryToConnect();
+
+    hideCommand.Execute(socket.get());
+    playCommand.Execute(socket.get());
+
+    ///////////////
+    /// Qt Part ///
+    ///////////////
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> "
                        "%{if-category}%{category}: %{endif}%{message}");
