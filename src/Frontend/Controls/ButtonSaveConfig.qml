@@ -1,12 +1,12 @@
 import QtQuick
 import Frontend.Controls as WorControls
-import Frontend.Js as Js
+import Frontend.Js as WorJs
 
 /**
  *  Item root
  *  - text configFileName
  *  - int dynamicScopeType
- *  - var elementType
+ *  - string typeName
  *  - QtObject scopeObject
  *      | Button save button
  */
@@ -15,7 +15,7 @@ WorControls.Button {
 
     required property string configFileName
     required property int dynamicScopeType
-    required property var elementType
+    required property string typeName
     required property QtObject scopeObject
 
     height: 50
@@ -28,7 +28,7 @@ WorControls.Button {
             console.log("Can't find config file");
             return;
         }
-        const items = Js.DynamicItemCollector.collectItems(root.scopeObject, root.elementType);
+        const items = WorJs.DynamicItemCollector.collectItems(root.scopeObject, root.typeName);
         const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
         console.log("Saving result: ", savingResult);
     }

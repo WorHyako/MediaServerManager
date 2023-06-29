@@ -8,7 +8,6 @@ set(CMAKE_CXX_COMPILER_VERSION 17)
 set(CMAKE_AUTOMOC ON)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 COMPONENTS REQUIRED
         Core
@@ -39,12 +38,10 @@ qt_add_qml_module(MediaServerManager
         VERSION 1.0
         URI Frontend
         RESOURCE_PREFIX /WorHyako/MediaServerManager
-        QML_FILES
-            main.qml)
+        QML_FILES main.qml)
 qt_add_resources(MediaServerManager
         PREFIX "/"
-        FILES
-            Frontend/Assets/app-background.png)
+        FILES Frontend/Assets/app-background.png)
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp

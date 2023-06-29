@@ -22,6 +22,7 @@ import Frontend.Controls as WorControls
  */
 WorControls.Button {
     id: root
+	property string objectName: "Management button"
 
     property string bindingEvent: ""
     property bool canBeMoved: false
