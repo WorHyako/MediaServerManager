@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QString>
 
-#include "network/TcpSocket.hpp"
+#include "Network/TcpSocket.hpp"
 
 #include <memory>
 

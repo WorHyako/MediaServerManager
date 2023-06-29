@@ -1,3 +1,3 @@
-#include "json/ElementConfig.hpp"
+#include "Json/ElementConfig.hpp"
 
 using namespace MediaServerManager;

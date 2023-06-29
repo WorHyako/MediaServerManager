@@ -45,7 +45,7 @@ qt_add_resources(MediaServerManager
 
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
-        Include/json/JsonQmlWrapper.hpp
+        Include/Json/JsonQmlWrapper.hpp
         Include/DynamicScopeType.hpp)
 
 add_subdirectory(Frontend)

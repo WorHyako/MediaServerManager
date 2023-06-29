@@ -3,8 +3,8 @@
 
 #include "pugixml.hpp"
 
-#include "command/CommandItem.hpp"
-#include "network/ISocket.hpp"
+#include "Command/CommandItem.hpp"
+#include "Network/ISocket.hpp"
 
 #include <vector>
 #include <memory>
@@ -32,7 +32,7 @@ namespace MediaServerManager::Command {
 
         virtual void AddItem(CommandItem commandItem) noexcept = 0;
 
-        virtual void RemoveItem(CommandItem commandItem) noexcept;
+        virtual void RemoveItem(const CommandItem& commandItem) noexcept;
 
         virtual void Clean() noexcept;
 

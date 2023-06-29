@@ -1,4 +1,4 @@
-#include "command/CommandItem.hpp"
+#include "Command/CommandItem.hpp"
 
 using namespace MediaServerManager::Command;
 

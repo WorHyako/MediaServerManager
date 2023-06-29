@@ -4,10 +4,10 @@
 #include <QQmlContext>
 
 #include "ManagementScope.hpp"
-#include "json/JsonQmlWrapper.hpp"
-#include "network/TcpSocket.hpp"
-#include "command/ActionCommand.hpp"
-#include "command/CommandBuilder.hpp"
+#include "Json/JsonQmlWrapper.hpp"
+#include "Network/TcpSocket.hpp"
+#include "Command/ActionCommand.hpp"
+#include "Command/CommandBuilder.hpp"
 
 #include "pugixml.hpp"
 

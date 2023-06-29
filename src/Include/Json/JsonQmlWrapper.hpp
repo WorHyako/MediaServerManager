@@ -6,8 +6,8 @@
 #include <vector>
 #include <array>
 
-#include "json/ElementConfig.hpp"
-#include "json/JsonManager.hpp"
+#include "Json/ElementConfig.hpp"
+#include "Json/JsonManager.hpp"
 #include "DynamicScopeType.hpp"
 
 namespace MediaServerManager::Json {

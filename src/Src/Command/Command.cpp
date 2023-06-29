@@ -1,4 +1,4 @@
-#include "command/Command.hpp"
+#include "Command/Command.hpp"
 
 #include <sstream>
 
@@ -15,7 +15,7 @@ void Command::MarkCommandTag() noexcept {
     }
 }
 
-void Command::RemoveItem(CommandItem commandItem) noexcept {
+void Command::RemoveItem(const CommandItem& commandItem) noexcept {
     command.remove_attribute(commandItem.valuePair.first.c_str());
 }
 

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "vector/Vector2.hpp"
+#include "Vector/Vector2.hpp"
 
 namespace MediaServerManager {
 
