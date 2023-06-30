@@ -1,7 +1,7 @@
 #ifndef MEDIASERVERMANAGER_COMMAND_HIDECOMMAND_HPP
 #define MEDIASERVERMANAGER_COMMAND_HIDECOMMAND_HPP
 
-#include "command/Command.hpp"
+#include "Command/Command.hpp"
 
 namespace MediaServerManager::Command {
 

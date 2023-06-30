@@ -1,4 +1,4 @@
-#include "json/JsonQmlWrapper.hpp"
+#include "Json/JsonQmlWrapper.hpp"
 
 #include <QVariant>
 #include <QQuickItem>

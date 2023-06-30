@@ -3,8 +3,8 @@
 
 #include "pugixml.hpp"
 
-#include "command/CommandItem.hpp"
-#include "network/ISocket.hpp"
+#include "Command/CommandItem.hpp"
+#include "Network/ISocket.hpp"
 
 #include <vector>
 #include <memory>
@@ -26,13 +26,13 @@ namespace MediaServerManager::Command {
 
         std::string commandTag;
 
-        using SocketRef = wor::network::ISocket *;
+        using SocketRef = wor::Network::ISocket *;
 
-        virtual void Execute(SocketRef sender) const noexcept;
+        virtual bool Execute(SocketRef sender) const noexcept;
 
         virtual void AddItem(CommandItem commandItem) noexcept = 0;
 
-        virtual void RemoveItem(CommandItem commandItem) noexcept;
+        virtual void RemoveItem(const CommandItem& commandItem) noexcept;
 
         virtual void Clean() noexcept;
 

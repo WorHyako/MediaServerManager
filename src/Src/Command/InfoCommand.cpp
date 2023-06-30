@@ -1,4 +1,4 @@
-#include "command/InfoCommand.hpp"
+#include "Command/InfoCommand.hpp"
 
 using namespace MediaServerManager::Command;
 

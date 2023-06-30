@@ -1,6 +1,7 @@
-#include "command/Command.hpp"
+#include "Command/Command.hpp"
 
 #include <sstream>
+#include <iostream>
 
 using namespace MediaServerManager::Command;
 
@@ -15,7 +16,7 @@ void Command::MarkCommandTag() noexcept {
     }
 }
 
-void Command::RemoveItem(CommandItem commandItem) noexcept {
+void Command::RemoveItem(const CommandItem &commandItem) noexcept {
     command.remove_attribute(commandItem.valuePair.first.c_str());
 }
 
@@ -23,13 +24,12 @@ void Command::Clean() noexcept {
     command.reset();
 }
 
-#include <iostream>
-
-void Command::Execute(Command::SocketRef sender) const noexcept {
-    if (sender) {
-        std::stringstream ss;
-        command.print(ss);
-        std::cout << "\npacket to send: " << ss.str();
-        sender->Send(ss.str());
+bool Command::Execute(Command::SocketRef sender) const noexcept {
+    if (!sender) {
+        return false;
     }
+    std::stringstream ss;
+    command.print(ss);
+    std::cout << "\npacket to send: " << ss.str();
+    return sender->Send(ss.str()) > 0;
 }

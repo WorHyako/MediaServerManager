@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Settings as WorSettings
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Js as WorJs
 
 /**
  *  ApplicationWindow root
@@ -15,6 +16,13 @@ ApplicationWindow {
 	height: 600
 	width: 1000
 
+	Image {
+		id: background
+
+		anchors.fill: parent
+		source: WorJs.ObjectsQrcPath.qrcBackgroundImage
+		z: -1
+	}
 	TabBar {
 		id: tabBar
 		anchors {

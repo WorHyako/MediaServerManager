@@ -1,3 +1,9 @@
+# This file describes qml module's properties:
+# - Dependencies (f.e. QtQuick);
+# - File extensions (f.e. .qml);
+# - Module type (f.e. Singleton).
+# So it can be used as map ${ ${ModuleName}_${ModuleProperty} } f.e Controls_Dependencies
+
 list(APPEND Modules Controls Styles Js Backgrounds Widgets Settings)
 
 # Controls
