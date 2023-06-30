@@ -6,10 +6,18 @@ import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Js as WorJs
 
 /**
- *  ApplicationWindow root
- *      | TabBar
- *          | Repeater
- *              | TabButton
+ *
+ *
+ * ---
+ *
+ *  ApplicationWindow (root)
+ *  | Image
+ *  | TabBar (tabBar)
+ *      | Repeater
+ *          | TabButton
+ * 	| StackLayout
+ * 		| WorSettings.NetworkSettings
+ * 		| WorSettings.MidiSettings
  */
 ApplicationWindow {
 	id: root
@@ -17,8 +25,6 @@ ApplicationWindow {
 	width: 1000
 
 	Image {
-		id: background
-
 		anchors.fill: parent
 		source: WorJs.ObjectsQrcPath.qrcBackgroundImage
 		z: -1

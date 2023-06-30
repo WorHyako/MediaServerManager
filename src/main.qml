@@ -83,7 +83,7 @@ ApplicationWindow {
             }
         }
         WorControls.ManagementButton {
-            buttonText: "Settings"
+            buttonText: back.userName
 
             onLeftClicked: () => {
                 WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);

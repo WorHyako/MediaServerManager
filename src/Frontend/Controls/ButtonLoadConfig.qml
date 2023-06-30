@@ -4,11 +4,14 @@ import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
- *  Item root
- *  - text configFileName
+ * Object based on WorControls.Button to load config for current scope and generate all loaded elements
+ *
+ * ---
+ *
+ *  WorControls.Button (root)
+ *  - string configFileName
  *  - int dynamicScopeType
  *  - QtObject scopeObject
- *      | Button
  */
 WorControls.Button {
     id: root

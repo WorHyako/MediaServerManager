@@ -2,9 +2,12 @@ import QtQuick
 import Frontend.Controls as WorControls
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  WorControls.Button root
  *  - var window
- *      | Button
  */
 WorControls.Button {
     id: root

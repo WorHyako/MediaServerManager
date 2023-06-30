@@ -5,7 +5,7 @@
 
 using namespace MediaServerManager::Json;
 
-wor::Json::JsonManager::FileStatus
+Wor::Json::JsonManager::FileStatus
 JsonQmlWrapper::TryToFindFile(const QString &filePath_,
                               bool createFile_) noexcept {
     auto resultStatus = _jsonManager.TryToFindFile(
@@ -126,7 +126,7 @@ nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
 
 #pragma region Accessors
 
-wor::Json::JsonManager::FileStatus
+Wor::Json::JsonManager::FileStatus
 JsonQmlWrapper::GetFileStatus() const noexcept {
     return _jsonManager.GetFileStatus();
 }

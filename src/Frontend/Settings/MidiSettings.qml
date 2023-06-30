@@ -1,7 +1,11 @@
 import QtQuick
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Item (root)
  */
 Item {
 	id: root

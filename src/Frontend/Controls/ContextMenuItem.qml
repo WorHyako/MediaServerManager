@@ -4,7 +4,11 @@ import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
 
 /**
- * root
+ *
+ *
+ * ---
+ *
+ * MenuItem (root)
  * string itemText
  */
 MenuItem {
@@ -25,7 +29,7 @@ MenuItem {
         text: itemText
     }
 
-    onClicked: {
+    onTriggered: {
         if (root.text === "Rename") {
             const dialog = ItemCreator.createNewItem(WorWidgets.RenamingDialog, root, {
                     "objectToRename": selectedButton,

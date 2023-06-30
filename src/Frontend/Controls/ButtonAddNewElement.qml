@@ -3,36 +3,38 @@ import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 
 /**
- *  Item root
+ * Object based on WorControls.Button to create new elements
+ *
+ * ---
+ *
+ *  WorControls.Button (root)
  *  - int maxElementNum
  *  - var newElementArgs : {}
  *  - string qrcElementPath
  *  - QtObject scopeObject
- *  - bool showCircle: false
- *      | Button
  */
 WorControls.Button {
-    id: root
+	id: root
 
-    required property int maxElementNum
-    property var newElementArgs: {
-    }
-    required property var qrcElementPath
-    required property QtObject scopeObject
+	required property int maxElementNum
+	property var newElementArgs: {
+	}
+	required property string qrcElementPath
+	required property QtObject scopeObject
 
-    height: 50
-    text: "Add"
-    width: 50
+	height: 50
+	text: "Add"
+	width: 50
 
-    onLeftClicked: () => {
-        const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-        if (rangeCheck) {
-            WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-        }
-    }
+	onLeftClicked: () => {
+		const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
+		if (rangeCheck) {
+			WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+		}
+	}
 
-    anchors {
-        bottom: parent.bottom
-        right: parent.right
-    }
+	anchors {
+		bottom: parent.bottom
+		right: parent.right
+	}
 }

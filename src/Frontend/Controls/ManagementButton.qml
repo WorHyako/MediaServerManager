@@ -2,24 +2,35 @@ import QtQuick
 import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
+import Backend.QmlNetwork as WorNetwork
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Item (root)
+ *  - string objectName: "Management button"
+ *  - string bindingEvent: ""
  *  - bool canBeMoved: false
  *  - bool canBeResized: false
  *  - int minButtonHeight: 50
  *  - int minButtonWidth: 50
- *  - Item movableScope: null
+ *  - Item movableScope: undefined
+ *  - var onLeftClicked: undefined
+ *  - var onRightClicked: undefined
  *  - bool showCircle: false
- *  - string text: "Button"
- *      | Button
- *          | MouseArea menuMouseArea
- *          | WorControls.ContextMenu contextMenu
- *          | MouseArea transformMouseArea
- *          - numInRange(num, min, max)
- *          - point lastButtonSize: null
- *          - point lastMousePosition: null
- *          - bool resizing: false
+ *  - string buttonText: "Button"
+ *  - string textFieldText: "Text"
+ *  | ColumnLayout
+ *  	| WorControls.Button (button)
+ *  		| MouseArea transformMouseArea
+ *  		- numInRange(num, min, max)
+ *  		- point lastButtonSize: null
+ *  		- point lastMousePosition: null
+ *  		- bool resizing: false
+ *  		- bool moving: false
+ *  	| WorControls.EditTextField (text)
  */
 Item {
 	id: root
@@ -125,6 +136,10 @@ Item {
 			Layout.preferredHeight: parent.height * 0.3
 			Layout.preferredWidth: parent.width
 			text: root.textFieldText
+		}
+
+		WorNetwork.QmlCommandSender {
+			id: qmlCommandSender
 		}
 	}
 }

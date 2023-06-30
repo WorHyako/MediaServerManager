@@ -4,16 +4,21 @@ import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Item (root)
+ *  - string objectName: "Quick title line"
  *  - point managementButtonSize:
  *  - int spacing: 10
  *  - string text: "Text Example"
  *  - point textEditFiledSize:
- *      | RowLayout
- *          | EditTextField
- *          | Button
- *          | worControls.ContextMenu contextMenu
- *          | MouseArea menuMouseArea
+ *  | RowLayout
+ *      | WorControls.EditTextField
+ *      | WorControls.Button
+ *      | WorControls.ContextMenu (contextMenu)
+ *      | MouseArea (menuMouseArea)
  */
 Item {
 	id: root

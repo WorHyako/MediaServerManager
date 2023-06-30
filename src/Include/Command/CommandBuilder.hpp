@@ -1,7 +1,7 @@
 #ifndef MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
 #define MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
 
-#include "Command/Command.hpp"
+#include "Command/ActionCommand.hpp"
 
 namespace MediaServerManager::Command {
 
@@ -32,11 +32,11 @@ namespace MediaServerManager::Command {
 
     template<typename CommandType>
     CommandType CommandBuilder<CommandType>::BuildCommand(const CommandItemList& commandItems) {
-        if (!std::is_base_of_v<Command, CommandType>) {
+        if (!std::is_base_of_v<ActionCommand, CommandType>) {
             throw std::bad_cast();
         }
         CommandType command {};
-        std::for_each(commandItems.begin(), commandItems.end(),
+        std::for_each(std::begin(commandItems), std::end(commandItems),
                       [&command](auto &each) {
                           command.AddItem(each);
                       });

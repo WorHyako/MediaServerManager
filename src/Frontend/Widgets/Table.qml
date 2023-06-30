@@ -2,6 +2,12 @@ import QtQuick
 
 /**
  *
+ *
+ * ---
+ *
+ * Item (root)
+ * - int columnNumber
+ * - int rowNumber
  */
 Item {
 	id: root

@@ -3,10 +3,13 @@ import Frontend.Styles as WorStyles
 import Frontend.Backgrounds as WorBackgrounds
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  WorBackgrounds.TextBackground.Rectangle (root)
  *  - string text: "Text Edit"
- *      | TextBackgroundRectangle
- *          | TextEdit
+ *  	| TextEdit
  */
 WorBackgrounds.TextBackgroundRectangle {
     id: root

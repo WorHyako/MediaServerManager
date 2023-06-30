@@ -15,8 +15,8 @@ namespace MediaServerManager {
     public:
         ElementConfig() = default;
 
-        wor::Vector::Vector2<int> size = { 1, 1 };
-        wor::Vector::Vector2<int> position = { 0, 0 };
+        Wor::Vector::Vector2<int> size = { 1, 1 };
+        Wor::Vector::Vector2<int> position = { 0, 0 };
         std::string name = "None";
         std::string id = "None";
     };

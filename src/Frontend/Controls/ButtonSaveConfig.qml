@@ -3,12 +3,15 @@ import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 
 /**
- *  Item root
- *  - text configFileName
+ * Object based on WorControls.Button to save config for current scope
+ *
+ * ---
+ *
+ *  WorControls.Button (root)
+ *  - string configFileName
  *  - int dynamicScopeType
  *  - string typeName
  *  - QtObject scopeObject
- *      | Button save button
  */
 WorControls.Button {
     id: root
