@@ -35,13 +35,17 @@ int main(int argc, char *argv[]) {
     doc.print(ss);
     auto s = ss.str();
 
-    boost::asio::io_context context;
-    auto socket = std::make_unique<wor::Network::TcpSocket>(context);
-    socket->DestinationEndPoint(wor::Network::EndPoint("192.168.0.100", 7000));
-    auto res = socket->TryToConnect();
+//    boost::asio::io_context context;
+//    auto socket = std::make_unique<wor::Network::TcpSocket>(context);
+//    socket->DestinationEndPoint(wor::Network::EndPoint("127.0.0.1", 7000));
+//    auto res = socket->TryToConnect();
+//
+//    auto socket2 = std::make_unique<wor::Network::TcpSocket>(context);
+//    socket2->DestinationEndPoint(wor::Network::EndPoint("127.0.0.1", 8000));
+//    auto res2 = socket2->TryToConnect();
 
-    hideCommand.Execute(socket.get());
-    playCommand.Execute(socket.get());
+//    hideCommand.Execute(socket.get());
+//    playCommand.Execute(socket2.get());
 
     ///////////////
     /// Qt Part ///

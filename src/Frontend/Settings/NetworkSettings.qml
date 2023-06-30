@@ -27,7 +27,6 @@ Item {
 			}
 			WorControls.EditTextField {
 				id: destinationIpTextEdit
-
 			}
 		}
 		RowLayout {

@@ -23,11 +23,6 @@ ApplicationWindow {
     visible: true
     width: 1920
 
-    QtObject {
-        id: internal
-
-        readonly property string qrcBackgroundImage: "qrc:/Frontend/Assets/app-background.png"
-    }
     Item {
         anchors.fill: parent
 
@@ -35,7 +30,7 @@ ApplicationWindow {
             id: background
 
             anchors.fill: parent
-            source: internal.qrcBackgroundImage
+            source: WorJs.ObjectsQrcPath.qrcBackgroundImage
             z: -1
         }
         GridLayout {
@@ -88,7 +83,7 @@ ApplicationWindow {
             }
         }
         WorControls.ManagementButton {
-            text: "Settings"
+            buttonText: "Settings"
 
             onLeftClicked: () => {
                 WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);

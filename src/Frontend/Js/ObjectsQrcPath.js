@@ -5,3 +5,5 @@ const qrcContextMenu = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/Conte
 const qrcQuickTitleLine = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml";
 
 const qrcSettingsWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Settings/SettingsWindow.qml";
+
+const qrcBackgroundImage = "qrc:/Frontend/Assets/app-background.png"
