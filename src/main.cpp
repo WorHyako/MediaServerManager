@@ -11,10 +11,15 @@
 
 #include "pugixml.hpp"
 
+#include "Network/SocketManager.hpp"
+
 using namespace MediaServerManager::Command;
+using namespace MediaServerManager;
 
 int main(int argc, char *argv[]) {
-    std::vector<Command *> commandList;
+//    Network::SocketManager::Add();
+
+    std::vector<ActionCommand *> commandList;
 
     CommandItemList hideItems;
     hideItems.emplace_back("filter", "hide");
@@ -35,17 +40,11 @@ int main(int argc, char *argv[]) {
     doc.print(ss);
     auto s = ss.str();
 
-//    boost::asio::io_context context;
-//    auto socket = std::make_unique<wor::Network::TcpSocket>(context);
-//    socket->DestinationEndPoint(wor::Network::EndPoint("127.0.0.1", 7000));
-//    auto res = socket->TryToConnect();
-//
-//    auto socket2 = std::make_unique<wor::Network::TcpSocket>(context);
-//    socket2->DestinationEndPoint(wor::Network::EndPoint("127.0.0.1", 8000));
-//    auto res2 = socket2->TryToConnect();
+    auto res2 = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 7000), 2);
+    auto res = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
 
-//    hideCommand.Execute(socket.get());
-//    playCommand.Execute(socket2.get());
+    auto ex1 = hideCommand.Execute(Network::SocketManager::GetSocket(2));
+    auto ex2 = playCommand.Execute(Network::SocketManager::GetSocket(0));
 
     ///////////////
     /// Qt Part ///

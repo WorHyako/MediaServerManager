@@ -49,7 +49,7 @@ qt_add_qml_module(MediaServerManager
 qt_add_resources(MediaServerManager
         PREFIX "/"
         FILES Frontend/Assets/app-background.png)
-add_subdirectory(Backend/BackFol)
+add_subdirectory(Backend/QmlNetwork)
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
         Include/Json/JsonQmlWrapper.hpp
@@ -75,4 +75,4 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Core
         PRIVATE Qt6::QuickControls2
         PRIVATE ${QmlCustomPlugins}
-        PRIVATE BackFolplugin)
+        PRIVATE QmlNetworkplugin)

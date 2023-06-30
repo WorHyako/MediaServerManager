@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
+import Backend.QmlNetwork as WorNetwork
 
 /**
  *
@@ -135,6 +136,10 @@ Item {
 			Layout.preferredHeight: parent.height * 0.3
 			Layout.preferredWidth: parent.width
 			text: root.textFieldText
+		}
+
+		WorNetwork.QmlCommandSender {
+			id: qmlCommandSender
 		}
 	}
 }

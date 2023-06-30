@@ -29,7 +29,7 @@ namespace MediaServerManager::Json {
          * @param filePath_ full or relative file path
          * @return          file status
          */
-        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
+        [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
         TryToFindFile(const QString &filePath_,
                       bool createFile = true) noexcept;
 
@@ -63,7 +63,7 @@ namespace MediaServerManager::Json {
 
         ConfigStorage _elementsConfig;
 
-        wor::Json::JsonManager _jsonManager;
+        Wor::Json::JsonManager _jsonManager;
 
         [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(
                 const std::vector<QObject *> &items_,
@@ -84,7 +84,7 @@ namespace MediaServerManager::Json {
          * Return current file status via wor::Json::JsonManager::FileStatus
          * @return current file status
          */
-        [[nodiscard]] Q_INVOKABLE wor::Json::JsonManager::FileStatus
+        [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
         GetFileStatus() const noexcept;
 
         /**

@@ -4,7 +4,6 @@ import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
 import Frontend.Js as WorJs
-import Backend.BackFol as Back
 
 /**
  *  ApplicationWindows root
@@ -83,9 +82,6 @@ ApplicationWindow {
                 }
             }
         }
-		Back.Back{
-			id: back
-		}
         WorControls.ManagementButton {
             buttonText: back.userName
 
