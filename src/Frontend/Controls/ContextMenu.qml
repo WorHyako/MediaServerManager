@@ -3,6 +3,10 @@ import QtQuick.Controls
 import Frontend.Js as WorJs
 
 /**
+ *
+ *
+ * ---
+ *
  *  Item root
  *  - int menuBorderRadius: 10
  *  - int menuItemHeight: 50
@@ -73,7 +77,7 @@ Item {
                 actionList.push("Delete");
             }
             for (const eachActionName of actionList) {
-                let item = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcContextMenu, menu, {
+                let item = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcContextMenuItem, menu, {
                         "itemText": eachActionName
                     });
                 menu.addItem(item);

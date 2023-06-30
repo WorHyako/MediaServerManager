@@ -6,19 +6,25 @@ import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 
 /**
- * Dialog root
+ *
+ *
+ * ---
+ *
+ * Dialog (root)
  * - string newText: "-"
  * - string propertyToRename
  * - QtObject objectToRename
  * - onTextEditFinished(text)
- *      | ColumnLayout
- *          | WorControls.TextField
- *          | Repeater
- *          - model: [["Previous", root.previousText], ["New", root.newText]]
- *              | WorControls.TextField
- *              | Rectangle
- *              | TextEdit
- *          | Button
+ *  | ColumnLayout
+ *      | WorControls.Text
+ *      | Repeater (repeater)
+ *      - model: [["Previous", root.previousText], ["New", root.newText]]
+ *      	| WorBackgrounds.TextBackgroundRectangle
+ *      		| RowLayout
+ *      			| WorControls.Text
+ *      			| Rectangle
+ *      			| TextEdit
+ *      | WorControls.ManagementButton
  */
 Dialog {
     id: root

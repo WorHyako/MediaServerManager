@@ -2,6 +2,10 @@ import QtQuick
 import Frontend.Styles as WorStyles
 
 /**
+ *
+ *
+ * ---
+ *
  *  Text
  */
 Text {

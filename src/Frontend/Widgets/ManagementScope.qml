@@ -6,8 +6,12 @@ import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
- *  Item root
- *      | Item contentScope
+ *
+ *
+ * ---
+ *
+ *  Item (root)
+ *  | Item (contentScope)
  *      | WorControls.ButtonSaveConfig
  *      | WorControls.ButtonAddNewElement
  *      | WorControls.ButtonLoadConfig

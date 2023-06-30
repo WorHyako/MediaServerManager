@@ -2,6 +2,25 @@ import QtQuick
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
 
+/**
+ * Object to describe base class Button with left\right click events
+ * Button has context menu and internal text field
+ *
+ * ---
+ *
+ * WorBackgrounds.ButtonBackgroundRectangle (root)
+ * 	- var contentItem undefined
+ * 	- bool contextMenuEnable: true
+ * 	- var onLeftClicked: undefined
+ * 	- var onRightClicked: undefined
+ * 	- string text: ""
+ * 	- leftClick()
+ * 	- rightClick()
+ * 	| WorControls.Text
+ * 	| MouseArea (rightClickArea)
+ * 	| MouseArea (leftClickArea)
+ * 	| WorControls.ContextMenu (contextMenu)
+ */
 WorBackgrounds.ButtonBackgroundRectangle {
     id: root
 

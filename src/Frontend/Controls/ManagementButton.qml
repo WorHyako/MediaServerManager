@@ -4,22 +4,32 @@ import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Item (root)
+ *  - string objectName: "Management button"
+ *  - string bindingEvent: ""
  *  - bool canBeMoved: false
  *  - bool canBeResized: false
  *  - int minButtonHeight: 50
  *  - int minButtonWidth: 50
- *  - Item movableScope: null
+ *  - Item movableScope: undefined
+ *  - var onLeftClicked: undefined
+ *  - var onRightClicked: undefined
  *  - bool showCircle: false
- *  - string text: "Button"
- *      | Button
- *          | MouseArea menuMouseArea
- *          | WorControls.ContextMenu contextMenu
- *          | MouseArea transformMouseArea
- *          - numInRange(num, min, max)
- *          - point lastButtonSize: null
- *          - point lastMousePosition: null
- *          - bool resizing: false
+ *  - string buttonText: "Button"
+ *  - string textFieldText: "Text"
+ *  | ColumnLayout
+ *  	| WorControls.Button (button)
+ *  		| MouseArea transformMouseArea
+ *  		- numInRange(num, min, max)
+ *  		- point lastButtonSize: null
+ *  		- point lastMousePosition: null
+ *  		- bool resizing: false
+ *  		- bool moving: false
+ *  	| WorControls.EditTextField (text)
  */
 Item {
 	id: root

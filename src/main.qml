@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import Frontend.Widgets as WorWidgets
 import Frontend.Js as WorJs
+import Backend.BackFol as Back
 
 /**
  *  ApplicationWindows root
@@ -82,8 +83,11 @@ ApplicationWindow {
                 }
             }
         }
+		Back.Back{
+			id: back
+		}
         WorControls.ManagementButton {
-            buttonText: "Settings"
+            buttonText: back.userName
 
             onLeftClicked: () => {
                 WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);

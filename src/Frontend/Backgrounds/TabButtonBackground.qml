@@ -1,7 +1,11 @@
 import QtQuick
 
 /**
- *  Rectangle
+ *
+ *
+ * ---
+ *
+ * Rectangle
  */
 Rectangle {
 	anchors.fill: parent

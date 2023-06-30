@@ -1,10 +1,13 @@
 import QtQuick
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Rectangle (root)
  *  - bool showCircle: false
- *      | Rectangle background
- *          | Rectangle
+ *      | Rectangle
  */
 Rectangle {
     id: root

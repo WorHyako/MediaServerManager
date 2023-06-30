@@ -5,10 +5,14 @@ import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
- *  Item root
+ *
+ *
+ * ---
+ *
+ *  Item (root)
  *      | WorControls.ButtonSaveConfig
  *      | WorControls.ButtonLoadConfig
- *      | GridView grid
+ *      | GridView (grid)
  *      | WorControls.ButtonAddNewElement
  */
 Item {

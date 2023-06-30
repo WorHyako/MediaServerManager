@@ -5,15 +5,17 @@ import Frontend.Widgets as WorWidgets
 import Frontend.Backgrounds as WorBackgrounds
 
 /**
- *  Element struct:
- *  Item root
- *      | Item root
- *          | TabBar tabBar
- *              | Repeater
- *                  | TabButton
- *          | StackLayout
- *              | Repeater
- *                  | Rectangle
+ *
+ *
+ * ---
+ *
+ *  Item (root)
+ *	| TabBar (tabBar)
+ *	    | Repeater
+ *	        | TabButton
+ *	| StackLayout
+ *	    | Repeater
+ *	        | Rectangle
  */
 Item {
     id: root
