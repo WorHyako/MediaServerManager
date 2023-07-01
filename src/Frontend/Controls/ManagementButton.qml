@@ -145,5 +145,9 @@ Item {
 		WorCommands.QmlCommandSender {
 			id: qmlCommandSender
 		}
+
+		WorNetwork.QmlCommandSender {
+			id: qmlCommandSender
+		}
 	}
 }

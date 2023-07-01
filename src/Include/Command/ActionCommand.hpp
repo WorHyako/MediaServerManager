@@ -33,7 +33,6 @@ namespace MediaServerManager::Command {
         void MarkCommandTag() noexcept final;
 
         [[nodiscard]] std::string ToString() noexcept final;
-
     private:
         pugi::xml_document command;
 
