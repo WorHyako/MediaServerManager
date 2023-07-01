@@ -1,5 +1,5 @@
-#ifndef MEDIASERVERMANAGER_BACKEND_NETWORK_QMLCOMMANDSENDER_HPP
-#define MEDIASERVERMANAGER_BACKEND_NETWORK_QMLCOMMANDSENDER_HPP
+#ifndef MEDIASERVERMANAGER_QMLOBJECTS_COMMAND_QMLCOMMANDSENDER_HPP
+#define MEDIASERVERMANAGER_QMLOBJECTS_COMMAND_QMLCOMMANDSENDER_HPP
 
 #include <QObject>
 #include <QString>
@@ -12,7 +12,7 @@
 
 #include "Command/ICommand.hpp"
 
-namespace MediaServerManager::Backend::Network {
+namespace MediaServerManager::QmlObjects::Command {
 
     /**
      *
@@ -37,7 +37,7 @@ namespace MediaServerManager::Backend::Network {
     private:
         QString _commandText;
 
-        std::unique_ptr<Command::ICommand> _command;
+        std::unique_ptr<MediaServerManager::Command::ICommand> _command;
     };
 }
 

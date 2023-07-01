@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
-import Backend.QmlNetwork as WorNetwork
+import Frontend.QmlObjects.Command as WorCommands
 
 /**
  *
@@ -142,7 +142,7 @@ Item {
 			text: qmlCommandSender.commandText
 		}
 
-		WorNetwork.QmlCommandSender {
+		WorCommands.QmlCommandSender {
 			id: qmlCommandSender
 		}
 	}

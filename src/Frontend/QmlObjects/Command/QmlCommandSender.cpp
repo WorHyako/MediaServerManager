@@ -1,10 +1,10 @@
 #include "QmlCommandSender.hpp"
 
 #include "Command/CommandBuilder.hpp"
-
 #include "Network/SocketManager.hpp"
 
-using namespace MediaServerManager::Backend::Network;
+using namespace MediaServerManager::QmlObjects::Command;
+using namespace MediaServerManager;
 
 QmlCommandSender::QmlCommandSender(QObject *parent) :
         QObject(parent),
@@ -13,8 +13,8 @@ QmlCommandSender::QmlCommandSender(QObject *parent) :
 }
 
 bool QmlCommandSender::sendCommand() {
-    auto socketAdded = MediaServerManager::Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
-    auto socket = MediaServerManager::Network::SocketManager::GetSocket(0);
+    auto socketAdded = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
+    auto socket = Network::SocketManager::GetSocket(0);
     std::ignore = socket->TryToConnect();
     auto ex1 = _command->Execute(socket);
     return false;
@@ -31,7 +31,7 @@ QString QmlCommandSender::commandText() {
 #pragma region Mutators
 
 void QmlCommandSender::setCommandText(QVariantList commandItems) {
-    Command::CommandItemList commandItemList;
+    MediaServerManager::Command::CommandItemList commandItemList;
     std::for_each(std::begin(commandItems), std::end(commandItems),
                   [&commandItemList](const QVariant &each) {
                       auto qStringList = each.value<QList<QString>>();
@@ -42,8 +42,8 @@ void QmlCommandSender::setCommandText(QVariantList commandItems) {
     if (commandItemList.empty()) {
         return;
     }
-    auto command = Command::CommandBuilder<Command::ActionCommand>::BuildCommand(commandItemList);
-    _command = std::make_unique<Command::ActionCommand>(command);
+    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(commandItemList);
+    _command = std::make_unique<MediaServerManager::Command::ActionCommand>(command);
     auto s = _command->ToString();
     _commandText = std::string(std::begin(s), std::prev(std::end(s), 1)).c_str();
 
