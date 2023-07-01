@@ -41,7 +41,7 @@ bool ActionCommand::Execute(ICommand::SocketRef sender) const noexcept {
     return sender->Send(ss.str()) > 0;
 }
 
-void ActionCommand::AddItem(const CommandItem& commandItem) noexcept {
+void ActionCommand::AddItem(const CommandItem &commandItem) noexcept {
     auto child = std::begin(command.children());
     auto attr = child->append_attribute(commandItem.valuePair.first.c_str());
     attr.set_name(commandItem.valuePair.first.c_str());
@@ -49,4 +49,10 @@ void ActionCommand::AddItem(const CommandItem& commandItem) noexcept {
     std::stringstream ss;
     command.print(ss);
     std::cout << "\nCommand created: " << ss.str();
+}
+
+std::string ActionCommand::ToString() noexcept {
+    std::stringstream ss;
+    command.print(ss);
+    return ss.str();
 }

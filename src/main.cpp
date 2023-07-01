@@ -15,6 +15,7 @@
 
 using namespace MediaServerManager::Command;
 using namespace MediaServerManager;
+using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
 //    Network::SocketManager::Add();
@@ -42,9 +43,12 @@ int main(int argc, char *argv[]) {
 
     auto res2 = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 7000), 2);
     auto res = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
-
-    auto ex1 = hideCommand.Execute(Network::SocketManager::GetSocket(2));
-    auto ex2 = playCommand.Execute(Network::SocketManager::GetSocket(0));
+    auto socket0 = Network::SocketManager::GetSocket(0);
+    auto socket2 = Network::SocketManager::GetSocket(2);
+    std::ignore = socket0->TryToConnect();
+    std::ignore = socket2->TryToConnect();
+    auto ex1 = hideCommand.Execute(socket2);
+    auto ex2 = playCommand.Execute(socket0);
 
     ///////////////
     /// Qt Part ///

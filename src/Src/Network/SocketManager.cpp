@@ -18,6 +18,7 @@ std::shared_ptr<SocketManager::WorTcpSocket> SocketManager::GetSocket(uint8_t so
 bool SocketManager::Add(Wor::Network::EndPoint endPoint, uint8_t socketIndex) noexcept {
     auto socket = std::make_shared<WorTcpSocket>();
     socket->DestinationEndPoint(std::move(endPoint));
+    /// TODO: Change to ping method
     if (!socket->TryToConnect()) {
         return false;
     }

@@ -3,9 +3,12 @@
 
 #include <QObject>
 #include <QString>
+#include <QList>
+#include <QPair>
 #include <qqml.h>
 
 #include <memory>
+#include <vector>
 
 #include "Command/ICommand.hpp"
 
@@ -17,7 +20,7 @@ namespace MediaServerManager::Backend::Network {
     class QmlCommandSender : public QObject {
     Q_OBJECT
 
-        Q_PROPERTY(QString commandText READ commandText WRITE setCommandText NOTIFY commandTextChanged)
+        Q_PROPERTY(QString commandText READ commandText NOTIFY commandTextChanged)
         QML_ELEMENT
     public:
         explicit QmlCommandSender(QObject *parent = nullptr);
@@ -26,7 +29,7 @@ namespace MediaServerManager::Backend::Network {
 
         Q_INVOKABLE bool sendCommand();
 
-        void setCommandText(const QString &commandText);
+        Q_INVOKABLE void setCommandText(QVariantList commandItems);
 
     signals:
         void commandTextChanged();

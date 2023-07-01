@@ -24,13 +24,15 @@ namespace MediaServerManager::Command {
 
         [[nodiscard]] bool Execute(SocketRef sender) const noexcept final;
 
-        void AddItem(const CommandItem& commandItem) noexcept;
+        void AddItem(const CommandItem &commandItem) noexcept;
 
-        void RemoveItem(const CommandItem& commandItem) noexcept;
+        void RemoveItem(const CommandItem &commandItem) noexcept;
 
         void Clean() noexcept final;
 
         void MarkCommandTag() noexcept final;
+
+        [[nodiscard]] std::string ToString() noexcept final;
 
     private:
         pugi::xml_document command;
