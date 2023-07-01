@@ -4,19 +4,28 @@ project(MediaServerManager
         VERSION 0.1
         LANGUAGES CXX)
 set(CMAKE_CXX_COMPILER_VERSION 17)
-
-set(CMAKE_AUTOMOC ON)
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_AUTOMOC ON)
 find_package(Qt6 COMPONENTS REQUIRED
         Core
         Qml
         Quick
         QuickControls2)
 
+#########################
+### Project variables ###
+#########################
+set(${PROJECT_NAME}_IncludeDir ${CMAKE_CURRENT_SOURCE_DIR}/Include)
 file(GLOB_RECURSE Sources Src/*.cpp)
+file(GLOB Qt_Objects
+        Include/ManagementScope.hpp
+        Include/Json/JsonQmlWrapper.hpp
+        Include/DynamicScopeType.hpp)
 
+############################
+### Third party packages ###
+############################
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)
 set(Boost_NO_WARN_NEW_VERSIONS ON)
@@ -31,9 +40,9 @@ set(QT_DECLARATIVE_DEBUG ON)
 set(QT_QML_DEBUG ON)
 qt_add_executable(${PROJECT_NAME} main.cpp)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-        AUTOMOC ON)
-
+##############################
+### Main QML target module ###
+##############################
 qt_add_qml_module(MediaServerManager
         VERSION 1.0
         URI Frontend
@@ -49,13 +58,9 @@ qt_add_qml_module(MediaServerManager
 qt_add_resources(MediaServerManager
         PREFIX "/"
         FILES Frontend/Assets/app-background.png)
-add_subdirectory(Backend/QmlNetwork)
-file(GLOB Qt_Objects
-        Include/ManagementScope.hpp
-        Include/Json/JsonQmlWrapper.hpp
-        Include/DynamicScopeType.hpp)
 
 add_subdirectory(Frontend)
+add_subdirectory(Frontend/QmlObjects/Command)
 
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
@@ -64,7 +69,7 @@ target_sources(${PROJECT_NAME}
         PRIVATE ${worLib_Json}
         PRIVATE ${worLib_Network})
 target_include_directories(${PROJECT_NAME}
-        PRIVATE Include
+        PRIVATE ${${PROJECT_NAME}_IncludeDir}
         PRIVATE ${worLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
@@ -75,4 +80,4 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Core
         PRIVATE Qt6::QuickControls2
         PRIVATE ${QmlCustomPlugins}
-        PRIVATE QmlNetworkplugin)
+        PRIVATE QmlCommandsplugin)

@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
-import Backend.QmlNetwork as WorNetwork
+import Frontend.QmlObjects.Command as WorCommands
 
 /**
  *
@@ -89,8 +89,12 @@ Item {
 				anchors.fill: parent
 
 				onClicked: {
-					button.leftClick();
-				}
+					let commandItems = [];
+					commandItems.push(["key1", "value1"]);
+					commandItems.push(["key2", "value2"]);
+					qmlCommandSender.setCommandText(commandItems);
+				button.leftClick();
+			}
 				onPositionChanged: mouse => {
 					if (resizing) {
 						if (lastMousePosition === Qt.point(0, 0)) {
@@ -135,7 +139,11 @@ Item {
 			id: text
 			Layout.preferredHeight: parent.height * 0.3
 			Layout.preferredWidth: parent.width
-			text: root.textFieldText
+			text: qmlCommandSender.commandText
+		}
+
+		WorCommands.QmlCommandSender {
+			id: qmlCommandSender
 		}
 
 		WorNetwork.QmlCommandSender {
