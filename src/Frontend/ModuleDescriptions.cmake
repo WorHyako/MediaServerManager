@@ -14,7 +14,9 @@ list(APPEND Controls_Dependencies
         Frontend.Backgrounds
         Frontend.Controls
         Frontend.Styles
-        Frontend.Js)
+        QtQml.Models
+        Frontend.Js
+        Frontend.QmlObjects.Command)
 
 list(APPEND Controls_FileExt
         .qml)

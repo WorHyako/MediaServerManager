@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 
 /**
  *
@@ -11,6 +12,10 @@ import QtQuick
  */
 Item {
 	id: root
+
+	ColumnLayout {
+		anchors.fill: parent
+	}
 
 	required property int columnNumber
 	required property int rowNumber

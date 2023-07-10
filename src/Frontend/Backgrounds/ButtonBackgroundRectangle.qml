@@ -13,8 +13,9 @@ Rectangle {
     id: root
 
     property bool showCircle: false
+	property bool hoveredCondition: false
 
-    color: "#C4C4C4"
+    color: hoveredCondition ? "#F4F4F4" : "#C4C4C4"
     radius: 7
 
     border {

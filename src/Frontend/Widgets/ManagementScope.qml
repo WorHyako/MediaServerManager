@@ -37,14 +37,16 @@ Item {
     }
     WorControls.ButtonAddNewElement {
         maxElementNum: 30
-        newElementArgs: {
-            "canBeMoved": true,
-            "canBeResized": true,
-            "movableScope": root,
-            "showCircle": true
-        }
         qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
         scopeObject: contentScope
+		Component.onCompleted:{
+			newElementArgs = {
+				"canBeMoved": true,
+				"canBeResized": true,
+				"movableScope": root,
+				"showCircle": true
+			}
+		}
     }
     WorControls.ButtonLoadConfig {
         configFileName: "test.json"

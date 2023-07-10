@@ -22,64 +22,62 @@ import Frontend.Controls as WorControls
  * 	| WorControls.ContextMenu (contextMenu)
  */
 WorBackgrounds.ButtonBackgroundRectangle {
-    id: root
+	id: root
 
-    property var contentIten: undefined
-    property bool contextMenuEnable: true
-    property var onLeftClicked: undefined
-    property var onRightClicked: undefined
-    property string text: ""
+	property var contentIten: undefined
+	property bool contextMenuEnable: true
+	property var onLeftClicked: undefined
+	property var onRightClicked: undefined
+	property string text: ""
 
-    function leftClick() {
-        leftClickArea.clicked(Qt.MouseEvent);
-    }
+	function leftClick() {
+		leftClickArea.clicked(Qt.MouseEvent);
+	}
 
-    function rightClick() {
-        rightClickArea.clicked(Qt.MouseEvent);
-    }
+	function rightClick() {
+		rightClickArea.clicked(Qt.MouseEvent);
+	}
 
-    showCircle: false
+	showCircle: false
+	hoveredCondition: leftClickArea.containsMouse
 
-    Component.onCompleted: {
-        if (contentItem !== undefined) {
-        }
-    }
+	WorControls.Text {
+		anchors.centerIn: parent
+		opacity: enabled ? 1.0 : 0.3
+		text: root.text
+	}
+	MouseArea {
+		id: rightClickArea
 
-    WorControls.Text {
-        anchors.centerIn: parent
-        opacity: enabled ? 1.0 : 0.3
-        text: root.text
-    }
-    MouseArea {
-        id: rightClickArea
+		acceptedButtons: Qt.RightButton
+		anchors.fill: parent
+		hoverEnabled: true
 
-        acceptedButtons: Qt.RightButton
-        anchors.fill: parent
+		onClicked: mouse => {
+			if (root.onRightClicked !== undefined) {
+				root.onRightClicked();
+			}
+			if (root.contextMenuEnable) {
+				contextMenu.open(Qt.point(mouse.x, mouse.y));
+			}
+		}
+	}
+	MouseArea {
+		id: leftClickArea
 
-        onClicked: mouse => {
-            if (root.onRightClicked !== undefined) {
-                root.onRightClicked();
-            }
-            if (root.contextMenuEnable) {
-                contextMenu.open(Qt.point(mouse.x, mouse.y));
-            }
-        }
-    }
-    MouseArea {
-        id: leftClickArea
+		hoverEnabled: true
+		acceptedButtons: Qt.LeftButton
+		anchors.fill: parent
 
-        acceptedButtons: Qt.LeftButton
-        anchors.fill: parent
+		onClicked: {
+			if (root.onLeftClicked !== undefined) {
+				root.onLeftClicked();
+			}
+		}
+	}
+	WorControls.ContextMenu {
+		id: contextMenu
 
-        onClicked: {
-            if (root.onLeftClicked !== undefined) {
-                root.onLeftClicked();
-            }
-        }
-    }
-    WorControls.ContextMenu {
-        id: contextMenu
-
-        selectedButton: root
-    }
+		selectedButton: root
+	}
 }
