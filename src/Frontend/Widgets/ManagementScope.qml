@@ -43,8 +43,7 @@ Item {
 			newElementArgs = {
 				"canBeMoved": true,
 				"canBeResized": true,
-				"movableScope": root,
-				"showCircle": true
+				"movableScope": root
 			}
 		}
     }

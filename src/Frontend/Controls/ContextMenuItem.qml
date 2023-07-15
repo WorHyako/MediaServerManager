@@ -34,20 +34,5 @@ MenuItem {
 
 	onTriggered: {
 		root.triggeredAction();
-		//     if (root.text === "Rename") {
-		//         const dialog = ItemCreator.createNewItem(WorWidgets.RenamingDialog, root, {
-		//                 "objectToRename": selectedButton,
-		//                 "propertyToRename": "text"
-		//             });
-		//         dialog.open();
-		//         return;
-		//     }
-		//     if (root.text === "Change Binding name") {
-		//         return;
-		//     }
-		//     if (root.text === "Delete") {
-		//         selectedButton.destroy();
-		//         return;
-		//     }
 	}
 }

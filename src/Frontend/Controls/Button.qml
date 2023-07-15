@@ -57,9 +57,6 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			if (root.onRightClicked !== undefined) {
 				root.onRightClicked();
 			}
-			if (root.contextMenuEnable) {
-				contextMenu.open(Qt.point(mouse.x, mouse.y));
-			}
 		}
 	}
 	MouseArea {
@@ -74,10 +71,5 @@ WorBackgrounds.ButtonBackgroundRectangle {
 				root.onLeftClicked();
 			}
 		}
-	}
-	WorControls.ContextMenu {
-		id: contextMenu
-
-		selectedButton: root
 	}
 }

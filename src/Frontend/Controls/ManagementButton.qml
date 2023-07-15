@@ -19,7 +19,6 @@ import Frontend.QmlObjects.Command as WorCommands
  *  - Item movableScope: undefined
  *  - var onLeftClicked: undefined
  *  - var onRightClicked: undefined
- *  - bool showCircle: false
  *  - string buttonText: "Button"
  *  - string textFieldText: "Text"
  *  | ColumnLayout
@@ -31,6 +30,7 @@ import Frontend.QmlObjects.Command as WorCommands
  *  		- bool resizing: false
  *  		- bool moving: false
  *  	| WorControls.EditTextField (text)
+ *  | WorControls.ContextMenu (contextMenu)
  */
 Item {
 	id: root
@@ -93,8 +93,8 @@ Item {
 					commandItems.push(["key1", "value1"]);
 					commandItems.push(["key2", "value2"]);
 					qmlCommandSender.setCommandText(commandItems);
-				button.leftClick();
-			}
+					button.leftClick();
+				}
 				onPositionChanged: mouse => {
 					if (resizing) {
 						if (lastMousePosition === Qt.point(0, 0)) {
@@ -134,6 +134,14 @@ Item {
 					target: transformMouseArea.moving ? root : null
 				}
 			}
+			MouseArea {
+				id: contextMouseArea
+				acceptedButtons: Qt.RightButton
+				anchors.fill: parent
+				onClicked: {
+					contextMenu.open();
+				}
+			}
 		}
 		WorControls.EditTextField {
 			id: text
@@ -145,5 +153,9 @@ Item {
 		WorCommands.QmlCommandSender {
 			id: qmlCommandSender
 		}
+	}
+	WorControls.ContextMenu {
+		id: contextMenu
+		selectedButton: root
 	}
 }

@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import QtQml.Models
 import Frontend.Controls as WorControls
@@ -35,32 +36,34 @@ Window {
 
 	ColumnLayout {
 		anchors.fill: parent
-		ListView {
-			id: listView
-			flickableDirection: Flickable.Vertical
+		ScrollView {
 			Layout.fillWidth: true
-			Layout.fillHeight: true
-			model: ListModel {
-				id: listModel
-			}
-			delegate: RowLayout {
-				height: 30
-				spacing: 4
-
-				WorControls.EditTextField {
-					text: "key"
+			Layout.preferredHeight: 210
+			ListView {
+				id: listView
+				flickableDirection: Flickable.Vertical
+				anchors.fill: parent
+				model: ListModel {
+					id: listModel
 				}
-				WorControls.EditTextField {
-					text: "value"
-				}
-				WorControls.Button {
-					width: 30
+				delegate: RowLayout {
 					height: 30
-					contextMenuEnable: false
-					text: customText
-					onLeftClicked: () => {
-						console.log("removed index:", index);
-						listModel.remove(index, 1);
+					spacing: 4
+
+					WorControls.EditTextField {
+						text: "key"
+					}
+					WorControls.EditTextField {
+						text: "value"
+					}
+					WorControls.Button {
+						width: 30
+						height: 30
+						contextMenuEnable: false
+						text: "-"
+						onLeftClicked: () => {
+							listModel.remove(index, 1);
+						}
 					}
 				}
 			}
@@ -72,8 +75,7 @@ Window {
 			text: "Add"
 			contextMenuEnable: false
 			onLeftClicked: () => {
-				console.log("current model count", listModel.count);
-				listModel.append({customText: "Button" + (++internal.number)})
+				listModel.append({})
 			}
 		}
 
