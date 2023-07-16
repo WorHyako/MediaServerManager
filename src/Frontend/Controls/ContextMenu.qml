@@ -24,9 +24,9 @@ Menu {
 		onTriggered: () => {
 			const dialog = ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcRenamingWindow, root, {
 				"objectToRename": root.selectedButton,
-				"propertyToRename": "text"
+				"propertyToRename": "buttonText"
 			});
-			dialog.open();
+			dialog.show();
 		}
 	}
 	Action {

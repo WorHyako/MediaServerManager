@@ -6,10 +6,10 @@ const qrcContextMenu = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/Conte
 
 const qrcQuickTitleLine = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/QuickTitleLine.qml";
 
-const qrcSettingsWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Settings/SettingsWindow.qml";
+const qrcSettingsWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/SettingsWindow.qml";
 
 const qrcBackgroundImage = "qrc:/Frontend/Assets/app-background.png";
 
-const qrcChangeBindingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ChangeBindingWindow.qml";
+const qrcChangeBindingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/ChangeBindingWindow.qml";
 
-const qrcRenamingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Widgets/RenamingDialog.qml";
+const qrcRenamingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/RenamingDialog.qml";

@@ -9,7 +9,6 @@ import Frontend.Styles as WorStyles
  *  Text
  */
 Text {
-	anchors.fill: parent
 	color: WorStyles.FontStyle.fontColor
 	horizontalAlignment: Text.AlignHCenter
 	text: "Text"
