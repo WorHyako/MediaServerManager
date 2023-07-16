@@ -82,7 +82,10 @@ ApplicationWindow {
 				}
 			}
 		}
-		WorControls.ManagementButton {
+		WorControls.Button {
+			text: "Settings"
+			width: 70
+			height: 50
 			onLeftClicked: () => {
 				WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);
 			}

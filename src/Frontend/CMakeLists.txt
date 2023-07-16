@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.24)
 
 set(QmlCustomPlugins)
 
+##################################
+### Custom qml objects modules ###
+##################################
+add_subdirectory(QmlObjects)
+
+####################################################
+### ,cmake file contains each module description ###
+####################################################
 include(ModuleDescriptions.cmake)
 
 foreach (ModuleName ${Modules})
@@ -33,4 +41,8 @@ foreach (ModuleName ${Modules})
     list(APPEND QmlCustomPlugins ${TargetName}plugin)
 endforeach (ModuleName)
 
+######################################################
+### Export plugins to parent CMakeLists to link it ###
+######################################################
+list(APPEND QmlCustomPlugins ${QmlCustomObjectsPlugins})
 set(QmlCustomPlugins ${QmlCustomPlugins} PARENT_SCOPE)

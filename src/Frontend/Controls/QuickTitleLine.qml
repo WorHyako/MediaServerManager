@@ -72,7 +72,7 @@ Item {
 				anchors.fill: parent
 
 				onClicked: {
-					contextMenu.open(Qt.point(mouse.x, mouse.y));
+					contextMenu.open();
 				}
 			}
 		}

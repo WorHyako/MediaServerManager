@@ -6,13 +6,6 @@ project(MediaServerManager
 set(CMAKE_CXX_COMPILER_VERSION 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_AUTOMOC ON)
-find_package(Qt6 COMPONENTS REQUIRED
-        Core
-        Qml
-        Quick
-        QuickControls2)
-
 #########################
 ### Project variables ###
 #########################
@@ -26,6 +19,16 @@ file(GLOB Qt_Objects
 ############################
 ### Third party packages ###
 ############################
+find_package(SOCI 4.0.3 REQUIRED)
+list(APPEND SOCI_LIBS soci_core)
+
+set(CMAKE_AUTOMOC ON)
+find_package(Qt6 COMPONENTS REQUIRED
+        Core
+        Qml
+        Quick
+        QuickControls2)
+
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)
 set(Boost_NO_WARN_NEW_VERSIONS ON)
@@ -59,8 +62,10 @@ qt_add_resources(MediaServerManager
         PREFIX "/"
         FILES Frontend/Assets/app-background.png)
 
+######################################
+### Directory with all GUI modules ###
+######################################
 add_subdirectory(Frontend)
-add_subdirectory(Frontend/QmlObjects/Command)
 
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
@@ -75,9 +80,9 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         PRIVATE pugixml
         PRIVATE ${Boost_LIBRARIES}
+#        PRIVATE ${SOCI_LIBS}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
         PRIVATE Qt6::Core
         PRIVATE Qt6::QuickControls2
-        PRIVATE ${QmlCustomPlugins}
-        PRIVATE QmlCommandsplugin)
+        PRIVATE ${QmlCustomPlugins})
