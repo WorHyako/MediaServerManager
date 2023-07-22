@@ -97,3 +97,6 @@ list(APPEND Dialogs_Dependencies
         Frontend.Controls
         Frontend.Backgrounds
         Frontend.Js)
+
+list(APPEND Dialogs_FileExt
+        .qml)
