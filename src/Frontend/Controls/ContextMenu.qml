@@ -33,7 +33,9 @@ Menu {
 		text: "Change binding name"
 		onTriggered: () => {
 			let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcChangeBindingWindow,
-				root.selectedButton, {});
+				root.selectedButton, {
+					"selectedButton": root.selectedButton
+				});
 			window.show();
 		}
 	}

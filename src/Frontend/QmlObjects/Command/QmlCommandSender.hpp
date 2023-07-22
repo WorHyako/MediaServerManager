@@ -27,9 +27,11 @@ namespace MediaServerManager::QmlObjects::Command {
 
         QString commandText();
 
-        Q_INVOKABLE bool sendCommand();
+        Q_INVOKABLE [[nodiscard]] bool sendCommand() const noexcept;
 
         Q_INVOKABLE void setCommandText(QVariantList commandItems);
+
+        Q_INVOKABLE bool makeCommand(QVariantList commandPairs);
 
     signals:
         void commandTextChanged();

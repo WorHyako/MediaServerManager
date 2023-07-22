@@ -48,6 +48,22 @@ Item {
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
+	/**
+	 *
+	 * @param commandPairs
+	 * @returns {boolean}
+	 */
+	function makeCommand(commandPairs): boolean {
+		if (!(Array.isArray(commandPairs) && Array.isArray(commandPairs[0]))) {
+			return false;
+		}
+		commandPairs.forEach((pair) => {
+			console.log(pair);
+		});
+		const makingResult = qmlCommandSender.makeCommand(commandPairs);
+		return makingResult;
+	}
+
 	ColumnLayout {
 		spacing: 3
 		anchors.fill: parent
@@ -89,10 +105,7 @@ Item {
 				anchors.fill: parent
 
 				onClicked: {
-					let commandItems = [];
-					commandItems.push(["key1", "value1"]);
-					commandItems.push(["key2", "value2"]);
-					qmlCommandSender.setCommandText(commandItems);
+					qmlCommandSender.sendCommand();
 					button.leftClick();
 				}
 				onPositionChanged: mouse => {
