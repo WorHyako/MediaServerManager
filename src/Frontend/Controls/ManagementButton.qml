@@ -89,13 +89,8 @@ Item {
 					button.leftClick();
 				}
 			}
-			MouseArea {
-				id: contextMouseArea
-				acceptedButtons: Qt.RightButton
-				anchors.fill: parent
-				onClicked: {
-					contextMenu.open();
-				}
+			WorControls.ContextMenuMouseArea {
+				selectedButton: root
 			}
 		}
 		WorControls.EditTextField {
@@ -108,9 +103,5 @@ Item {
 		WorCommands.QmlCommandSender {
 			id: qmlCommandSender
 		}
-	}
-	WorControls.ContextMenu {
-		id: contextMenu
-		selectedButton: root
 	}
 }
