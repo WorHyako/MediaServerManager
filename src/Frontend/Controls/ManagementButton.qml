@@ -23,12 +23,6 @@ import Frontend.QmlObjects.Command as WorCommands
  *  - string textFieldText: "Text"
  *  | ColumnLayout
  *  	| WorControls.Button (button)
- *  		| MouseArea transformMouseArea
- *  		- numInRange(num, min, max)
- *  		- point lastButtonSize: null
- *  		- point lastMousePosition: null
- *  		- bool resizing: false
- *  		- bool moving: false
  *  	| WorControls.EditTextField (text)
  *  | WorControls.ContextMenu (contextMenu)
  */
@@ -85,76 +79,14 @@ Item {
 			onRightClicked: root.onRightClicked
 			onLeftClicked: root.onLeftClicked
 
-			MouseArea {
-				id: transformMouseArea
-
-				property point lastButtonSize: Qt.point(0, 0)
-				property point lastMousePosition: Qt.point(0, 0)
-				property bool moving: false
-				property bool resizing: false
-
-				/**
-				 * Return num with min\max limit conditions
-				 * @param num number
-				 * @param min minimum limit
-				 * @param max maximum limit
-				 */
-				function numInRange(num: int, min: int, max: int): int {
-					let result = num;
-					if (num < min) {
-						result = min;
-					} else {
-						if (num > max) {
-							result = max;
-						}
-					}
-					return result;
-				}
-
-				acceptedButtons: Qt.LeftButton
-				anchors.fill: parent
-
-				onClicked: {
+			WorControls.TransformMouseArea {
+				canBeMoved: root.canBeMoved
+				target: root
+				canBeResized: root.canBeResized
+				movableScope: root.movableScope
+				onLeftClicked: () => {
 					qmlCommandSender.sendCommand();
 					button.leftClick();
-				}
-				onPositionChanged: mouse => {
-					if (resizing) {
-						if (lastMousePosition === Qt.point(0, 0)) {
-							lastMousePosition = mapToItem(root.movableScope, mouse.x, mouse.y);
-							return;
-						}
-						const currentMousePosition = mapToItem(root.movableScope, mouse.x, mouse.y);
-						const deltaMousePosition = Qt.point(0, 0);
-						deltaMousePosition.x = currentMousePosition.x - lastMousePosition.x;
-						deltaMousePosition.y = currentMousePosition.y - lastMousePosition.y;
-						const minWidth = 50
-						const minHeight = 50
-						const newWidth = numInRange(lastButtonSize.x + deltaMousePosition.x, internal.minButtonWidth, root.movableScope.width);
-						const newHeight = numInRange(lastButtonSize.y + deltaMousePosition.y, internal.minButtonHeight, root.movableScope.height);
-						root.width = newWidth < minWidth ? minWidth : newWidth;
-						root.height = newHeight < minHeight ? minHeight : newHeight;
-					}
-				}
-				onPressed: mouse => {
-					resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
-					moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
-					lastButtonSize.x = root.width;
-					lastButtonSize.y = root.height;
-				}
-				onReleased: {
-					resizing = false;
-					moving = false;
-					lastMousePosition = Qt.point(0, 0);
-				}
-
-				drag {
-					axis: Drag.XandYAxis
-					maximumX: root.movableScope.width - root.width
-					maximumY: root.movableScope.height - root.height
-					minimumX: 0
-					minimumY: 0
-					target: transformMouseArea.moving ? root : null
 				}
 			}
 			MouseArea {
