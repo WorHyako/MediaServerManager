@@ -29,9 +29,11 @@ Window {
 
 	property QtObject selectedButton: undefined
 
-	QtObject {
-		id: internal
-		property int number: 0
+	Component.onCompleted: {
+		const keyValuePairs = selectedButton.getCommandPairs();
+		keyValuePairs.forEach((pair) => {
+			listModel.append({"keyText": pair[0], "valueText": pair[1]});
+		});
 	}
 
 	ListModel {
@@ -61,11 +63,11 @@ Window {
 
 			WorControls.EditTextField {
 				id: key
-				text: "key"
+				text: keyText
 			}
 			WorControls.EditTextField {
 				id: value
-				text: "value"
+				text: valueText
 			}
 			WorControls.Button {
 				width: 30
@@ -97,7 +99,7 @@ Window {
 			text: "Add"
 			contextMenuEnable: false
 			onLeftClicked: () => {
-				listModel.append({});
+				listModel.append({"keyText": "key", "valueText": "value"});
 			}
 		}
 

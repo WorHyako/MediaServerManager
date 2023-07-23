@@ -17,39 +17,40 @@ import MediaServerManager 1.0 as MSM
  *      | WorControls.ButtonLoadConfig
  */
 Item {
-    id: root
+	id: root
 
-    anchors.fill: parent
+	anchors.fill: parent
 
-    Item {
-        id: contentScope
+	Item {
+		id: contentScope
 
-        anchors {
-            bottomMargin: 50
-            fill: parent
-        }
-    }
-    WorControls.ButtonSaveConfig {
-        configFileName: "test.json"
-        dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-        typeName: "Management button"
-        scopeObject: contentScope
-    }
-    WorControls.ButtonAddNewElement {
-        maxElementNum: 30
-        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
-        scopeObject: contentScope
-		Component.onCompleted:{
-			newElementArgs = {
-				"canBeMoved": true,
-				"canBeResized": true,
-				"movableScope": root
-			}
+		anchors {
+			bottomMargin: 50
+			fill: parent
 		}
-    }
-    WorControls.ButtonLoadConfig {
-        configFileName: "test.json"
-        dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-        scopeObject: contentScope
-    }
+	}
+	WorControls.ButtonSaveConfig {
+		configFileName: "test.json"
+		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
+		typeName: "Management button"
+		scopeObject: contentScope
+	}
+	WorControls.ButtonAddNewElement {
+		maxElementNum: 30
+		// qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
+		qrcElementPath: WorJs.ObjectsQrcPath.qrcTable
+		scopeObject: contentScope
+		// Component.onCompleted: {
+		// 	newElementArgs = {
+		// 		"canBeMoved": true,
+		// 		"canBeResized": true,
+		// 		"movableScope": root
+		// 	}
+		// }
+	}
+	WorControls.ButtonLoadConfig {
+		configFileName: "test.json"
+		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
+		scopeObject: contentScope
+	}
 }

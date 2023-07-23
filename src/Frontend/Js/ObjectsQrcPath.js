@@ -13,3 +13,5 @@ const qrcBackgroundImage = "qrc:/Frontend/Assets/app-background.png";
 const qrcChangeBindingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/ChangeBindingWindow.qml";
 
 const qrcRenamingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/RenamingDialog.qml";
+
+const qrcTable = "qrc:/WorHyako/MediaServerManager/Frontend/Widgets/Table.qml"

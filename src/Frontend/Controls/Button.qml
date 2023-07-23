@@ -67,6 +67,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		anchors.fill: parent
 
 		onClicked: {
+			console.log("Button has been clicked.");
 			if (root.onLeftClicked !== undefined) {
 				root.onLeftClicked();
 			}
