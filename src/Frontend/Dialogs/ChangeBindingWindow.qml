@@ -36,11 +36,6 @@ Window {
 		});
 	}
 
-	QtObject {
-		id: internal
-		property int number: 0
-	}
-
 	ListModel {
 		id: listModel
 	}
