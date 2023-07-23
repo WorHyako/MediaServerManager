@@ -38,8 +38,6 @@ Item {
 	property string bindingEvent: ""
 	property bool canBeMoved: false
 	property bool canBeResized: false
-	readonly property int minButtonHeight: 50
-	readonly property int minButtonWidth: 50
 	property var onLeftClicked: undefined
 	property var onRightClicked: undefined
 	property Item movableScope: undefined
@@ -47,6 +45,20 @@ Item {
 	property string textFieldText: "Text"
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
+
+	QtObject {
+		id: internal
+		readonly property int minButtonHeight: 50
+		readonly property int minButtonWidth: 50
+		property var commandPairs: []
+	}
+
+	/**
+	 *
+	 */
+	function getCommandPairs() {
+		return internal.commandPairs;
+	}
 
 	/**
 	 *
@@ -57,6 +69,8 @@ Item {
 		if (!(Array.isArray(commandPairs) && Array.isArray(commandPairs[0]))) {
 			return false;
 		}
+		internal.commandPairs = commandPairs;
+		console.log("makeCommand: ", commandPairs[0], "---", commandPairs[1]);
 		commandPairs.forEach((pair) => {
 			console.log(pair);
 		});
@@ -120,8 +134,8 @@ Item {
 						deltaMousePosition.y = currentMousePosition.y - lastMousePosition.y;
 						const minWidth = 50
 						const minHeight = 50
-						const newWidth = numInRange(lastButtonSize.x + deltaMousePosition.x, root.minButtonWidth, root.movableScope.width);
-						const newHeight = numInRange(lastButtonSize.y + deltaMousePosition.y, root.minButtonHeight, root.movableScope.height);
+						const newWidth = numInRange(lastButtonSize.x + deltaMousePosition.x, internal.minButtonWidth, root.movableScope.width);
+						const newHeight = numInRange(lastButtonSize.y + deltaMousePosition.y, internal.minButtonHeight, root.movableScope.height);
 						root.width = newWidth < minWidth ? minWidth : newWidth;
 						root.height = newHeight < minHeight ? minHeight : newHeight;
 					}
