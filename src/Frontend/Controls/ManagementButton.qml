@@ -70,10 +70,6 @@ Item {
 			return false;
 		}
 		internal.commandPairs = commandPairs;
-		console.log("makeCommand: ", commandPairs[0], "---", commandPairs[1]);
-		commandPairs.forEach((pair) => {
-			console.log(pair);
-		});
 		const makingResult = qmlCommandSender.makeCommand(commandPairs);
 		return makingResult;
 	}
