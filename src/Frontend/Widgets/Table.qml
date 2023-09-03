@@ -40,7 +40,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 
 	Component {
 		id: listViewDelegate
-
+    
 		WorControls.EditTextField {
 			height: 20
 			width: 80
@@ -110,6 +110,10 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			onLeftClicked: () => {
 			}
 		}
+	}
+
+	WorCommands.QmlCommandSender {
+		id: qmlCommandSender
 	}
 
 	WorCommands.QmlCommandSender {

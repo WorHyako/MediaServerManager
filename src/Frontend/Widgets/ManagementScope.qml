@@ -55,7 +55,7 @@ Item {
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope
 	}
-
+  
 	WorControls.ContextMenu {
 		id: contextMenu
 		selectedButton: contentScope
