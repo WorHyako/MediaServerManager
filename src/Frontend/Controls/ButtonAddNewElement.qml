@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 
@@ -27,14 +28,52 @@ WorControls.Button {
 	width: 50
 
 	onLeftClicked: () => {
-		const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-		if (rangeCheck) {
-			WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-		}
+		menu.open();
 	}
 
 	anchors {
 		bottom: parent.bottom
 		right: parent.right
+	}
+
+	Menu {
+		id: menu
+
+		function addElement(isButton: bool) {
+			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
+			if (rangeCheck) {
+				if (isButton === undefined) {
+					WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
+				} else {
+					if (isButton) {
+						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButton, root.scopeObject, root.newElementArgs);
+					} else {
+						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcTable, root.scopeObject, {});
+					}
+				}
+				menu.close();
+			}
+		}
+
+		Action {
+			text: "Default"
+			onTriggered: () => {
+				menu.addElement();
+			}
+		}
+
+		Action {
+			text: "Add button"
+			onTriggered: () => {
+				menu.addElement(true);
+			}
+		}
+
+		Action {
+			text: "Add table"
+			onTriggered: () => {
+				menu.addElement(false);
+			}
+		}
 	}
 }

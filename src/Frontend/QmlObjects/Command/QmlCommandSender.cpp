@@ -24,7 +24,8 @@ bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
     if (commandItemList.empty()) {
         return false;
     }
-    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(commandItemList);
+    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(
+            commandItemList);
     _command = std::make_unique<MediaServerManager::Command::ActionCommand>(command);
     auto s = _command->ToString();
     _commandText = std::string(std::begin(s), std::prev(std::end(s), 1)).c_str();
@@ -36,9 +37,15 @@ bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
 bool QmlCommandSender::sendCommand() const noexcept {
     auto socketAdded = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
     auto socket = Network::SocketManager::GetSocket(0);
-    std::ignore = socket->TryToConnect();
+    auto connectRes = socket->TryToConnect();
+    if (!connectRes) {
+        return false;
+    }
+    if (!_command) {
+        return false;
+    }
     auto ex1 = _command->Execute(socket);
-    return false;
+    return true;
 }
 
 #pragma region Accessors
@@ -63,7 +70,8 @@ void QmlCommandSender::setCommandText(QVariantList commandItems) {
     if (commandItemList.empty()) {
         return;
     }
-    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(commandItemList);
+    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(
+            commandItemList);
     _command = std::make_unique<MediaServerManager::Command::ActionCommand>(command);
     auto s = _command->ToString();
     _commandText = std::string(std::begin(s), std::prev(std::end(s), 1)).c_str();

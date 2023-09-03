@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Frontend.Js as WorJs
 import Frontend.Controls as WorControls
+import Frontend.Controls.ContextMenuAction as WorContextAction
 
 /**
  *
@@ -19,31 +20,16 @@ import Frontend.Controls as WorControls
 Menu {
 	id: root
 
-	Action {
-		text: "Rename"
-		onTriggered: () => {
-			const dialog = ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcRenamingWindow, root, {
-				"objectToRename": root.selectedButton,
-				"propertyToRename": "buttonText"
-			});
-			dialog.show();
-		}
+	WorContextAction.ContextMenuActionRename {
+		contextMenuRoot: root
+		objectToRename: root.selectedButton
+		propertyToRename: "buttonText"
 	}
-	Action {
-		text: "Change binding name"
-		onTriggered: () => {
-			let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcChangeBindingWindow,
-				root.selectedButton, {
-					"selectedButton": root.selectedButton
-				});
-			window.show();
-		}
+	WorContextAction.ContextMenuActionChangeBindingName {
+		selectedObject: root.selectedButton
 	}
-	Action {
-		text: "Delete"
-		onTriggered: () => {
-			root.selectedButton.destroy();
-		}
+	WorContextAction.ContextMenuActionDelete {
+		objectToDestroy: root.selectedButton
 	}
 
 	property int actionTypes: 0

@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtQml.Models
 import Frontend.Controls as WorControls
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.QmlObjects.Command as WorCommands
 
 /**
  *
@@ -38,14 +39,18 @@ WorBackgrounds.ButtonBackgroundRectangle {
 
 	Component {
 		id: listViewDelegate
-		WorControls.Button {
+		WorControls.EditTextField {
 			height: 20
 			width: 80
 		}
 	}
 
 	ColumnLayout {
-		anchors.fill: parent
+		anchors {
+			fill: parent
+			leftMargin: 10
+			rightMargin: 10
+		}
 		ScrollView {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
@@ -60,15 +65,32 @@ WorBackgrounds.ButtonBackgroundRectangle {
 				delegate: listViewDelegate
 			}
 		}
+		RowLayout {
+			width: parent.width
+			WorControls.Button {
+				width: 70
+				height: 30
+				text: "Add"
+				Layout.alignment: Qt.AlignRight
+				contextMenuEnable: false
+				onLeftClicked: () => {
+					listModel.append({});
+				}
+			}
 
-		WorControls.Button {
-			width: 70
-			height: 20
-			text: "Add"
-			contextMenuEnable: false
-			onLeftClicked: () => {
-				listModel.append({});
+			WorControls.Button {
+				width: 70
+				height: 30
+				text: "Send"
+				Layout.alignment: Qt.AlignLeft
+				contextMenuEnable: false
+				onLeftClicked: () => {
+				}
 			}
 		}
+	}
+
+	WorCommands.QmlCommandSender {
+		id: qmlCommandSender
 	}
 }

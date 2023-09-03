@@ -50,9 +50,9 @@ int main(int argc, char *argv[]) {
 //    auto ex1 = hideCommand.Execute(socket2);
 //    auto ex2 = playCommand.Execute(socket0);
 
-    ///////////////
-    /// Qt Part ///
-    ///////////////
+    /***********
+     * Qt Part *
+     ***********/
     QGuiApplication app(argc, argv);
     qSetMessagePattern("%{file}:%{line} %{function} -> "
                        "%{if-category}%{category}: %{endif}%{message}");

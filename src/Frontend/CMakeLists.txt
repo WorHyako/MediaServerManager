@@ -44,5 +44,7 @@ endforeach (ModuleName)
 ######################################################
 ### Export plugins to parent CMakeLists to link it ###
 ######################################################
-list(APPEND QmlCustomPlugins ${QmlCustomObjectsPlugins})
+add_subdirectory(Controls/ContextMenuAction)
+
+list(APPEND QmlCustomPlugins ${QmlCustomObjectsPlugins} ContextMenuActionplugin)
 set(QmlCustomPlugins ${QmlCustomPlugins} PARENT_SCOPE)

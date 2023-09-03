@@ -37,20 +37,23 @@ Item {
 	}
 	WorControls.ButtonAddNewElement {
 		maxElementNum: 30
-		// qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
-		qrcElementPath: WorJs.ObjectsQrcPath.qrcTable
+		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
 		scopeObject: contentScope
-		// Component.onCompleted: {
-		// 	newElementArgs = {
-		// 		"canBeMoved": true,
-		// 		"canBeResized": true,
-		// 		"movableScope": root
-		// 	}
-		// }
+		Component.onCompleted: {
+			newElementArgs = {
+				"canBeMoved": true,
+				"canBeResized": true,
+				"movableScope": root
+			}
+		}
 	}
 	WorControls.ButtonLoadConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope
+	}
+	WorControls.ContextMenu {
+		id: contextMenu
+		selectedButton: contentScope
 	}
 }
