@@ -115,8 +115,4 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	WorCommands.QmlCommandSender {
 		id: qmlCommandSender
 	}
-
-	WorCommands.QmlCommandSender {
-		id: qmlCommandSender
-	}
 }
