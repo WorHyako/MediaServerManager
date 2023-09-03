@@ -29,12 +29,14 @@ ApplicationWindow {
 		source: WorJs.ObjectsQrcPath.qrcBackgroundImage
 		z: -1
 	}
+
 	TabBar {
 		id: tabBar
 		anchors {
 			bottom: parent.bottom
 			horizontalCenter: parent.horizontalCenter
 		}
+
 		Repeater {
 			model: ["Network", "Midi"]
 
@@ -52,12 +54,14 @@ ApplicationWindow {
 			}
 		}
 	}
+
 	StackLayout {
 		anchors.fill: parent
 		currentIndex: tabBar.currentIndex
 
 		WorSettings.NetworkSettings {
 		}
+
 		WorSettings.MidiSettings {
 		}
 	}

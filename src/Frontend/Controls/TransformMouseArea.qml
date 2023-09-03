@@ -48,6 +48,7 @@ MouseArea {
 		}
 		root.onLeftClicked();
 	}
+
 	onPositionChanged: mouse => {
 		if (internal.resizing) {
 			if (internal.lastMousePosition === Qt.point(0, 0)) {
@@ -66,12 +67,14 @@ MouseArea {
 			root.target.height = newHeight < minHeight ? minHeight : newHeight;
 		}
 	}
+
 	onPressed: mouse => {
 		internal.resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
 		internal.moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
 		internal.lastButtonSize.x = root.target.width;
 		internal.lastButtonSize.y = root.target.height;
 	}
+
 	onReleased: {
 		internal.resizing = false;
 		internal.moving = false;

@@ -22,6 +22,7 @@ Rectangle {
         color: "#939393"
         width: root.activeFocus ? 2 : 1
     }
+
     Rectangle {
         color: parent.color
         height: root.radius * 2

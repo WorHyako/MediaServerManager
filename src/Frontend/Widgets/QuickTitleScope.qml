@@ -23,23 +23,27 @@ Rectangle {
         color: "#AAA"
         width: 1
     }
+
     ColumnLayout {
         id: linesList
 
         anchors.top: parent.top
         spacing: 50
     }
+
     WorControls.ButtonAddNewElement {
         maxElementNum: 10
         qrcElementPath: WorJs.ObjectsQrcPath.qrcQuickTitleLine
         scopeObject: linesList
     }
+
     WorControls.ButtonSaveConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles
         typeName: "Quick title line"
         scopeObject: linesList
     }
+
     WorControls.ButtonLoadConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles

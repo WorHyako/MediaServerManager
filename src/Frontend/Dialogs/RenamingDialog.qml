@@ -35,6 +35,7 @@ Window {
 
 	height: 250
 	width: 350
+
 	ColumnLayout {
 		height: root.height * 0.8
 		spacing: 5
@@ -47,10 +48,12 @@ Window {
 			rightMargin: 10
 			topMargin: 10
 		}
+
 		WorControls.Text {
 			font.pointSize: 20
 			text: "Renaming window"
 		}
+
 		Repeater {
 			model: [["Previous", root.objectToRename[root.propertyToRename]], ["New", root.newText]]
 
@@ -68,11 +71,13 @@ Window {
 						font.pointSize: 20
 						text: modelData[0]
 					}
+
 					Rectangle {
 						Layout.fillHeight: true
 						color: "#222"
 						width: 1
 					}
+
 					TextEdit {
 						Layout.fillHeight: true
 						Layout.fillWidth: true
@@ -93,6 +98,7 @@ Window {
 				}
 			}
 		}
+
 		WorControls.Button {
 			Layout.alignment: Qt.AlignCenter
 			text: "Apply"

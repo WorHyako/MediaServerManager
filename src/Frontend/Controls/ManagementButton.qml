@@ -71,6 +71,7 @@ Item {
 	ColumnLayout {
 		spacing: 3
 		anchors.fill: parent
+
 		WorControls.Button {
 			id: button
 			text: root.buttonText
@@ -89,10 +90,12 @@ Item {
 					button.leftClick();
 				}
 			}
+
 			WorControls.ContextMenuMouseArea {
 				selectedButton: root
 			}
 		}
+
 		WorControls.EditTextField {
 			id: text
 			Layout.preferredHeight: parent.height * 0.3
