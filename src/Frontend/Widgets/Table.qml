@@ -65,7 +65,6 @@ WorBackgrounds.ButtonBackgroundRectangle {
 				delegate: listViewDelegate
 			}
 		}
-
 		RowLayout {
 			width: parent.width
 			WorControls.Button {
