@@ -100,7 +100,6 @@ WorBackgrounds.ButtonBackgroundRectangle {
 				listModel.append({});
 			}
 		}
-
 		WorControls.Button {
 			width: 70
 			height: 30
