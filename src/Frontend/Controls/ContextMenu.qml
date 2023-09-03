@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Frontend.Js as WorJs
 import Frontend.Controls as WorControls
-import Frontend.Controls.ContextMenuAction as WorContextAction
+import Frontend.Actions as WorActions
 
 /**
  *
@@ -20,15 +20,17 @@ import Frontend.Controls.ContextMenuAction as WorContextAction
 Menu {
 	id: root
 
-	WorContextAction.ContextMenuActionRename {
+	WorActions.ContextMenuActionRename {
 		contextMenuRoot: root
 		objectToRename: root.selectedButton
 		propertyToRename: "buttonText"
 	}
-	WorContextAction.ContextMenuActionChangeBindingName {
+
+	WorActions.ContextMenuActionChangeBindingName {
 		selectedObject: root.selectedButton
 	}
-	WorContextAction.ContextMenuActionDelete {
+
+	WorActions.ContextMenuActionDelete {
 		objectToDestroy: root.selectedButton
 	}
 

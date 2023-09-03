@@ -44,48 +44,61 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			width: 80
 		}
 	}
-
-	ColumnLayout {
+	Rectangle {
+		color: "transparent"
+		radius: 7
+		border {
+			color: "#939393"
+			width: 1
+		}
 		anchors {
 			fill: parent
-			leftMargin: 10
-			rightMargin: 10
+			margins: 10
+			bottomMargin: 40
 		}
-		ScrollView {
-			Layout.fillWidth: true
-			Layout.fillHeight: true
-			Layout.topMargin: 30
-			Layout.bottomMargin: 40
-			GridView {
-				id: listView
-				cellHeight: 25
-				cellWidth: 85
-				anchors.fill: parent
-				model: listModel
-				delegate: listViewDelegate
-			}
-		}
-		RowLayout {
-			width: parent.width
-			WorControls.Button {
-				width: 70
-				height: 30
-				text: "Add"
-				Layout.alignment: Qt.AlignRight
-				contextMenuEnable: false
-				onLeftClicked: () => {
-					listModel.append({});
+		ColumnLayout {
+			anchors.fill: parent
+			ScrollView {
+				Layout.fillWidth: true
+				Layout.fillHeight: true
+				Layout.topMargin: 30
+				Layout.bottomMargin: 40
+				GridView {
+					id: listView
+					cellHeight: 25
+					cellWidth: 85
+					anchors.fill: parent
+					model: listModel
+					delegate: listViewDelegate
 				}
 			}
+		}
+	}
+	RowLayout {
+		anchors {
+			bottom: parent.bottom
+			bottomMargin: 5
+		}
+		width: parent.width
 
-			WorControls.Button {
-				width: 70
-				height: 30
-				text: "Send"
-				Layout.alignment: Qt.AlignLeft
-				contextMenuEnable: false
-				onLeftClicked: () => {
-				}
+		WorControls.Button {
+			width: 70
+			height: 30
+			text: "Add"
+			Layout.alignment: Qt.AlignRight
+			contextMenuEnable: false
+			onLeftClicked: () => {
+				listModel.append({});
+			}
+		}
+
+		WorControls.Button {
+			width: 70
+			height: 30
+			text: "Send"
+			Layout.alignment: Qt.AlignLeft
+			contextMenuEnable: false
+			onLeftClicked: () => {
 			}
 		}
 	}
