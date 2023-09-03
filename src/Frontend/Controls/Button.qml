@@ -46,6 +46,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		opacity: enabled ? 1.0 : 0.3
 		text: root.text
 	}
+
 	MouseArea {
 		id: rightClickArea
 
@@ -59,6 +60,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			}
 		}
 	}
+
 	MouseArea {
 		id: leftClickArea
 

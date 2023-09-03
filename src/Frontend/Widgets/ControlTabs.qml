@@ -31,6 +31,7 @@ Item {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
         }
+
         Repeater {
             anchors.bottom: parent.bottom
             model: ["First", "Second", "Third", "Fourth", "Fifth"]
@@ -55,6 +56,7 @@ Item {
             right: root.right
             top: root.top
         }
+
         Repeater {
             model: 5
 
@@ -66,6 +68,7 @@ Item {
                     color: "#AAA"
                     width: 1
                 }
+
                 WorWidgets.ManagementScope {
                     anchors.fill: parent
                 }

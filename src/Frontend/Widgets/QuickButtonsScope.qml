@@ -26,11 +26,13 @@ Item {
         typeName: "Management button"
         scopeObject: grid
     }
+
     WorControls.ButtonLoadConfig {
         configFileName: "test.json"
         dynamicScopeType: MSM.DynamicScopeType.QuickButtons
         scopeObject: grid
     }
+
     Grid {
         id: grid
 
@@ -39,6 +41,7 @@ Item {
         rows: 5
         spacing: 5
     }
+
     WorControls.ButtonAddNewElement {
         maxElementNum: grid.columns * grid.rows
         qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton

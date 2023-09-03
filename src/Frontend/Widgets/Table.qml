@@ -29,6 +29,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		canBeResized: root.canBeResized
 		movableScope: root.parent
 	}
+
 	WorControls.ContextMenuMouseArea {
 		selectedButton: root
 	}
@@ -39,11 +40,13 @@ WorBackgrounds.ButtonBackgroundRectangle {
 
 	Component {
 		id: listViewDelegate
+
 		WorControls.EditTextField {
 			height: 20
 			width: 80
 		}
 	}
+
 	Rectangle {
 		color: "transparent"
 		radius: 7
@@ -56,8 +59,10 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			margins: 10
 			bottomMargin: 40
 		}
+
 		ColumnLayout {
 			anchors.fill: parent
+
 			ScrollView {
 				Layout.fillWidth: true
 				Layout.fillHeight: true
@@ -74,6 +79,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			}
 		}
 	}
+
 	RowLayout {
 		anchors {
 			bottom: parent.bottom

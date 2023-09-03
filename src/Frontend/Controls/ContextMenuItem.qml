@@ -23,6 +23,7 @@ MenuItem {
 		color: root.highlighted ? "#555" : "transparent"
 		radius: 8
 	}
+
 	contentItem: WorControls.Text
 	{
 		id: rootText

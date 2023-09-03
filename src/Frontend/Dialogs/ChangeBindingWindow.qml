@@ -39,8 +39,10 @@ Window {
 	ListModel {
 		id: listModel
 	}
+
 	Component {
 		id: listViewDelegate
+
 		RowLayout {
 			height: 30
 			spacing: 4
@@ -65,10 +67,12 @@ Window {
 				id: key
 				text: keyText
 			}
+
 			WorControls.EditTextField {
 				id: value
 				text: valueText
 			}
+
 			WorControls.Button {
 				width: 30
 				height: 30
@@ -82,6 +86,7 @@ Window {
 	}
 	ColumnLayout {
 		anchors.fill: parent
+
 		ScrollView {
 			Layout.fillWidth: true
 			Layout.preferredHeight: 210
@@ -108,6 +113,7 @@ Window {
 			width: 100
 			height: 20
 			text: "Apply"
+
 			onLeftClicked: () => {
 				if (root.selectedButton === undefined) {
 					return;

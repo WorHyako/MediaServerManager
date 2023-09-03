@@ -29,12 +29,14 @@ Item {
 			fill: parent
 		}
 	}
+
 	WorControls.ButtonSaveConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		typeName: "Management button"
 		scopeObject: contentScope
 	}
+
 	WorControls.ButtonAddNewElement {
 		maxElementNum: 30
 		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
@@ -47,11 +49,13 @@ Item {
 			}
 		}
 	}
+
 	WorControls.ButtonLoadConfig {
 		configFileName: "test.json"
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope
 	}
+
 	WorControls.ContextMenu {
 		id: contextMenu
 		selectedButton: contentScope

@@ -29,7 +29,9 @@ Item {
 			horizontalCenter: parent.horizontalCenter
 			verticalCenter: parent.verticalCenter
 		}
+
 		RowLayout {
+
 			WorBackgrounds.TextBackgroundRectangle {
 				height: 30
 				width: 100
@@ -38,11 +40,14 @@ Item {
 					text: "Destination ip"
 				}
 			}
+
 			WorControls.EditTextField {
 				id: destinationIpTextEdit
 			}
 		}
+
 		RowLayout {
+
 			WorBackgrounds.TextBackgroundRectangle {
 				height: 30
 				width: 100
@@ -51,12 +56,13 @@ Item {
 					text: "Destination port"
 				}
 			}
+
 			WorControls.EditTextField {
 				id: destinationPortTextEdit
-
 			}
 		}
 	}
+
 	WorControls.Button {
 		text: "Apply"
 

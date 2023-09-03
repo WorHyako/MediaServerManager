@@ -40,6 +40,7 @@ Item {
 			text: root.text
 			width: root.textEditFiledSize.x
 		}
+
 		WorControls.Button {
 			Layout.preferredHeight: 30
 			Layout.preferredWidth: 70
@@ -49,16 +50,6 @@ Item {
 
 			}
 			text: "Send"
-			// contentItem: worControls.TextField
-			// {
-			// 	opacity: enabled ? 1.0 : 0.3
-			// 	text: "Send"
-			//
-			// 	font {
-			// 		family: WorStyles.FontStyle.fontFamily
-			// 		pointSize: WorStyles.FontStyle.fontSize
-			// 	}
-			// }
 
 			/// TODO: here and in ManagementButton create context menu dynamically
 			WorControls.ContextMenu {
