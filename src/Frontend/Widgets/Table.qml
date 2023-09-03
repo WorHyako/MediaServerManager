@@ -100,7 +100,6 @@ WorBackgrounds.ButtonBackgroundRectangle {
 				listModel.append({});
 			}
 		}
-
 		WorControls.Button {
 			width: 70
 			height: 30
@@ -110,6 +109,10 @@ WorBackgrounds.ButtonBackgroundRectangle {
 			onLeftClicked: () => {
 			}
 		}
+	}
+
+	WorCommands.QmlCommandSender {
+		id: qmlCommandSender
 	}
 
 	WorCommands.QmlCommandSender {
