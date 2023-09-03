@@ -61,13 +61,16 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		}
 
 		ColumnLayout {
-			anchors.fill: parent
-
+			anchors {
+				fill: parent
+				margins: 5
+			}
 			ScrollView {
 				Layout.fillWidth: true
 				Layout.fillHeight: true
 				Layout.topMargin: 30
 				Layout.bottomMargin: 40
+
 				GridView {
 					id: listView
 					cellHeight: 25
