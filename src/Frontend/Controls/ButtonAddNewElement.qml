@@ -17,11 +17,8 @@ import Frontend.Js as WorJs
 WorControls.Button {
 	id: root
 
-	required property int maxElementNum
-	property var newElementArgs: {
-	}
-	required property string qrcElementPath
 	required property QtObject scopeObject
+	property var avalibleTypes: [["Management button", WorJs.ObjectsQrcPath.qrcManagementButton], ["Table", WorJs.ObjectsQrcPath.qrcTable]]
 
 	height: 50
 	text: "Add"
@@ -31,49 +28,43 @@ WorControls.Button {
 		menu.open();
 	}
 
+	QtObject {
+		id: internal
+	}
+
 	anchors {
 		bottom: parent.bottom
 		right: parent.right
 	}
 
+	function createAction(name: string, qrcPath: string) {
+		const action = Qt.createQmlObject(`import QtQuick;
+			import QtQuick.Controls;
+			Action {
+				text: "${name}"
+				onTriggered: () => {
+					menu.addElement("${qrcPath}");
+				}
+			}`, menu, `shitAction`);
+		menu.addAction(action);
+	}
+
+
 	Menu {
 		id: menu
 
-		function addElement(isButton: bool) {
-			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-			if (rangeCheck) {
-				if (isButton === undefined) {
-					WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-				} else {
-					if (isButton) {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButton, root.scopeObject, root.newElementArgs);
-					} else {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcTable, root.scopeObject, {});
-					}
-				}
-				menu.close();
-			}
+		function addElement(qrcPath: string) {
+			WorJs.ItemCreator.createNewItem(qrcPath, root.scopeObject, {
+				"canBeMoved": true,
+				"canBeResized": true,
+				"movableScope": root.scopeObject});
+			menu.close();
 		}
 
-		Action {
-			text: "Default"
-			onTriggered: () => {
-				menu.addElement();
-			}
-		}
-
-		Action {
-			text: "Add button"
-			onTriggered: () => {
-				menu.addElement(true);
-			}
-		}
-
-		Action {
-			text: "Add table"
-			onTriggered: () => {
-				menu.addElement(false);
-			}
+		Component.onCompleted: {
+			root.avalibleTypes.forEach((element) => {
+				root.createAction(element[0], element[1]);
+			});
 		}
 	}
 }

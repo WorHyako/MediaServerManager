@@ -13,7 +13,7 @@ import MediaServerManager 1.0 as MSM
  *      | WorControls.ButtonSaveConfig
  *      | WorControls.ButtonLoadConfig
  *      | GridView (grid)
- *      | WorControls.ButtonAddNewElement
+ *      | WorControls.ButtonAddNewControl
  */
 Item {
     id: root
@@ -42,7 +42,7 @@ Item {
         spacing: 5
     }
 
-    WorControls.ButtonAddNewElement {
+    WorControls.ButtonAddNewControl {
         maxElementNum: grid.columns * grid.rows
         qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
         scopeObject: grid

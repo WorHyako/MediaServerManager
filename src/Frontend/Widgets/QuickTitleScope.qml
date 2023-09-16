@@ -9,7 +9,7 @@ import MediaServerManager 1.0 as MSM
  *  Item root
  *      | Rectangle
  *          | ColumnLayout linesList
- *          | WorControls.ButtonAddNewElement
+ *          | WorControls.ButtonAddNewControl
  *          | WorControls.ButtonLoadConfig
  *          | WorControls.ButtonSaveConfig
  */
@@ -31,7 +31,7 @@ Rectangle {
         spacing: 50
     }
 
-    WorControls.ButtonAddNewElement {
+    WorControls.ButtonAddNewControl {
         maxElementNum: 10
         qrcElementPath: WorJs.ObjectsQrcPath.qrcQuickTitleLine
         scopeObject: linesList
