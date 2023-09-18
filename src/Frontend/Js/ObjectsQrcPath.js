@@ -1,3 +1,5 @@
+const qrcManagementButtonWithText = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButtonWithText.qml";
+
 const qrcManagementButton = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml";
 
 const qrcContextMenuItem = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml";

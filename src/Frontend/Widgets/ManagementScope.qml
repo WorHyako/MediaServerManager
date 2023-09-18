@@ -39,7 +39,7 @@ Item {
 
 	WorControls.ButtonAddNewControl {
 		maxElementNum: 30
-		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
+		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButtonWithText
 		scopeObject: contentScope
 		Component.onCompleted: {
 			newElementArgs = {

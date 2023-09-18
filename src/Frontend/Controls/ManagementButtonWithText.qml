@@ -96,6 +96,13 @@ Item {
 			}
 		}
 
+		WorControls.EditTextField {
+			id: text
+			Layout.preferredHeight: parent.height * 0.3
+			Layout.preferredWidth: parent.width
+			text: qmlCommandSender.commandText
+		}
+
 		WorCommands.QmlCommandSender {
 			id: qmlCommandSender
 		}

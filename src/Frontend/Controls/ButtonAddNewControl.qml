@@ -46,7 +46,7 @@ WorControls.Button {
 					WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
 				} else {
 					if (isButton) {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButton, root.scopeObject, root.newElementArgs);
+						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButtonWithText, root.scopeObject, root.newElementArgs);
 					} else {
 						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcTable, root.scopeObject, {});
 					}

@@ -18,7 +18,7 @@ WorControls.Button {
 	id: root
 
 	required property QtObject scopeObject
-	property var avalibleTypes: [["Management button", WorJs.ObjectsQrcPath.qrcManagementButton], ["Table", WorJs.ObjectsQrcPath.qrcTable]]
+	property var avalibleTypes: [["Management button", WorJs.ObjectsQrcPath.qrcManagementButtonWithText], ["Table", WorJs.ObjectsQrcPath.qrcTable]]
 
 	height: 50
 	text: "Add"

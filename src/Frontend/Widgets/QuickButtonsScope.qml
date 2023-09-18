@@ -44,7 +44,7 @@ Item {
 
     WorControls.ButtonAddNewControl {
         maxElementNum: grid.columns * grid.rows
-        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
+        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButtonWithText
         scopeObject: grid
     }
 }
