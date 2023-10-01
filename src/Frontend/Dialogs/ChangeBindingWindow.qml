@@ -6,20 +6,6 @@ import Frontend.Controls as WorControls
 
 /**
  *
- *
- * ---
- *
- * Window (root)
- * 	- QtObject selectedButton: undefined
- * 	| ListModel (repeaterModel)
- * 	| ColumnLayout
- * 		| Repeater
- * 			| RowLayout
- * 				| WorControls.EditTextField
- * 				| WorControls.EditTextField
- * 				| WorControls.Button
- * 		| WorControls.Button
- * 		| WorControls.Button
  */
 Window {
 	id: root
@@ -27,6 +13,9 @@ Window {
 	height: 300
 	width: 500
 
+	/**
+	 * Object to change this one binding text
+	 */
 	property QtObject selectedButton: undefined
 
 	Component.onCompleted: {

@@ -17,7 +17,11 @@ foreach (ModuleName ${Modules})
     set(ModuleUri Frontend.${ModuleName})
     set(ModuleOutputDir ${CMAKE_CURRENT_BINARY_DIR}/${ModuleName})
 
-    file(GLOB Files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${ModuleName}/*${${ModuleName}_FileExt})
+    set(Files "")
+    foreach (EachFileExt ${${ModuleName}_FileExt})
+        file(GLOB ExtFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${ModuleName}/*${EachFileExt})
+        list(APPEND Files ${ExtFiles})
+    endforeach ()
 
     foreach (EachFile ${Files})
         file(RELATIVE_PATH FileName ${CMAKE_CURRENT_SOURCE_DIR}/${ModuleName} ${CMAKE_CURRENT_SOURCE_DIR}/${EachFile})

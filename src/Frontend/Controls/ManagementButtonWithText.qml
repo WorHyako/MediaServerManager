@@ -6,44 +6,65 @@ import Frontend.QmlObjects.Command as WorCommands
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *  - string objectName: "Management button"
- *  - string bindingEvent: ""
- *  - bool canBeMoved: false
- *  - bool canBeResized: false
- *  - int minButtonHeight: 50
- *  - int minButtonWidth: 50
- *  - Item movableScope: undefined
- *  - var onLeftClicked: undefined
- *  - var onRightClicked: undefined
- *  - string buttonText: "Button"
- *  - string textFieldText: "Text"
- *  | ColumnLayout
- *  	| WorControls.Button (button)
- *  	| WorControls.EditTextField (text)
- *  | WorControls.ContextMenu (contextMenu)
  */
 Item {
 	id: root
+
+	/**
+	 * Object's name
+	 */
 	property string objectName: "Management button"
+
+	/**
+	 * XML command to send to media manager
+	 */
 	property string bindingEvent: ""
+
+	/**
+	 * Is button can be moved in dynamic scope
+	 */
 	property bool canBeMoved: false
+
+	/**
+	 * Is button can be resized in dynamic scope
+	 */
 	property bool canBeResized: false
 	property var onLeftClicked: undefined
 	property var onRightClicked: undefined
+
+	/**
+	 * Scope, where button can move and resize
+	 */
 	property Item movableScope: undefined
+
+	/**
+	 * Text inside button body
+	 */
 	property string buttonText: "Button"
+
+	/**
+	 * Text inside Edit Text field
+	 */
 	property string textFieldText: "Text"
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
 	QtObject {
 		id: internal
+
+		/**
+		 * Button's minimal height
+		 */
 		readonly property int minButtonHeight: 50
+
+		/**
+		 * Button's minimal width
+		 */
 		readonly property int minButtonWidth: 50
+
+		/**
+		 * Pairs to generate XML message to media serve
+		 */
 		property var commandPairs: []
 	}
 

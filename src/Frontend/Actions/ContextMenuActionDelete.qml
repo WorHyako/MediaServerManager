@@ -3,12 +3,11 @@ import QtQuick.Controls
 
 /**
  *
- *
- * ---
- *
- * Action
  */
 Action {
+	/**
+	 * Object to destroy
+	 */
 	required property var objectToDestroy
 
 	text: "Delete"

@@ -3,15 +3,13 @@ import Frontend.Controls as WorControls
 
 /**
  *
- *
- * ---
- *
- *  WorControls.Button root
- *  - var window
  */
 WorControls.Button {
     id: root
 
+	/**
+	 * Window to close
+	 */
     required property var window
 
     height: 20

@@ -5,22 +5,29 @@ import Frontend.Js as WorJs
 
 /**
  * Object based on WorControls.Button to create new elements
- *
- * ---
- *
- *  WorControls.Button (root)
- *  - int maxElementNum
- *  - var newElementArgs : {}
- *  - string qrcElementPath
- *  - QtObject scopeObject
  */
 WorControls.Button {
 	id: root
 
+	/**
+	 * 	Max element number, which button can spawn
+	 */
 	property int maxElementNum
+
+	/**
+	 * 	Arguments to new element
+	 */
 	property var newElementArgs: {
 	}
+
+	/**
+	 * 	Qrc path of new element
+	 */
 	required property string qrcElementPath
+
+	/**
+	 * Object that will contain new control. New control's parent
+	 */
 	required property QtObject scopeObject
 
 	height: 50

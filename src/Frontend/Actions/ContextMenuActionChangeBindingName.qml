@@ -4,14 +4,15 @@ import Frontend.Js as WorJs
 
 /**
  *
- *
- * ---
- *
- * Action
  */
 Action {
+	/**
+	 * Object to change XML message to media server
+	 */
 	required property var selectedObject
+
 	text: "Change binding name"
+
 	onTriggered: () => {
 		let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcChangeBindingWindow,
 			selectedObject, {

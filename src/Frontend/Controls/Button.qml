@@ -5,29 +5,28 @@ import Frontend.Controls as WorControls
 /**
  * Object to describe base class Button with left\right click events
  * Button has context menu and internal text field
- *
- * ---
- *
- * WorBackgrounds.ButtonBackgroundRectangle (root)
- * 	- var contentItem undefined
- * 	- bool contextMenuEnable: true
- * 	- var onLeftClicked: undefined
- * 	- var onRightClicked: undefined
- * 	- string text: ""
- * 	- leftClick()
- * 	- rightClick()
- * 	| WorControls.Text
- * 	| MouseArea (rightClickArea)
- * 	| MouseArea (leftClickArea)
- * 	| WorControls.ContextMenu (contextMenu)
  */
 WorBackgrounds.ButtonBackgroundRectangle {
 	id: root
 
-	property var contentIten: undefined
+	/**
+	 *	Context menu visibility
+	 */
 	property bool contextMenuEnable: true
+
+	/**
+	 * 	Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
+
+	/**
+	 * 	Event on mouse right click
+	 */
 	property var onRightClicked: undefined
+
+	/**
+	 * 	Non-editable text inside button's body
+	 */
 	property string text: ""
 
 	function leftClick() {
@@ -38,9 +37,11 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		rightClickArea.clicked(Qt.MouseEvent);
 	}
 
-	showCircle: false
 	hoveredCondition: leftClickArea.containsMouse
 
+	/**
+	 * 	Non-editable text inside button's body
+	 */
 	WorControls.Text {
 		anchors.centerIn: parent
 		opacity: enabled ? 1.0 : 0.3
@@ -54,7 +55,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		anchors.fill: parent
 		hoverEnabled: true
 
-		onClicked: mouse => {
+		onClicked: (mouse) => {
 			if (root.onRightClicked !== undefined) {
 				root.onRightClicked();
 			}

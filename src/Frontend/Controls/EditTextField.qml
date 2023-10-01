@@ -5,16 +5,13 @@ import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *
- *
- * ---
- *
- *  WorBackgrounds.TextBackground.Rectangle (root)
- *  - string text: "Text Edit"
- *  	| TextEdit
  */
 WorBackgrounds.TextBackgroundRectangle {
     id: root
 
+	/**
+	 * Editable text for Text Field
+	 */
     property string text: "Text Edit"
 
     height: WorStyles.TextEditStyle.textEditMediumHeight

@@ -5,28 +5,33 @@ import Frontend.Controls as WorControls
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *  - string objectName: "Quick title line"
- *  - point managementButtonSize:
- *  - int spacing: 10
- *  - string text: "Text Example"
- *  - point textEditFiledSize:
- *  | RowLayout
- *      | WorControls.EditTextField
- *      | WorControls.Button
- *      | WorControls.ContextMenu (contextMenu)
- *      | MouseArea (menuMouseArea)
  */
 Item {
 	id: root
 
+	/**
+	 * Object name
+	 */
 	property string objectName: "Quick title line"
+
+	/**
+	 * Management button size
+	 */
 	property point managementButtonSize: Qt.point(WorStyles.ManagementButtonStyle.managementButtonSmallWidth, WorStyles.ManagementButtonStyle.managementButtonSmallHeight)
+
+	/**
+	 * Space between button and Editable text field
+	 */
 	property int spacing: 10
+
+	/**
+	 * Editable text field text
+	 */
 	property string text: "Text Example"
+
+	/**
+	 * Editable text field size
+	 */
 	property point textEditFiledSize: Qt.point(WorStyles.TextEditStyle.textEditLargeWidth, WorStyles.TextEditStyle.textEditLargeHeight)
 
 	RowLayout {
@@ -51,12 +56,12 @@ Item {
 			}
 			text: "Send"
 
-			/// TODO: here and in ManagementButton create context menu dynamically
 			WorControls.ContextMenu {
 				id: contextMenu
 				actionTypes: WorControls.ContextMenu.ActionType.Delete
 				selectedButton: root
 			}
+
 			MouseArea {
 				id: menuMouseArea
 				acceptedButtons: Qt.RightButton

@@ -2,7 +2,7 @@ import QtQuick
 import Frontend.Styles as WorStyles
 
 /**
- *  Rectangle (root)
+ *
  */
 Rectangle {
     id: root
