@@ -4,7 +4,6 @@ qt_add_library(QmlCommands STATIC)
 
 file(GLOB Files *.hpp *.cpp)
 
-#target_sources(QmlCommands PUBLIC ${Files})
 set(ModuleOutputDir ${CMAKE_CURRENT_BINARY_DIR})
 
 qt_add_qml_module(QmlCommands

@@ -3,10 +3,6 @@ import Frontend.Styles as WorStyles
 
 /**
  *
- *
- * ---
- *
- *  Text
  */
 Text {
 	color: WorStyles.FontStyle.fontColor

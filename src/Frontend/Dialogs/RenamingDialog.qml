@@ -7,30 +7,23 @@ import Frontend.Js as WorJs
 
 /**
  *
- *
- * ---
- *
- * Dialog (root)
- * - string newText: "-"
- * - string propertyToRename
- * - QtObject objectToRename
- * - onTextEditFinished(text)
- *  | ColumnLayout
- *      | WorControls.Text
- *      | Repeater (repeater)
- *      - model: [["Previous", root.previousText], ["New", root.newText]]
- *      	| WorBackgrounds.TextBackgroundRectangle
- *      		| RowLayout
- *      			| WorControls.Text
- *      			| Rectangle
- *      			| TextEdit
- *      | WorControls.ManagementButton
  */
 Window {
 	id: root
 
+	/**
+	 * New text value
+	 */
 	property string newText: "-"
+
+	/**
+	 * Object to change displayed text
+	 */
 	required property QtObject objectToRename
+
+	/**
+	 * Object's property to rename
+	 */
 	required property string propertyToRename
 
 	height: 250

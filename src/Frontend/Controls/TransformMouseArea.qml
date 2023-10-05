@@ -7,17 +7,48 @@ import QtQuick.Controls
 MouseArea {
 	id: root
 
+	/**
+	 * Can object be moved or not
+	 */
 	property bool canBeMoved: false
+
+	/**
+	 * Can object be resized or not
+	 */
 	property bool canBeResized: false
 	property var onLeftClicked: undefined
-	required  property var movableScope
+
+	/**
+	 * Scope, where object can move and resize
+	 */
+	required property var movableScope
+
+	/**
+	 * Object that should move or resize
+	 */
 	property var target: parent
 
 	QtObject {
 		id: internal
+
+		/**
+		 *
+		 */
 		property point lastButtonSize: Qt.point(0, 0)
+
+		/**
+		 *
+		 */
 		property point lastMousePosition: Qt.point(0, 0)
+
+		/**
+		 * Flag that indicates whether the object is moving now
+		 */
 		property bool moving: false
+
+		/**
+		 * Flag that indicates whether the object is resizing now
+		 */
 		property bool resizing: false
 	}
 

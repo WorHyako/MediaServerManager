@@ -5,17 +5,19 @@ import Frontend.Widgets as WorWidgets
 
 /**
  *
- *
- * ---
- *
- * MenuItem (root)
- * string itemText
  */
 MenuItem {
 	id: root
 
+	/**
+	 * Triggered action on mouse click
+	 */
 	property var triggeredAction: () => {
 	}
+
+	/**
+	 * Menu item's shown text
+	 */
 	required property string itemText
 
 	background: Rectangle {

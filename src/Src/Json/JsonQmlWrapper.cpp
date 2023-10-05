@@ -114,7 +114,7 @@ nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
 
     nlohmann::json result;
     for (uint16_t i = 0; i < itemNum; ++i) {
-        std::string buttonNumber("ManagementButton_");
+        std::string buttonNumber("ManagementButtonWithText_");
         buttonNumber.append(std::to_string(i));
         for (const auto &property : propertiesList_) {
             result[buttonNumber][property] =

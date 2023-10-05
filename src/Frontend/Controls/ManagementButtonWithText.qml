@@ -11,7 +11,7 @@ Item {
 	id: root
 
 	/**
-	 * Object name
+	 * Object's name
 	 */
 	property string objectName: "Management button"
 
@@ -69,7 +69,7 @@ Item {
 	}
 
 	/**
-	 * Return command pairs
+	 *
 	 */
 	function getCommandPairs() {
 		return internal.commandPairs;
@@ -115,6 +115,13 @@ Item {
 			WorControls.ContextMenuMouseArea {
 				selectedButton: root
 			}
+		}
+
+		WorControls.EditTextField {
+			id: text
+			Layout.preferredHeight: parent.height * 0.3
+			Layout.preferredWidth: parent.width
+			text: qmlCommandSender.commandText
 		}
 
 		WorCommands.QmlCommandSender {

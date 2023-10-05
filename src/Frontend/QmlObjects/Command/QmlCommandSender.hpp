@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_QMLOBJECTS_COMMAND_QMLCOMMANDSENDER_HPP
-#define MEDIASERVERMANAGER_QMLOBJECTS_COMMAND_QMLCOMMANDSENDER_HPP
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -22,6 +21,7 @@ namespace MediaServerManager::QmlObjects::Command {
 
         Q_PROPERTY(QString commandText READ commandText NOTIFY commandTextChanged)
         QML_ELEMENT
+
     public:
         explicit QmlCommandSender(QObject *parent = nullptr);
 
@@ -34,6 +34,7 @@ namespace MediaServerManager::QmlObjects::Command {
         Q_INVOKABLE bool makeCommand(QVariantList commandPairs);
 
     signals:
+
         void commandTextChanged();
 
     private:
@@ -42,5 +43,3 @@ namespace MediaServerManager::QmlObjects::Command {
         std::unique_ptr<MediaServerManager::Command::ICommand> _command;
     };
 }
-
-#endif

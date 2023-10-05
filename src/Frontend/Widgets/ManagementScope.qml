@@ -13,7 +13,7 @@ import MediaServerManager 1.0 as MSM
  *  Item (root)
  *  | Item (contentScope)
  *      | WorControls.ButtonSaveConfig
- *      | WorControls.ButtonAddNewElement
+ *      | WorControls.ButtonAddNewControl
  *      | WorControls.ButtonLoadConfig
  */
 Item {
@@ -37,9 +37,9 @@ Item {
 		scopeObject: contentScope
 	}
 
-	WorControls.ButtonAddNewElement {
+	WorControls.ButtonAddNewControl {
 		maxElementNum: 30
-		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButton
+		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButtonWithText
 		scopeObject: contentScope
 		Component.onCompleted: {
 			newElementArgs = {

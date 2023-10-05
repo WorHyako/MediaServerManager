@@ -6,16 +6,6 @@ import Frontend.Actions as WorActions
 
 /**
  *
- *
- * ---
- *
- *  Menu (root)
- *  - int menuBorderRadius: 10
- *  - int menuItemHeight: 50
- *  - int menuItemWidth: 200
- *  - QtObject selectedButton
- *  - int actionTypes: 0
- *  - open(mousePosition)
  */
 Menu {
 	id: root
@@ -35,14 +25,27 @@ Menu {
 	}
 
 	property int actionTypes: 0
-	property int menuBorderRadius: 10
-	property int menuItemHeight: 50
-	property int menuItemWidth: 200
-	required property QtObject selectedButton
 
 	/**
-	 * Open menu
+	 * Context menu's border radius
 	 */
+	property int menuBorderRadius: 10
+
+	/**
+	 * Context menu item's height
+	 */
+	property int menuItemHeight: 50
+
+	/**
+	 * Context menu item's width
+	 */
+	property int menuItemWidth: 200
+
+	/**
+	 * Button that contain menu
+	 */
+	required property QtObject selectedButton
+
 	function open() {
 		root.popup();
 	}

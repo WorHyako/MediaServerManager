@@ -1,3 +1,5 @@
+const qrcManagementButtonWithText = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButtonWithText.qml";
+
 const qrcManagementButton = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ManagementButton.qml";
 
 const qrcContextMenuItem = "qrc:/WorHyako/MediaServerManager/Frontend/Controls/ContextMenuItem.qml";
@@ -15,3 +17,5 @@ const qrcChangeBindingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialog
 const qrcRenamingWindow = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/RenamingDialog.qml";
 
 const qrcTable = "qrc:/WorHyako/MediaServerManager/Frontend/Widgets/Table.qml"
+
+const qrcCreateElementDialog = "qrc:/WorHyako/MediaServerManager/Frontend/Dialogs/CreateElementDialog.qml"

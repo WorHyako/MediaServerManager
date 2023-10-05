@@ -116,13 +116,13 @@ function getScopeNamePattern(scopeType) {
             namePattern.push("QuickTitle_");
             break;
         case MSM.DynamicScopeType.ManagementButtons:
-            namePattern.push("ManagementButton_");
+            namePattern.push("ManagementButtonWithText_");
             break;
         case MSM.DynamicScopeType.All:
             namePattern.push(
                 "QuickButton_",
                 "QuickTitle_",
-                "ManagementButton_");
+                "ManagementButtonWithText_");
             break;
         default:
     }
@@ -138,16 +138,16 @@ function getElementPath(scopeType) {
     let elementPath = [];
     switch (scopeType) {
         case MSM.DynamicScopeType.QuickButtons:
-            elementPath.push(ObjectsQrc.qrcManagementButton);
+            elementPath.push(ObjectsQrc.qrcManagementButtonWithText);
             break;
         case MSM.DynamicScopeType.ManagementButtons:
-            elementPath.push(ObjectsQrc.qrcManagementButton);
+            elementPath.push(ObjectsQrc.qrcManagementButtonWithText);
             break;
         case MSM.DynamicScopeType.QuickTitles:
             elementPath.push(ObjectsQrc.qrcQuickTitleLine);
             break;
         case MSM.DynamicScopeType.All:
-            elementPath.push(ObjectsQrc.qrcManagementButton, ObjectsQrc.qrcQuickTitleLine, ObjectsQrc.qrcQuickTitleLine);
+            elementPath.push(ObjectsQrc.qrcManagementButtonWithText, ObjectsQrc.qrcQuickTitleLine, ObjectsQrc.qrcQuickTitleLine);
             break;
         default:
     }

@@ -4,20 +4,10 @@ import QtQuick.Layouts
 import Frontend.Settings as WorSettings
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Js as WorJs
+import Frontend.Controls as WorControls
 
 /**
  *
- *
- * ---
- *
- *  ApplicationWindow (root)
- *  | Image
- *  | TabBar (tabBar)
- *      | Repeater
- *          | TabButton
- * 	| StackLayout
- * 		| WorSettings.NetworkSettings
- * 		| WorSettings.MidiSettings
  */
 ApplicationWindow {
 	id: root
@@ -63,6 +53,21 @@ ApplicationWindow {
 		}
 
 		WorSettings.MidiSettings {
+		}
+	}
+
+	WorControls.Button {
+		anchors {
+			bottom: parent.bottom
+			right: parent.right
+		}
+		text: "New"
+		width: 100
+		height: 50
+		onLeftClicked: () => {
+			var newElement = undefined;
+			let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcCreateElementDialog, root, {});
+			window.show();
 		}
 	}
 }
