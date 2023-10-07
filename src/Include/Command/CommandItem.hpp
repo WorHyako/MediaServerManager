@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_COMMAND_COMMANDITEM_HPP
-#define MEDIASERVERMANAGER_COMMAND_COMMANDITEM_HPP
+#pragma once
 
 #include <utility>
 #include <string>
@@ -11,8 +10,16 @@ namespace MediaServerManager::Command {
      */
     class CommandItem final {
     public:
+        /*
+         * Ctor.
+         */
         CommandItem() noexcept;
 
+        /**
+         * Ctor with pair initialization
+         * @param tag   command tag
+         * @param value command value
+         */
         CommandItem(std::string &&tag, std::string &&value) noexcept;
 
         std::pair<std::string, std::string> valuePair;
@@ -20,5 +27,3 @@ namespace MediaServerManager::Command {
 
     using CommandItemList = std::vector<CommandItem>;
 }
-
-#endif

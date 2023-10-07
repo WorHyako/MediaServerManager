@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
+import Frontend.Global as WorGlobal
 import Frontend.Js as WorJs
 
 /**
@@ -8,6 +9,19 @@ import Frontend.Js as WorJs
  */
 WorControls.Button {
 	id: root
+
+	Component.onCompleted: {
+		root.availableTypes = Qt.binding(function () {
+			console.log("in binding:");
+			const con = WorGlobal.ManagementControls.getAllControls();
+			if (con === undefined || !con.length) {
+				return [];
+			}
+			console.log(con);
+			console.log(`controls length ${con.length}`);
+			return con;
+		});
+	}
 
 	/**
 	 * Object that will contain new element. New element's parent
@@ -17,11 +31,7 @@ WorControls.Button {
 	/**
 	 * All types that button can spawn
 	 */
-	property var availableTypes: [
-		["Management button", WorJs.ObjectsQrcPath.qrcManagementButton],
-		["Management button with text", WorJs.ObjectsQrcPath.qrcManagementButtonWithText],
-		["Table", WorJs.ObjectsQrcPath.qrcTable]
-	]
+	property var availableTypes
 
 	height: 50
 	text: "Add"
@@ -31,45 +41,62 @@ WorControls.Button {
 		menu.open();
 	}
 
-	QtObject {
-		id: internal
-	}
-
 	anchors {
 		bottom: parent.bottom
 		right: parent.right
 	}
 
-	function createAction(name: string, qrcPath: string) {
-		const action = Qt.createQmlObject(
-			`import QtQuick;
-			import QtQuick.Controls;
-			Action {
-				text: "${name}"
-				onTriggered: () => {
-					menu.addElement("${qrcPath}");
-				}
-			}`,
-			menu, `shitAction`);
+	/**
+	 * Create new action for context menu with element creating functionality
+	 * @param name			Name of element to create
+	 */
+	function createAction(name: string) {
+		const args = `text: "${name}"
+			onTriggered: () => {
+				menu.addElement("${name}");
+			}`;
+		const action = WorJs.ItemCreator.createItem(
+			`QtQuick.Controls`,
+			`Action`,
+			args,
+			menu, `${name}_Action`);
 		menu.addAction(action);
 	}
 
 	Menu {
 		id: menu
 
-		function addElement(qrcPath: string) {
-			WorJs.ItemCreator.createNewItem(qrcPath, root.scopeObject, {
-				"canBeMoved": true,
-				"canBeResized": true,
-				"movableScope": root.scopeObject
-			});
-			menu.close();
-		}
-
-		Component.onCompleted: {
+		/**
+		 * Add to menu all available types and open menu
+		 */
+		function open() {
 			root.availableTypes.forEach((element) => {
+				let index = 0;
+				/**
+				 * Check for elements duplication
+				 */
+				while (menu.actionAt(index) !== null) {
+					console.log("action name: ", menu.actionAt(index).text);
+					if (menu.actionAt(index).text === element[0]) {
+						return;
+					}
+					index++;
+				}
 				root.createAction(element[0], element[1]);
 			});
+			menu.popup();
+		}
+
+		function addElement(controlName: string) {
+			console.log(`object name to create: ${controlName}`);
+			const item = WorJs.ItemCreator.createItem(
+				`WorControls`,
+				`${controlName}`,
+				``,
+				root.scopeObject,
+				`ManagementButton`
+			);
+			menu.close();
 		}
 	}
 }

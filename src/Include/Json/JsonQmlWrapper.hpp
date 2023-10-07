@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_JSON_JSONQMLWRAPPER_HPP
-#define MEDIASERVERMANAGER_JSON_JSONQMLWRAPPER_HPP
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -18,6 +17,9 @@ namespace MediaServerManager::Json {
     Q_OBJECT
 
     public:
+        /*
+         * Ctor.
+         */
         JsonQmlWrapper() = default;
 
         using DynamicScopeType = MediaServerManager::DynamicScopeType::Value;
@@ -96,4 +98,3 @@ namespace MediaServerManager::Json {
 #pragma endregion Accessors
     };
 }
-#endif

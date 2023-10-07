@@ -30,7 +30,7 @@ ApplicationWindow {
 			id: background
 
 			anchors.fill: parent
-			source: WorJs.ObjectsQrcPath.qrcBackgroundImage
+			source: "qrc:/Frontend/Assets/app-background.png"
 			z: -1
 		}
 		GridLayout {
@@ -87,7 +87,13 @@ ApplicationWindow {
 			width: 70
 			height: 50
 			onLeftClicked: () => {
-				WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcSettingsWindow, root);
+				const window = WorJs.ItemCreator.createItem(
+					`WorDialogs`,
+					'SettingsWindow',
+					``,
+					root,
+					'SettingsWindow');
+				window.show();
 			}
 
 			anchors {

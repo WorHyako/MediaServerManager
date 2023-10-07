@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_DATABASE_DATABASEMANAGER_HPP
-#define MEDIASERVERMANAGER_DATABASE_DATABASEMANAGER_HPP
+#pragma once
 
 namespace MediaServerManager::DataBase {
 
@@ -31,5 +30,3 @@ namespace MediaServerManager::DataBase {
 #pragma endregion Mutators
     };
 }
-
-#endif

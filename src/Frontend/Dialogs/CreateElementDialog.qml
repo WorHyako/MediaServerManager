@@ -54,6 +54,7 @@ Window {
 			root.newElement = elementScope;
 			WorGlobal.ManagementControls.addControl(root.newElement, controlName.text);
 			root.close();
+			root.destroy();
 		}
 	}
 }

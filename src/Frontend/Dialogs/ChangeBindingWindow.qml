@@ -115,6 +115,7 @@ Window {
 				}
 				if (root.selectedButton.makeCommand(pairList)) {
 					root.close();
+					root.destroy();
 				}
 			}
 		}

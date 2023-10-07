@@ -29,6 +29,7 @@ Item {
 	 * Is button can be resized in dynamic scope
 	 */
 	property bool canBeResized: false
+
 	property var onLeftClicked: undefined
 	property var onRightClicked: undefined
 
@@ -42,13 +43,12 @@ Item {
 	 */
 	property string buttonText: "Button"
 
-	/**
-	 * Text inside Edit Text field
-	 */
-	property string textFieldText: "Text"
-	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
-	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
+	height: 50
+	width: 100
 
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 
@@ -89,36 +89,30 @@ Item {
 		return makingResult;
 	}
 
-	ColumnLayout {
-		spacing: 3
+	WorControls.Button {
+		id: button
+		text: root.buttonText
 		anchors.fill: parent
+		onRightClicked: root.onRightClicked
+		onLeftClicked: root.onLeftClicked
 
-		WorControls.Button {
-			id: button
-			text: root.buttonText
-			Layout.preferredHeight: parent.height * 0.8
-			Layout.preferredWidth: parent.width
-			onRightClicked: root.onRightClicked
-			onLeftClicked: root.onLeftClicked
-
-			WorControls.TransformMouseArea {
-				canBeMoved: root.canBeMoved
-				target: root
-				canBeResized: root.canBeResized
-				movableScope: root.movableScope
-				onLeftClicked: () => {
-					qmlCommandSender.sendCommand();
-					button.leftClick();
-				}
-			}
-
-			WorControls.ContextMenuMouseArea {
-				selectedButton: root
+		WorControls.TransformMouseArea {
+			canBeMoved: root.canBeMoved
+			target: root
+			canBeResized: root.canBeResized
+			movableScope: root.movableScope
+			onLeftClicked: () => {
+				qmlCommandSender.sendCommand();
+				button.leftClick();
 			}
 		}
 
-		WorCommands.QmlCommandSender {
-			id: qmlCommandSender
+		WorControls.ContextMenuMouseArea {
+			selectedButton: root
 		}
+	}
+
+	WorCommands.QmlCommandSender {
+		id: qmlCommandSender
 	}
 }

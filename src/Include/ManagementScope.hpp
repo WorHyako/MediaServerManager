@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_MANAGEMENTSCOPE_HPP
-#define MEDIASERVERMANAGER_MANAGEMENTSCOPE_HPP
+#pragma once
 
 #include <QObject>
 #include <QtQuick>
@@ -11,7 +10,10 @@ namespace MediaServerManager {
 
         QML_ELEMENT
     public:
+        /**
+         * Ctor
+         * @param parent Qt parent object
+         */
         ManagementScope(QObject *parent = nullptr);
     };
 }
-#endif

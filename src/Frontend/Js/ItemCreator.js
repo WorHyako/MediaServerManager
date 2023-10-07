@@ -1,27 +1,33 @@
 /**
- * Create new QtQuick Item, attach to rootItem and give parameter list to this one
- * @param itemPath          Item path which will created via `qrc:/`
- * @param rootItem          Created item's parent object
- * @param parameters        Parameters to created item
- * @returns {undefined|{}}  Created object
+ *
+ * @param qrcScope
+ * @param itemName
+ * @param objectName
+ * @param args
+ * @param parent
+ * @returns {*}
  */
-function createNewItem(itemPath, rootItem, parameters) {
-    const component = Qt.createComponent(itemPath);
-    let item = {};
-    if (component.status === Component.Ready) {
-        item = parameters === undefined
-            ? component.createObject(rootItem)
-            : component.createObject(rootItem, parameters);
-        if (item == null) {
-            console.log("Object " + item + " can't be created");
-            return undefined;
-        }
-        if (item instanceof ApplicationWindow) {
-            item.show();
-        }
-    } else {
-        console.log("ErrorString: " + component.errorString());
-    }
-    console.log("Item", item, "was created");
+function createItem(qrcScope, itemName, args, parent, objectName) {
+    let isWorScope = qrcScope.includes("Wor");
+    const scopeName = isWorScope
+        ? qrcScope.slice(3)
+        : '';
+    const objectViaString = `
+        import QtQuick;
+        ${isWorScope
+        ? `import Frontend.${scopeName} as ${qrcScope}`
+        : `import ${qrcScope}`}
+        
+		${isWorScope
+        ? `${qrcScope}.${itemName}`
+        : itemName} {
+		    id: root
+		    objectName: "${objectName}"
+		    
+		    ${args}
+		}`;
+    console.log("object to create: ", objectViaString);
+    const item = Qt.createQmlObject(objectViaString, parent, objectName);
+    console.log(`Created object: ${item}`);
     return item;
 }

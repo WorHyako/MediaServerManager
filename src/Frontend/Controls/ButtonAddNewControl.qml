@@ -17,13 +17,7 @@ WorControls.Button {
 	/**
 	 * 	Arguments to new element
 	 */
-	property var newElementArgs: {
-	}
-
-	/**
-	 * 	Qrc path of new element
-	 */
-	required property string qrcElementPath
+	property var newElementArgs: ``
 
 	/**
 	 * Object that will contain new control. New control's parent
@@ -46,40 +40,40 @@ WorControls.Button {
 	Menu {
 		id: menu
 
-		function addElement(isButton: bool) {
+		function addElement(name: string, args = ``) {
 			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-			if (rangeCheck) {
-				if (isButton === undefined) {
-					WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-				} else {
-					if (isButton) {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButtonWithText, root.scopeObject, root.newElementArgs);
-					} else {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcTable, root.scopeObject, {});
-					}
-				}
-				menu.close();
+			if (!rangeCheck) {
+				return;
 			}
+
+			WorJs.ItemCreator.createItem(
+				`WorControls`,
+				`${name}`,
+				`${args}`,
+				root.scopeObject,
+				`${name}`
+			);
+			menu.close();
 		}
 
 		Action {
 			text: "Default"
 			onTriggered: () => {
-				menu.addElement();
+				menu.addElement(`ManagementButton`, root.newElementArgs);
 			}
 		}
 
 		Action {
 			text: "Add button"
 			onTriggered: () => {
-				menu.addElement(true);
+				menu.addElement(`ManagementButton`, root.newElementArgs);
 			}
 		}
 
 		Action {
 			text: "Add table"
 			onTriggered: () => {
-				menu.addElement(false);
+				menu.addElement(`Table`);
 			}
 		}
 	}

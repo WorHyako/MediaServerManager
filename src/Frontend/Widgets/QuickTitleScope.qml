@@ -2,16 +2,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
-import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
- *  Item root
- *      | Rectangle
- *          | ColumnLayout linesList
- *          | WorControls.ButtonAddNewControl
- *          | WorControls.ButtonLoadConfig
- *          | WorControls.ButtonSaveConfig
+ *
  */
 Rectangle {
     id: root
@@ -33,7 +27,6 @@ Rectangle {
 
     WorControls.ButtonAddNewControl {
         maxElementNum: 10
-        qrcElementPath: WorJs.ObjectsQrcPath.qrcQuickTitleLine
         scopeObject: linesList
     }
 

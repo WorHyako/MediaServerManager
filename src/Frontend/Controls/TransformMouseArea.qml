@@ -28,6 +28,9 @@ MouseArea {
 	 */
 	property var target: parent
 
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 
