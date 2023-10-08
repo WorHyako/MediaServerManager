@@ -16,6 +16,10 @@ MouseArea {
 	 * Can object be resized or not
 	 */
 	property bool canBeResized: false
+
+	/**
+	 * Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
 
 	/**
@@ -103,6 +107,8 @@ MouseArea {
 	}
 
 	onPressed: mouse => {
+		console.log("movable area: ", root.movableScope);
+		console.log("target: ", root.target);
 		internal.resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
 		internal.moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
 		internal.lastButtonSize.x = root.target.width;

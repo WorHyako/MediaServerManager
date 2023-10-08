@@ -12,13 +12,10 @@ WorControls.Button {
 
 	Component.onCompleted: {
 		root.availableTypes = Qt.binding(function () {
-			console.log("in binding:");
 			const con = WorGlobal.ManagementControls.getAllControls();
 			if (con === undefined || !con.length) {
 				return [];
 			}
-			console.log(con);
-			console.log(`controls length ${con.length}`);
 			return con;
 		});
 	}
@@ -76,7 +73,6 @@ WorControls.Button {
 				 * Check for elements duplication
 				 */
 				while (menu.actionAt(index) !== null) {
-					console.log("action name: ", menu.actionAt(index).text);
 					if (menu.actionAt(index).text === element[0]) {
 						return;
 					}

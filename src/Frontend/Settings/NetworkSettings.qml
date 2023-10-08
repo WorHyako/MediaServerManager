@@ -6,20 +6,6 @@ import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *  | ColumnLayout
- *  	| RowLayout
- *  		| WorBackgrounds.TextBackgroundRectangle
- *  			| WorControls.Text
- *  		| WorControls.EditTextField (destinationIpTextEdit)
- *  	| RowLayout
- *  		| WorBackgrounds.TextBackgroundRectangle
- *  			| WorControls.Text
- *  		| WorControls.EditTextField (destinationPortTextEdit)
- *	| WorControls.Button
  */
 Item {
 	id: root

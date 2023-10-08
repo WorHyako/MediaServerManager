@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
-import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
 import Frontend.QmlObjects.Command as WorCommands
 
@@ -30,7 +28,14 @@ Item {
 	 */
 	property bool canBeResized: false
 
+	/**
+	 * Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
+
+	/**
+	 * Event on mouse right click
+	 */
 	property var onRightClicked: undefined
 
 	/**
@@ -42,6 +47,8 @@ Item {
 	 * Text inside button body
 	 */
 	property string buttonText: "Button"
+
+	property var commandSender: root.qmlCommandSender
 
 	height: 50
 	width: 100

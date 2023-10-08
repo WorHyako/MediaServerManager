@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
@@ -33,8 +32,7 @@ Item {
 		scopeObject: contentScope
 		newElementArgs: `
 			canBeMoved: true
-			canBeResized: true
-			movableScope: root`
+			canBeResized: true`
 	}
 
 	WorControls.ButtonLoadConfig {

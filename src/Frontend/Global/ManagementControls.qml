@@ -18,8 +18,6 @@ Item {
 				return element.name === nameTag;
 			});
 		}
-		console.log(`in addControl`);
-		console.log(found);
 		if (found !== undefined) {
 			return false;
 		}

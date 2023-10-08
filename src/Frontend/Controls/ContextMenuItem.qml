@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
-import Frontend.Widgets as WorWidgets
 
 /**
  *

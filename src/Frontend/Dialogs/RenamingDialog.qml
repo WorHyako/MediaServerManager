@@ -19,12 +19,12 @@ Window {
 	/**
 	 * Object to change displayed text
 	 */
-	required property QtObject objectToRename
+	property QtObject objectToRename
 
 	/**
 	 * Object's property to rename
 	 */
-	required property string propertyToRename
+	property string propertyToRename
 
 	height: 250
 	width: 350

@@ -1,6 +1,5 @@
 import QtQuick
 import Frontend.Controls as WorControls
-import Frontend.Js as WorJs
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Global as WorGlobal
 

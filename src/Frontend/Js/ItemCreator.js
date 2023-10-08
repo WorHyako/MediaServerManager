@@ -23,11 +23,8 @@ function createItem(qrcScope, itemName, args, parent, objectName) {
         : itemName} {
 		    id: root
 		    objectName: "${objectName}"
-		    
 		    ${args}
 		}`;
     console.log("object to create: ", objectViaString);
-    const item = Qt.createQmlObject(objectViaString, parent, objectName);
-    console.log(`Created object: ${item}`);
-    return item;
+    return Qt.createQmlObject(objectViaString, parent, objectName);
 }

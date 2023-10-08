@@ -46,20 +46,21 @@ WorControls.Button {
 				return;
 			}
 
-			WorJs.ItemCreator.createItem(
+			const element = WorJs.ItemCreator.createItem(
 				`WorControls`,
 				`${name}`,
-				`${args}`,
+				args,
 				root.scopeObject,
 				`${name}`
 			);
+			element.movableScope = root.scopeObject;
 			menu.close();
 		}
 
 		Action {
-			text: "Default"
+			text: "Add button with text"
 			onTriggered: () => {
-				menu.addElement(`ManagementButton`, root.newElementArgs);
+				menu.addElement(`ManagementButtonWithText`, root.newElementArgs);
 			}
 		}
 

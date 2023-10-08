@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import Frontend.Js as WorJs
 import Frontend.Controls as WorControls
 import Frontend.Actions as WorActions
 
