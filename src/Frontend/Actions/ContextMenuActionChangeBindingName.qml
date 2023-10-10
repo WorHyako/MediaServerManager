@@ -14,7 +14,7 @@ Action {
 	text: "Change binding name"
 
 	onTriggered: () => {
-		let window = WorJs.ItemCreator.createItem(
+		const window = WorJs.ItemCreator.createItem(
 			`WorDialogs`,
 			`ChangeBindingWindow`,
 			`selectedButton: ${selectedObject}`,

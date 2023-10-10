@@ -8,12 +8,26 @@
  * @returns {*}
  */
 function createItem(qrcScope, itemName, args, parent, objectName) {
-    let isWorScope = qrcScope.includes("Wor");
+    const objectViaString = getStringifyObject(qrcScope, itemName, args, objectName);
+    console.log("object to create: ", objectViaString);
+    return Qt.createQmlObject(objectViaString, parent, objectName);
+}
+
+/**
+ *
+ * @param qrcScope
+ * @param itemName
+ * @param args
+ * @param objectName
+ * @returns {string}
+ */
+function getStringifyObject(qrcScope, itemName, args, objectName) {
+    const isWorScope = qrcScope.includes("Wor");
     const scopeName = isWorScope
         ? qrcScope.slice(3)
         : '';
-    const objectViaString = `
-        import QtQuick;
+    return `import QtQuick
+        import QtQuick.Controls
         ${isWorScope
         ? `import Frontend.${scopeName} as ${qrcScope}`
         : `import ${qrcScope}`}
@@ -25,6 +39,20 @@ function createItem(qrcScope, itemName, args, parent, objectName) {
 		    objectName: "${objectName}"
 		    ${args}
 		}`;
-    console.log("object to create: ", objectViaString);
-    return Qt.createQmlObject(objectViaString, parent, objectName);
 }
+
+// /**
+//  *
+//  * @param controlName
+//  * @param controlId
+//  * @param args
+//  * @returns {string}
+//  */
+// function getStringifyElement(controlName, controlId, args = ``) {
+//     return `
+//     import
+//     WorControls.${controlName} {
+//         id: "${controlId}"
+//         ${args}
+//     }`;
+// }

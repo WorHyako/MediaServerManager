@@ -31,7 +31,7 @@ Action {
 			contextMenuRoot,
 			`RenamingDialog`
 		);
-		dialog.objectToRename = selectedButton;
+		dialog.objectToRename = objectToRename;
 		dialog.propertyToRename = propertyToRename;
 		dialog.show();
 	}

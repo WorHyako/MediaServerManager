@@ -29,7 +29,15 @@ Item {
 	 * Is button can be resized in dynamic scope
 	 */
 	property bool canBeResized: false
+
+	/**
+	 * Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
+
+	/**
+	 * Event on mouse right click
+	 */
 	property var onRightClicked: undefined
 
 	/**
@@ -50,6 +58,9 @@ Item {
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 

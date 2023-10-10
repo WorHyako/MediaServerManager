@@ -12,20 +12,21 @@ Item {
 	/**
 	 * Function to add new unique control
 	 */
-	property var addControl: (control, nameTag) => {
-		if(internal.controls !== undefined) {
-			var found = internal.controls.find((element) => {
-				return element.name === nameTag;
-			});
+	property var addControl: (control, nameTag, strView) => {
+		if (internal.controls === undefined) {
+			return false;
 		}
+		const found = internal.controls.find((element) => {
+			return element.name === nameTag;
+		});
 		if (found !== undefined) {
 			return false;
 		}
-		internal.controls.push({name: nameTag, control: control});
-		console.log("control:", control);
-		console.log("nameTag:", nameTag);
+		internal.controls.push({name: nameTag, control: control, strView: strView});
+		console.log(`control: ${control}\n
+			stringView: ${strView}\n
+			nameTag: ${nameTag}`);
 		console.log(`controls length ${internal.controls.length}`);
-		console.log(`controls.name ${internal.controls[0].name}, controls.control ${internal.controls[0].control}`);
 		return true;
 	};
 
@@ -81,7 +82,16 @@ Item {
 			root,
 			`Management Button With Text`
 		);
+
+		const table = WorJs.ItemCreator.createItem(
+			`WorControls`,
+			`Table`,
+			``,
+			root,
+			`Table`
+		);
 		internal.controls[0] = ["ManagementButton", button];
 		internal.controls.push(["ManagementButtonWithText", buttonWithText]);
+		internal.controls.push(["Table", table]);
 	}
 }

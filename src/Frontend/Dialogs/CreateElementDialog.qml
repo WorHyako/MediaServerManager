@@ -1,5 +1,6 @@
 import QtQuick
 import Frontend.Controls as WorControls
+import Frontend.Js as WorJs
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Global as WorGlobal
 
@@ -8,6 +9,9 @@ import Frontend.Global as WorGlobal
  */
 Window {
 	id: root
+
+	modality: Qt.ApplicationModal
+
 	width: 300
 	height: 250
 	minimumHeight: 250
@@ -50,10 +54,23 @@ Window {
 		}
 		text: "Save"
 		onLeftClicked: () => {
-			root.newElement = elementScope;
-			WorGlobal.ManagementControls.addControl(root.newElement, controlName.text);
-			root.close();
-			root.destroy();
+			let element = Qt.createQmlObject(
+				`import QtQuick
+				import QtQuick.Controls
+				import Frontend.Controls as WorControls
+				
+				Item {
+					id: root
+				}
+				`,
+				root
+			);
+			console.log("children number: ", element.children.length);
+			WorGlobal.ManagementControls.addControl();
+			// root.newElement = elementScope;
+			// WorGlobal.ManagementControls.addControl(root.newElement, controlName.text);
+			// root.close();
+			// root.destroy();
 		}
 	}
 }

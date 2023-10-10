@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.Controls as WorControls
@@ -10,6 +9,8 @@ import Frontend.Js as WorJs
  */
 Window {
 	id: root
+
+	modality: Qt.ApplicationModal
 
 	/**
 	 * New text value
@@ -100,6 +101,7 @@ Window {
 			onLeftClicked: () => {
 				WorJs.Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
 				root.close();
+				// root.destroy();
 			}
 		}
 	}

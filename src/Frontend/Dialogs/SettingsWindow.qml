@@ -11,6 +11,9 @@ import Frontend.Controls as WorControls
  */
 ApplicationWindow {
 	id: root
+
+	modality: Qt.ApplicationModal
+
 	height: 600
 	width: 1000
 

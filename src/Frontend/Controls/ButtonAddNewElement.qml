@@ -26,6 +26,12 @@ WorControls.Button {
 	required property QtObject scopeObject
 
 	/**
+	 * List of element for current control
+	 * Contains vars via [{stringifyObject}, {...}, ...]
+	 */
+	property var currentControlElements: []
+
+	/**
 	 * All types that button can spawn
 	 */
 	property var availableTypes
@@ -45,7 +51,7 @@ WorControls.Button {
 
 	/**
 	 * Create new action for context menu with element creating functionality
-	 * @param name			Name of element to create
+	 * @param name	Name of element to create
 	 */
 	function createAction(name: string) {
 		const args = `text: "${name}"
@@ -88,10 +94,22 @@ WorControls.Button {
 			const item = WorJs.ItemCreator.createItem(
 				`WorControls`,
 				`${controlName}`,
-				``,
+				`canBeMoved: true
+				canBeResized: true`,
 				root.scopeObject,
-				`ManagementButton`
+				`${controlName}`
 			);
+			item.movableScope = root.scopeObject;
+			const stringifyView = WorJs.ItemCreator.getStringifyObject(
+				`WorControls`,
+				`${controlName}`,
+				`canBeMoved: true
+				canBeResized: true`,
+				root.scopeObject,
+				`ManagementButton`);
+			root.currentControlElements.push(stringifyView);
+			console.log(`stringify view: ${stringifyView}`);
+			console.log(`currentControlElements: ${root.currentControlElements}`);
 			menu.close();
 		}
 	}
