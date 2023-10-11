@@ -45,10 +45,6 @@ Menu {
 	 */
 	required property QtObject selectedButton
 
-	function open() {
-		root.popup();
-	}
-
 	padding: 3
 
 	delegate: WorControls.ContextMenuItem

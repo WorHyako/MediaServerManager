@@ -71,6 +71,11 @@ function loadUiFromConfig(configString, configType, scopeObject) {
     return true;
 }
 
+/**
+ *
+ * @param arr
+ * @returns {{}}
+ */
 function arrayToObject(arr) {
     let s = {};
     const key = 0;

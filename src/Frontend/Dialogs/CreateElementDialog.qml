@@ -14,6 +14,7 @@ Window {
 
 	width: 300
 	height: 250
+
 	minimumHeight: 250
 	minimumWidth: 300
 
@@ -33,6 +34,7 @@ Window {
 	}
 
 	WorControls.ButtonAddNewElement {
+		id: buttonAddNewElement
 		scopeObject: elementScope
 	}
 
@@ -54,23 +56,26 @@ Window {
 		}
 		text: "Save"
 		onLeftClicked: () => {
-			let element = Qt.createQmlObject(
+			let item = Qt.createQmlObject(
 				`import QtQuick
-				import QtQuick.Controls
-				import Frontend.Controls as WorControls
 				
 				Item {
 					id: root
-				}
-				`,
-				root
+				}`,
+				elementScope
 			);
-			console.log("children number: ", element.children.length);
-			WorGlobal.ManagementControls.addControl();
-			// root.newElement = elementScope;
-			// WorGlobal.ManagementControls.addControl(root.newElement, controlName.text);
-			// root.close();
-			// root.destroy();
+			let controlList = [item];
+			elementScope.children.forEach((child) => {
+				const element = WorJs.ItemCreator.getStringifyObject(
+					`WorControls`,
+					`${child.objectName}`,
+					``,
+					`${child.objectName}`
+				);
+				controlList.push(element);
+			});
+			WorGlobal.ManagementControls.addControl(controlName.text, controlList);
+			buttonAddNewElement.reset();
 		}
 	}
 }

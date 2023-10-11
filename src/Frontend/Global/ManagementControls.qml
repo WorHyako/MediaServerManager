@@ -12,21 +12,19 @@ Item {
 	/**
 	 * Function to add new unique control
 	 */
-	property var addControl: (control, nameTag, strView) => {
+	property var addControl: (nameTag, strView) => {
 		if (internal.controls === undefined) {
 			return false;
 		}
 		const found = internal.controls.find((element) => {
 			return element.name === nameTag;
 		});
+		console.log(`found: ${found}`);
 		if (found !== undefined) {
 			return false;
 		}
-		internal.controls.push({name: nameTag, control: control, strView: strView});
-		console.log(`control: ${control}\n
-			stringView: ${strView}\n
-			nameTag: ${nameTag}`);
-		console.log(`controls length ${internal.controls.length}`);
+		internal.controls.push({name: nameTag, strView: strView});
+		console.log(`control ${nameTag} was added to ManagementControl`);
 		return true;
 	};
 
@@ -36,11 +34,11 @@ Item {
 	property var getControl: (key) => {
 		let control;
 		if (Number.isInteger(key)) {
-			control = internal.controls[key].name;
+			control = internal.controls[key];
 		} else {
 			internal.controls.forEach((each) => {
 				if (each.hasOwnProperty(key)) {
-					return each.name;
+					control = each;
 				}
 			});
 		}
@@ -67,31 +65,29 @@ Item {
 	}
 
 	Component.onCompleted: {
-		const button = WorJs.ItemCreator.createItem(
+		const button = WorJs.ItemCreator.getStringifyObject(
 			`WorControls`,
 			`ManagementButton`,
 			``,
-			root,
 			`Management Button`
 		);
 
-		const buttonWithText = WorJs.ItemCreator.createItem(
+		const buttonWithText = WorJs.ItemCreator.getStringifyObject(
 			`WorControls`,
 			`ManagementButtonWithText`,
 			``,
-			root,
 			`Management Button With Text`
 		);
 
-		const table = WorJs.ItemCreator.createItem(
+		const table = WorJs.ItemCreator.getStringifyObject(
 			`WorControls`,
 			`Table`,
 			``,
-			root,
 			`Table`
 		);
-		internal.controls[0] = ["ManagementButton", button];
-		internal.controls.push(["ManagementButtonWithText", buttonWithText]);
-		internal.controls.push(["Table", table]);
+
+		internal.controls.push({name: "ManagementButton", strView: button});
+		internal.controls.push({name: "ManagementButtonWithText", strView: buttonWithText});
+		internal.controls.push({name: "Table", strView: table});
 	}
 }
