@@ -13,7 +13,7 @@ Item {
 	/**
 	 * Object's name
 	 */
-	property string objectName: "Management button"
+	property string objectName: "Management button with text"
 
 	/**
 	 * XML command to send to media manager
@@ -29,7 +29,15 @@ Item {
 	 * Is button can be resized in dynamic scope
 	 */
 	property bool canBeResized: false
+
+	/**
+	 * Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
+
+	/**
+	 * Event on mouse right click
+	 */
 	property var onRightClicked: undefined
 
 	/**
@@ -46,9 +54,13 @@ Item {
 	 * Text inside Edit Text field
 	 */
 	property string textFieldText: "Text"
+
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 

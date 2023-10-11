@@ -1,19 +1,10 @@
 import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
-import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *      | WorControls.ButtonSaveConfig
- *      | WorControls.ButtonLoadConfig
- *      | GridView (grid)
- *      | WorControls.ButtonAddNewControl
  */
 Item {
     id: root
@@ -44,7 +35,6 @@ Item {
 
     WorControls.ButtonAddNewControl {
         maxElementNum: grid.columns * grid.rows
-        qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButtonWithText
         scopeObject: grid
     }
 }

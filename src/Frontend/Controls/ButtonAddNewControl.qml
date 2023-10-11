@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
+import Frontend.Global as WorGlobal
 
 /**
  * Object based on WorControls.Button to create new elements
@@ -17,13 +18,7 @@ WorControls.Button {
 	/**
 	 * 	Arguments to new element
 	 */
-	property var newElementArgs: {
-	}
-
-	/**
-	 * 	Qrc path of new element
-	 */
-	required property string qrcElementPath
+	property var newElementArgs: ``
 
 	/**
 	 * Object that will contain new control. New control's parent
@@ -46,41 +41,64 @@ WorControls.Button {
 	Menu {
 		id: menu
 
-		function addElement(isButton: bool) {
+		/**
+		 * Create new action for context menu with element creating functionality
+		 * @param name	Name of element to create
+		 */
+		function createAction(name: string) {
+			const args = `text: "${name}"
+			onTriggered: () => {
+				menu.addElement("${name}");
+			}`;
+			const action = WorJs.ItemCreator.createItem(
+				`QtQuick.Controls`,
+				`Action`,
+				args,
+				menu, `${name}_Action`);
+			menu.addAction(action);
+		}
+		/**
+		 *
+		 */
+		function open() {
+			menu.cleanActions();
+			const availableTypes = WorGlobal.ManagementControls.getAllControls();
+			availableTypes.forEach((element) => {
+				menu.createAction(element.name);
+				console.log(`action ${element.name} was added`);
+			});
+			menu.popup();
+		}
+
+		/**
+		 * Cleaning current actions from menu
+		 */
+		function cleanActions() {
+			for (let index = menu.count; index >= 0; --index) {
+				menu.takeAction(index);
+			}
+		}
+
+		/**
+		 *
+		 * @param name
+		 * @param args
+		 */
+		function addElement(name: string, args = ``) {
 			const rangeCheck = root.scopeObject.children.length < root.maxElementNum;
-			if (rangeCheck) {
-				if (isButton === undefined) {
-					WorJs.ItemCreator.createNewItem(root.qrcElementPath, root.scopeObject, root.newElementArgs);
-				} else {
-					if (isButton) {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcManagementButtonWithText, root.scopeObject, root.newElementArgs);
-					} else {
-						WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcTable, root.scopeObject, {});
-					}
-				}
-				menu.close();
+			if (!rangeCheck) {
+				return;
 			}
-		}
 
-		Action {
-			text: "Default"
-			onTriggered: () => {
-				menu.addElement();
-			}
-		}
-
-		Action {
-			text: "Add button"
-			onTriggered: () => {
-				menu.addElement(true);
-			}
-		}
-
-		Action {
-			text: "Add table"
-			onTriggered: () => {
-				menu.addElement(false);
-			}
+			const element = WorJs.ItemCreator.createItem(
+				`WorControls`,
+				`${name}`,
+				args,
+				root.scopeObject,
+				`${name}`
+			);
+			element.movableScope = root.scopeObject;
+			menu.close();
 		}
 	}
 }

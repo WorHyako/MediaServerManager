@@ -19,7 +19,7 @@ MouseArea {
 
 	onClicked: {
 		if (selectedButton !== undefined)
-			contextMenu.open();
+			contextMenu.popup();
 	}
 
 	WorControls.ContextMenu {

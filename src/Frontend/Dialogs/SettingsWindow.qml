@@ -11,12 +11,15 @@ import Frontend.Controls as WorControls
  */
 ApplicationWindow {
 	id: root
+
+	modality: Qt.ApplicationModal
+
 	height: 600
 	width: 1000
 
 	Image {
 		anchors.fill: parent
-		source: WorJs.ObjectsQrcPath.qrcBackgroundImage
+		source: "qrc:/Frontend/Assets/app-background.png"
 		z: -1
 	}
 
@@ -66,7 +69,7 @@ ApplicationWindow {
 		height: 50
 		onLeftClicked: () => {
 			var newElement = undefined;
-			let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcCreateElementDialog, root, {});
+			let window = WorJs.QrcItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcCreateElementDialog, root, {});
 			window.show();
 		}
 	}

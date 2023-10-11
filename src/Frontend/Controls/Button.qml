@@ -29,10 +29,16 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	 */
 	property string text: ""
 
+	/**
+	 * Imitate mouse left click
+	 */
 	function leftClick() {
 		leftClickArea.clicked(Qt.MouseEvent);
 	}
 
+	/**
+	 * Imitate mouse right click
+	 */
 	function rightClick() {
 		rightClickArea.clicked(Qt.MouseEvent);
 	}

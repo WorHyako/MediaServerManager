@@ -14,10 +14,13 @@ Action {
 	text: "Change binding name"
 
 	onTriggered: () => {
-		let window = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcChangeBindingWindow,
-			selectedObject, {
-				"selectedButton": selectedObject
-			});
+		const window = WorJs.ItemCreator.createItem(
+			`WorDialogs`,
+			`ChangeBindingWindow`,
+			`selectedButton: ${selectedObject}`,
+			selectedObject,
+			`Change binding name window`
+		);
 		window.show();
 	}
 }

@@ -16,6 +16,10 @@ MouseArea {
 	 * Can object be resized or not
 	 */
 	property bool canBeResized: false
+
+	/**
+	 * Event on mouse left click
+	 */
 	property var onLeftClicked: undefined
 
 	/**
@@ -28,6 +32,9 @@ MouseArea {
 	 */
 	property var target: parent
 
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 

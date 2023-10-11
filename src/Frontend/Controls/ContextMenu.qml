@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import Frontend.Js as WorJs
 import Frontend.Controls as WorControls
 import Frontend.Actions as WorActions
 
@@ -45,10 +44,6 @@ Menu {
 	 * Button that contain menu
 	 */
 	required property QtObject selectedButton
-
-	function open() {
-		root.popup();
-	}
 
 	padding: 3
 

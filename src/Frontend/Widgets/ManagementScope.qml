@@ -1,20 +1,10 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 import Frontend.Controls as WorControls
-import Frontend.Js as WorJs
 import MediaServerManager 1.0 as MSM
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *  | Item (contentScope)
- *      | WorControls.ButtonSaveConfig
- *      | WorControls.ButtonAddNewControl
- *      | WorControls.ButtonLoadConfig
  */
 Item {
 	id: root
@@ -39,15 +29,10 @@ Item {
 
 	WorControls.ButtonAddNewControl {
 		maxElementNum: 30
-		qrcElementPath: WorJs.ObjectsQrcPath.qrcManagementButtonWithText
 		scopeObject: contentScope
-		Component.onCompleted: {
-			newElementArgs = {
-				"canBeMoved": true,
-				"canBeResized": true,
-				"movableScope": root
-			}
-		}
+		newElementArgs: `
+			canBeMoved: true
+			canBeResized: true`
 	}
 
 	WorControls.ButtonLoadConfig {
@@ -55,7 +40,7 @@ Item {
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope
 	}
-  
+
 	WorControls.ContextMenu {
 		id: contextMenu
 		selectedButton: contentScope

@@ -9,9 +9,11 @@ import Frontend.Controls as WorControls
  */
 Window {
 	id: root
-	flags: Qt.Dialog
+
 	height: 300
 	width: 500
+
+	modality: Qt.ApplicationModal
 
 	/**
 	 * Object to change this one binding text
@@ -115,6 +117,7 @@ Window {
 				}
 				if (root.selectedButton.makeCommand(pairList)) {
 					root.close();
+					root.destroy();
 				}
 			}
 		}

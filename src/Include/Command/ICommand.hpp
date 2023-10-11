@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_ICOMMAND_HPP
-#define MEDIASERVERMANAGER_ICOMMAND_HPP
+#pragma once
 
 #include "Network/ISocket.hpp"
 #include "Command/CommandItem.hpp"
@@ -8,8 +7,14 @@
 
 namespace MediaServerManager::Command {
 
+    /*
+     * Interface to all command classes
+     */
     class ICommand {
     public:
+        /*
+         * Dtor.
+         */
         virtual ~ICommand() = default;
 
         using SocketRef = std::shared_ptr<Wor::Network::ISocket>;
@@ -23,5 +28,3 @@ namespace MediaServerManager::Command {
         [[nodiscard]] virtual std::string ToString() noexcept = 0;
     };
 }
-
-#endif

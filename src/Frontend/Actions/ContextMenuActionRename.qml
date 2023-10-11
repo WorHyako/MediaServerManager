@@ -24,10 +24,15 @@ Action {
 	text: "Rename"
 
 	onTriggered: () => {
-		const dialog = WorJs.ItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcRenamingWindow, contextMenuRoot, {
-			"objectToRename": root.selectedButton,
-			"propertyToRename": propertyToRename
-		});
+		const dialog = WorJs.ItemCreator.createItem(
+			`WorDialogs`,
+			`RenamingDialog`,
+			``,
+			contextMenuRoot,
+			`RenamingDialog`
+		);
+		dialog.objectToRename = objectToRename;
+		dialog.propertyToRename = propertyToRename;
 		dialog.show();
 	}
 }

@@ -68,7 +68,7 @@ Item {
 				anchors.fill: parent
 
 				onClicked: {
-					contextMenu.open();
+					contextMenu.popup();
 				}
 			}
 		}

@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_JSON_ELEMENTCONFIG_HPP
-#define MEDIASERVERMANAGER_JSON_ELEMENTCONFIG_HPP
+#pragma once
 
 #include <iostream>
 
@@ -13,6 +12,9 @@ namespace MediaServerManager {
      */
     class ElementConfig {
     public:
+        /*
+         * Ctor.
+         */
         ElementConfig() = default;
 
         Wor::Vector::Vector2<int> size = { 1, 1 };
@@ -21,4 +23,3 @@ namespace MediaServerManager {
         std::string id = "None";
     };
 }
-#endif

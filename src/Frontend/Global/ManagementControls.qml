@@ -1,6 +1,7 @@
 pragma Singleton
 
 import QtQuick
+import Frontend.Js as WorJs
 
 /**
  * Class contain list of unique management controls, that can be placed on management scope
@@ -11,40 +12,49 @@ Item {
 	/**
 	 * Function to add new unique control
 	 */
-	property var addControl: (control, nameTag) => {
-		console.log("controls length: ", internal.controls.length);
-		console.log("controls: ", internal.controls);
-		console.log("nameTag: ", nameTag);
-		var found = internal.controls.find((element) => {
-			console.log("in find body");
-			console.log(nameTag);
-			return element.name === nameTag;
-		});
-		if (found === undefined) {
+	property var addControl: (nameTag, strView) => {
+		if (internal.controls === undefined) {
 			return false;
 		}
-		internal.controls.push({name: nameTag, control: control});
-		console.log(internal.controls[0].name)
+		const found = internal.controls.find((element) => {
+			return element.name === nameTag;
+		});
+		console.log(`found: ${found}`);
+		if (found !== undefined) {
+			return false;
+		}
+		internal.controls.push({name: nameTag, strView: strView});
+		console.log(`control ${nameTag} was added to ManagementControl`);
 		return true;
 	};
 
 	/**
-	 *
+	 * Return control by index via int or nameTag via string
 	 */
 	property var getControl: (key) => {
 		let control;
 		if (Number.isInteger(key)) {
-			control = internal.controls[key].name;
+			control = internal.controls[key];
 		} else {
 			internal.controls.forEach((each) => {
 				if (each.hasOwnProperty(key)) {
-					return each.name;
+					control = each;
 				}
-			})
+			});
 		}
 		return control;
 	}
 
+	/**
+	 * Return all available controls
+	 */
+	property var getAllControls: () => {
+		return internal.controls;
+	}
+
+	/**
+	 * Private variables and objects
+	 */
 	QtObject {
 		id: internal
 
@@ -52,5 +62,32 @@ Item {
 		 * List of available controls
 		 */
 		property var controls: []
+	}
+
+	Component.onCompleted: {
+		const button = WorJs.ItemCreator.getStringifyObject(
+			`WorControls`,
+			`ManagementButton`,
+			``,
+			`Management Button`
+		);
+
+		const buttonWithText = WorJs.ItemCreator.getStringifyObject(
+			`WorControls`,
+			`ManagementButtonWithText`,
+			``,
+			`Management Button With Text`
+		);
+
+		const table = WorJs.ItemCreator.getStringifyObject(
+			`WorControls`,
+			`Table`,
+			``,
+			`Table`
+		);
+
+		internal.controls.push({name: "ManagementButton", strView: button});
+		internal.controls.push({name: "ManagementButtonWithText", strView: buttonWithText});
+		internal.controls.push({name: "Table", strView: table});
 	}
 }

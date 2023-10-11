@@ -1,27 +1,54 @@
 /**
- * Create new QtQuick Item, attach to rootItem and give parameter list to this one
- * @param itemPath          Item path which will created via `qrc:/`
- * @param rootItem          Created item's parent object
- * @param parameters        Parameters to created item
- * @returns {undefined|{}}  Created object
+ * Create new QtQuick Item, attach to parent and give args list to this one
+ * @param qrcScope      Module which contain item. F.e. QtQuick.Controls or WorControls
+ * @param itemName      Item qml name. F.e. Rectangle from QtQuick.Controls or ManagementButton from WorControls
+ * @param objectName    Object name for item
+ * @param args          Parameters to created item
+ * @param parent        Created item's parent object
+ * @returns {*}         Created object
  */
-function createNewItem(itemPath, rootItem, parameters) {
-    const component = Qt.createComponent(itemPath);
-    let item = {};
-    if (component.status === Component.Ready) {
-        item = parameters === undefined
-            ? component.createObject(rootItem)
-            : component.createObject(rootItem, parameters);
-        if (item == null) {
-            console.log("Object " + item + " can't be created");
-            return undefined;
-        }
-        if (item instanceof ApplicationWindow) {
-            item.show();
-        }
-    } else {
-        console.log("ErrorString: " + component.errorString());
-    }
-    console.log("Item", item, "was created");
-    return item;
+function createItem(qrcScope, itemName, args, parent, objectName) {
+    const objectViaString = getStringifyObject(qrcScope, itemName, args, objectName);
+    console.log("object to create: ", objectViaString);
+    return Qt.createQmlObject(objectViaString, parent, objectName);
+}
+
+/**
+ *
+ * @param stringifyView
+ * @param parent
+ * @param objectName
+ * @returns {*}
+ */
+function createItemStr(stringifyView, parent, objectName) {
+    console.log("object to create: ", stringifyView);
+    return Qt.createQmlObject(stringifyView, parent, objectName);
+}
+
+/**
+ *
+ * @param qrcScope
+ * @param itemName
+ * @param args
+ * @param objectName
+ * @returns {string}
+ */
+function getStringifyObject(qrcScope, itemName, args, objectName) {
+    const isWorScope = qrcScope.includes("Wor");
+    const scopeName = isWorScope
+        ? qrcScope.slice(3)
+        : '';
+    return `import QtQuick
+        import QtQuick.Controls
+        ${isWorScope
+        ? `import Frontend.${scopeName} as ${qrcScope}`
+        : `import ${qrcScope}`}
+        
+		${isWorScope
+        ? `${qrcScope}.${itemName}`
+        : itemName} {
+		    id: root
+		    objectName: "${objectName}"
+		    ${args}
+		}`;
 }

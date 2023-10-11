@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
-#define MEDIASERVERMANAGER_COMMAND_COMMANDBUILDER_HPP
+#pragma once
 
 #include "Command/ActionCommand.hpp"
 
@@ -11,16 +10,34 @@ namespace MediaServerManager::Command {
     template<typename CommandType>
     class CommandBuilder {
     public:
+        /*
+         * Ctor.
+         */
         CommandBuilder() = delete;
 
+        /*
+         * Ctor.
+         */
         CommandBuilder(CommandBuilder&&) = delete;
 
+        /*
+         * Ctor.
+         */
         CommandBuilder(CommandBuilder&) = delete;
 
+        /*
+         * Dtor.
+         */
         ~CommandBuilder() = delete;
 
+        /*
+         * Copy operator
+         */
         CommandBuilder operator=(CommandBuilder&) = delete;
 
+        /*
+         * Move operator
+         */
         CommandBuilder operator=(CommandBuilder&&) = delete;
 
         /**
@@ -43,4 +60,3 @@ namespace MediaServerManager::Command {
         return command;
     }
 }
-#endif

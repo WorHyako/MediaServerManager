@@ -6,16 +6,6 @@ import Frontend.Backgrounds as WorBackgrounds
 
 /**
  *
- *
- * ---
- *
- *  Item (root)
- *	| TabBar (tabBar)
- *	    | Repeater
- *	        | TabButton
- *	| StackLayout
- *	    | Repeater
- *	        | Rectangle
  */
 Item {
     id: root

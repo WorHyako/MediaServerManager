@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_COMMAND_ICOMMAND_HPP
-#define MEDIASERVERMANAGER_COMMAND_ICOMMAND_HPP
+#pragma once
 
 #include "pugixml.hpp"
 
@@ -16,10 +15,19 @@ namespace MediaServerManager::Command {
      */
     class ActionCommand final : public ICommand {
     public:
+        /**
+         * Ctor.
+         */
         ActionCommand() noexcept;
 
+        /*
+         * Ctor.
+         */
         ActionCommand(ActionCommand &rhs) noexcept;
 
+        /**
+         * Dtor.
+         */
         ~ActionCommand() final = default;
 
         [[nodiscard]] bool Execute(SocketRef sender) const noexcept final;
@@ -39,4 +47,3 @@ namespace MediaServerManager::Command {
         std::string commandTag;
     };
 }
-#endif

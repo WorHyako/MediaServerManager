@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_DYNAMICSCOPETYPE_HPP
-#define MEDIASERVERMANAGER_DYNAMICSCOPETYPE_HPP
+#pragma once
 
 #include <QObject>
 
@@ -23,5 +22,3 @@ namespace MediaServerManager {
         Q_ENUM(Value)
     };
 }
-
-#endif
