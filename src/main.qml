@@ -19,7 +19,7 @@ ApplicationWindow {
 	id: root
 
 	height: 1000
-	title: "Media Server Manager"
+	title: `Media Server Manager`
 	visible: true
 	width: 1920
 
@@ -30,7 +30,7 @@ ApplicationWindow {
 			id: background
 
 			anchors.fill: parent
-			source: "qrc:/Frontend/Assets/app-background.png"
+			source: `qrc:/Frontend/Assets/app-background.png`
 			z: -1
 		}
 		GridLayout {
@@ -46,11 +46,11 @@ ApplicationWindow {
 				Layout.preferredHeight: 1
 				Layout.preferredWidth: 2
 				Layout.row: 2
-				color: "transparent"
+				color: `transparent`
 				radius: 10
 
 				border {
-					color: "#AAA"
+					color: `#AAA`
 					width: 1
 				}
 				WorWidgets.QuickButtonsScope {
@@ -75,7 +75,7 @@ ApplicationWindow {
 				Layout.preferredWidth: 4
 				Layout.row: 0
 				Layout.rowSpan: 3
-				color: "transparent"
+				color: `transparent`
 
 				WorWidgets.ControlTabs {
 					anchors.fill: parent
@@ -83,7 +83,7 @@ ApplicationWindow {
 			}
 		}
 		WorControls.Button {
-			text: "Settings"
+			text: `Settings`
 			width: 70
 			height: 50
 			onLeftClicked: () => {

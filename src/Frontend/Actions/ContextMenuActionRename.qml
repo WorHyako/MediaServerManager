@@ -21,7 +21,7 @@ Action {
 	 */
 	required property var contextMenuRoot
 
-	text: "Rename"
+	text: `Rename`
 
 	onTriggered: () => {
 		const dialog = WorJs.ItemCreator.createItem(

@@ -15,7 +15,7 @@ function collectItems(parent, typeName) {
     for (let i = 0; i < itemNum; ++i) {
         if (parent.children[i].objectName === typeName) {
             items.push(parent.children[i]);
-            console.log("children[" + i + "]: ", parent.children[i], "was collected");
+            console.log(`children[${i}]: ${parent.children[i]} was collected`);
         }
     }
     return items;

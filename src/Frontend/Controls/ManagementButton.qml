@@ -11,12 +11,12 @@ Item {
 	/**
 	 * Object name
 	 */
-	property string objectName: "Management button"
+	property string objectName: `Management button`
 
 	/**
 	 * XML command to send to media manager
 	 */
-	property string bindingEvent: ""
+	property string bindingEvent: ``
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -46,7 +46,7 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: "Button"
+	property string buttonText: `Button`
 
 	property var commandSender: root.qmlCommandSender
 

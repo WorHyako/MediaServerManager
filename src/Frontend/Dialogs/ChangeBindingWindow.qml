@@ -23,7 +23,7 @@ Window {
 	Component.onCompleted: {
 		const keyValuePairs = selectedButton.getCommandPairs();
 		keyValuePairs.forEach((pair) => {
-			listModel.append({"keyText": pair[0], "valueText": pair[1]});
+			listModel.append({keyText: pair[0], valueText: pair[1]});
 		});
 	}
 
@@ -68,7 +68,7 @@ Window {
 				width: 30
 				height: 30
 				contextMenuEnable: false
-				text: "-"
+				text: `-`
 				onLeftClicked: () => {
 					listModel.remove(index, 1);
 				}
@@ -92,10 +92,10 @@ Window {
 		WorControls.Button {
 			width: 70
 			height: 20
-			text: "Add"
+			text: `Add`
 			contextMenuEnable: false
 			onLeftClicked: () => {
-				listModel.append({"keyText": "key", "valueText": "value"});
+				listModel.append({keyText: `key`, valueText: `value`});
 			}
 		}
 
@@ -103,7 +103,7 @@ Window {
 			contextMenuEnable: false
 			width: 100
 			height: 20
-			text: "Apply"
+			text: `Apply`
 
 			onLeftClicked: () => {
 				if (root.selectedButton === undefined) {

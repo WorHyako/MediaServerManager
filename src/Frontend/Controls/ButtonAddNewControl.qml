@@ -26,7 +26,7 @@ WorControls.Button {
 	required property QtObject scopeObject
 
 	height: 50
-	text: "Add"
+	text: `Add`
 	width: 50
 
 	onLeftClicked: () => {
@@ -46,9 +46,11 @@ WorControls.Button {
 		 * @param name	Name of element to create
 		 */
 		function createAction(name: string) {
-			const args = `text: "${name}"
+			const args = `text: \`${name}\`
 			onTriggered: () => {
-				menu.addElement("${name}");
+				menu.addElement(\`${name}\`, 
+				\`canBeMoved: true
+				canBeResized: true\`);
 			}`;
 			const action = WorJs.ItemCreator.createItem(
 				`QtQuick.Controls`,
@@ -57,6 +59,7 @@ WorControls.Button {
 				menu, `${name}_Action`);
 			menu.addAction(action);
 		}
+
 		/**
 		 *
 		 */

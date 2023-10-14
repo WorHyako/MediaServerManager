@@ -37,7 +37,7 @@ Item {
 			control = internal.controls[key];
 		} else {
 			internal.controls.forEach((each) => {
-				if (each.hasOwnProperty(key)) {
+				if (each.name === key) {
 					control = each;
 				}
 			});
@@ -86,8 +86,8 @@ Item {
 			`Table`
 		);
 
-		internal.controls.push({name: "ManagementButton", strView: button});
-		internal.controls.push({name: "ManagementButtonWithText", strView: buttonWithText});
-		internal.controls.push({name: "Table", strView: table});
+		internal.controls.push({name: `ManagementButton`, strView: button});
+		internal.controls.push({name: `ManagementButtonWithText`, strView: buttonWithText});
+		internal.controls.push({name: `Table`, strView: table});
 	}
 }

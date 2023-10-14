@@ -22,7 +22,7 @@ WorBackgrounds.TextBackgroundRectangle {
 	/**
 	 * Editable text for Text Field
 	 */
-	property string text: "Text Edit"
+	property string text: `Text Edit`
 
 	height: 30
 	width: 200

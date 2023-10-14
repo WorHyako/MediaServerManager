@@ -8,12 +8,6 @@ import Frontend.QmlObjects.Command as WorCommands
 
 /**
  *
- *
- * ---
- *
- * Item (root)
- * - int columnNumber
- * - int rowNumber
  */
 WorBackgrounds.ButtonBackgroundRectangle {
 	id: root
@@ -48,10 +42,10 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	}
 
 	Rectangle {
-		color: "transparent"
+		color: `transparent`
 		radius: 7
 		border {
-			color: "#939393"
+			color: `#939393`
 			width: 1
 		}
 		anchors {
@@ -93,7 +87,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		WorControls.Button {
 			width: 70
 			height: 30
-			text: "Add"
+			text: `Add`
 			Layout.alignment: Qt.AlignRight
 			contextMenuEnable: false
 			onLeftClicked: () => {
@@ -103,7 +97,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		WorControls.Button {
 			width: 70
 			height: 30
-			text: "Send"
+			text: `Send`
 			Layout.alignment: Qt.AlignLeft
 			contextMenuEnable: false
 			onLeftClicked: () => {

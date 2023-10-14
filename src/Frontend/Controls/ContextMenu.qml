@@ -12,7 +12,7 @@ Menu {
 	WorActions.ContextMenuActionRename {
 		contextMenuRoot: root
 		objectToRename: root.selectedButton
-		propertyToRename: "buttonText"
+		propertyToRename: `buttonText`
 	}
 
 	WorActions.ContextMenuActionChangeBindingName {
@@ -54,13 +54,13 @@ Menu {
 	}
 
 	background: Rectangle {
-		color: "#B4B4B4"
+		color: `#B4B4B4`
 		implicitHeight: root.menuItemHeight
 		implicitWidth: root.menuItemWidth
 		radius: root.menuBorderRadius
 
 		border {
-			color: "#222"
+			color: `#222`
 			width: 2
 		}
 	}

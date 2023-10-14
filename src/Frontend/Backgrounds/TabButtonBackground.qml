@@ -5,11 +5,11 @@ import QtQuick
  */
 Rectangle {
 	anchors.fill: parent
-	color: "#AAA"
+	color: `#AAA`
 	radius: 5
 
 	border {
-		color: "#101010"
+		color: `#101010`
 		width: 1
 	}
 }

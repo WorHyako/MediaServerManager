@@ -27,7 +27,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	/**
 	 * 	Non-editable text inside button's body
 	 */
-	property string text: ""
+	property string text: ``
 
 	/**
 	 * Imitate mouse left click
@@ -76,7 +76,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 		anchors.fill: parent
 
 		onClicked: {
-			console.log("Button has been clicked.");
+			console.log(`Button has been clicked.`);
 			if (root.onLeftClicked !== undefined) {
 				root.onLeftClicked();
 			}

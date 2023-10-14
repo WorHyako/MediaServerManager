@@ -24,7 +24,7 @@ Item {
 
         Repeater {
             anchors.bottom: parent.bottom
-            model: ["First", "Second", "Third", "Fourth", "Fifth"]
+            model: [`First`, `Second`, `Third`, `Fourth`, `Fifth`]
 
             TabButton {
                 anchors.bottom: parent.bottom
@@ -51,11 +51,11 @@ Item {
             model: 5
 
             Rectangle {
-                color: "transparent"
+                color: `transparent`
                 radius: 10
 
                 border {
-                    color: "#AAA"
+                    color: `#AAA`
                     width: 1
                 }
 

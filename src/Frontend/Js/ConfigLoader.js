@@ -18,7 +18,7 @@ function parseConfig(configString, configType) {
     try {
         jsonObject = JSON.parse(configString);
     } catch (e) {
-        console.log("Json parse exception");
+        console.log(`Json parse exception`);
         return null;
     }
 
@@ -119,19 +119,19 @@ function getScopeNamePattern(scopeType) {
     let namePattern = [];
     switch (scopeType) {
         case MSM.DynamicScopeType.QuickButtons:
-            namePattern.push("QuickButton_");
+            namePattern.push(`QuickButton_`);
             break;
         case MSM.DynamicScopeType.QuickTitles:
-            namePattern.push("QuickTitle_");
+            namePattern.push(`QuickTitle_`);
             break;
         case MSM.DynamicScopeType.ManagementButtons:
-            namePattern.push("ManagementButtonWithText_");
+            namePattern.push(`ManagementButtonWithText_`);
             break;
         case MSM.DynamicScopeType.All:
             namePattern.push(
-                "QuickButton_",
-                "QuickTitle_",
-                "ManagementButtonWithText_");
+                `QuickButton_`,
+                `QuickTitle_`,
+                `ManagementButtonWithText_`);
             break;
         default:
     }

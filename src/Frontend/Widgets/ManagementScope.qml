@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM
 
@@ -21,22 +20,21 @@ Item {
 	}
 
 	WorControls.ButtonSaveConfig {
-		configFileName: "test.json"
+		configFileName: `test.json`
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-		typeName: "Management button"
+		typeName: `Management button`
 		scopeObject: contentScope
 	}
 
 	WorControls.ButtonAddNewControl {
 		maxElementNum: 30
 		scopeObject: contentScope
-		newElementArgs: `
-			canBeMoved: true
+		newElementArgs: `canBeMoved: true
 			canBeResized: true`
 	}
 
 	WorControls.ButtonLoadConfig {
-		configFileName: "test.json"
+		configFileName: `test.json`
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
 		scopeObject: contentScope
 	}

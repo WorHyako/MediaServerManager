@@ -10,11 +10,11 @@ import MediaServerManager 1.0 as MSM
 Rectangle {
     id: root
 
-    color: "transparent"
+    color: `transparent`
     radius: 10
 
     border {
-        color: "#AAA"
+        color: `#AAA`
         width: 1
     }
 
@@ -31,14 +31,14 @@ Rectangle {
     }
 
     WorControls.ButtonSaveConfig {
-        configFileName: "test.json"
+        configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-        typeName: "Quick title line"
+        typeName: `Quick title line`
         scopeObject: linesList
     }
 
     WorControls.ButtonLoadConfig {
-        configFileName: "test.json"
+        configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles
         scopeObject: linesList
     }
