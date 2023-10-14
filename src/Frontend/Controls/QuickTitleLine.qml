@@ -12,7 +12,7 @@ Item {
 	/**
 	 * Object name
 	 */
-	property string objectName: "Quick title line"
+	property string objectName: `Quick title line`
 
 	/**
 	 * Management button size
@@ -27,7 +27,7 @@ Item {
 	/**
 	 * Editable text field text
 	 */
-	property string text: "Text Example"
+	property string text: `Text Example`
 
 	/**
 	 * Editable text field size
@@ -54,7 +54,7 @@ Item {
 			onRightClicked: () => {
 
 			}
-			text: "Send"
+			text: `Send`
 
 			WorControls.ContextMenu {
 				id: contextMenu

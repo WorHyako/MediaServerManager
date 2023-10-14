@@ -107,8 +107,8 @@ MouseArea {
 	}
 
 	onPressed: mouse => {
-		internal.resizing = root.canBeResized && (mouse.modifiers & Qt.AltModifier);
-		internal.moving = root.canBeMoved && (mouse.modifiers & Qt.ControlModifier);
+		internal.resizing = !!(root.canBeResized && (mouse.modifiers & Qt.AltModifier));
+		internal.moving = !!(root.canBeMoved && (mouse.modifiers & Qt.ControlModifier));
 		internal.lastButtonSize.x = root.target.width;
 		internal.lastButtonSize.y = root.target.height;
 	}

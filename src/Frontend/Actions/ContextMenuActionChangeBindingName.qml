@@ -11,7 +11,7 @@ Action {
 	 */
 	required property var selectedObject
 
-	text: "Change binding name"
+	text: `Change binding name`
 
 	onTriggered: () => {
 		const window = WorJs.ItemCreator.createItem(

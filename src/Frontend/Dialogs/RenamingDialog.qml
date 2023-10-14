@@ -15,7 +15,7 @@ Window {
 	/**
 	 * New text value
 	 */
-	property string newText: "-"
+	property string newText: `-`
 
 	/**
 	 * Object to change displayed text
@@ -45,11 +45,11 @@ Window {
 
 		WorControls.Text {
 			font.pointSize: 20
-			text: "Renaming window"
+			text: `Renaming window`
 		}
 
 		Repeater {
-			model: [["Previous", root.objectToRename[root.propertyToRename]], ["New", root.newText]]
+			model: [[`Previous`, root.objectToRename[root.propertyToRename]], [`New`, root.newText]]
 
 			WorBackgrounds.TextBackgroundRectangle {
 				Layout.alignment: Qt.AlignCenter
@@ -68,7 +68,7 @@ Window {
 
 					Rectangle {
 						Layout.fillHeight: true
-						color: "#222"
+						color: `#222`
 						width: 1
 					}
 
@@ -95,7 +95,7 @@ Window {
 
 		WorControls.Button {
 			Layout.alignment: Qt.AlignCenter
-			text: "Apply"
+			text: `Apply`
 			width: 100
 			height: 50
 			onLeftClicked: () => {

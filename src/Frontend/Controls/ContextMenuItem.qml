@@ -21,7 +21,7 @@ MenuItem {
 
 	background: Rectangle {
 		anchors.fill: parent
-		color: root.highlighted ? "#555" : "transparent"
+		color: root.highlighted ? `#555` : `transparent`
 		radius: 8
 	}
 
@@ -29,7 +29,7 @@ MenuItem {
 	{
 		id: rootText
 
-		color: root.highlighted ? "#fff" : "#000"
+		color: root.highlighted ? `#fff` : `#000`
 		horizontalAlignment: Text.AlignLeft
 		text: itemText
 	}

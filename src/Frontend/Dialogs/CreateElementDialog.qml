@@ -12,8 +12,8 @@ Window {
 
 	modality: Qt.ApplicationModal
 
-	width: 300
-	height: 250
+	width: 200
+	height: 150
 
 	minimumHeight: 250
 	minimumWidth: 300
@@ -23,10 +23,21 @@ Window {
 	 */
 	property var newElement: undefined
 
+	Item {
+		id: mouseArea
+		anchors.fill: parent
+
+		WorControls.TransformMouseArea {
+			canBeResized: true
+			movableScope: mouseArea
+			target: elementScope
+		}
+	}
+
 	WorBackgrounds.ButtonBackgroundRectangle {
 		id: elementScope
-		width: 300
-		height: 200
+		width: 200
+		height: 100
 		anchors {
 			horizontalCenter: parent.horizontalCenter
 			top: parent.top
@@ -54,28 +65,43 @@ Window {
 			left: parent.left
 			bottom: parent.bottom
 		}
-		text: "Save"
+		text: `Save`
 		onLeftClicked: () => {
-			let item = Qt.createQmlObject(
-				`import QtQuick
+			const item = `import QtQuick
+				import Frontend.Controls as WorControls
+				import Frontend.Backgrounds as WorBackgrounds
 				
-				Item {
+				WorBackgrounds.ButtonBackgroundRectangle {
 					id: root
-				}`,
-				elementScope
-			);
+					
+					property var movableScope: undefined
+					
+					width: ${elementScope.width}
+					height: ${elementScope.height}
+					
+					WorControls.TransformMouseArea {
+						canBeMoved: true
+						movableScope: root.movableScope
+						target: root
+					}
+				}`;
 			let controlList = [item];
 			elementScope.children.forEach((child) => {
 				const element = WorJs.ItemCreator.getStringifyObject(
 					`WorControls`,
 					`${child.objectName}`,
-					``,
+					`x: ${child.x}
+					y: ${child.y}`,
 					`${child.objectName}`
 				);
 				controlList.push(element);
+
 			});
-			WorGlobal.ManagementControls.addControl(controlName.text, controlList);
+			const itemName = controlName.text.replace(/\s/g,'');
+			WorGlobal.ManagementControls.addControl(itemName, controlList);
 			buttonAddNewElement.reset();
+			root.close();
+			root.destroy();
 		}
 	}
 }

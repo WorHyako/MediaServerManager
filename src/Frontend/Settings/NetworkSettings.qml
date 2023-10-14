@@ -23,7 +23,7 @@ Item {
 				width: 100
 
 				WorControls.Text {
-					text: "Destination ip"
+					text: `Destination ip`
 				}
 			}
 
@@ -39,7 +39,7 @@ Item {
 				width: 100
 
 				WorControls.Text {
-					text: "Destination port"
+					text: `Destination port`
 				}
 			}
 
@@ -50,7 +50,7 @@ Item {
 	}
 
 	WorControls.Button {
-		text: "Apply"
+		text: `Apply`
 
 		onLeftClicked: () => {
 		}

@@ -12,14 +12,14 @@ Item {
     anchors.fill: parent
 
     WorControls.ButtonSaveConfig {
-        configFileName: "test.json"
+        configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-        typeName: "Management button"
+        typeName: `Management button`
         scopeObject: grid
     }
 
     WorControls.ButtonLoadConfig {
-        configFileName: "test.json"
+        configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickButtons
         scopeObject: grid
     }

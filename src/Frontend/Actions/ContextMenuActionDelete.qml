@@ -10,7 +10,7 @@ Action {
 	 */
 	required property var objectToDestroy
 
-	text: "Delete"
+	text: `Delete`
 	onTriggered: () => {
 		objectToDestroy.destroy();
 	}

@@ -13,24 +13,15 @@ function createNewItem(itemPath, rootItem, parameters) {
             ? component.createObject(rootItem)
             : component.createObject(rootItem, parameters);
         if (item == null) {
-            console.log("Object " + item + " can't be created");
+            console.log(`Object ${item} can't be created`);
             return undefined;
         }
         if (item instanceof ApplicationWindow) {
             item.show();
         }
     } else {
-        console.log("ErrorString: " + component.errorString());
+        console.log(`ErrorString: ${component.errorString()}`);
     }
-    console.log("Item", item, "was created");
+    console.log(`Item ${item} was created`);
     return item;
-}
-
-/**
- * Convert argument object to available type
- * @param args  Arguments list
- * @returns {*} Result arguments view
- */
-function convertToArgs(args) {
-    return args;
 }

@@ -13,12 +13,12 @@ Item {
 	/**
 	 * Object's name
 	 */
-	property string objectName: "Management button with text"
+	property string objectName: `Management button with text`
 
 	/**
 	 * XML command to send to media manager
 	 */
-	property string bindingEvent: ""
+	property string bindingEvent: ``
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -48,12 +48,12 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: "Button"
+	property string buttonText: `Button`
 
 	/**
 	 * Text inside Edit Text field
 	 */
-	property string textFieldText: "Text"
+	property string textFieldText: `Text`
 
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth

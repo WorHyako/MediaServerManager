@@ -19,7 +19,7 @@ ApplicationWindow {
 
 	Image {
 		anchors.fill: parent
-		source: "qrc:/Frontend/Assets/app-background.png"
+		source: `qrc:/Frontend/Assets/app-background.png`
 		z: -1
 	}
 
@@ -31,7 +31,7 @@ ApplicationWindow {
 		}
 
 		Repeater {
-			model: ["Network", "Midi"]
+			model: [`Network`, `Midi`]
 
 			TabButton {
 				anchors.bottom: parent.bottom
@@ -64,11 +64,10 @@ ApplicationWindow {
 			bottom: parent.bottom
 			right: parent.right
 		}
-		text: "New"
+		text: `New`
 		width: 100
 		height: 50
 		onLeftClicked: () => {
-			var newElement = undefined;
 			let window = WorJs.QrcItemCreator.createNewItem(WorJs.ObjectsQrcPath.qrcCreateElementDialog, root, {});
 			window.show();
 		}

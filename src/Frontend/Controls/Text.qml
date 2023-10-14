@@ -7,7 +7,7 @@ import Frontend.Styles as WorStyles
 Text {
 	color: WorStyles.FontStyle.fontColor
 	horizontalAlignment: Text.AlignHCenter
-	text: "Text"
+	text: `Text`
 	verticalAlignment: Text.AlignVCenter
 
 	font {

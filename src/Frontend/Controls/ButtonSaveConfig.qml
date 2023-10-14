@@ -33,17 +33,17 @@ WorControls.Button {
     required property QtObject scopeObject
 
     height: 50
-    text: "Save"
+    text: `Save`
     width: 50
 
     onLeftClicked: () => {
         const fileExist = jsonManager.TryToFindFile(root.configFileName);
         if (!fileExist) {
-            console.log("Can't find config file");
+            console.log(`Can't find config file`);
             return;
         }
         const items = WorJs.DynamicItemCollector.collectItems(root.scopeObject, root.typeName);
         const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
-        console.log("Saving result: ", savingResult);
+        console.log(`Saving result: ${savingResult}`);
     }
 }

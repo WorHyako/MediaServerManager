@@ -22,7 +22,7 @@ WorControls.Button {
 	property var currentControlElements: []
 
 	height: 50
-	text: "Add"
+	text: `Add`
 	width: 50
 
 	onLeftClicked: () => {
@@ -50,9 +50,9 @@ WorControls.Button {
 		 * @param name	Name of element to create
 		 */
 		function createAction(name: string) {
-			const args = `text: "${name}"
+			const args = `text: \`${name}\`
 			onTriggered: () => {
-				menu.addElement("${name}");
+				menu.addElement(\`${name}\`);
 			}`;
 			const action = WorJs.ItemCreator.createItem(
 				`QtQuick.Controls`,

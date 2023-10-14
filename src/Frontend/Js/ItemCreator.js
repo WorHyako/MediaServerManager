@@ -9,8 +9,28 @@
  */
 function createItem(qrcScope, itemName, args, parent, objectName) {
     const objectViaString = getStringifyObject(qrcScope, itemName, args, objectName);
-    console.log("object to create: ", objectViaString);
-    return Qt.createQmlObject(objectViaString, parent, objectName);
+    console.log(`object to create: ${objectViaString}`);
+    let item;
+    try {
+        item = Qt.createQmlObject(objectViaString, parent, objectName);
+    } catch (e) {
+        const itemStringList = WorGlobal.ManagementControls.getControl(itemName).strView;
+        if (itemStringList === undefined) {
+            return undefined;
+        }
+        const itemRootStr = itemStringList[0];
+        const itemChildrenStr = itemStringList.slice(1);
+        console.log(`Multi object to create: ${itemRootStr}`);
+        item = Qt.createQmlObject(itemRootStr, parent, objectName);
+        itemChildrenStr.forEach((eachChild) => {
+            console.log(`Multi object to create: ${eachChild}`);
+            if (Qt.createQmlObject(eachChild, item) === undefined) {
+                console.log(`Error to create child: ${eachChild}`);
+                return undefined;
+            }
+        });
+    }
+    return item;
 }
 
 /**
@@ -21,7 +41,7 @@ function createItem(qrcScope, itemName, args, parent, objectName) {
  * @returns {*}
  */
 function createItemStr(stringifyView, parent, objectName) {
-    console.log("object to create: ", stringifyView);
+    console.log(`object to create: ${stringifyView}`);
     return Qt.createQmlObject(stringifyView, parent, objectName);
 }
 
@@ -34,7 +54,7 @@ function createItemStr(stringifyView, parent, objectName) {
  * @returns {string}
  */
 function getStringifyObject(qrcScope, itemName, args, objectName) {
-    const isWorScope = qrcScope.includes("Wor");
+    const isWorScope = qrcScope.includes(`Wor`);
     const scopeName = isWorScope
         ? qrcScope.slice(3)
         : '';
@@ -48,7 +68,7 @@ function getStringifyObject(qrcScope, itemName, args, objectName) {
         ? `${qrcScope}.${itemName}`
         : itemName} {
 		    id: root
-		    objectName: "${objectName}"
+		    objectName: \`${objectName}\`
 		    ${args}
 		}`;
 }
