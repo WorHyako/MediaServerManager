@@ -66,21 +66,21 @@ Item {
 
 	Component.onCompleted: {
 		const button = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`ManagementButton`,
 			``,
 			`Management Button`
 		);
 
 		const buttonWithText = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`ManagementButtonWithText`,
 			``,
 			`Management Button With Text`
 		);
 
 		const table = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`Table`,
 			``,
 			`Table`

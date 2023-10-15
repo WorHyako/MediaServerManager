@@ -1,7 +1,6 @@
 import QtQuick
-import QtQuick.Layouts
-import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
+import Frontend.ManagementControls as WorManagementControls
 import Frontend.QmlObjects.Command as WorCommands
 
 /**
@@ -11,9 +10,9 @@ Item {
 	id: root
 
 	/**
-	 * Object's name
+	 * Object name
 	 */
-	property string objectName: `Management button with text`
+	property string objectName: `Management button`
 
 	/**
 	 * XML command to send to media manager
@@ -50,13 +49,10 @@ Item {
 	 */
 	property string buttonText: `Button`
 
-	/**
-	 * Text inside Edit Text field
-	 */
-	property string textFieldText: `Text`
+	property var commandSender: root.qmlCommandSender
 
-	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
-	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
+	height: 50
+	width: 100
 
 	/**
 	 * Private variables and objects
@@ -81,7 +77,7 @@ Item {
 	}
 
 	/**
-	 *
+	 * Return command pairs
 	 */
 	function getCommandPairs() {
 		return internal.commandPairs;
@@ -101,43 +97,30 @@ Item {
 		return makingResult;
 	}
 
-	ColumnLayout {
-		spacing: 3
+	WorControls.Button {
+		id: button
+		text: root.buttonText
 		anchors.fill: parent
+		onRightClicked: root.onRightClicked
+		onLeftClicked: root.onLeftClicked
 
-		WorControls.Button {
-			id: button
-			text: root.buttonText
-			Layout.preferredHeight: parent.height * 0.8
-			Layout.preferredWidth: parent.width
-			onRightClicked: root.onRightClicked
-			onLeftClicked: root.onLeftClicked
-
-			WorControls.TransformMouseArea {
-				canBeMoved: root.canBeMoved
-				target: root
-				canBeResized: root.canBeResized
-				movableScope: root.movableScope
-				onLeftClicked: () => {
-					qmlCommandSender.sendCommand();
-					button.leftClick();
-				}
-			}
-
-			WorControls.ContextMenuMouseArea {
-				selectedButton: root
+		WorManagementControls.TransformMouseArea {
+			canBeMoved: root.canBeMoved
+			target: root
+			canBeResized: root.canBeResized
+			movableScope: root.movableScope
+			onLeftClicked: () => {
+				qmlCommandSender.sendCommand();
+				button.leftClick();
 			}
 		}
 
-		WorControls.EditTextField {
-			id: text
-			Layout.preferredHeight: parent.height * 0.3
-			Layout.preferredWidth: parent.width
-			text: qmlCommandSender.commandText
+		WorControls.ContextMenuMouseArea {
+			selectedButton: root
 		}
+	}
 
-		WorCommands.QmlCommandSender {
-			id: qmlCommandSender
-		}
+	WorCommands.QmlCommandSender {
+		id: qmlCommandSender
 	}
 }

@@ -4,7 +4,7 @@
 # - Module type (f.e. Singleton).
 # So it can be used as map ${ ${ModuleName}_${ModuleProperty} } f.e Controls_Dependencies
 
-list(APPEND Modules Controls Actions Styles Js Backgrounds Widgets Settings Dialogs Global)
+list(APPEND Modules Controls Actions Styles Js Backgrounds Widgets Settings Dialogs Global ManagementControls)
 
 ################
 ### Controls ###
@@ -112,9 +112,9 @@ list(APPEND Dialogs_Dependencies
 list(APPEND Dialogs_FileExt
         .qml)
 
-###########################
-### Management controls ###
-###########################
+##############
+### Global ###
+##############
 list(APPEND Global_Dependencies
         QtQuick)
 
@@ -124,3 +124,12 @@ list(APPEND Global_FileExt
 list(APPEND Global_Type
         Singleton)
 
+###########################
+### Management controls ###
+###########################
+
+list(APPEND ManagementControls_Dependencies
+        QtQuick)
+
+list(APPEND ManagementControls_FileExt
+    .qml)

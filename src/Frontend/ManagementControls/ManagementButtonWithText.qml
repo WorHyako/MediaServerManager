@@ -1,5 +1,8 @@
 import QtQuick
+import QtQuick.Layouts
+import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
+import Frontend.ManagementControls as WorManagementControls
 import Frontend.QmlObjects.Command as WorCommands
 
 /**
@@ -9,9 +12,9 @@ Item {
 	id: root
 
 	/**
-	 * Object name
+	 * Object's name
 	 */
-	property string objectName: `Management button`
+	property string objectName: `Management button with text`
 
 	/**
 	 * XML command to send to media manager
@@ -48,10 +51,13 @@ Item {
 	 */
 	property string buttonText: `Button`
 
-	property var commandSender: root.qmlCommandSender
+	/**
+	 * Text inside Edit Text field
+	 */
+	property string textFieldText: `Text`
 
-	height: 50
-	width: 100
+	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
+	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
 
 	/**
 	 * Private variables and objects
@@ -76,7 +82,7 @@ Item {
 	}
 
 	/**
-	 * Return command pairs
+	 *
 	 */
 	function getCommandPairs() {
 		return internal.commandPairs;
@@ -96,30 +102,43 @@ Item {
 		return makingResult;
 	}
 
-	WorControls.Button {
-		id: button
-		text: root.buttonText
+	ColumnLayout {
+		spacing: 3
 		anchors.fill: parent
-		onRightClicked: root.onRightClicked
-		onLeftClicked: root.onLeftClicked
 
-		WorControls.TransformMouseArea {
-			canBeMoved: root.canBeMoved
-			target: root
-			canBeResized: root.canBeResized
-			movableScope: root.movableScope
-			onLeftClicked: () => {
-				qmlCommandSender.sendCommand();
-				button.leftClick();
+		WorControls.Button {
+			id: button
+			text: root.buttonText
+			Layout.preferredHeight: parent.height * 0.8
+			Layout.preferredWidth: parent.width
+			onRightClicked: root.onRightClicked
+			onLeftClicked: root.onLeftClicked
+
+			WorManagementControls.TransformMouseArea {
+				canBeMoved: root.canBeMoved
+				target: root
+				canBeResized: root.canBeResized
+				movableScope: root.movableScope
+				onLeftClicked: () => {
+					qmlCommandSender.sendCommand();
+					button.leftClick();
+				}
+			}
+
+			WorControls.ContextMenuMouseArea {
+				selectedButton: root
 			}
 		}
 
-		WorControls.ContextMenuMouseArea {
-			selectedButton: root
+		WorControls.EditTextField {
+			id: text
+			Layout.preferredHeight: parent.height * 0.3
+			Layout.preferredWidth: parent.width
+			text: qmlCommandSender.commandText
 		}
-	}
 
-	WorCommands.QmlCommandSender {
-		id: qmlCommandSender
+		WorCommands.QmlCommandSender {
+			id: qmlCommandSender
+		}
 	}
 }

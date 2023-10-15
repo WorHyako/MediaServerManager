@@ -82,7 +82,7 @@ WorControls.Button {
 		function addElement(controlName: string) {
 			console.log(`object name to create: ${controlName}`);
 			const element = WorJs.ItemCreator.createItem(
-				`WorControls`,
+				`WorManagementControls`,
 				`${controlName}`,
 				`canBeMoved: true
 				 canBeResized: true`,
@@ -91,7 +91,7 @@ WorControls.Button {
 			);
 			element.movableScope = root.scopeObject;
 			const stringifyView = WorJs.ItemCreator.getStringifyObject(
-				`WorControls`,
+				`WorManagementControls`,
 				`${controlName}`,
 				`canBeMoved: true
 				canBeResized: true`,
