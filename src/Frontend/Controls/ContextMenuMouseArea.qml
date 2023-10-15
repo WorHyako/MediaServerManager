@@ -17,8 +17,9 @@ MouseArea {
 	anchors.fill: parent
 
 	onClicked: {
-		if (selectedButton !== undefined)
+		if (selectedButton !== undefined) {
 			contextMenu.popup();
+		}
 	}
 
 	WorControls.ContextMenu {

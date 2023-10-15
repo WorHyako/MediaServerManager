@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Controls as WorControls
 import MediaServerManager 1.0 as MSM

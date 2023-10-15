@@ -17,10 +17,12 @@ Action {
 		const window = WorJs.ItemCreator.createItem(
 			`WorDialogs`,
 			`ChangeBindingWindow`,
-			`selectedButton: ${selectedObject}`,
+			``,
 			selectedObject,
 			`Change binding name window`
 		);
-		window.show();
+		window.selectedButton = selectedObject;
+		console.log(`selected object: ${selectedObject}`);
+		window.open();
 	}
 }

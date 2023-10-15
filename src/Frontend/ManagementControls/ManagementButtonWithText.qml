@@ -11,15 +11,13 @@ import Frontend.QmlObjects.Command as WorCommands
 Item {
 	id: root
 
+	property Item commandManagerRef: commandManager
+
 	/**
 	 * Object's name
 	 */
 	property string objectName: `Management button with text`
 
-	/**
-	 * XML command to send to media manager
-	 */
-	property string bindingEvent: ``
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -74,32 +72,6 @@ Item {
 		 * Button's minimal width
 		 */
 		readonly property int minButtonWidth: 50
-
-		/**
-		 * Pairs to generate XML message to media serve
-		 */
-		property var commandPairs: []
-	}
-
-	/**
-	 *
-	 */
-	function getCommandPairs() {
-		return internal.commandPairs;
-	}
-
-	/**
-	 *
-	 * @param commandPairs
-	 * @returns {boolean}
-	 */
-	function makeCommand(commandPairs): boolean {
-		if (!(Array.isArray(commandPairs) && Array.isArray(commandPairs[0]))) {
-			return false;
-		}
-		internal.commandPairs = commandPairs;
-		const makingResult = qmlCommandSender.makeCommand(commandPairs);
-		return makingResult;
 	}
 
 	ColumnLayout {
@@ -120,7 +92,7 @@ Item {
 				canBeResized: root.canBeResized
 				movableScope: root.movableScope
 				onLeftClicked: () => {
-					qmlCommandSender.sendCommand();
+					commandManager.sendCommand();
 					button.leftClick();
 				}
 			}
@@ -134,11 +106,11 @@ Item {
 			id: text
 			Layout.preferredHeight: parent.height * 0.3
 			Layout.preferredWidth: parent.width
-			text: qmlCommandSender.commandText
+			text: commandManager.bindingEvent
 		}
 
-		WorCommands.QmlCommandSender {
-			id: qmlCommandSender
+		WorManagementControls.CommandPairs {
+			id: commandManager
 		}
 	}
 }
