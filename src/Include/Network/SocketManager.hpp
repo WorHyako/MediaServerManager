@@ -1,5 +1,4 @@
-#ifndef MEDIASERVERMANAGER_NETWORK_SOCKETMANAGER_HPP
-#define MEDIASERVERMANAGER_NETWORK_SOCKETMANAGER_HPP
+#pragma once
 
 #include "Network/TcpSocket.hpp"
 
@@ -36,5 +35,3 @@ namespace MediaServerManager::Network {
         [[nodiscard]] static std::shared_ptr<WorTcpSocket> GetSocket(uint8_t socketIndex) noexcept;
     };
 }
-
-#endif
