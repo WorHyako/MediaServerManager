@@ -18,4 +18,4 @@ qt_add_qml_module(QmlCommands
 
 target_include_directories(QmlCommands
         PUBLIC ${${PROJECT_NAME}_IncludeDir}
-        PUBLIC ${worLib_Include_Dir})
+        PUBLIC ${WorLib_Include_Dir})

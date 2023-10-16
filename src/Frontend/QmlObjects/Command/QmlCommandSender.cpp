@@ -1,9 +1,10 @@
 #include "QmlCommandSender.hpp"
 
 #include "Command/CommandBuilder.hpp"
-#include "Network/SocketManager.hpp"
+#include "../Frontend/QmlObjects/Network/QmlSocketManager.hpp"
 
 using namespace MediaServerManager::QmlObjects::Command;
+using namespace MediaServerManager::Command;
 using namespace MediaServerManager;
 
 QmlCommandSender::QmlCommandSender(QObject *parent) :
@@ -13,7 +14,7 @@ QmlCommandSender::QmlCommandSender(QObject *parent) :
 }
 
 bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
-    MediaServerManager::Command::CommandItemList commandItemList;
+    CommandItemList commandItemList;
     std::for_each(std::begin(commandPairs), std::end(commandPairs),
                   [&commandItemList](const QVariant &each) {
                       auto qStringList = each.value<QList<QString>>();
@@ -24,9 +25,9 @@ bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
     if (commandItemList.empty()) {
         return false;
     }
-    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(
+    auto command = CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(
             commandItemList);
-    _command = std::make_unique<MediaServerManager::Command::ActionCommand>(command);
+    _command = std::make_unique<ActionCommand>(command);
     auto s = _command->ToString();
     _commandText = std::string(std::begin(s), std::prev(std::end(s), 1)).c_str();
 
@@ -35,8 +36,9 @@ bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
 }
 
 bool QmlCommandSender::sendCommand() const noexcept {
-    auto socketAdded = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
-    auto socket = Network::SocketManager::GetSocket(0);
+    auto socketAdded = QmlObjects::Network::QmlSocketManager::Add(
+            Wor::Network::EndPoint("127.0.0.1", 8000), 0);
+    auto socket = QmlObjects::Network::QmlSocketManager::GetSocket(0);
     auto connectRes = socket->TryToConnect();
     if (!connectRes) {
         return false;
@@ -59,7 +61,7 @@ QString QmlCommandSender::commandText() {
 #pragma region Mutators
 
 void QmlCommandSender::setCommandText(QVariantList commandItems) {
-    MediaServerManager::Command::CommandItemList commandItemList;
+    CommandItemList commandItemList;
     std::for_each(std::begin(commandItems), std::end(commandItems),
                   [&commandItemList](const QVariant &each) {
                       auto qStringList = each.value<QList<QString>>();
@@ -70,9 +72,8 @@ void QmlCommandSender::setCommandText(QVariantList commandItems) {
     if (commandItemList.empty()) {
         return;
     }
-    auto command = MediaServerManager::Command::CommandBuilder<MediaServerManager::Command::ActionCommand>::BuildCommand(
-            commandItemList);
-    _command = std::make_unique<MediaServerManager::Command::ActionCommand>(command);
+    auto command = CommandBuilder<ActionCommand>::BuildCommand(commandItemList);
+    _command = std::make_unique<ActionCommand>(command);
     auto s = _command->ToString();
     _commandText = std::string(std::begin(s), std::prev(std::end(s), 1)).c_str();
 

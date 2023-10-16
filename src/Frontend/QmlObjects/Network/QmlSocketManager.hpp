@@ -1,23 +1,26 @@
 #pragma once
 
-#include "Network/TcpSocket.hpp"
+#include <QObject>
+#include <QString>
 
-#include <memory>
-#include <vector>
+#include "WorLibrary/Network/TcpSocket.hpp"
 
-namespace MediaServerManager::Network {
+namespace MediaServerManager::QmlObjects::Network {
 
     /**
      *
      */
-    class SocketManager {
+    class QmlSocketManager : public QObject {
+    Q_OBJECT
+
     public:
         using WorTcpSocket = Wor::Network::TcpSocket;
 
         /**
          *
-         * @param socket
+         * @param endPoint
          * @param socketIndex
+         * @return
          */
         [[nodiscard]] static bool Add(Wor::Network::EndPoint endPoint, uint8_t socketIndex) noexcept;
 
@@ -33,5 +36,22 @@ namespace MediaServerManager::Network {
          * @return
          */
         [[nodiscard]] static std::shared_ptr<WorTcpSocket> GetSocket(uint8_t socketIndex) noexcept;
+
+    signals:
+
+    private:
+        /**
+         *
+         */
+         std::unique_ptr<WorTcpSocket> _socketManager;
+
+    public:
+#pragma region Accessors
+
+#pragma endregion Accessors
+
+#pragma region Mutators
+
+#pragma endregion Mutators
     };
 }

@@ -6,10 +6,11 @@
 #include <array>
 
 #include "Json/ElementConfig.hpp"
-#include "Json/JsonManager.hpp"
+#include "WorLibrary/Json/JsonManager.hpp"
 #include "DynamicScopeType.hpp"
 
 namespace MediaServerManager::Json {
+
     /**
      *
      */
@@ -63,18 +64,42 @@ namespace MediaServerManager::Json {
                         static_cast<size_t>(
                                 std::numeric_limits<DynamicScopeType>::max())>;
 
+        /**
+         *
+         */
         ConfigStorage _elementsConfig;
 
+        /**
+         *
+         */
         Wor::Json::JsonManager _jsonManager;
 
+        /**
+         *
+         * @param items_
+         * @param propertiesList_
+         * @return
+         */
         [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
+        /**
+         *
+         * @param items_
+         * @param propertiesList_
+         * @return
+         */
         [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
+        /**
+         *
+         * @param items_
+         * @param propertiesList_
+         * @return
+         */
         [[nodiscard]] nlohmann::json MakeManagementButtonConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;

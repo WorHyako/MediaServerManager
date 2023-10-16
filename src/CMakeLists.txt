@@ -34,7 +34,7 @@ set(Boost_NO_BOOST_CMAKE ON)
 set(Boost_NO_WARN_NEW_VERSIONS ON)
 find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
 
-add_subdirectory(ThirdParty/worLibrary)
+add_subdirectory(ThirdParty/WorLibrary)
 
 find_package(pugixml REQUIRED)
 
@@ -67,15 +67,18 @@ qt_add_resources(MediaServerManager
 ######################################
 add_subdirectory(Frontend)
 
+
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
-        PRIVATE ${worLib_Vector}
-        PRIVATE ${worLib_Json}
-        PRIVATE ${worLib_Network})
+        PRIVATE ${WorLib_Vector}
+        PRIVATE ${WorLib_Json}
+        PRIVATE ${WorLib_Network})
+message(WARNING ${WorLib_Network})
 target_include_directories(${PROJECT_NAME}
+        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
-        PRIVATE ${worLib_Include_Dir}
+        PRIVATE ${WorLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE pugixml
