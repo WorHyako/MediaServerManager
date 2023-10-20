@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QtQml/qqml.h>
 #include <QString>
 
 #include "WorLibrary/Network/TcpSocket.hpp"
@@ -13,8 +14,15 @@ namespace MediaServerManager::QmlObjects::Network {
     class QmlSocketManager : public QObject {
     Q_OBJECT
 
+        QML_SINGLETON
+
+        QML_ELEMENT
     public:
-        using WorTcpSocket = Wor::Network::TcpSocket;
+        /**
+         * Ctor
+         * @param parent
+         */
+        explicit QmlSocketManager(QObject *parent = nullptr);
 
         /**
          *
@@ -26,24 +34,37 @@ namespace MediaServerManager::QmlObjects::Network {
 
         /**
          *
+         * @param address
+         * @param port
+         * @param socketIndex
+         * @return
+         */
+        Q_INVOKABLE [[nodiscard]] static bool add(QString address, int port, int socketIndex) noexcept;
+
+        /**
+         *
          * @param socketIndex
          */
-        static void Remove(uint8_t socketIndex) noexcept;
+        Q_INVOKABLE static void Remove(uint8_t socketIndex) noexcept;
+
+        /**
+         *
+         * @param socketIndex
+         */
+        Q_INVOKABLE static void remove(uint8_t socketIndex) noexcept;
 
         /**
          *
          * @param socketIndex
          * @return
          */
-        [[nodiscard]] static std::shared_ptr<WorTcpSocket> GetSocket(uint8_t socketIndex) noexcept;
-
-    signals:
+        [[nodiscard]] static std::shared_ptr<Wor::Network::TcpSocket> GetSocket(uint8_t socketIndex) noexcept;
 
     private:
         /**
          *
          */
-         std::unique_ptr<WorTcpSocket> _socketManager;
+        std::unique_ptr<Wor::Network::TcpSocket> _socketManager;
 
     public:
 #pragma region Accessors

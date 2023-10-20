@@ -132,7 +132,6 @@ list(APPEND Global_Type
 ###########################
 ### Management controls ###
 ###########################
-
 list(APPEND ManagementControls_Dependencies
         QtQuick
         QtQuick.Layouts

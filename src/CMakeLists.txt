@@ -67,14 +67,12 @@ qt_add_resources(MediaServerManager
 ######################################
 add_subdirectory(Frontend)
 
-
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
         PRIVATE ${WorLib_Vector}
         PRIVATE ${WorLib_Json}
         PRIVATE ${WorLib_Network})
-message(WARNING ${WorLib_Network})
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
