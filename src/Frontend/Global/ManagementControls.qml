@@ -66,28 +66,35 @@ Item {
 
 	Component.onCompleted: {
 		const button = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`ManagementButton`,
 			``,
 			`Management Button`
 		);
+		root.addControl(`ManagementButton`, button);
 
 		const buttonWithText = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`ManagementButtonWithText`,
 			``,
 			`Management Button With Text`
 		);
+		root.addControl(`ManagementButtonWithText`, buttonWithText);
 
 		const table = WorJs.ItemCreator.getStringifyObject(
-			`WorControls`,
+			`WorManagementControls`,
 			`Table`,
 			``,
 			`Table`
 		);
+		root.addControl(`Table`, table);
 
-		internal.controls.push({name: `ManagementButton`, strView: button});
-		internal.controls.push({name: `ManagementButtonWithText`, strView: buttonWithText});
-		internal.controls.push({name: `Table`, strView: table});
+		const editText = WorJs.ItemCreator.getStringifyObject(
+			`WorManagementControls`,
+			`ManagementTextEdit`,
+			``,
+			`ManagementTextEdit`
+		);
+		root.addControl(`ManagementTextEdit`, editText);
 	}
 }

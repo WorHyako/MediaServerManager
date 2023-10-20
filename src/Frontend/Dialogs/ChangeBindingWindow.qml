@@ -20,11 +20,15 @@ Window {
 	 */
 	property QtObject selectedButton: undefined
 
-	Component.onCompleted: {
-		const keyValuePairs = selectedButton.getCommandPairs();
+	/**
+	 *
+	 */
+	function open() {
+		const keyValuePairs = selectedButton.commandManagerRef.getCommandPairs();
 		keyValuePairs.forEach((pair) => {
 			listModel.append({keyText: pair[0], valueText: pair[1]});
 		});
+		root.show();
 	}
 
 	ListModel {
@@ -115,7 +119,7 @@ Window {
 					const value = listView.itemAtIndex(i).getValue();
 					pairList.push([key, value]);
 				}
-				if (root.selectedButton.makeCommand(pairList)) {
+				if (root.selectedButton.commandManagerRef.makeCommand(pairList)) {
 					root.close();
 					root.destroy();
 				}

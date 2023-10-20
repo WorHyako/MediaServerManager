@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQml.Models
 import Frontend.Controls as WorControls
+import Frontend.ManagementControls as WorManagementControls
 import Frontend.Backgrounds as WorBackgrounds
 import Frontend.QmlObjects.Command as WorCommands
 
@@ -17,7 +18,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	property bool canBeMoved: true
 	property bool canBeResized: true
 
-	WorControls.TransformMouseArea {
+	WorManagementControls.TransformMouseArea {
 		canBeMoved: root.canBeMoved
 		target: root
 		canBeResized: root.canBeResized

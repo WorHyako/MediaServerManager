@@ -10,19 +10,13 @@ WorBackgrounds.TextBackgroundRectangle {
 	id: root
 
 	/**
-	 * Is button can be moved in dynamic scope
-	 */
-	property bool canBeMoved: false
-
-	/**
-	 * Is button can be resized in dynamic scope
-	 */
-	property bool canBeResized: false
-
-	/**
 	 * Editable text for Text Field
 	 */
 	property string text: `Text Edit`
+
+	function setFocus() {
+		textEdit.focus = true;
+	}
 
 	height: 30
 	width: 200

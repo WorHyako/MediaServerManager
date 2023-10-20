@@ -4,7 +4,7 @@
 # - Module type (f.e. Singleton).
 # So it can be used as map ${ ${ModuleName}_${ModuleProperty} } f.e Controls_Dependencies
 
-list(APPEND Modules Controls Actions Styles Js Backgrounds Widgets Settings Dialogs Global)
+list(APPEND Modules Controls Actions Styles Js Backgrounds Widgets Settings Dialogs Global ManagementControls)
 
 ################
 ### Controls ###
@@ -13,11 +13,13 @@ list(APPEND Controls_Dependencies
         QtQuick
         QtQuick.Layouts
         QtQuick.Controls
+        QtQml.Models
+        Frontend.Actions
         Frontend.Backgrounds
         Frontend.Controls
         Frontend.Styles
-        QtQml.Models
         Frontend.Js
+        Frontend.Global
         Frontend.QmlObjects.Command)
 
 list(APPEND Controls_FileExt
@@ -106,17 +108,20 @@ list(APPEND Dialogs_Dependencies
         QtQuick.Layouts
         Qml.Models
         Frontend.Controls
+        Frontend.ManagementControls
         Frontend.Backgrounds
-        Frontend.Js)
+        Frontend.Js
+        Frontend.Global)
 
 list(APPEND Dialogs_FileExt
         .qml)
 
-###########################
-### Management controls ###
-###########################
+##############
+### Global ###
+##############
 list(APPEND Global_Dependencies
-        QtQuick)
+        QtQuick
+        Frontend.Js)
 
 list(APPEND Global_FileExt
         .qml)
@@ -124,3 +129,19 @@ list(APPEND Global_FileExt
 list(APPEND Global_Type
         Singleton)
 
+###########################
+### Management controls ###
+###########################
+list(APPEND ManagementControls_Dependencies
+        QtQuick
+        QtQuick.Layouts
+        QtQuick.Controls
+        QtQml.Models
+        Frontend.Controls
+        Frontend.Backgrounds
+        Frontend.ManagementControls
+        Frontend.QmlObjects.Command
+        Frontend.Styles)
+
+list(APPEND ManagementControls_FileExt
+    .qml)

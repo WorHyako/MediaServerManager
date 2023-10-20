@@ -94,7 +94,7 @@ WorControls.Button {
 			}
 
 			const element = WorJs.ItemCreator.createItem(
-				`WorControls`,
+				`WorManagementControls`,
 				`${name}`,
 				args,
 				root.scopeObject,

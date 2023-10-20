@@ -23,23 +23,53 @@ namespace MediaServerManager::QmlObjects::Command {
         QML_ELEMENT
 
     public:
+        /**
+         * Ctor
+         * @param parent
+         */
         explicit QmlCommandSender(QObject *parent = nullptr);
 
+        /**
+         *
+         * @return
+         */
         QString commandText();
 
+        /**
+         *
+         * @return
+         */
         Q_INVOKABLE [[nodiscard]] bool sendCommand() const noexcept;
 
+        /**
+         *
+         * @param commandItems
+         */
         Q_INVOKABLE void setCommandText(QVariantList commandItems);
 
+        /**
+         *
+         * @param commandPairs
+         * @return
+         */
         Q_INVOKABLE bool makeCommand(QVariantList commandPairs);
 
     signals:
 
+        /**
+         *
+         */
         void commandTextChanged();
 
     private:
+        /**
+         *
+         */
         QString _commandText;
 
+        /**
+         *
+         */
         std::unique_ptr<MediaServerManager::Command::ICommand> _command;
     };
 }

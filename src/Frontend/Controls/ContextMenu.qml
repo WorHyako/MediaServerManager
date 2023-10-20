@@ -9,20 +9,9 @@ import Frontend.Actions as WorActions
 Menu {
 	id: root
 
-	WorActions.ContextMenuActionRename {
-		contextMenuRoot: root
-		objectToRename: root.selectedButton
-		propertyToRename: `buttonText`
-	}
-
-	WorActions.ContextMenuActionChangeBindingName {
-		selectedObject: root.selectedButton
-	}
-
-	WorActions.ContextMenuActionDelete {
-		objectToDestroy: root.selectedButton
-	}
-
+	/**
+	 *
+	 */
 	property int actionTypes: 0
 
 	/**
@@ -46,6 +35,20 @@ Menu {
 	required property QtObject selectedButton
 
 	padding: 3
+
+	WorActions.ContextMenuActionRename {
+		contextMenuRoot: root
+		objectToRename: root.selectedButton
+		propertyToRename: `buttonText`
+	}
+
+	WorActions.ContextMenuActionChangeBindingName {
+		selectedObject: root.selectedButton
+	}
+
+	WorActions.ContextMenuActionDelete {
+		objectToDestroy: root.selectedButton
+	}
 
 	delegate: WorControls.ContextMenuItem
 	{

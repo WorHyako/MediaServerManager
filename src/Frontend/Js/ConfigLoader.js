@@ -61,7 +61,7 @@ function loadUiFromConfig(configString, configType, scopeObject) {
             Object.assign(configObject, defaultPreset);
             // QrcItemCreator.createNewItem(String(elementPath), scopeObject, configObject);
             ItemCreator.createItem(
-                `WorControls`
+                `WorManagementControls`
                 `${elementPath[elementCount]}`,
                 ``,
                 scopeObject,

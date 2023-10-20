@@ -1,6 +1,6 @@
 import QtQuick
 import Frontend.Controls as WorControls
-import Frontend.QmlObjects.Command as WorCommands
+import Frontend.ManagementControls as WorManagementControls
 
 /**
  *
@@ -12,11 +12,6 @@ Item {
 	 * Object name
 	 */
 	property string objectName: `Management button`
-
-	/**
-	 * XML command to send to media manager
-	 */
-	property string bindingEvent: ``
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -48,8 +43,6 @@ Item {
 	 */
 	property string buttonText: `Button`
 
-	property var commandSender: root.qmlCommandSender
-
 	height: 50
 	width: 100
 
@@ -68,32 +61,6 @@ Item {
 		 * Button's minimal width
 		 */
 		readonly property int minButtonWidth: 50
-
-		/**
-		 * Pairs to generate XML message to media serve
-		 */
-		property var commandPairs: []
-	}
-
-	/**
-	 * Return command pairs
-	 */
-	function getCommandPairs() {
-		return internal.commandPairs;
-	}
-
-	/**
-	 *
-	 * @param commandPairs
-	 * @returns {boolean}
-	 */
-	function makeCommand(commandPairs): boolean {
-		if (!(Array.isArray(commandPairs) && Array.isArray(commandPairs[0]))) {
-			return false;
-		}
-		internal.commandPairs = commandPairs;
-		const makingResult = qmlCommandSender.makeCommand(commandPairs);
-		return makingResult;
 	}
 
 	WorControls.Button {
@@ -103,13 +70,13 @@ Item {
 		onRightClicked: root.onRightClicked
 		onLeftClicked: root.onLeftClicked
 
-		WorControls.TransformMouseArea {
+		WorManagementControls.TransformMouseArea {
 			canBeMoved: root.canBeMoved
 			target: root
 			canBeResized: root.canBeResized
 			movableScope: root.movableScope
 			onLeftClicked: () => {
-				qmlCommandSender.sendCommand();
+				commandManager.sendCommand();
 				button.leftClick();
 			}
 		}
@@ -117,9 +84,9 @@ Item {
 		WorControls.ContextMenuMouseArea {
 			selectedButton: root
 		}
-	}
 
-	WorCommands.QmlCommandSender {
-		id: qmlCommandSender
+		WorManagementControls.CommandPairs {
+			id: commandManager
+		}
 	}
 }

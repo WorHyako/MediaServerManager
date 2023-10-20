@@ -1,4 +1,5 @@
 import QtQuick
+import Frontend.ManagementControls as WorManagementControls
 import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 import Frontend.Backgrounds as WorBackgrounds
@@ -27,7 +28,7 @@ Window {
 		id: mouseArea
 		anchors.fill: parent
 
-		WorControls.TransformMouseArea {
+		WorManagementControls.TransformMouseArea {
 			canBeResized: true
 			movableScope: mouseArea
 			target: elementScope
@@ -68,7 +69,7 @@ Window {
 		text: `Save`
 		onLeftClicked: () => {
 			const item = `import QtQuick
-				import Frontend.Controls as WorControls
+				import Frontend.ManagementControls as WorManagementControls
 				import Frontend.Backgrounds as WorBackgrounds
 				
 				WorBackgrounds.ButtonBackgroundRectangle {
@@ -79,7 +80,7 @@ Window {
 					width: ${elementScope.width}
 					height: ${elementScope.height}
 					
-					WorControls.TransformMouseArea {
+					WorManagementControls.TransformMouseArea {
 						canBeMoved: true
 						movableScope: root.movableScope
 						target: root
@@ -88,7 +89,7 @@ Window {
 			let controlList = [item];
 			elementScope.children.forEach((child) => {
 				const element = WorJs.ItemCreator.getStringifyObject(
-					`WorControls`,
+					`WorManagementControls`,
 					`${child.objectName}`,
 					`x: ${child.x}
 					y: ${child.y}`,

@@ -5,21 +5,19 @@
 
 #include "ManagementScope.hpp"
 #include "Json/JsonQmlWrapper.hpp"
-#include "Network/TcpSocket.hpp"
+#include "Frontend/QmlObjects/Network/QmlSocketManager.hpp"
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
 
-#include "pugixml.hpp"
+#include "WorLibrary/Network/TcpSocket.hpp"
 
-#include "Network/SocketManager.hpp"
+#include "pugixml.hpp"
 
 using namespace MediaServerManager::Command;
 using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
-//    Network::SocketManager::Add();
-
     std::vector<ActionCommand *> commandList;
 
     CommandItemList hideItems;
@@ -41,13 +39,9 @@ int main(int argc, char *argv[]) {
     doc.print(ss);
     auto s = ss.str();
 
-    auto res2 = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 7000), 2);
-    auto res = Network::SocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 8000), 0);
-//    auto socket0 = Network::SocketManager::GetSocket(0);
-//    auto socket2 = Network::SocketManager::GetSocket(2);
+//    auto res = QmlObjects::Network::QmlSocketManager::Add(Wor::Network::EndPoint("127.0.0.1", 7000), 0);
+//    auto socket0 = QmlObjects::Network::QmlSocketManager::GetSocket(0);
 //    auto con0 = socket0->TryToConnect();
-//    auto con2 = socket2->TryToConnect();
-//    auto ex1 = hideCommand.Execute(socket2);
 //    auto ex2 = playCommand.Execute(socket0);
 
     /***********
