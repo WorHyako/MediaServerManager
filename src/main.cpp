@@ -8,6 +8,7 @@
 #include "Frontend/QmlObjects/Network/QmlSocketManager.hpp"
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
+#include "WorLibrary/Sql/MySqlManager.hpp"
 
 #include "WorLibrary/Network/TcpSocket.hpp"
 
@@ -18,6 +19,14 @@ using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
+    Wor::Sql::DataBaseParameters par("dbType=mysql "
+                                     "dbName=DrawEvents "
+                                     "user=user "
+                                     "password=pass "
+                                     "host=127.0.0.1 "
+                                     "port=3306");
+    Wor::Sql::MySqlManager manager(par);
+    auto res = manager.TryToConnect();
     std::vector<ActionCommand *> commandList;
 
     CommandItemList hideItems;
@@ -53,7 +62,9 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>(
             "MediaServerManager", 1, 0, "JsonQmlWrapper");
 
-    /// Enums
+    /*********
+     * Enums *
+     *********/
     qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
             "MediaServerManager", 1, 0, "DynamicScopeType",
             "Not creatable as it is an enum type");
