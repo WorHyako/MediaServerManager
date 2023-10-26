@@ -61,6 +61,9 @@ qt_add_resources(MediaServerManager
 ######################################
 add_subdirectory(Frontend)
 
+##########################################
+### Collect all properties for project ###
+##########################################
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
