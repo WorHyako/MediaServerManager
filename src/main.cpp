@@ -8,11 +8,13 @@
 #include "Frontend/QmlObjects/Network/QmlSocketManager.hpp"
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
+
 #include "WorLibrary/Sql/MySqlManager.hpp"
 #include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
-#include "Utils/AuthData.hpp"
 
+#include "Utils/AuthData.hpp"
+#include "Utils/StatementData.hpp"
 #include "Utils/Sql/Events.hpp"
 
 #include "pugixml.hpp"
@@ -31,13 +33,7 @@ int main(int argc, char *argv[]) {
         return -300;
     }
 
-    Wor::Sql::SelectStatementData statementData {
-            { "EventID", "EventTypeNum", "LotNum" },
-            "vw_eventslist",
-            "EventID",
-            "EventID > 2"
-    };
-    auto answer = manager.Select(statementData);
+    auto answer = manager.Select(Utils::Sql::statementData);
 
     std::vector<ActionCommand *> commandList;
 
