@@ -1,3 +1,9 @@
 [submodule "src/ThirdParty/worLibrary"]
 	path = src/ThirdParty/worLibrary
 	url = git@github.com:WorHyako/worLibrary
+[submodule "src/ThirdParty/soci"]
+	path = src/ThirdParty/soci
+	url = https://github.com/SOCI/soci.git
+[submodule "MediaServerManagerUtils"]
+	path = src/ThirdParty/MediaServerManagerUtils
+	url = git@github-worhyako:WorHyako/MediaServerManagerUtils.git

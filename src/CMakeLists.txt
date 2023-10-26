@@ -16,11 +16,7 @@ file(GLOB Qt_Objects
         Include/Json/JsonQmlWrapper.hpp
         Include/DynamicScopeType.hpp)
 
-############################
-### Third party packages ###
-############################
-find_package(SOCI 4.0.3 REQUIRED)
-list(APPEND SOCI_LIBS soci_core)
+add_subdirectory(ThirdParty)
 
 set(CMAKE_AUTOMOC ON)
 find_package(Qt6 COMPONENTS REQUIRED
@@ -33,8 +29,6 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_NO_BOOST_CMAKE ON)
 set(Boost_NO_WARN_NEW_VERSIONS ON)
 find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
-
-add_subdirectory(ThirdParty/WorLibrary)
 
 find_package(pugixml REQUIRED)
 
@@ -71,17 +65,23 @@ target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
         PRIVATE ${WorLib_Vector}
+        PRIVATE ${WorLib_Sql}
         PRIVATE ${WorLib_Json}
+        PRIVATE ${Utils_Src}
         PRIVATE ${WorLib_Network})
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
+        PRIVATE ${Soci_Include_Dir}
+        PRIVATE ${Utils_Include_Dir}
         PRIVATE ${WorLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
+target_link_directories(${PROJECT_NAME}
+        PRIVATE ${Soci_Libs_Dir})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE pugixml
         PRIVATE ${Boost_LIBRARIES}
-#        PRIVATE ${SOCI_LIBS}
+        PRIVATE ${Soci_Libs}
         PRIVATE Qt6::Quick
         PRIVATE Qt6::Qml
         PRIVATE Qt6::Core

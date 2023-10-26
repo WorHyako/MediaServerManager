@@ -9,7 +9,13 @@
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
 
+#include "WorLibrary/Sql/MySqlManager.hpp"
+#include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
+
+#include "Utils/AuthData.hpp"
+#include "Utils/StatementData.hpp"
+#include "Utils/Sql/Events.hpp"
 
 #include "pugixml.hpp"
 
@@ -18,6 +24,17 @@ using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
+
+    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::GetInstance();
+    manager.Configure(Utils::Sql::authParameters);
+    auto res = manager.TryToConnect();
+
+    if (res != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
+        return -300;
+    }
+
+    auto answer = manager.Select(Utils::Sql::statementData);
+
     std::vector<ActionCommand *> commandList;
 
     CommandItemList hideItems;
@@ -53,7 +70,9 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<MediaServerManager::Json::JsonQmlWrapper>(
             "MediaServerManager", 1, 0, "JsonQmlWrapper");
 
-    /// Enums
+    /*********
+     * Enums *
+     *********/
     qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
             "MediaServerManager", 1, 0, "DynamicScopeType",
             "Not creatable as it is an enum type");
