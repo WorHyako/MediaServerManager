@@ -9,8 +9,11 @@
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
 #include "WorLibrary/Sql/MySqlManager.hpp"
-
+#include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
+#include "Utils/AuthData.hpp"
+
+#include "Utils/Sql/Events.hpp"
 
 #include "pugixml.hpp"
 
@@ -19,14 +22,23 @@ using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
-    Wor::Sql::DataBaseParameters par("dbType=mysql "
-                                     "dbName=DrawEvents "
-                                     "user=user "
-                                     "password=pass "
-                                     "host=127.0.0.1 "
-                                     "port=3306");
-    Wor::Sql::MySqlManager manager(par);
+
+    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::GetInstance();
+    manager.Configure(Utils::Sql::authParameters);
     auto res = manager.TryToConnect();
+
+    if (res != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
+        return -300;
+    }
+
+    Wor::Sql::SelectStatementData statementData {
+            { "EventID", "EventTypeNum", "LotNum" },
+            "vw_eventslist",
+            "EventID",
+            "EventID > 2"
+    };
+    auto answer = manager.Select(statementData);
+
     std::vector<ActionCommand *> commandList;
 
     CommandItemList hideItems;

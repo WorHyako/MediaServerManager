@@ -79,7 +79,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;
-    for (uint16_t i = 0; i < itemNum; ++i) {
+    for (std::size_t i = 0; i < itemNum; ++i) {
         std::string buttonNumber("QuickButton_");
         buttonNumber.append(std::to_string(i));
         for (const auto &property : propertiesList_) {
@@ -96,7 +96,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;
-    for (uint16_t i = 0; i < itemNum; ++i) {
+    for (std::size_t i = 0; i < itemNum; ++i) {
         std::string buttonNumber("QuickTitle_");
         buttonNumber.append(std::to_string(i));
         for (const auto &property : propertiesList_) {
@@ -113,7 +113,7 @@ nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
     const uint16_t itemNum = items_.size();
 
     nlohmann::json result;
-    for (uint16_t i = 0; i < itemNum; ++i) {
+    for (std::size_t i = 0; i < itemNum; ++i) {
         std::string buttonNumber("ManagementButtonWithText_");
         buttonNumber.append(std::to_string(i));
         for (const auto &property : propertiesList_) {

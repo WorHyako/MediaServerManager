@@ -67,11 +67,13 @@ target_sources(${PROJECT_NAME}
         PRIVATE ${WorLib_Vector}
         PRIVATE ${WorLib_Sql}
         PRIVATE ${WorLib_Json}
+        PRIVATE ${Utils_Src}
         PRIVATE ${WorLib_Network})
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
         PRIVATE ${Soci_Include_Dir}
+        PRIVATE ${Utils_Include_Dir}
         PRIVATE ${WorLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME}
@@ -85,5 +87,3 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt6::Core
         PRIVATE Qt6::QuickControls2
         PRIVATE ${QmlCustomPlugins})
-
-

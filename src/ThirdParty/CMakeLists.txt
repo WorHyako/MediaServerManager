@@ -30,3 +30,12 @@ set(WorLib_Json ${WorLib_Json} PARENT_SCOPE)
 set(WorLib_Sql ${WorLib_Sql} PARENT_SCOPE)
 set(WorLib_Vector ${WorLib_Vector} PARENT_SCOPE)
 set(WorLib_Network ${WorLib_Network} PARENT_SCOPE)
+
+########################
+### MediaServerUtils ###
+########################
+IF (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Utils)
+    add_subdirectory(Utils)
+    set(Utils_Src ${Utils_Src} PARENT_SCOPE)
+    set(Utils_Include_Dir ${Utils_Include_Dir} PARENT_SCOPE)
+endif ()
