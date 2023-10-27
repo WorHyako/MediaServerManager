@@ -16,25 +16,32 @@ file(GLOB Qt_Objects
         Include/Json/JsonQmlWrapper.hpp
         Include/DynamicScopeType.hpp)
 
-add_subdirectory(ThirdParty)
+########################
+### Third Party libs ###
+########################
+set(WorLibrary_Root_Dir ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/WorLibrary)
+add_subdirectory(${WorLibrary_Root_Dir})
+
+set(Utils_Root_Dir ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/Utils)
+add_subdirectory(${Utils_Root_Dir})
 
 set(CMAKE_AUTOMOC ON)
+set(QML_IMPORT_TRACE ON)
+set(QT_DECLARATIVE_DEBUG ON)
+set(QT_QML_DEBUG ON)
 find_package(Qt6 COMPONENTS REQUIRED
         Core
         Qml
         Quick
         QuickControls2)
-
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_NO_BOOST_CMAKE ON)
-set(Boost_NO_WARN_NEW_VERSIONS ON)
-find_package(Boost 1.81.0 REQUIRED COMPONENTS date_time)
+list(APPEND Qt_Libs
+        Qt6::Quick
+        Qt6::Qml
+        Qt6::Core
+        Qt6::QuickControls2)
 
 find_package(pugixml REQUIRED)
 
-set(QML_IMPORT_TRACE ON)
-set(QT_DECLARATIVE_DEBUG ON)
-set(QT_QML_DEBUG ON)
 qt_add_executable(${PROJECT_NAME} main.cpp)
 
 ##############################
@@ -67,26 +74,19 @@ add_subdirectory(Frontend)
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
-        PRIVATE ${WorLib_Vector}
-        PRIVATE ${WorLib_Sql}
-        PRIVATE ${WorLib_Json}
-        PRIVATE ${Utils_Src}
-        PRIVATE ${WorLib_Network})
+        PRIVATE ${Utils_Src})
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
         PRIVATE ${Soci_Include_Dir}
         PRIVATE ${Utils_Include_Dir}
-        PRIVATE ${WorLib_Include_Dir}
         PRIVATE ${Boost_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME}
         PRIVATE ${Soci_Libs_Dir})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE pugixml
+        PRIVATE ${Qt_Libs}
         PRIVATE ${Boost_LIBRARIES}
         PRIVATE ${Soci_Libs}
-        PRIVATE Qt6::Quick
-        PRIVATE Qt6::Qml
-        PRIVATE Qt6::Core
-        PRIVATE Qt6::QuickControls2
+        PRIVATE WorLibrary
         PRIVATE ${QmlCustomPlugins})
