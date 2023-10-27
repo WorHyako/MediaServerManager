@@ -76,7 +76,7 @@ QString JsonQmlWrapper::LoadConfigs(DynamicScopeType scope_) noexcept {
 nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
-    const uint16_t itemNum = items_.size();
+    const std::uint16_t itemNum = items_.size();
 
     nlohmann::json result;
     for (std::size_t i = 0; i < itemNum; ++i) {
@@ -93,7 +93,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
 nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
-    const uint16_t itemNum = items_.size();
+    const std::uint16_t itemNum = items_.size();
 
     nlohmann::json result;
     for (std::size_t i = 0; i < itemNum; ++i) {
@@ -110,7 +110,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
 nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
-    const uint16_t itemNum = items_.size();
+    const std::uint16_t itemNum = items_.size();
 
     nlohmann::json result;
     for (std::size_t i = 0; i < itemNum; ++i) {

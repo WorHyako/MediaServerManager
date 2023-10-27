@@ -12,9 +12,10 @@
 #include "WorLibrary/Sql/MySqlManager.hpp"
 #include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
+#include "WorLibrary/Sql/Event/EventManager.hpp"
 
-#include "Utils/AuthData.hpp"
-#include "Utils/StatementData.hpp"
+#include "Utils/Sql/AuthData.hpp"
+#include "Utils/Sql/StatementData.hpp"
 #include "Utils/Sql/Events.hpp"
 
 #include "pugixml.hpp"
@@ -24,16 +25,20 @@ using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
-
     auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::GetInstance();
     manager.Configure(Utils::Sql::authParameters);
-    auto res = manager.TryToConnect();
+    auto connectRes = manager.TryToConnect();
 
-    if (res != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
+    Wor::Sql::Event::EventManager eventManager;
+    auto eventListRes = eventManager.Configure(Utils::Sql::Events::GetEventList());
+    eventManager._eventList[0].eventFunction(0);
+    return 0;
+    if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
         return -300;
     }
 
-    auto answer = manager.Select(Utils::Sql::statementData);
+    auto answer = manager.Select(
+            Utils::Sql::Statement::getUpdateEvents(0));
 
     std::vector<ActionCommand *> commandList;
 

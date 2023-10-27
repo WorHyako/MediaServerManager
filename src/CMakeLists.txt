@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.24)
 project(MediaServerManager
         VERSION 0.1
         LANGUAGES CXX)
-set(CMAKE_CXX_COMPILER_VERSION 17)
+
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #########################
@@ -19,6 +20,10 @@ file(GLOB Qt_Objects
 ########################
 ### Third Party libs ###
 ########################
+set(WORLIBRARY_JSON ON)
+set(WORLIBRARY_SQL ON)
+set(WORLIBRARY_MATH ON)
+set(WORLIBRARY_NETWORK ON)
 set(WorLibrary_Root_Dir ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/WorLibrary)
 add_subdirectory(${WorLibrary_Root_Dir})
 
@@ -74,19 +79,18 @@ add_subdirectory(Frontend)
 target_sources(${PROJECT_NAME}
         PRIVATE ${Sources}
         PRIVATE ${Qt_Objects}
+        PRIVATE ${Utils_Sources}
         PRIVATE ${Utils_Src})
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
         PRIVATE ${${PROJECT_NAME}_IncludeDir}
         PRIVATE ${Soci_Include_Dir}
-        PRIVATE ${Utils_Include_Dir}
-        PRIVATE ${Boost_INCLUDE_DIRS})
+        PRIVATE ${Utils_Include_Dir})
 target_link_directories(${PROJECT_NAME}
         PRIVATE ${Soci_Libs_Dir})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE pugixml
         PRIVATE ${Qt_Libs}
-        PRIVATE ${Boost_LIBRARIES}
         PRIVATE ${Soci_Libs}
         PRIVATE WorLibrary
         PRIVATE ${QmlCustomPlugins})
