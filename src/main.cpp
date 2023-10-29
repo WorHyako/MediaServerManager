@@ -31,8 +31,12 @@ int main(int argc, char *argv[]) {
 
     Wor::Sql::Event::EventManager eventManager;
     auto eventListRes = eventManager.Configure(Utils::Sql::Events::GetEventList());
-    eventManager._eventList[0].eventFunction(0);
+    eventManager.UpdateEventList();
     return 0;
+
+
+
+
     if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
         return -300;
     }
