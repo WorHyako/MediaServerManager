@@ -13,6 +13,7 @@
 #include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
 #include "WorLibrary/Sql/Event/EventManager.hpp"
+#include "WorLibrary/Currency/MoneyStrPresentation.hpp"
 
 #include "Utils/Sql/AuthData.hpp"
 #include "Utils/Sql/StatementData.hpp"
@@ -32,10 +33,12 @@ int main(int argc, char *argv[]) {
     Wor::Sql::Event::EventManager eventManager;
     auto eventListRes = eventManager.Configure(Utils::Sql::Events::GetEventList());
     eventManager.UpdateEventList();
+
+    auto rules = static_cast<Wor::Currency::MoneyPresentation::Rules>(
+            (int) Wor::Currency::MoneyPresentation::Rules::Penny |
+            (int) Wor::Currency::MoneyPresentation::Rules::CurrencySymbol);
+    auto f = Wor::Currency::MoneyPresentation::FormatMoney("334124fw124.41", rules, Wor::Currency::CurrencyType::Dollar);
     return 0;
-
-
-
 
     if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
         return -300;
