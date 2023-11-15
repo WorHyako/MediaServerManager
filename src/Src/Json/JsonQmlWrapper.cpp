@@ -6,14 +6,14 @@
 using namespace MediaServerManager::Json;
 
 Wor::Json::JsonManager::FileStatus
-JsonQmlWrapper::TryToFindFile(const QString &filePath_,
+JsonQmlWrapper::tryToFindFile(const QString &filePath_,
                               bool createFile_) noexcept {
-    auto resultStatus = _jsonManager.TryToFindFile(
+    auto resultStatus = _jsonManager.tryToFindFile(
             std::move(filePath_.toStdString()), createFile_);
     return resultStatus;
 }
 
-bool JsonQmlWrapper::SaveConfigs(const QList<QObject *> &items_,
+bool JsonQmlWrapper::saveConfigs(const QList<QObject *> &items_,
                                  DynamicScopeType scope_) noexcept {
     std::vector<QObject *> items;
     items.reserve(items_.size());
@@ -29,27 +29,27 @@ bool JsonQmlWrapper::SaveConfigs(const QList<QObject *> &items_,
     switch (scope_) {
         case DynamicScopeType::QuickButtons:
             propertiesList = { "text", "name" };
-            configString = MakeQuickButtonsConfig(items, propertiesList);
+            configString = makeQuickButtonsConfig(items, propertiesList);
             scopeName = "QuickButtonsScope";
             break;
         case DynamicScopeType::ManagementButtons:
             propertiesList = { "text", "x", "y", "width", "height" };
-            configString = MakeManagementButtonConfig(items, propertiesList);
+            configString = makeManagementButtonConfig(items, propertiesList);
             scopeName = "ManagementButtonsScope";
             break;
         case DynamicScopeType::QuickTitles:
             propertiesList = { "text" };
-            configString = MakeQuickTitlesConfig(items, propertiesList);
+            configString = makeQuickTitlesConfig(items, propertiesList);
             scopeName = "QuickTitlesScope";
             break;
         default:
             break;
     }
-    auto result = _jsonManager.TryToSaveFile(configString.dump(), scopeName);
+    auto result = _jsonManager.tryToSaveFile(configString.dump(), scopeName);
     return result;
 }
 
-QString JsonQmlWrapper::LoadConfigs(DynamicScopeType scope_) noexcept {
+QString JsonQmlWrapper::loadConfigs(DynamicScopeType scope_) noexcept {
     std::string scopeName {};
     switch (scope_) {
         case DynamicScopeType::QuickButtons:
@@ -65,7 +65,7 @@ QString JsonQmlWrapper::LoadConfigs(DynamicScopeType scope_) noexcept {
             break;
     }
     std::string configString = "null";
-    nlohmann::json jsonContent = _jsonManager.TryToLoadFile(scopeName);
+    nlohmann::json jsonContent = _jsonManager.tryToLoadFile(scopeName);
     auto loadingResult = jsonContent.is_object();
     if (loadingResult) {
         configString = jsonContent.dump();
@@ -73,7 +73,7 @@ QString JsonQmlWrapper::LoadConfigs(DynamicScopeType scope_) noexcept {
     return { configString.c_str() };
 }
 
-nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
+nlohmann::json JsonQmlWrapper::makeQuickButtonsConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
     const std::uint16_t itemNum = items_.size();
@@ -90,7 +90,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickButtonsConfig(
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
+nlohmann::json JsonQmlWrapper::makeQuickTitlesConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
     const std::uint16_t itemNum = items_.size();
@@ -107,7 +107,7 @@ nlohmann::json JsonQmlWrapper::MakeQuickTitlesConfig(
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
+nlohmann::json JsonQmlWrapper::makeManagementButtonConfig(
         const std::vector<QObject *> &items_,
         const std::vector<std::string> &propertiesList_) const noexcept {
     const std::uint16_t itemNum = items_.size();
@@ -127,12 +127,12 @@ nlohmann::json JsonQmlWrapper::MakeManagementButtonConfig(
 #pragma region Accessors
 
 Wor::Json::JsonManager::FileStatus
-JsonQmlWrapper::GetFileStatus() const noexcept {
-    return _jsonManager.GetFileStatus();
+JsonQmlWrapper::getFileStatus() const noexcept {
+    return _jsonManager.getFileStatus();
 }
 
-QString JsonQmlWrapper::GetFileName() const noexcept {
-    return _jsonManager.GetFileName().c_str();
+QString JsonQmlWrapper::getFileName() const noexcept {
+    return _jsonManager.getFileName().c_str();
 }
 
 #pragma endregion Accessors

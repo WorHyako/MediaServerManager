@@ -33,7 +33,7 @@ namespace MediaServerManager::Json {
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        TryToFindFile(const QString &filePath_,
+        tryToFindFile(const QString &filePath_,
                       bool createFile = true) noexcept;
 
         /**
@@ -43,7 +43,7 @@ namespace MediaServerManager::Json {
          * @return          saving result
          */
         [[nodiscard]] Q_INVOKABLE bool
-        SaveConfigs(const QList<QObject *> &items_,
+        saveConfigs(const QList<QObject *> &items_,
                     DynamicScopeType scope_) noexcept;
 
         /**
@@ -52,7 +52,7 @@ namespace MediaServerManager::Json {
          * @return          loading result
          */
         [[nodiscard]] Q_INVOKABLE QString
-        LoadConfigs(DynamicScopeType scope_) noexcept;
+        loadConfigs(DynamicScopeType scope_) noexcept;
 
     private:
         /**
@@ -80,7 +80,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(
+        [[nodiscard]] nlohmann::json makeQuickButtonsConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -90,7 +90,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(
+        [[nodiscard]] nlohmann::json makeQuickTitlesConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -100,7 +100,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeManagementButtonConfig(
+        [[nodiscard]] nlohmann::json makeManagementButtonConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -112,13 +112,13 @@ namespace MediaServerManager::Json {
          * @return current file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        GetFileStatus() const noexcept;
+        getFileStatus() const noexcept;
 
         /**
          *
          * @return  current file name via path
          */
-        [[nodiscard]] Q_INVOKABLE QString GetFileName() const noexcept;
+        [[nodiscard]] Q_INVOKABLE QString getFileName() const noexcept;
 
 #pragma endregion Accessors
     };

@@ -36,10 +36,10 @@ bool QmlCommandSender::makeCommand(QVariantList commandPairs) {
 }
 
 bool QmlCommandSender::sendCommand() const noexcept {
-    auto socketAdded = QmlObjects::Network::QmlSocketManager::Add(
+    auto socketAdded = QmlObjects::Network::QmlSocketManager::add(
             Wor::Network::EndPoint("127.0.0.1", 8000), 0);
-    auto socket = QmlObjects::Network::QmlSocketManager::GetSocket(0);
-    auto connectRes = socket->TryToConnect();
+    auto socket = QmlObjects::Network::QmlSocketManager::getSocket(0);
+    auto connectRes = socket->tryToConnect();
     if (!connectRes) {
         return false;
     }

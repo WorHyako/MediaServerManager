@@ -16,7 +16,7 @@ QmlSocketManager::QmlSocketManager(QObject *parent)
         : QObject(parent) {
 }
 
-std::shared_ptr<Wor::Network::TcpSocket> QmlSocketManager::GetSocket(std::uint8_t socketIndex) noexcept {
+std::shared_ptr<Wor::Network::TcpSocket> QmlSocketManager::getSocket(std::uint8_t socketIndex) noexcept {
     for (const auto &each : socketList) {
         if (each.second == socketIndex) {
             return each.first;
@@ -25,11 +25,11 @@ std::shared_ptr<Wor::Network::TcpSocket> QmlSocketManager::GetSocket(std::uint8_
     return nullptr;
 }
 
-bool QmlSocketManager::Add(Wor::Network::EndPoint endPoint, std::uint8_t socketIndex) noexcept {
+bool QmlSocketManager::add(Wor::Network::EndPoint endPoint, std::uint8_t socketIndex) noexcept {
     auto socket = std::make_shared<Wor::Network::TcpSocket>();
-    socket->DestinationEndPoint(std::move(endPoint));
+    socket->destinationEndPoint(std::move(endPoint));
     /// TODO: Change to ping method
-    if (!socket->TryToConnect()) {
+    if (!socket->tryToConnect()) {
         return false;
     }
 //    socket->CloseConnection();
@@ -38,7 +38,7 @@ bool QmlSocketManager::Add(Wor::Network::EndPoint endPoint, std::uint8_t socketI
     return true;
 }
 
-void QmlSocketManager::Remove(std::uint8_t socketIndex) noexcept {
+void QmlSocketManager::remove(std::uint8_t socketIndex) noexcept {
     if (::socketList.size() - 1 < socketIndex) {
         return;
     }
@@ -55,9 +55,5 @@ bool QmlSocketManager::add(QString address, int port, int socketIndex) noexcept 
         qDebug("Unknown or invalid address.");
         return false;
     }
-    return QmlSocketManager::Add(Wor::Network::EndPoint(address.toStdString(), port), socketIndex);
-}
-
-void QmlSocketManager::remove(std::uint8_t socketIndex) noexcept {
-    Remove(socketIndex);
+    return QmlSocketManager::add(Wor::Network::EndPoint(address.toStdString(), port), socketIndex);
 }

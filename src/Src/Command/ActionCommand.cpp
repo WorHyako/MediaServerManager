@@ -30,13 +30,13 @@ void ActionCommand::Clean() noexcept {
 }
 
 bool ActionCommand::Execute(ICommand::SocketRef sender) const noexcept {
-    if (sender->Status() != Wor::Network::SocketStatus::Connected) {
+    if (sender->status() != Wor::Network::SocketStatus::Connected) {
         return false;
     }
     std::stringstream ss;
     command.print(ss);
     std::cout << "\npacket to send: " << ss.str();
-    return sender->Send(ss.str()) > 0;
+    return sender->send(ss.str()) > 0;
 }
 
 void ActionCommand::AddItem(const CommandItem &commandItem) noexcept {

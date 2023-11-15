@@ -26,25 +26,25 @@ using namespace MediaServerManager;
 using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
-    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::GetInstance();
-    manager.Configure(Utils::Sql::authParameters);
-    auto connectRes = manager.TryToConnect();
+    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::getInstance();
+    manager.configure(Utils::Sql::authParameters);
+    auto connectRes = manager.tryToConnect();
 
     Wor::Sql::Event::EventManager eventManager;
-    auto eventListRes = eventManager.Configure(Utils::Sql::Events::GetEventList());
-    eventManager.UpdateEventList();
+    auto eventListRes = eventManager.configure(Utils::Sql::Events::GetEventList());
+    eventManager.startUpdatingThread();
 
     auto rules = static_cast<Wor::Currency::MoneyPresentation::Rules>(
             (int) Wor::Currency::MoneyPresentation::Rules::Penny |
             (int) Wor::Currency::MoneyPresentation::Rules::CurrencySymbol);
-    auto f = Wor::Currency::MoneyPresentation::FormatMoney("334124fw124.41", rules, Wor::Currency::CurrencyType::Dollar);
+    auto f = Wor::Currency::MoneyPresentation::formatMoney("334124fw124.41", rules, Wor::Currency::CurrencyType::Dollar);
     return 0;
 
     if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
         return -300;
     }
 
-    auto answer = manager.Select(
+    auto answer = manager.select(
             Utils::Sql::Statement::getUpdateEvents(0));
 
     std::vector<ActionCommand *> commandList;

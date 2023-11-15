@@ -30,7 +30,7 @@ namespace MediaServerManager::QmlObjects::Network {
          * @param socketIndex
          * @return
          */
-        [[nodiscard]] static bool Add(Wor::Network::EndPoint endPoint, std::uint8_t socketIndex) noexcept;
+        [[nodiscard]] static bool add(Wor::Network::EndPoint endPoint, std::uint8_t socketIndex) noexcept;
 
         /**
          *
@@ -45,12 +45,6 @@ namespace MediaServerManager::QmlObjects::Network {
          *
          * @param socketIndex
          */
-        Q_INVOKABLE static void Remove(std::uint8_t socketIndex) noexcept;
-
-        /**
-         *
-         * @param socketIndex
-         */
         Q_INVOKABLE static void remove(std::uint8_t socketIndex) noexcept;
 
         /**
@@ -58,7 +52,7 @@ namespace MediaServerManager::QmlObjects::Network {
          * @param socketIndex
          * @return
          */
-        [[nodiscard]] static std::shared_ptr<Wor::Network::TcpSocket> GetSocket(std::uint8_t socketIndex) noexcept;
+        [[nodiscard]] static std::shared_ptr<Wor::Network::TcpSocket> getSocket(std::uint8_t socketIndex) noexcept;
 
     private:
         /**
