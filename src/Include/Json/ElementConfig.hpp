@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "WorLibrary/Vector/Vector2.hpp"
+#include "WorLibrary/Math/Vector/Vector2.hpp"
 
 namespace MediaServerManager {
 
