@@ -31,7 +31,8 @@ int main(int argc, char *argv[]) {
     auto connectRes = manager.tryToConnect();
 
     Wor::Sql::Event::EventManager eventManager;
-    auto eventListRes = eventManager.configure(Utils::Sql::Events::GetEventList());
+    eventManager.setEventList(Utils::Sql::Events::getEventList());
+    eventManager.setUpdateEvent(Utils::Sql::Events::getUpdateEvent());
     eventManager.startUpdatingThread();
 
     auto rules = static_cast<Wor::Currency::MoneyPresentation::Rules>(
