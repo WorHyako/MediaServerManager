@@ -7,7 +7,7 @@ import Frontend.Js as WorJs
  */
 Action {
 	/**
-	 * Object to change XML message to media server
+	 * Object to change binding to Sql field
 	 */
 	required property var selectedObject
 
@@ -16,13 +16,13 @@ Action {
 	onTriggered: () => {
 		const window = WorJs.ItemCreator.createItem(
 			`WorDialogs`,
-			`ChangeBindingWindow`,
+			`ChangeSqlBindingWindow`,
 			``,
 			selectedObject,
 			`Change binding name window`
 		);
 		window.selectedButton = selectedObject;
 		console.log(`selected object: ${selectedObject}`);
-		window.open();
+		window.show();
 	}
 }

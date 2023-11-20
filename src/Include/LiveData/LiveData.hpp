@@ -4,10 +4,11 @@
 #include <vector>
 #include <atomic>
 #include <any>
+#include <functional>
 
 #include "Utils/Sql/Events.hpp"
 
-namespace Utils::Livedata {
+namespace MediaServerManager::Livedata {
 
     /**
      *
@@ -20,47 +21,54 @@ namespace Utils::Livedata {
         virtual ~LiveData() = default;
 
         /**
-         *
-         * @param dataName
-         * @return
+         * Get data from LivaData storage
+         * @param dataName  LiveData value name
+         * @return          LiveData value
          */
         template<class T>
         [[nodiscard]] std::optional<T> get(const std::string &dataName) noexcept;
 
         /**
-         *
-         * @param dataName
-         * @param data
+         * Add to LiveData storage data
+         * @param dataName  LiveData value name
+         * @param data      LivaData value
          */
         template<class T>
         void set(const std::string &dataName, const T &data) noexcept;
 
+        void setNotifyingFunc(std::function<void(const std::string &, const std::any &)> notifyingFunc) noexcept {
+            _notifyingFunc = std::move(notifyingFunc);
+        }
+
     private:
         /**
-         *
-         * @param dataName
+         * Is current data exist in storage already
+         * @param dataName  LiveData value name
          * @return
          */
-        bool isExist(const std::string &dataName) const noexcept;
+        [[nodiscard]] bool isExist(const std::string &dataName) const noexcept {
+            const auto found = std::find_if(std::begin(_liveData), std::end(_liveData),
+                                            [&dataName](const auto &each) {
+                                                return each.first == dataName;
+                                            });
+            return found != std::end(_liveData);
+        }
 
         /**
-         *
+         *  LiveData storage
          */
         std::unordered_map<std::string, std::any> _liveData;
 
         /**
          *
          */
+        std::function<void(std::string, std::any)> _notifyingFunc;
+
+        /**
+         *
+         */
         std::atomic<bool> _atomicFlag;
     };
-
-    bool LiveData::isExist(const std::string &dataName) const noexcept {
-        const auto found = std::find_if(std::begin(_liveData), std::end(_liveData),
-                                        [&dataName](const auto &each) {
-                                            return each.first == dataName;
-                                        });
-        return found != std::end(_liveData);
-    }
 
     template<class T>
     std::optional<T> LiveData::get(const std::string &dataName) noexcept {
@@ -77,6 +85,9 @@ namespace Utils::Livedata {
             _liveData.at(dataName) = data;
         } else {
             _liveData.emplace(std::pair<std::string, std::any> { dataName, data });
+        }
+        if (_notifyingFunc) {
+            _notifyingFunc(dataName, data);
         }
     }
 }

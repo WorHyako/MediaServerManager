@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
 import Frontend.ManagementControls as WorManagementControls
-import Frontend.QmlObjects.Command as WorCommands
+import Frontend.QmlObjects.LiveData as WorLiveData
 
 /**
  *
@@ -47,12 +47,12 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: `Button`
+	property string buttonText: liveData.name
 
 	/**
 	 * Text inside Edit Text field
 	 */
-	property string textFieldText: `Text`
+	property string textFieldText: liveData.name
 
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
@@ -106,11 +106,19 @@ Item {
 			id: text
 			Layout.preferredHeight: parent.height * 0.3
 			Layout.preferredWidth: parent.width
-			text: commandManager.bindingEvent
+			text: root.textFieldText
 		}
 
 		WorManagementControls.CommandPairs {
 			id: commandManager
+		}
+
+		WorLiveData.QmlLiveData {
+			id: liveData
+
+			Component.onCompleted: {
+				liveDataTracker.liveDataChanged.connect(liveData.liveDataChanged);
+			}
 		}
 	}
 }

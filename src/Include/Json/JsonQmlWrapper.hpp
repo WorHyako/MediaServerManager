@@ -6,15 +6,17 @@
 #include <array>
 
 #include "Json/ElementConfig.hpp"
-#include "WorLibrary/Json/JsonManager.hpp"
 #include "DynamicScopeType.hpp"
+
+#include "WorLibrary/Json/JsonManager.hpp"
 
 namespace MediaServerManager::Json {
 
     /**
      *
      */
-    class JsonQmlWrapper : public QObject {
+    class JsonQmlWrapper
+            : public QObject {
     Q_OBJECT
 
     public:
@@ -42,17 +44,15 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool
-        saveConfigs(const QList<QObject *> &items_,
-                    DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool saveConfigs(const QList<QObject *> &items_,
+                                                   DynamicScopeType scope_) noexcept;
 
         /**
          * Try to load UI elements config from json file
          * @param scope_
          * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE QString
-        loadConfigs(DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE QString loadConfigs(DynamicScopeType scope_) noexcept;
 
     private:
         /**
@@ -61,7 +61,7 @@ namespace MediaServerManager::Json {
          */
         using ConfigStorage =
                 std::array<std::vector<MediaServerManager::ElementConfig>,
-                        static_cast<size_t>(
+                        static_cast<std::size_t>(
                                 std::numeric_limits<DynamicScopeType>::max())>;
 
         /**

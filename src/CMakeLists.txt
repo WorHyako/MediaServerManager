@@ -15,6 +15,7 @@ file(GLOB_RECURSE Sources Src/*.cpp)
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
         Include/Json/JsonQmlWrapper.hpp
+        Include/LiveData/QmlLiveDataTracker.hpp
         Include/DynamicScopeType.hpp)
 
 ########################
@@ -24,6 +25,7 @@ set(WORLIBRARY_JSON ON)
 set(WORLIBRARY_SQL ON)
 set(WORLIBRARY_MATH ON)
 set(WORLIBRARY_NETWORK ON)
+set(WORLIBRARY_CURRENCY ON)
 set(WorLibrary_Root_Dir ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/WorLibrary)
 add_subdirectory(${WorLibrary_Root_Dir})
 
