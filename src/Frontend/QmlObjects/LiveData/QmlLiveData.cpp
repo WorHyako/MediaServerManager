@@ -10,7 +10,6 @@ using namespace MediaServerManager::QmlObjects::LiveData;
 QmlLiveData::QmlLiveData(QObject *parent) noexcept
         : QObject(parent),
           _dataName("currentTourWinnersCount") {
-    updateData();
 }
 
 #include <iostream>
