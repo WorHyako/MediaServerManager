@@ -42,11 +42,13 @@ foreach (ModuleName ${Modules})
             OUTPUT_DIRECTORY ${ModuleOutputDir}
             QML_FILES ${Files}
             DEPENDENCIES ${${ModuleName}_Dependencies})
-    list(APPEND QmlCustomPlugins ${TargetName}plugin)
+    list(APPEND QmlCustomPlugins
+            ${TargetName}plugin)
 endforeach (ModuleName)
 
 ######################################################
 ### Export plugins to parent CMakeLists to link it ###
 ######################################################
-list(APPEND QmlCustomPlugins ${QmlCustomObjectsPlugins})
+list(APPEND QmlCustomPlugins
+        ${QmlCustomObjectsPlugins})
 set(QmlCustomPlugins ${QmlCustomPlugins} PARENT_SCOPE)

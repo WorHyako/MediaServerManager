@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <string>
 
 #include "WorLibrary/Math/Vector/Vector2.hpp"
 
@@ -12,8 +12,8 @@ namespace MediaServerManager {
      */
     struct ElementConfig {
     public:
-        /*
-         * Ctor.
+        /**
+         * Ctor
          */
         ElementConfig() = default;
 

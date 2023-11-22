@@ -17,5 +17,6 @@ qt_add_qml_module(QmlNetwork
         QtQml)
 
 target_include_directories(QmlNetwork
-        PUBLIC ${${PROJECT_NAME}_IncludeDir}
-        PUBLIC ${WorLib_Include_Dir})
+        PUBLIC
+        ${${PROJECT_NAME}_IncludeDir}
+        ${WorLib_Include_Dir})

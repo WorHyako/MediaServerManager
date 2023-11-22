@@ -1,13 +1,11 @@
 #include "Json/JsonQmlWrapper.hpp"
 
-#include <QVariant>
 #include <QQuickItem>
 
 using namespace MediaServerManager::Json;
 
-Wor::Json::JsonManager::FileStatus
-JsonQmlWrapper::tryToFindFile(const QString &filePath_,
-                              bool createFile_) noexcept {
+Wor::Json::JsonManager::FileStatus JsonQmlWrapper::tryToFindFile(const QString &filePath_,
+                                                                 bool createFile_) noexcept {
     auto resultStatus = _jsonManager.tryToFindFile(
             std::move(filePath_.toStdString()), createFile_);
     return resultStatus;

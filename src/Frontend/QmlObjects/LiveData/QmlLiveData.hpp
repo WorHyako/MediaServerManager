@@ -2,12 +2,6 @@
 
 #include <QObject>
 #include <qqml.h>
-#include <QString>
-#include <QList>
-#include <QVariant>
-
-#include <any>
-#include <string>
 
 namespace MediaServerManager::QmlObjects::LiveData {
 
@@ -18,36 +12,43 @@ namespace MediaServerManager::QmlObjects::LiveData {
             : public QObject {
     Q_OBJECT
 
-        Q_PROPERTY(QString name READ getSqlFieldName WRITE setSqlFieldName NOTIFY nameChanged)
-        Q_PROPERTY(QVariant value READ getSqlFieldValue WRITE setSqlFieldValue NOTIFY dataChanged)
+        Q_PROPERTY(QString dataName READ getDataName WRITE setDataName NOTIFY dataNameChanged)
+        Q_PROPERTY(QString data READ getData WRITE setData NOTIFY dataChanged)
 
         QML_ELEMENT
+
     public:
         /**
          * Ctor
          */
         explicit QmlLiveData(QObject *parent = nullptr) noexcept;
 
+        /**
+         *
+         */
+         Q_INVOKABLE void updateData() noexcept;
+
     private:
         /**
          * Sql field name to binding with control value
          */
-        QString _sqlFieldName;
+        QString _dataName;
 
         /**
          *
          */
-        QVariant _sqlFieldValue;
+        QString _data;
 
     public slots:
 
-        void liveDataChanged(QString dataName, QVariant data);
+        void liveDataChanged(QString dataName, QString data);
 
     signals:
 
-        void nameChanged(QString);
+        void dataNameChanged(QString);
 
-        void dataChanged(QVariant);
+        void dataChanged(QString);
+
     public:
 #pragma region Accessors
 
@@ -55,13 +56,13 @@ namespace MediaServerManager::QmlObjects::LiveData {
          * Accessor for `sqlFieldName`
          * @return sglFieldName
          */
-        QString getSqlFieldName() noexcept;
+        QString getDataName() noexcept;
 
         /**
          *
          * @return
          */
-        QVariant getSqlFieldValue() noexcept;
+        QString getData() noexcept;
 
 #pragma endregion Accessors
 
@@ -71,13 +72,13 @@ namespace MediaServerManager::QmlObjects::LiveData {
          *
          * @param sqlFieldName
          */
-        void setSqlFieldName(QString sqlFieldName) noexcept;
+        void setDataName(QString dataName) noexcept;
 
         /**
          *
          * @param sqlFieldValue
          */
-        void setSqlFieldValue(QVariant sqlFieldValue) noexcept;
+        void setData(QString data) noexcept;
 
 #pragma endregion Mutators
     };

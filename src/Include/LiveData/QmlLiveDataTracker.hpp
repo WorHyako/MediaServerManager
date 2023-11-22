@@ -2,7 +2,6 @@
 
 #include <QObject>
 #include <QString>
-#include <QVariant>
 
 #include <string>
 #include <any>
@@ -23,14 +22,14 @@ namespace MediaServerManager::LiveData {
          */
         QmlLiveDataTracker() = default;
 
-        void notifyAll(const std::string &dataName, const std::any &data) noexcept;
+        void notifyAll(const std::string &dataName, const std::string &data) noexcept;
 
     public:
 #pragma region Slots/Signals
 
     signals:
 
-        void liveDataChanged(QString dataName, QVariant data);
+        void liveDataChanged(QString dataName, QString data);
 
 #pragma endregion Slots/Signals
     };

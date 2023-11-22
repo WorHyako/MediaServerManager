@@ -25,6 +25,8 @@
 
 #include "pugixml.hpp"
 
+#include "WorLibrary/DataConverter/DataConverter.hpp"
+
 using namespace MediaServerManager::Command;
 using namespace MediaServerManager;
 using namespace Wor::Network;
@@ -47,7 +49,7 @@ int main(int argc, char *argv[]) {
                                                            Wor::Currency::CurrencyType::Dollar);
 
     if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
-//        return -300;
+        return -300;
     }
 
     std::vector<ActionCommand *> commandList;
@@ -115,13 +117,14 @@ int main(int argc, char *argv[]) {
 
     auto &liveData = Wor::TemplateWrapper::Singleton<Livedata::LiveData>::getInstance();
     liveData.setNotifyingFunc(
-            [&liveDataTracker](const std::string &dataName, const std::any &data) {
+            [&liveDataTracker](const std::string &dataName, const std::string &data) {
                 liveDataTracker.notifyAll(dataName, data);
             });
     std::thread y([&eventManager]() {
         std::this_thread::sleep_for(std::chrono::seconds(10));
         eventManager.startUpdatingThread();
     });
+    y.detach();
 //    eventManager.startUpdatingThread();
     engine.load(url);
     return app.exec();

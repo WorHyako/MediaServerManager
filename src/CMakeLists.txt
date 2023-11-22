@@ -22,6 +22,7 @@ file(GLOB Qt_Objects
 ### Third Party libs ###
 ########################
 set(WORLIBRARY_JSON ON)
+set(WORLIBRARY_DATA_CONVERTER ON)
 set(WORLIBRARY_SQL ON)
 set(WORLIBRARY_MATH ON)
 set(WORLIBRARY_NETWORK ON)
@@ -79,20 +80,24 @@ add_subdirectory(Frontend)
 ### Collect all properties for project ###
 ##########################################
 target_sources(${PROJECT_NAME}
-        PRIVATE ${Sources}
-        PRIVATE ${Qt_Objects}
-        PRIVATE ${Utils_Sources}
-        PRIVATE ${Utils_Src})
+        PRIVATE
+        ${Sources}
+        ${Qt_Objects}
+        ${Utils_Sources}
+        ${Utils_Src})
 target_include_directories(${PROJECT_NAME}
-        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
-        PRIVATE ${${PROJECT_NAME}_IncludeDir}
-        PRIVATE ${Soci_Include_Dir}
-        PRIVATE ${Utils_Include_Dir})
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
+        ${${PROJECT_NAME}_IncludeDir}
+        ${Soci_Include_Dir}
+        ${Utils_Include_Dir})
 target_link_directories(${PROJECT_NAME}
-        PRIVATE ${Soci_Libs_Dir})
+        PRIVATE
+        ${Soci_Libs_Dir})
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE pugixml
-        PRIVATE ${Qt_Libs}
-        PRIVATE ${Soci_Libs}
-        PRIVATE WorLibrary
-        PRIVATE ${QmlCustomPlugins})
+        PRIVATE
+        pugixml
+        ${Qt_Libs}
+        ${Soci_Libs}
+        WorLibrary
+        ${QmlCustomPlugins})

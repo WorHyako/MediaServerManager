@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import Frontend.Styles as WorStyles
 import Frontend.Controls as WorControls
 import Frontend.ManagementControls as WorManagementControls
-import Frontend.QmlObjects.LiveData as WorLiveData
 
 /**
  *
@@ -17,7 +16,6 @@ Item {
 	 * Object's name
 	 */
 	property string objectName: `Management button with text`
-
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -47,12 +45,12 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: liveData.name
+	property string buttonText: liveData.data
 
 	/**
 	 * Text inside Edit Text field
 	 */
-	property string textFieldText: liveData.name
+	property string textFieldText: liveData.data
 
 	height: WorStyles.ManagementButtonStyle.managementButtonMediumHeight
 	width: WorStyles.ManagementButtonStyle.managementButtonMediumWidth
@@ -113,12 +111,8 @@ Item {
 			id: commandManager
 		}
 
-		WorLiveData.QmlLiveData {
+		WorManagementControls.LiveData {
 			id: liveData
-
-			Component.onCompleted: {
-				liveDataTracker.liveDataChanged.connect(liveData.liveDataChanged);
-			}
 		}
 	}
 }

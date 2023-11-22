@@ -17,6 +17,7 @@ qt_add_qml_module(QmlLiveData
         QtQml)
 
 target_include_directories(QmlLiveData
-        PUBLIC ${${PROJECT_NAME}_IncludeDir}
-        PUBLIC ${WorLib_Include_Dir}
-        PUBLIC ${Utils_Include_Dir})
+        PUBLIC
+        ${${PROJECT_NAME}_IncludeDir}
+        ${WorLib_Include_Dir}
+        ${Utils_Include_Dir})

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <atomic>
-#include <any>
+#include <unordered_map>
 #include <functional>
 
 #include "Utils/Sql/Events.hpp"
@@ -25,18 +25,16 @@ namespace MediaServerManager::Livedata {
          * @param dataName  LiveData value name
          * @return          LiveData value
          */
-        template<class T>
-        [[nodiscard]] std::optional<T> get(const std::string &dataName) noexcept;
+        [[nodiscard]] std::optional<std::string> get(const std::string &dataName) noexcept;
 
         /**
          * Add to LiveData storage data
          * @param dataName  LiveData value name
          * @param data      LivaData value
          */
-        template<class T>
-        void set(const std::string &dataName, const T &data) noexcept;
+        void set(const std::string &dataName, const std::string &data) noexcept;
 
-        void setNotifyingFunc(std::function<void(const std::string &, const std::any &)> notifyingFunc) noexcept {
+        void setNotifyingFunc(std::function<void(const std::string &, const std::string &)> notifyingFunc) noexcept {
             _notifyingFunc = std::move(notifyingFunc);
         }
 
@@ -57,37 +55,16 @@ namespace MediaServerManager::Livedata {
         /**
          *  LiveData storage
          */
-        std::unordered_map<std::string, std::any> _liveData;
+        std::unordered_map<std::string, std::string> _liveData;
 
         /**
          *
          */
-        std::function<void(std::string, std::any)> _notifyingFunc;
+        std::function<void(std::string, std::string)> _notifyingFunc;
 
         /**
          *
          */
         std::atomic<bool> _atomicFlag;
     };
-
-    template<class T>
-    std::optional<T> LiveData::get(const std::string &dataName) noexcept {
-        const auto found = isExist(dataName);
-        return found
-               ? std::optional<T>(std::any_cast<T>(_liveData.at(dataName)))
-               : std::nullopt;
-    }
-
-    template<class T>
-    void LiveData::set(const std::string &dataName, const T &data) noexcept {
-        auto found = isExist(dataName);
-        if (found) {
-            _liveData.at(dataName) = data;
-        } else {
-            _liveData.emplace(std::pair<std::string, std::any> { dataName, data });
-        }
-        if (_notifyingFunc) {
-            _notifyingFunc(dataName, data);
-        }
-    }
 }
