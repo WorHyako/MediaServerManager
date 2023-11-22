@@ -10,6 +10,7 @@ using namespace MediaServerManager::QmlObjects::LiveData;
 QmlLiveData::QmlLiveData(QObject *parent) noexcept
         : QObject(parent),
           _dataName("currentTourWinnersCount") {
+    updateData();
 }
 
 #include <iostream>
@@ -20,7 +21,6 @@ void QmlLiveData::liveDataChanged(QString dataName, QString data) {
     if (dataName != _dataName) {
         return;
     }
-    setDataName(std::move(dataName));
     setData(std::move(data));
 }
 
@@ -30,8 +30,8 @@ void QmlLiveData::updateData() noexcept {
     }
     auto &liveData = Wor::TemplateWrapper::Singleton<Livedata::LiveData>::getInstance();
     auto data = liveData.get(_dataName.toStdString());
-    if(data.has_value()){
-        _data = QString(data.value().c_str());
+    if (data.has_value()) {
+        setData(data.value().c_str());
     }
 }
 
@@ -54,6 +54,8 @@ void QmlLiveData::setDataName(QString dataName) noexcept {
     std::cout << "\nQmlLiveData - setSqlFieldName - " << _dataName.toStdString();
 
     emit dataNameChanged(_dataName);
+
+    updateData();
 }
 
 void QmlLiveData::setData(QString data) noexcept {

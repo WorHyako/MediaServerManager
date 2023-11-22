@@ -125,7 +125,6 @@ int main(int argc, char *argv[]) {
         eventManager.startUpdatingThread();
     });
     y.detach();
-//    eventManager.startUpdatingThread();
     engine.load(url);
     return app.exec();
 }

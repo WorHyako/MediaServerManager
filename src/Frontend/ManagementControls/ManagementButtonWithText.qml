@@ -12,6 +12,8 @@ Item {
 
 	property Item commandManagerRef: commandManager
 
+	property string sqlDataName: `LiveData name`
+
 	/**
 	 * Object's name
 	 */
@@ -45,7 +47,7 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: liveData.data
+	property string buttonText: liveData.dataName
 
 	/**
 	 * Text inside Edit Text field
@@ -113,6 +115,7 @@ Item {
 
 		WorManagementControls.LiveData {
 			id: liveData
+			dataName: root.sqlDataName
 		}
 	}
 }

@@ -33,5 +33,8 @@ WorBackgrounds.TextBackgroundRectangle {
 			family: WorStyles.FontStyle.fontFamily
 			pointSize: WorStyles.FontStyle.fontSize
 		}
+		onEditingFinished: {
+			root.text = text;
+		}
 	}
 }

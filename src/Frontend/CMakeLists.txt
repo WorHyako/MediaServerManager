@@ -8,7 +8,7 @@ set(QmlCustomPlugins)
 add_subdirectory(QmlObjects)
 
 ####################################################
-### ,cmake file contains each module description ###
+### .cmake file contains each module description ###
 ####################################################
 include(ModuleDescriptions.cmake)
 

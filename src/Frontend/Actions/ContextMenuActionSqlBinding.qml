@@ -22,7 +22,6 @@ Action {
 			`Change binding name window`
 		);
 		window.selectedButton = selectedObject;
-		console.log(`selected object: ${selectedObject}`);
 		window.show();
 	}
 }
