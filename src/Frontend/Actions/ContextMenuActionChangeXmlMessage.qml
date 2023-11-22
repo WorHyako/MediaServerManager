@@ -11,15 +11,15 @@ Action {
 	 */
 	required property var selectedObject
 
-	text: `Change binding name`
+	text: `Change xml message`
 
 	onTriggered: () => {
 		const window = WorJs.ItemCreator.createItem(
 			`WorDialogs`,
-			`ChangeBindingWindow`,
+			`ChangeXmlMessageWindow`,
 			``,
 			selectedObject,
-			`Change binding name window`
+			`Change xml message window`
 		);
 		window.selectedButton = selectedObject;
 		console.log(`selected object: ${selectedObject}`);

@@ -42,7 +42,11 @@ Menu {
 		propertyToRename: `buttonText`
 	}
 
-	WorActions.ContextMenuActionChangeBindingName {
+	WorActions.ContextMenuActionSqlBinding {
+		selectedObject: root.selectedButton
+	}
+
+	WorActions.ContextMenuActionChangeXmlMessage {
 		selectedObject: root.selectedButton
 	}
 

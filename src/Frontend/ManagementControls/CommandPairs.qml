@@ -24,7 +24,7 @@ Item {
 		id: internal
 
 		/**
-		 * Pairs to generate XML message to media serve
+		 * Pairs to generate XML message to media server
 		 */
 		property var commandPairs: []
 	}

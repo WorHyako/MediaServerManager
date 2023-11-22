@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.24)
 project(MediaServerManager
         VERSION 0.1
         LANGUAGES CXX)
-set(CMAKE_CXX_COMPILER_VERSION 17)
+
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #########################
@@ -14,11 +15,18 @@ file(GLOB_RECURSE Sources Src/*.cpp)
 file(GLOB Qt_Objects
         Include/ManagementScope.hpp
         Include/Json/JsonQmlWrapper.hpp
+        Include/LiveData/QmlLiveDataTracker.hpp
         Include/DynamicScopeType.hpp)
 
 ########################
 ### Third Party libs ###
 ########################
+set(WORLIBRARY_JSON ON)
+set(WORLIBRARY_DATA_CONVERTER ON)
+set(WORLIBRARY_SQL ON)
+set(WORLIBRARY_MATH ON)
+set(WORLIBRARY_NETWORK ON)
+set(WORLIBRARY_CURRENCY ON)
 set(WorLibrary_Root_Dir ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/WorLibrary)
 add_subdirectory(${WorLibrary_Root_Dir})
 
@@ -72,21 +80,24 @@ add_subdirectory(Frontend)
 ### Collect all properties for project ###
 ##########################################
 target_sources(${PROJECT_NAME}
-        PRIVATE ${Sources}
-        PRIVATE ${Qt_Objects}
-        PRIVATE ${Utils_Src})
+        PRIVATE
+        ${Sources}
+        ${Qt_Objects}
+        ${Utils_Sources}
+        ${Utils_Src})
 target_include_directories(${PROJECT_NAME}
-        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
-        PRIVATE ${${PROJECT_NAME}_IncludeDir}
-        PRIVATE ${Soci_Include_Dir}
-        PRIVATE ${Utils_Include_Dir}
-        PRIVATE ${Boost_INCLUDE_DIRS})
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Frontend
+        ${${PROJECT_NAME}_IncludeDir}
+        ${Soci_Include_Dir}
+        ${Utils_Include_Dir})
 target_link_directories(${PROJECT_NAME}
-        PRIVATE ${Soci_Libs_Dir})
+        PRIVATE
+        ${Soci_Libs_Dir})
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE pugixml
-        PRIVATE ${Qt_Libs}
-        PRIVATE ${Boost_LIBRARIES}
-        PRIVATE ${Soci_Libs}
-        PRIVATE WorLibrary
-        PRIVATE ${QmlCustomPlugins})
+        PRIVATE
+        pugixml
+        ${Qt_Libs}
+        ${Soci_Libs}
+        WorLibrary
+        ${QmlCustomPlugins})

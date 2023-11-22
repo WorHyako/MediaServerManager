@@ -21,11 +21,6 @@ WorBackgrounds.TextBackgroundRectangle {
 	height: 30
 	width: 200
 
-	Binding {
-		root.text: textEdit.text
-		restoreMode: Binding.RestoreBindingOrValue
-	}
-
 	TextEdit {
 		id: textEdit
 		anchors.fill: parent
@@ -37,6 +32,9 @@ WorBackgrounds.TextBackgroundRectangle {
 		font {
 			family: WorStyles.FontStyle.fontFamily
 			pointSize: WorStyles.FontStyle.fontSize
+		}
+		onEditingFinished: {
+			root.text = text;
 		}
 	}
 }

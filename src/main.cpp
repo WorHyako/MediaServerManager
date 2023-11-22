@@ -5,19 +5,27 @@
 
 #include "ManagementScope.hpp"
 #include "Json/JsonQmlWrapper.hpp"
-#include "Frontend/QmlObjects/Network/QmlSocketManager.hpp"
 #include "Command/ActionCommand.hpp"
 #include "Command/CommandBuilder.hpp"
+#include "LiveData/QmlLiveDataTracker.hpp"
+#include "LiveData/LiveData.hpp"
+
+#include "QmlObjects/Network/QmlSocketManager.hpp"
 
 #include "WorLibrary/Sql/MySqlManager.hpp"
 #include "WorLibrary/TemplateWrapper/Singleton.hpp"
 #include "WorLibrary/Network/TcpSocket.hpp"
+#include "WorLibrary/Sql/Event/EventManager.hpp"
+#include "WorLibrary/Currency/MoneyStrPresentation.hpp"
 
-#include "Utils/AuthData.hpp"
-#include "Utils/StatementData.hpp"
+#include "Utils/Sql/AuthData.hpp"
 #include "Utils/Sql/Events.hpp"
 
+#include <future>
+
 #include "pugixml.hpp"
+
+#include "WorLibrary/DataConverter/DataConverter.hpp"
 
 using namespace MediaServerManager::Command;
 using namespace MediaServerManager;
@@ -25,15 +33,24 @@ using namespace Wor::Network;
 
 int main(int argc, char *argv[]) {
 
-    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::GetInstance();
-    manager.Configure(Utils::Sql::authParameters);
-    auto res = manager.TryToConnect();
+    auto &manager = Wor::TemplateWrapper::Singleton<Wor::Sql::MySqlManager>::getInstance();
+    manager.configure(Utils::Sql::authParameters);
+    auto connectRes = manager.tryToConnect();
 
-    if (res != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
+    Wor::Sql::Event::EventManager eventManager;
+    eventManager.setEventList(Utils::Sql::Events::getEventList());
+    eventManager.setUpdateEvent(Utils::Sql::Events::getUpdateEvent());
+
+    auto rules = static_cast<Wor::Currency::MoneyPresentation::Rules>(
+            (int) Wor::Currency::MoneyPresentation::Rules::Penny |
+            (int) Wor::Currency::MoneyPresentation::Rules::CurrencySymbol);
+    auto f = Wor::Currency::MoneyPresentation::formatMoney("334124fw124.41",
+                                                           rules,
+                                                           Wor::Currency::CurrencyType::Dollar);
+
+    if (connectRes != Wor::Sql::MySqlManager::ConnectionStatus::Connected) {
         return -300;
     }
-
-    auto answer = manager.Select(Utils::Sql::statementData);
 
     std::vector<ActionCommand *> commandList;
 
@@ -88,9 +105,26 @@ int main(int argc, char *argv[]) {
                 }
             },
             Qt::QueuedConnection);
-    MediaServerManager::Json::JsonQmlWrapper jsonManager;
+
+    /**
+     * Q_Objects registering
+     */
+    LiveData::QmlLiveDataTracker liveDataTracker;
+    engine.rootContext()->setContextProperty("liveDataTracker", &liveDataTracker);
+
+    Json::JsonQmlWrapper jsonManager;
     engine.rootContext()->setContextProperty("jsonManager", &jsonManager);
 
+    auto &liveData = Wor::TemplateWrapper::Singleton<Livedata::LiveData>::getInstance();
+    liveData.setNotifyingFunc(
+            [&liveDataTracker](const std::string &dataName, const std::string &data) {
+                liveDataTracker.notifyAll(dataName, data);
+            });
+    std::thread y([&eventManager]() {
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+        eventManager.startUpdatingThread();
+    });
+    y.detach();
     engine.load(url);
     return app.exec();
 }

@@ -6,15 +6,17 @@
 #include <array>
 
 #include "Json/ElementConfig.hpp"
-#include "WorLibrary/Json/JsonManager.hpp"
 #include "DynamicScopeType.hpp"
+
+#include "WorLibrary/Json/JsonManager.hpp"
 
 namespace MediaServerManager::Json {
 
     /**
      *
      */
-    class JsonQmlWrapper : public QObject {
+    class JsonQmlWrapper
+            : public QObject {
     Q_OBJECT
 
     public:
@@ -33,7 +35,7 @@ namespace MediaServerManager::Json {
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        TryToFindFile(const QString &filePath_,
+        tryToFindFile(const QString &filePath_,
                       bool createFile = true) noexcept;
 
         /**
@@ -42,17 +44,15 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool
-        SaveConfigs(const QList<QObject *> &items_,
-                    DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool saveConfigs(const QList<QObject *> &items_,
+                                                   DynamicScopeType scope_) noexcept;
 
         /**
          * Try to load UI elements config from json file
          * @param scope_
          * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE QString
-        LoadConfigs(DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE QString loadConfigs(DynamicScopeType scope_) noexcept;
 
     private:
         /**
@@ -61,7 +61,7 @@ namespace MediaServerManager::Json {
          */
         using ConfigStorage =
                 std::array<std::vector<MediaServerManager::ElementConfig>,
-                        static_cast<size_t>(
+                        static_cast<std::size_t>(
                                 std::numeric_limits<DynamicScopeType>::max())>;
 
         /**
@@ -80,7 +80,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeQuickButtonsConfig(
+        [[nodiscard]] nlohmann::json makeQuickButtonsConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -90,7 +90,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeQuickTitlesConfig(
+        [[nodiscard]] nlohmann::json makeQuickTitlesConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -100,7 +100,7 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json MakeManagementButtonConfig(
+        [[nodiscard]] nlohmann::json makeManagementButtonConfig(
                 const std::vector<QObject *> &items_,
                 const std::vector<std::string> &propertiesList_) const noexcept;
 
@@ -112,13 +112,13 @@ namespace MediaServerManager::Json {
          * @return current file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        GetFileStatus() const noexcept;
+        getFileStatus() const noexcept;
 
         /**
          *
          * @return  current file name via path
          */
-        [[nodiscard]] Q_INVOKABLE QString GetFileName() const noexcept;
+        [[nodiscard]] Q_INVOKABLE QString getFileName() const noexcept;
 
 #pragma endregion Accessors
     };
