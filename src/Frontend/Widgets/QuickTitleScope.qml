@@ -32,7 +32,6 @@ Rectangle {
     WorControls.ButtonSaveConfig {
         configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickTitles
-        typeName: `Quick title line`
         scopeObject: linesList
     }
 

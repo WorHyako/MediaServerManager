@@ -21,7 +21,7 @@ WorBackgrounds.TextBackgroundRectangle {
 	height: 30
 	width: 200
 
-	TextEdit {
+	TextInput {
 		id: textEdit
 		anchors.fill: parent
 		color: WorStyles.FontStyle.fontColor
@@ -33,7 +33,10 @@ WorBackgrounds.TextBackgroundRectangle {
 			family: WorStyles.FontStyle.fontFamily
 			pointSize: WorStyles.FontStyle.fontSize
 		}
-		onEditingFinished: {
+		// onEditingFinished: {
+		// 	root.text = text;
+		// }
+		onTextEdited: {
 			root.text = text;
 		}
 	}

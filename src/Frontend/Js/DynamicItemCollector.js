@@ -13,10 +13,8 @@ function collectItems(parent, typeName) {
     let items = [];
     const itemNum = parent.children.length;
     for (let i = 0; i < itemNum; ++i) {
-        if (parent.children[i].objectName === typeName) {
-            items.push(parent.children[i]);
-            console.log(`children[${i}]: ${parent.children[i]} was collected`);
-        }
+        items.push(parent.children[i]);
+        console.log(`children[${i}]: Object ${parent.children[i]} with name ${parent.children[i].objectName} was collected`);
     }
     return items;
 }

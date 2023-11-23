@@ -22,7 +22,6 @@ Item {
 	WorControls.ButtonSaveConfig {
 		configFileName: `test.json`
 		dynamicScopeType: MSM.DynamicScopeType.ManagementButtons
-		typeName: `Management button`
 		scopeObject: contentScope
 	}
 

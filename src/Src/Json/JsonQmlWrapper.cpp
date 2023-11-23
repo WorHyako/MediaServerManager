@@ -14,12 +14,11 @@ Wor::Json::JsonManager::FileStatus JsonQmlWrapper::tryToFindFile(const QString &
 bool JsonQmlWrapper::saveConfigs(const QList<QObject *> &items_,
                                  DynamicScopeType scope_) noexcept {
     std::vector<QObject *> items;
-    items.reserve(items_.size());
     for (auto &eachQItem : items_) {
         if (!eachQItem || !qobject_cast<QQuickItem *>(eachQItem)) {
             continue;
         }
-        items.push_back(eachQItem);
+        items.emplace_back(eachQItem);
     }
     nlohmann::json configString;
     std::string scopeName;
@@ -31,8 +30,8 @@ bool JsonQmlWrapper::saveConfigs(const QList<QObject *> &items_,
             scopeName = "QuickButtonsScope";
             break;
         case DynamicScopeType::ManagementButtons:
-            propertiesList = { "text", "x", "y", "width", "height" };
-            configString = makeManagementButtonConfig(items, propertiesList);
+            propertiesList = { "x", "y", "width", "height", "sqlDataNameDisplaying", "sqlDataName", "objectName" };
+            configString = makeManagementScopeConfig(items, propertiesList);
             scopeName = "ManagementButtonsScope";
             break;
         case DynamicScopeType::QuickTitles:
@@ -105,18 +104,16 @@ nlohmann::json JsonQmlWrapper::makeQuickTitlesConfig(
     return result;
 }
 
-nlohmann::json JsonQmlWrapper::makeManagementButtonConfig(
-        const std::vector<QObject *> &items_,
-        const std::vector<std::string> &propertiesList_) const noexcept {
-    const std::uint16_t itemNum = items_.size();
-
+nlohmann::json JsonQmlWrapper::makeManagementScopeConfig(const std::vector<QObject *> &items,
+                                                         const std::vector<std::string> &propertiesList) const noexcept {
+    const std::uint32_t itemNum = items.size();
     nlohmann::json result;
+
     for (std::size_t i = 0; i < itemNum; ++i) {
-        std::string buttonNumber("ManagementButtonWithText_");
-        buttonNumber.append(std::to_string(i));
-        for (const auto &property : propertiesList_) {
-            result[buttonNumber][property] =
-                    items_[i]->property(property.c_str()).toString().toStdString();
+        const auto objectName = items[i]->property("objectName").toString();
+        std::string objectUniqName(objectName.toStdString() + "_" + std::to_string(i));
+        for (const auto &property : propertiesList) {
+            result[objectUniqName][property] = items[i]->property(property.c_str()).toString().toStdString();
         }
     }
     return result;

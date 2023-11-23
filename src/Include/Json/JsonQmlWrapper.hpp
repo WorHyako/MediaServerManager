@@ -20,7 +20,7 @@ namespace MediaServerManager::Json {
     Q_OBJECT
 
     public:
-        /*
+        /**
          * Ctor.
          */
         JsonQmlWrapper() = default;
@@ -35,7 +35,7 @@ namespace MediaServerManager::Json {
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        tryToFindFile(const QString &filePath_,
+        tryToFindFile(const QString &filePath,
                       bool createFile = true) noexcept;
 
         /**
@@ -44,15 +44,15 @@ namespace MediaServerManager::Json {
          * @param scope_
          * @return          saving result
          */
-        [[nodiscard]] Q_INVOKABLE bool saveConfigs(const QList<QObject *> &items_,
-                                                   DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE bool saveConfigs(const QList<QObject *> &items,
+                                                   DynamicScopeType scope) noexcept;
 
         /**
          * Try to load UI elements config from json file
          * @param scope_
          * @return          loading result
          */
-        [[nodiscard]] Q_INVOKABLE QString loadConfigs(DynamicScopeType scope_) noexcept;
+        [[nodiscard]] Q_INVOKABLE QString loadConfigs(DynamicScopeType scope) noexcept;
 
     private:
         /**
@@ -61,8 +61,7 @@ namespace MediaServerManager::Json {
          */
         using ConfigStorage =
                 std::array<std::vector<MediaServerManager::ElementConfig>,
-                        static_cast<std::size_t>(
-                                std::numeric_limits<DynamicScopeType>::max())>;
+                        static_cast<std::size_t>(std::numeric_limits<DynamicScopeType>::max())>;
 
         /**
          *
@@ -80,9 +79,8 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json makeQuickButtonsConfig(
-                const std::vector<QObject *> &items_,
-                const std::vector<std::string> &propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json makeQuickButtonsConfig(const std::vector<QObject *> &items,
+                                                            const std::vector<std::string> &propertiesList) const noexcept;
 
         /**
          *
@@ -90,9 +88,8 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json makeQuickTitlesConfig(
-                const std::vector<QObject *> &items_,
-                const std::vector<std::string> &propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json makeQuickTitlesConfig(const std::vector<QObject *> &items,
+                                                           const std::vector<std::string> &propertiesList) const noexcept;
 
         /**
          *
@@ -100,9 +97,8 @@ namespace MediaServerManager::Json {
          * @param propertiesList_
          * @return
          */
-        [[nodiscard]] nlohmann::json makeManagementButtonConfig(
-                const std::vector<QObject *> &items_,
-                const std::vector<std::string> &propertiesList_) const noexcept;
+        [[nodiscard]] nlohmann::json makeManagementScopeConfig(const std::vector<QObject *> &items,
+                                                               const std::vector<std::string> &propertiesList) const noexcept;
 
     public:
 #pragma region Accessors

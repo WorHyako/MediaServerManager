@@ -20,11 +20,30 @@ Window {
 	 */
 	property QtObject selectedButton: undefined
 
-	WorControls.EditTextField {
-		id: textEdit
-		text: root.selectedButton.sqlDataName
-	}
+	RowLayout {
 
+		ColumnLayout {
+			WorControls.Text {
+				text: `Data Name`
+			}
+
+			WorControls.Text {
+				text: `Displaying data Name`
+			}
+		}
+
+		ColumnLayout {
+			WorControls.EditTextField {
+				id: textFieldDataName
+				text: root.selectedButton.sqlDataName
+			}
+
+			WorControls.EditTextField {
+				id: textFieldDataDisplayName
+				text: root.selectedButton.sqlDataNameDisplaying
+			}
+		}
+	}
 	WorControls.Button {
 		id: applyButton
 
@@ -37,7 +56,8 @@ Window {
 		}
 		onLeftClicked: () => {
 			root.close();
-			root.selectedButton.sqlDataName = textEdit.text;
+			root.selectedButton.sqlDataName = textFieldDataName.text;
+			root.selectedButton.sqlDataNameDisplaying = textFieldDataDisplayName.text;
 			root.destroy();
 		}
 	}

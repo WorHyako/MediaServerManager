@@ -11,7 +11,17 @@ Item {
 	/**
 	 * Object name
 	 */
-	property string objectName: `Management button`
+	property string objectName: `ManagementButton`
+
+	/**
+	 *
+	 */
+	property string sqlDataNameDisplaying: `LiveData DisplayingName`
+
+	/**
+	 *
+	 */
+	property string sqlDataName: `LiveData name`
 
 	/**
 	 * Is button can be moved in dynamic scope

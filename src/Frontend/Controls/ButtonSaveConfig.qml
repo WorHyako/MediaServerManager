@@ -6,12 +6,12 @@ import Frontend.Js as WorJs
  * Object based on WorControls.Button to save config for current scope
  */
 WorControls.Button {
-    id: root
+	id: root
 
 	/**
 	 *  Json config file name
 	 */
-    required property string configFileName
+	required property string configFileName
 
 	/**
 	 * Type of dynamic scope
@@ -20,30 +20,25 @@ WorControls.Button {
 	 * <p> - MSM.DynamicScopeType.QuickButtons
 	 * <p> - MSM.DynamicScopeType.QuickTitles
 	 */
-    required property int dynamicScopeType
-
-	/**
-	 * String name of dynamic scope. See MSM.DynamicScopeType enum
-	 */
-    required property string typeName
+	required property int dynamicScopeType
 
 	/**
 	 * Parent scope for loaded elements
 	 */
-    required property QtObject scopeObject
+	required property QtObject scopeObject
 
-    height: 50
-    text: `Save`
-    width: 50
+	text: `Save`
+	height: 50
+	width: 50
 
-    onLeftClicked: () => {
-        const fileExist = jsonManager.TryToFindFile(root.configFileName);
-        if (!fileExist) {
-            console.log(`Can't find config file`);
-            return;
-        }
-        const items = WorJs.DynamicItemCollector.collectItems(root.scopeObject, root.typeName);
-        const savingResult = jsonManager.SaveConfigs(items, root.dynamicScopeType);
-        console.log(`Saving result: ${savingResult}`);
-    }
+	onLeftClicked: () => {
+		const fileExist = jsonManager.tryToFindFile(root.configFileName);
+		if (!fileExist) {
+			console.log(`Can't find config file`);
+			return;
+		}
+		const items = WorJs.DynamicItemCollector.collectItems(root.scopeObject);
+		const savingResult = jsonManager.saveConfigs(items, root.dynamicScopeType);
+		console.log(`Saving result: ${savingResult}`);
+	}
 }

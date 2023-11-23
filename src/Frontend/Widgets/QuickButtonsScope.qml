@@ -13,7 +13,6 @@ Item {
     WorControls.ButtonSaveConfig {
         configFileName: `test.json`
         dynamicScopeType: MSM.DynamicScopeType.QuickButtons
-        typeName: `Management button`
         scopeObject: grid
     }
 

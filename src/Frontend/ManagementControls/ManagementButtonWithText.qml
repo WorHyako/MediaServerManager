@@ -12,12 +12,20 @@ Item {
 
 	property Item commandManagerRef: commandManager
 
+	/**
+	 *
+	 */
+	property string sqlDataNameDisplaying: `LiveData DisplayingName`
+
+	/**
+	 *
+	 */
 	property string sqlDataName: `LiveData name`
 
 	/**
 	 * Object's name
 	 */
-	property string objectName: `Management button with text`
+	property string objectName: `ManagementButtonWithText`
 
 	/**
 	 * Is button can be moved in dynamic scope
@@ -47,10 +55,10 @@ Item {
 	/**
 	 * Text inside button body
 	 */
-	property string buttonText: liveData.dataName
+	property string buttonText: sqlDataNameDisplaying
 
 	/**
-	 * Text inside Edit Text field
+	 * Text inside Edit Text field. Contain current live data by selected live data name
 	 */
 	property string textFieldText: liveData.data
 

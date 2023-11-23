@@ -8,7 +8,5 @@ void QmlLiveDataTracker::notifyAll(const std::string &dataName, const std::strin
     QString qDataName(dataName.c_str());
     QString qData(data.c_str());
 
-    std::cout << "\nQmlLiveDataTracker - notifyAll - " << dataName;
-
     emit liveDataChanged(qDataName, qData);
 }

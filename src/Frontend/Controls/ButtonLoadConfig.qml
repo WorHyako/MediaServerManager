@@ -33,12 +33,12 @@ WorControls.Button {
 	width: 50
 
 	onLeftClicked: () => {
-		const fileExist = jsonManager.TryToFindFile(root.configFileName);
+		const fileExist = jsonManager.tryToFindFile(root.configFileName);
 		if (!fileExist) {
 			console.log(`Can't find config file`);
 			return;
 		}
-		const configString = jsonManager.LoadConfigs(root.dynamicScopeType);
+		const configString = jsonManager.loadConfigs(root.dynamicScopeType);
 		if (configString === `null`) {
 			console.log(`Can't load json from config file`);
 			return;

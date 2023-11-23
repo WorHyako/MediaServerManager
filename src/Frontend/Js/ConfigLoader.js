@@ -1,5 +1,6 @@
 .import "ObjectsQrcPath.js" as ObjectsQrc
 .import "QrcItemCreator.js" as QrcItemCreator
+.import "ItemCreator.js" as WorItemCreator
 .import MediaServerManager 1.0 as MSM;
 
 const managementButtonSettings = {
@@ -25,18 +26,15 @@ function parseConfig(configString, configType) {
     const elementNodeNamePattern = getScopeNamePattern(configType)[0];
 
     let resultArray = [];
-    for (let i = 0; ; ++i) {
+    for (const x in jsonObject) {
         let elementConfig = [];
-        const elementNodeName = elementNodeNamePattern + i;
-        if (jsonObject[elementNodeName] === undefined) {
-            break;
-        }
-        for (const key in jsonObject[elementNodeName]) {
-            const value = jsonObject[elementNodeName][key];
+        for (const key in jsonObject[x]) {
+            const value = jsonObject[x][key];
             elementConfig.push([String(key), String(value)]);
         }
         resultArray.push(elementConfig);
     }
+
     return resultArray;
 }
 
@@ -50,22 +48,24 @@ function parseConfig(configString, configType) {
  */
 function loadUiFromConfig(configString, configType, scopeObject) {
     const configArray = parseConfig(configString, configType);
-    const elementPath = getElementPath(configType);
+    console.log(`configArray: ${configArray}`);
 
-    for (let elementCount = 0; elementCount < elementPath.length; ++elementCount) {
-        clearAllObjectChild(scopeObject);
-        const defaultPreset = getDefaultControlPresets(configType, scopeObject);
+    clearAllObjectChild(scopeObject);
+    const defaultPreset = getDefaultControlPresets(configType, scopeObject);
 
-        for (let configCount = 0; configCount < configArray.length; ++configCount) {
-            const configObject = arrayToObject(configArray[configCount]);
-            Object.assign(configObject, defaultPreset);
-            // QrcItemCreator.createNewItem(String(elementPath), scopeObject, configObject);
-            ItemCreator.createItem(
-                `WorManagementControls`
-                `${elementPath[elementCount]}`,
-                ``,
-                scopeObject,
-            );
+    for (let configCount = 0; configCount < configArray.length; ++configCount) {
+        const configObject = arrayToObject(configArray[configCount]);
+        Object.assign(configObject, defaultPreset);
+        console.log(`\n\nobject to str: ${Object.entries(configObject)}`);
+        let object = WorItemCreator.createItem(
+            `WorManagementControls`,
+            configObject.objectName,
+            ``,
+            scopeObject,
+            configObject.objectName
+        );
+        for (const [key, value] of Object.entries(configObject)) {
+            object[key] = value;
         }
     }
     return true;
@@ -136,31 +136,6 @@ function getScopeNamePattern(scopeType) {
         default:
     }
     return namePattern;
-}
-
-/**
- * Get qrc path to dynamic elements type
- * @param scopeType Dynamic scope type via MSM.DynamicScopeType
- * @returns {*[]}   Array of qrc path to elements
- */
-function getElementPath(scopeType) {
-    let elementPath = [];
-    switch (scopeType) {
-        case MSM.DynamicScopeType.QuickButtons:
-            elementPath.push(`ManagementButtonWithText`);
-            break;
-        case MSM.DynamicScopeType.ManagementButtons:
-            elementPath.push(`ManagementButtonWithText`);
-            break;
-        case MSM.DynamicScopeType.QuickTitles:
-            elementPath.push(`QuickTitleLine`);
-            break;
-        case MSM.DynamicScopeType.All:
-            elementPath.push(`ManagementButtonWithText`, `QuickTitleLine`, `QuickTitleLine`);
-            break;
-        default:
-    }
-    return elementPath;
 }
 
 /**
