@@ -19,12 +19,11 @@ Item {
 		const found = internal.controls.find((element) => {
 			return element.name === nameTag;
 		});
-		console.log(`found: ${found}`);
 		if (found !== undefined) {
 			return false;
 		}
 		internal.controls.push({name: nameTag, strView: strView});
-		console.log(`control ${nameTag} was added to ManagementControl`);
+		// console.log(`control ${nameTag} was added to ManagementControl`);
 		return true;
 	};
 

@@ -9,7 +9,7 @@
  */
 function createItem(qrcScope, itemName, args, parent, objectName) {
     const objectViaString = getStringifyObject(qrcScope, itemName, args, objectName);
-    console.log(`object to create: ${objectViaString}`);
+    // console.log(`object to create: ${objectViaString}`);
     let item;
     try {
         item = Qt.createQmlObject(objectViaString, parent, objectName);
@@ -20,12 +20,12 @@ function createItem(qrcScope, itemName, args, parent, objectName) {
         }
         const itemRootStr = itemStringList[0];
         const itemChildrenStr = itemStringList.slice(1);
-        console.log(`Multi object to create: ${itemRootStr}`);
+        // console.log(`Multi object to create: ${itemRootStr}`);
         item = Qt.createQmlObject(itemRootStr, parent, objectName);
         itemChildrenStr.forEach((eachChild) => {
-            console.log(`Multi object to create: ${eachChild}`);
+            // console.log(`Multi object to create: ${eachChild}`);
             if (Qt.createQmlObject(eachChild, item) === undefined) {
-                console.log(`Error to create child: ${eachChild}`);
+                // console.log(`Error to create child: ${eachChild}`);
                 return undefined;
             }
         });

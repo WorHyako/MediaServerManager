@@ -11,10 +11,9 @@ const managementButtonSettings = {
 /**
  * Try to parse string from configuration file via json string
  * @param configString  Configuration json string
- * @param configType    Type of dynamic object whose config we want
  * @returns {*[]|null}  null - parsing error
  */
-function parseConfig(configString, configType) {
+function parseConfig(configString) {
     let jsonObject;
     try {
         jsonObject = JSON.parse(configString);
@@ -22,8 +21,6 @@ function parseConfig(configString, configType) {
         console.log(`Json parse exception`);
         return null;
     }
-
-    const elementNodeNamePattern = getScopeNamePattern(configType)[0];
 
     let resultArray = [];
     for (const x in jsonObject) {
@@ -47,7 +44,7 @@ function parseConfig(configString, configType) {
  * @returns {boolean}   UI loading result
  */
 function loadUiFromConfig(configString, configType, scopeObject) {
-    const configArray = parseConfig(configString, configType);
+    const configArray = parseConfig(configString);
     console.log(`configArray: ${configArray}`);
 
     clearAllObjectChild(scopeObject);
@@ -56,7 +53,6 @@ function loadUiFromConfig(configString, configType, scopeObject) {
     for (let configCount = 0; configCount < configArray.length; ++configCount) {
         const configObject = arrayToObject(configArray[configCount]);
         Object.assign(configObject, defaultPreset);
-        console.log(`\n\nobject to str: ${Object.entries(configObject)}`);
         let object = WorItemCreator.createItem(
             `WorManagementControls`,
             configObject.objectName,

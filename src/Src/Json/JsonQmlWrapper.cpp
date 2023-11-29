@@ -6,8 +6,7 @@ using namespace MediaServerManager::Json;
 
 Wor::Json::JsonManager::FileStatus JsonQmlWrapper::tryToFindFile(const QString &filePath_,
                                                                  bool createFile_) noexcept {
-    auto resultStatus = _jsonManager.tryToFindFile(
-            std::move(filePath_.toStdString()), createFile_);
+    const auto resultStatus = _jsonManager.tryToFindFile(std::move(filePath_.toStdString()), createFile_);
     return resultStatus;
 }
 
@@ -42,7 +41,7 @@ bool JsonQmlWrapper::saveConfigs(const QList<QObject *> &items_,
         default:
             break;
     }
-    auto result = _jsonManager.tryToSaveFile(configString.dump(), scopeName);
+    const auto result = _jsonManager.tryToSaveFile(configString.dump(), scopeName);
     return result;
 }
 
@@ -62,9 +61,8 @@ QString JsonQmlWrapper::loadConfigs(DynamicScopeType scope_) noexcept {
             break;
     }
     std::string configString = "null";
-    nlohmann::json jsonContent = _jsonManager.tryToLoadFile(scopeName);
-    auto loadingResult = jsonContent.is_object();
-    if (loadingResult) {
+    const nlohmann::json jsonContent = _jsonManager.tryToLoadFile(scopeName);
+    if (jsonContent.is_object()) {
         configString = jsonContent.dump();
     }
     return { configString.c_str() };
@@ -111,7 +109,7 @@ nlohmann::json JsonQmlWrapper::makeManagementScopeConfig(const std::vector<QObje
 
     for (std::size_t i = 0; i < itemNum; ++i) {
         const auto objectName = items[i]->property("objectName").toString();
-        std::string objectUniqName(objectName.toStdString() + "_" + std::to_string(i));
+        const std::string objectUniqName(objectName.toStdString() + "_" + std::to_string(i));
         for (const auto &property : propertiesList) {
             result[objectUniqName][property] = items[i]->property(property.c_str()).toString().toStdString();
         }

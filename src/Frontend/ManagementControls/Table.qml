@@ -15,8 +15,25 @@ WorBackgrounds.ButtonBackgroundRectangle {
 	height: 300
 	width: 200
 
+	/**
+	 * Is table can be moved in dynamic scope
+	 */
 	property bool canBeMoved: true
+
+	/**
+	 * Is button can be resized in dynamic scope
+	 */
 	property bool canBeResized: true
+
+	/**
+	 *
+	 */
+	property string sqlDataNameDisplaying: `LiveData DisplayingName`
+
+	/**
+	 *
+	 */
+	property string sqlDataName: `Table`
 
 	WorManagementControls.TransformMouseArea {
 		canBeMoved: root.canBeMoved
@@ -35,7 +52,7 @@ WorBackgrounds.ButtonBackgroundRectangle {
 
 	Component {
 		id: listViewDelegate
-    
+
 		WorControls.EditTextField {
 			height: 20
 			width: 80
@@ -108,5 +125,18 @@ WorBackgrounds.ButtonBackgroundRectangle {
 
 	WorCommands.QmlCommandSender {
 		id: qmlCommandSender
+	}
+
+	WorManagementControls.LiveData {
+		id: liveData
+
+		Component.onCompleted: {
+			liveData.dataChanged.connect(liveData.fillTable);
+		}
+
+		function fillTable() {
+		}
+
+		dataName: root.sqlDataName
 	}
 }

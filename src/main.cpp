@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
     /*********
      * Enums *
      *********/
-    qmlRegisterUncreatableType<MediaServerManager::DynamicScopeType>(
+    qmlRegisterUncreatableType<DynamicScopeType>(
             "MediaServerManager", 1, 0, "DynamicScopeType",
             "Not creatable as it is an enum type");
 
@@ -121,6 +121,7 @@ int main(int argc, char *argv[]) {
                 liveDataTracker.notifyAll(dataName, data);
             });
     std::thread y([&eventManager]() {
+        // std::this_thread::sleep_for(std::chrono::seconds(10));
         eventManager.startUpdatingThread();
     });
     y.detach();
