@@ -3,21 +3,23 @@ import QtQuick.Controls
 import Frontend.Js as WorJs
 
 /**
+ * Action, that allow user to change XML message to media server.
  *
+ * @author Wor Hyako
  */
 Action {
 	/**
-	 * Object's property to rename
+	 * Management object's property to rename.
 	 */
 	required property string propertyToRename
 
 	/**
-	 * Object, that property will be renamed
+	 * Management object whose property will be renamed.
 	 */
 	required property var objectToRename
 
 	/**
-	 * Parent (root) of renaming window
+	 * Hoster (root) of renaming window.
 	 */
 	required property var contextMenuRoot
 

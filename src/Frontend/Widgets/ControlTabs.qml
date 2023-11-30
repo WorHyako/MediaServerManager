@@ -3,66 +3,111 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Frontend.Widgets as WorWidgets
 import Frontend.Backgrounds as WorBackgrounds
+import Frontend.Js as WorJs
 
 /**
  *
  */
 Item {
-    id: root
+	id: root
 
-    anchors.fill: parent
+	/**
+	 * Ref to repeater which contain management scopes
+	 */
+	readonly property var managementScopeRepeaterRed: managementScopeRepeater
 
-    TabBar {
-        id: tabBar
+	anchors.fill: parent
 
-        height: 50
+	/**
+	 *
+	 */
+	function addNewTab(tabName) {
+		let temp = [];
+		for (let id in tabRepeater.model) {
+			temp.push(tabRepeater.model[id]);
+		}
+		temp.push(tabName);
+		tabRepeater.model = temp;
+	}
 
-        anchors {
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
-        }
+	TabBar {
+		id: tabBar
 
-        Repeater {
-            anchors.bottom: parent.bottom
-            model: [`First`, `Second`, `Third`, `Fourth`, `Fifth`]
+		height: 50
 
-            TabButton {
-                anchors.bottom: parent.bottom
-                height: tabBar.height
-                text: modelData
-                width: tabBar.height
+		anchors {
+			bottom: parent.bottom
+			horizontalCenter: parent.horizontalCenter
+		}
 
-                background: WorBackgrounds.TabButtonBackground {
-                }
-            }
-        }
-    }
-    StackLayout {
-        currentIndex: tabBar.currentIndex
+		Repeater {
+			id: tabRepeater
+			anchors.bottom: parent.bottom
+			model: [`First`, `Second`, `Third`, `Fourth`, `Fifth`]
 
-        anchors {
-            bottom: tabBar.top
-            left: root.left
-            right: root.right
-            top: root.top
-        }
+			TabButton {
+				anchors.bottom: parent.bottom
+				height: tabBar.height
+				text: modelData
+				width: tabBar.height
 
-        Repeater {
-            model: 5
+				background: WorBackgrounds.TabButtonBackground
+				{
+				}
+			}
+		}
+		TabButton {
+			anchors.bottom: parent.bottom
+			height: tabBar.height
+			text: `+`
+			width: tabBar.height
 
-            Rectangle {
-                color: `transparent`
-                radius: 10
+			onClicked: {
+				let window = WorJs.ItemCreator.createItem(
+					`WorDialogs`,
+					`CreateTabDialog`,
+					``,
+					root,
+					`CreateTabDialog`);
+				window.show();
+				window.onSuccessClosing.connect((tabName) => {
+					root.addNewTab(tabName);
+				});
+			}
 
-                border {
-                    color: `#AAA`
-                    width: 1
-                }
+			background: WorBackgrounds.TabButtonBackground
+			{
+			}
+		}
+	}
 
-                WorWidgets.ManagementScope {
-                    anchors.fill: parent
-                }
-            }
-        }
-    }
+	StackLayout {
+		currentIndex: tabBar.currentIndex
+
+		anchors {
+			bottom: tabBar.top
+			left: root.left
+			right: root.right
+			top: root.top
+		}
+
+		Repeater {
+			id: managementScopeRepeater
+			model: 5
+
+			Rectangle {
+				color: `transparent`
+				radius: 10
+
+				border {
+					color: `#AAA`
+					width: 1
+				}
+
+				WorWidgets.ManagementScope {
+					anchors.fill: parent
+				}
+			}
+		}
+	}
 }

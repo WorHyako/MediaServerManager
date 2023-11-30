@@ -1,13 +1,16 @@
 import QtQuick
 
 /**
+ * Default background for WorControls.
+ * In particular, this background is used for <code>WorControl.Button</code>.
  *
+ * @author Wor Hyako
  */
 Rectangle {
     id: root
 
 	/**
-	 * Show background has color effect on mouse hovering
+	 * Hovered condition to change background color.
 	 */
 	property bool hoveredCondition: false
 

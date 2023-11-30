@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QString>
+
 #include <vector>
 #include <array>
 
@@ -29,14 +30,14 @@ namespace MediaServerManager::Json {
 
         /**
          * Try to find file by path. Result will returned and saved to current
-         * file status\n Also file path will wrote to internal variable if
-         * successful
+         * file status.
+         * <p/>
+         * Also file path will wrote to internal variable if successful.
          * @param filePath_ full or relative file path
          * @return          file status
          */
         [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        tryToFindFile(const QString &filePath,
-                      bool createFile = true) noexcept;
+        tryToFindFile(const QString &filePath, bool createFile = true) noexcept;
 
         /**
          * Try to save UI elements config to json file
@@ -56,12 +57,12 @@ namespace MediaServerManager::Json {
 
     private:
         /**
-         * Array declare scopes, which contain dynamic elements\n
-         * Internal vector store elements info in current scope
+         * Array declare scopes, which contain dynamic elements.
+         * <p/>
+         * Internal vector store elements info in current scope.
          */
-        using ConfigStorage =
-                std::array<std::vector<MediaServerManager::ElementConfig>,
-                        static_cast<std::size_t>(std::numeric_limits<DynamicScopeType>::max())>;
+        using ConfigStorage = std::array<std::vector<MediaServerManager::ElementConfig>,
+                static_cast<std::size_t>(std::numeric_limits<DynamicScopeType>::max())>;
 
         /**
          *
@@ -107,8 +108,7 @@ namespace MediaServerManager::Json {
          * Return current file status via wor::Json::JsonManager::FileStatus
          * @return current file status
          */
-        [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus
-        getFileStatus() const noexcept;
+        [[nodiscard]] Q_INVOKABLE Wor::Json::JsonManager::FileStatus getFileStatus() const noexcept;
 
         /**
          *

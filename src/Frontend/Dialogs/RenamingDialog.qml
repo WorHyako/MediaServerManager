@@ -5,7 +5,10 @@ import Frontend.Controls as WorControls
 import Frontend.Js as WorJs
 
 /**
+ * Window, that allow user change displayed text of selected object.
+ * In particular, WorControls
  *
+ * @author Wor Hyako
  */
 Window {
 	id: root
@@ -13,17 +16,17 @@ Window {
 	modality: Qt.ApplicationModal
 
 	/**
-	 * New text value
+	 * New text value.
 	 */
 	property string newText: `-`
 
 	/**
-	 * Object to change displayed text
+	 * Object whose displayed text will be changed.
 	 */
 	property QtObject objectToRename
 
 	/**
-	 * Object's property to rename
+	 * Object's property to rename.
 	 */
 	property string propertyToRename
 
@@ -101,7 +104,7 @@ Window {
 			onLeftClicked: () => {
 				WorJs.Renamer.rename(root.objectToRename, root.propertyToRename, root.newText);
 				root.close();
-				// root.destroy();
+				root.destroy();
 			}
 		}
 	}

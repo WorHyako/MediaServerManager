@@ -18,7 +18,6 @@ namespace MediaServerManager::LiveData {
     public:
         /**
          * Ctor
-         * @param parent
          */
         QmlLiveDataTracker() = default;
 

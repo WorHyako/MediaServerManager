@@ -3,11 +3,13 @@ import QtQuick.Controls
 import Frontend.Js as WorJs
 
 /**
+ * Action, that allow user to change binding to SQL field of data.
  *
+ * @author Wor Hyako
  */
 Action {
 	/**
-	 * Object to change binding to Sql field
+	 * Management object who call current Action.
 	 */
 	required property var selectedObject
 
